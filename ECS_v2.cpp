@@ -6,6 +6,8 @@
 */
 
 #include <iostream>
+#include <functional>
+#include <memory>
 #include <list>
 #include <vector>
 #include <unordered_map>
@@ -19,20 +21,26 @@ using Id = std::size_t;
 class Entity {
 public:
 	Entity(Id id) :
-	id{ id }
+	_id{ id }
 	{}
 
 	Entity(Entity const &other):
-	id{other.id}
+	_id{other._id}
 	{}
 
 	Entity &operator=(Entity const &other)
 	{
-		this->id = other.id;
+		this->_id = other._id;
 		return *this;
 	}
-	
-	Id id;
+
+	Id getId() const
+	{
+		return _id;
+	}
+
+private:	
+	Id _id;
 };
 
 /**** EntityManager ****/
@@ -62,6 +70,9 @@ public:
 	{
 		return _idCounter++;
 	}
+
+private:
+	EntityManager() = default;
 
 private:
 	Id _idCounter = 0;
@@ -121,7 +132,7 @@ struct Component {
 	Id entityId = 0;
 };
 
-struct Position : public Component{
+struct Position : public Component {
 	Position(int x = 0, int y = 0):
 	x{x}, y{y}
 	{}
@@ -129,7 +140,7 @@ struct Position : public Component{
 	int y;
 };
 
-struct BoxColide : public Component{
+struct BoxColide : public Component {
 	BoxColide(int p1 = 0, int p2 = 0, int s1 = 0, int s2 = 0):
 	p1{p1}, p2{p2}, s1{s1}, s2{s2}
 	{}
@@ -149,8 +160,8 @@ struct Printer<T> {
 	static void print(Entity const &e, int i = 0)
 	{
 		if (i == 0)
-			std::cout << "Id: " << e.id << " = {";
-		if (Storage<T>::get().hasEntityComponent(e.id))
+			std::cout << "Id: " << e.getId() << " = {";
+		if (Storage<T>::get().hasEntityComponent(e.getId()))
 			std::cout << (i != 0 ? ", " : "") << typeid(T).name();
 		if (i == 0)
 			std::cout << "}" << std::endl;
@@ -162,8 +173,8 @@ struct Printer<T, Ts...> {
 	static void print(Entity const &e, int i = 0)
 	{
 		if (i == 0)
-			std::cout << "Id: " << e.id << " = {";
-		if (Storage<T>::get().hasEntityComponent(e.id))
+			std::cout << "Id: " << e.getId() << " = {";
+		if (Storage<T>::get().hasEntityComponent(e.getId()))
 			std::cout << (i != 0 ? ", " : "") << typeid(T).name();
 		Printer<Ts...>::print(e, i + 1);
 		if (i == 0)
@@ -186,7 +197,7 @@ public:
 		else
 			list = *li;
 		list.remove_if( [] (Entity const &e) {
-			return !Storage<T>::get().hasEntityComponent(e.id);
+			return !Storage<T>::get().hasEntityComponent(e.getId());
 		});
 	}
 	std::list<Entity> list;
@@ -201,10 +212,39 @@ public:
 
 		list = std::move(filters.list);
 		list.remove_if( [] (Entity const &e) {
-			return !Storage<T>::get().hasEntityComponent(e.id);
+			return !Storage<T>::get().hasEntityComponent(e.getId());
 		});
 	}
 	std::list<Entity> list;
+};
+
+/**** System ****/
+
+class System {
+public:
+	System(Entity &entity):
+	_this{ entity }
+	{}
+	virtual ~System() = default;
+
+	virtual void update() = 0;
+
+protected:
+	Entity &_this;
+};
+
+class HelloSystem : public System {
+public:
+	HelloSystem(Entity &entity): System{entity} {}
+	virtual ~HelloSystem() = default;
+
+	void update() override
+	{
+		std::cout << "Hello " << _this.getId() << " !" << std::endl;
+	}
+
+private:
+
 };
 
 /**** main ****/
@@ -219,32 +259,35 @@ int main()
 	Entity player5 = instance.newEntity();
 	Entity player6 = instance.newEntity();
 
-	Storage<Position>::get().addComponentForEntity( player1.id );
-	Storage<BoxColide>::get().addComponentForEntity( player1.id );
-	Storage<BoxColide>::get().addComponentForEntity( player2.id );
-	Storage<BoxColide>::get().addComponentForEntity( player3.id );
-	Storage<BoxColide>::get().addComponentForEntity( player4.id );
-	Storage<Position>::get().addComponentForEntity( player4.id );
-	Storage<Position>::get().addComponentForEntity( player5.id );
-	Storage<Position>::get().addComponentForEntity( player6.id );
+	Storage<Position>::get().addComponentForEntity( player1.getId() );
+	Storage<BoxColide>::get().addComponentForEntity( player1.getId() );
+	Storage<BoxColide>::get().addComponentForEntity( player2.getId() );
+	Storage<BoxColide>::get().addComponentForEntity( player3.getId() );
+	Storage<BoxColide>::get().addComponentForEntity( player4.getId() );
+	Storage<Position>::get().addComponentForEntity( player4.getId() );
+	Storage<Position>::get().addComponentForEntity( player5.getId() );
+	Storage<Position>::get().addComponentForEntity( player6.getId() );
 
-	Position &myPositionComponent = Storage<Position>::get().getComponentForEntity( player1.id );
+	Position &myPositionComponent = Storage<Position>::get().getComponentForEntity( player1.getId() );
 	myPositionComponent.x = 100;
 	myPositionComponent.y = 300;
 
-	Printer<BoxColide, Position>::print(player1);
-	Printer<BoxColide, Position>::print(player2);
+	// Printer<BoxColide, Position>::print(player1);
+	// Printer<BoxColide, Position>::print(player2);
 
-	Filter<BoxColide> fl;
-	Filter<Position> fl2(&fl.list);
-	std::cout << "filter1 : ";
-	for (auto &e : fl.list) {
-		std::cout << e.id << " ";
-	}
-	std::cout << std::endl;
-	std::cout << "filter2 : ";
-	for (auto &e : fl2.list) {
-		std::cout << e.id << " ";
-	}
-	std::cout << std::endl;
+	// Filter<BoxColide> fl;
+	// Filter<Position> fl2(&fl.list);
+	// std::cout << "filter1 : ";
+	// for (auto &e : fl.list) {
+	// 	std::cout << e.getId() << " ";
+	// }
+	// std::cout << std::endl;
+	// std::cout << "filter2 : ";
+	// for (auto &e : fl2.list) {
+	// 	std::cout << e.getId() << " ";
+	// }
+	// std::cout << std::endl;
+	std::unique_ptr<System> sys = std::make_unique<HelloSystem>(HelloSystem{player1});
+	sys->update();
+	sys->update();
 }
