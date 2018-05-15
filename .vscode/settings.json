@@ -30,6 +30,7 @@
 		"algorithm": "cpp",
 		"vector": "cpp",
 		"memory": "cpp",
-		"optional": "cpp"
+		"optional": "cpp",
+		"list": "cpp"
 	}
 }
