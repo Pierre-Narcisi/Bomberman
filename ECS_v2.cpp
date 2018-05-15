@@ -54,14 +54,14 @@ public:
 		return _id;
 	}
 
-	/* Do not be called directly */
+	/* Do not call it directly */
 	template<class T>
 	void setComponent(std::function<void()> &&deleteFunc)
 	{
 		_components->emplace(typeid(T).name(), deleteFunc);
 	}
 
-	/* Do not be called directly */
+	/* Do not call it directly */
 	template<class T>
 	void removeComponent()
 	{
@@ -140,13 +140,13 @@ public:
 		return *it;
 	}
 
+private:
+	EntityManager() = default;
+
 	Id generateId()
 	{
 		return _idCounter++;
 	}
-
-private:
-	EntityManager() = default;
 
 private:
 	Id _idCounter = 0;
@@ -167,26 +167,32 @@ public:
 
 	~Storage()
 	{
-		while (_store.size() != 0)
-			removeComponentForEntityId(_store.begin()->first);
+		auto &manager = EntityManager::get();
+
+		for (auto const &e : _store)
+			manager[e.first].removeComponent<T>();
 	}
 
 	template<typename ...Args>
 	void addComponentForEntity(Entity &entity, Args &&...args)
 	{
-		_components.emplace_back( args... );
-		_components.back().entityId = entity.getId();
-		entity.setComponent<T>(
-			std::bind( &Storage<T>::removeComponentForEntityId, this, entity.getId() )
-		);
+		if (_store.find(entity.getId()) != _store.end()) {
+			_components[_store[entity.getId()]] = T(args...);
+		} else {
+			_components.emplace_back( std::forward<Args>(args)... );
+			_components.back().entityId = entity.getId();
+			entity.setComponent<T>(
+				std::bind( &Storage<T>::removeComponentForEntityId, this, entity.getId() )
+			);
 
-		_store[entity.getId()] = _components.size() - 1;
+			_store[entity.getId()] = _components.size() - 1;
+		}
 	}
 
 	template<typename ...Args>
 	void addComponentForEntity(Id entityId, Args &&...args)
 	{
-		addComponentForEntity( EntityManager::get()[entityId], args... );
+		addComponentForEntity( EntityManager::get()[entityId], std::forward<Args>(args)... );
 	}
 
 	void removeComponentForEntity(Entity &entity)
@@ -370,6 +376,8 @@ int main()
 	Entity &player5 = instance.newEntity();
 	Entity &player6 = instance.newEntity();
 
+	Storage<Position>::get().addComponentForEntity( player1 );
+	Storage<Position>::get().addComponentForEntity( player1 );
 	Storage<Position>::get().addComponentForEntity( player1 );
 	Storage<BoxCollide>::get().addComponentForEntity( player1 );
 	Storage<BoxCollide>::get().addComponentForEntity( player2 );
