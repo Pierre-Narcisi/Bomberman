@@ -14,18 +14,46 @@ struct Position {
 	int y;
 };
 
+struct BoxCollider {
+	int x;
+	int y;
+};
+
 int main()
 {
 	ecs::entity::Manager &instance = ecs::entity::Manager::get();
-	ecs::entity::Entity &player1 = instance.newEntity();
+	ecs::entity::Id p0 = instance.newEntity();
+	ecs::entity::Id p1 = instance.newEntity();
+	ecs::entity::Id p2 = instance.newEntity();
+	ecs::entity::Id p3 = instance.newEntity();
+	ecs::entity::Id p4 = instance.newEntity();
+	ecs::entity::Id p5 = instance.newEntity();
 
-	ecs::component::Manager<Position>::get().addComponentForEntity(player1);
+	ecs::component::Manager<Position>::get().addComponentForEntity(p0);
+	ecs::component::Manager<Position>::get().addComponentForEntity(p1);
+	ecs::component::Manager<Position>::get().addComponentForEntity(p3);
+	ecs::component::Manager<Position>::get().addComponentForEntity(p4);
+	ecs::component::Manager<BoxCollider>::get().addComponentForEntity(p1);
+	ecs::component::Manager<BoxCollider>::get().addComponentForEntity(p2);
+	ecs::component::Manager<BoxCollider>::get().addComponentForEntity(p4);
+	ecs::component::Manager<BoxCollider>::get().addComponentForEntity(p5);
 
-	std::cout << player1 << std::endl;
-	Position &myPositionComponent = ecs::component::Manager<Position>::get().getComponentForEntity( player1.getId() );
-	myPositionComponent.x = 100;
-	myPositionComponent.y = 300;
+	ecs::entity::Filter<Position> fl;
+	std::cout << "print filter 1" << std::endl;
+	for (auto e : fl.list) {
+		ecs::entity::Manager::get().serializeEntity(e);
+	}
 
-	ecs::entity::Manager::get().deleteEntity(player1);
+	ecs::entity::Filter<Position, BoxCollider> fl2;
+	std::cout << "print filter 2" << std::endl;
+	for (auto e : fl2.list) {
+		ecs::entity::Manager::get().serializeEntity(e);
+	}
+
+	ecs::entity::Filter<BoxCollider> fl3(fl.list);
+	std::cout << "print filter 3" << std::endl;
+	for (auto e : fl3.list) {
+		ecs::entity::Manager::get().serializeEntity(e);
+	}
 
 }

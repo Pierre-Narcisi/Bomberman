@@ -13,38 +13,49 @@
 
 namespace ecs::entity {
 
-	template<class ...Ts>
-	class Filter;
-
 	template<class T>
 	class Filter<T> {
 	public:
-		Filter<T>(std::list<Entity> *li = nullptr)
+		Filter<T>():
+		list{ entity::Manager::get().list() }
 		{
-			if (li == nullptr)
-				list = EntityManager::get().list();
-			else
-				list = *li;
-			list.remove_if([] (Entity const &e) {
-				return !Storage<T>::get().hasEntityComponent(e.getId());
+			list.remove_if([] (Id e) {
+				return !component::Manager<T>::get().hasEntityComponent(e);
 			});
 		}
-		std::list<Entity> list;
+		Filter<T>(std::list<Id> &li):
+		list { std::move(li) }
+		{
+			list.remove_if([] (Id e) {
+				return !component::Manager<T>::get().hasEntityComponent(e);
+			});
+		}
+		std::list<Id> list;
 	};
 
 	template<class T, class ...Ts>
 	class Filter<T, Ts...> {
 	public:
-		Filter<T, Ts...>(std::list<Entity> *li = nullptr)
+		Filter<T, Ts...>():
+		list{ entity::Manager::get().list() }
+		{
+			Filter<Ts...> filters(list);
+
+			list = std::move(filters.list);
+			list.remove_if([] (Id e) {
+				return !component::Manager<T>::get().hasEntityComponent(e);
+			});
+		}
+		Filter<T, Ts...>(std::list<Id> &li)
 		{
 			Filter<Ts...> filters(li);
 
 			list = std::move(filters.list);
-			list.remove_if([] (Entity const &e) {
-				return !Storage<T>::get().hasEntityComponent(e.getId());
+			list.remove_if([] (Id e) {
+				return !component::Manager<T>::get().hasEntityComponent(e);
 			});
 		}
-		std::list<Entity> list;
+		std::list<Id> list;
 	};
 
 }

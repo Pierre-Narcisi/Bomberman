@@ -12,16 +12,18 @@
 namespace ecs::entity {
 
 	template<class T>
-	void Entity::setComponent(std::function<void()> deleteFunc)
+	void Manager::setComponent(Id entity, std::function<void()> deleteFunc)
 	{
-		_components->emplace(typeid(T).name(), deleteFunc);
+		std::cout << "set component" << std::endl;
+		_components.at(entity).emplace(typeid(T).name(), deleteFunc);
 	}
 
 	template<class T>
-	void Entity::removeComponent()
+	void Manager::removeComponent(Id entity)
 	{
-		if (_components->find(typeid(T).name()) != _components->end())
-			_components->erase(typeid(T).name());
+		std::cout << "remove component to entity " << (long)entity << std::endl;
+		_components.at(entity).at(typeid(T).name())();
+		_components.at(entity).erase(typeid(T).name());
 	}
 
 }

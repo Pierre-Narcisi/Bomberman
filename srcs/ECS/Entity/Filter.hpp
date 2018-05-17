@@ -13,22 +13,11 @@
 namespace ecs::entity {
 
 	template<class ...Ts>
-	class Filter;
-
-	template<class T>
-	class Filter<T> {
+	class Filter {
 	public:
-		Filter<T>(std::list<Entity> *li = nullptr);
-
-		std::list<Entity> list;
-	};
-
-	template<class T, class ...Ts>
-	class Filter<T, Ts...> {
-	public:
-		Filter<T, Ts...>(std::list<Entity> *li = nullptr);
-
-		std::list<Entity> list;
+		std::list<Id> list;
 	};
 
 }
+
+#include "Filter.tpp"

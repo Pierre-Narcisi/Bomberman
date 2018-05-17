@@ -9,12 +9,13 @@
 #include <string>
 
 namespace ecs::entity {
+
 	class EntityError : public std::exception {
 	};
 
 	class BadEntityError : public EntityError {
 	public:
-		BadEntityError(std::string const &str) throw() :
+		BadEntityError() throw() :
 		_msg("EntityManger : fail to access an entity") {}
 
 		char const *what() const throw() override {

@@ -5,7 +5,7 @@
 ## Makefile
 ##
 
-CPP		=	g++
+CPP		=	g++ -std=c++17
 
 WALL		=	-W -Wall -Wextra
 
@@ -19,8 +19,7 @@ INCLUDES	=	-I ./Entity	\
 CPPFLAGS	=	$(WALL) $(OPTI) $(DEBUG) $(INCLUDES)
 
 SRCS		=	Entity/Entity.cpp	\
-			Entity/Manager.cpp	\
 			main.cpp
 
 all:
-	$(CPP) $(INCLUDES) $(SRCS)
+	$(CPP) $(INCLUDES) $(CPPFLAGS) $(SRCS)

@@ -10,6 +10,9 @@
 #include <functional>
 
 #include "Component.hpp"
+#include "Entity.hpp"
+
+struct bla {};
 
 namespace ecs::component {
 
@@ -26,77 +29,43 @@ namespace ecs::component {
 	{
 		auto &manager = entity::Manager::get();
 
-		for (auto const &e : _store)
-			manager[e.first].removeComponent<T>();
+		while (_components.size() != 0)
+			manager.template removeComponent<T>(_components.begin()->first);
 	}
 
 	template<class T>
 	template<typename ...Args>
-	void Manager<T>::addComponentForEntity(entity::Entity &entity, Args &&...args)
+	void Manager<T>::addComponentForEntity(entity::Id entity, Args &&...args)
 	{
-		if (_store.find(entity.getId()) != _store.end()) {
-			_components[_store[entity.getId()]] = T(args...);
-		} else {
-			_components.emplace_back( std::forward<Args>(args)... );
-			entity.setComponent<T>(
-				std::bind( &Manager<T>::removeComponentForEntityId, this, entity.getId() )
-			);
-
-			_store[entity.getId()] = _components.size() - 1;
-		}
+		_components[entity] = T(std::forward<Args>(args)... );
+		entity::Manager::get().template setComponent<T>(entity,
+		std::bind(&Manager::callBackremoveEntity, this, entity));
 	}
 
 	template<class T>
-	template<typename ...Args>
-	void Manager<T>::addComponentForEntity(entity::Id entityId, Args &&...args)
+	void Manager<T>::removeComponentForEntity(entity::Id entity)
 	{
-		addComponentForEntity( entity::Manager::get()[entityId], std::forward<Args>(args)... );
+		_components.erase(entity);
+		entity::Manager::get().removeComponent<T>(entity);
 	}
 
 	template<class T>
-	void Manager<T>::removeComponentForEntity(entity::Entity &entity)
+	T &Manager<T>::getComponentForEntity(entity::Id entity)
 	{
-		auto removeIndex = _store[entity.getId()];
-
-		entity.removeComponent<T>();
-		_store[_components.back().entityId] = removeIndex;
-		std::swap(_components[removeIndex], _components.back());
-		_components.pop_back();
-
-		_store.erase(entity.getId());
+		return _components.at(entity);
 	}
 
 	template<class T>
-	void Manager<T>::removeComponentForEntityId(entity::Id entityId)
+	bool Manager<T>::hasEntityComponent(entity::Id entity) const
 	{
-		try {
-			removeComponentForEntity(entity::Manager::get()[entityId]);
-		} catch (entity::EntityError const &) {
-			auto removeIndex = _store[entityId];
-			_store[_components.back().entityId] = removeIndex;
-			std::swap(_components[removeIndex], _components.back());
-			_components.pop_back();
-
-			_store.erase(entityId);			
-		}
+		return _components.find(entity) != _components.end();
 	}
 
 	template<class T>
-	T &Manager<T>::getComponentForEntity(entity::Entity const &entity)
+	void Manager<T>::callBackremoveEntity(entity::Id entity)
 	{
-		return _components[_store[entity.getId()]];
-	}
-
-	template<class T>
-	T &Manager<T>::getComponentForEntity(entity::Id entityId)
-	{
-		return _components[_store[entityId]];
-	}
-
-	template<class T>
-	bool Manager<T>::hasEntityComponent(entity::Id entityId) const
-	{
-		return _store.find(entityId) != _store.end();
+		if (_components.find(entity) != _components.end())
+			_components.erase(entity);
 	}
 
 }

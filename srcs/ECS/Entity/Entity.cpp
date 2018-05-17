@@ -11,49 +11,49 @@
 
 namespace ecs::entity {
 
-	Entity::Entity(Id id) :
-	_id{ id },
-	_components{std::make_shared<std::unordered_map<std::string, std::function<void()>>>()}
-	{
-	}
+		Manager &Manager::get()
+		{
+			static Manager em;
 
-	Entity::~Entity()
-	{
-		if (_components.use_count() == 1)
-			for (auto &component : *_components)
+			return em;
+		}
+
+		std::list<Id> Manager::list() const
+		{
+			return _entities;
+		}
+
+		Id Manager::newEntity()
+		{
+			_entities.emplace_back( generateId() );
+			_components[_entities.back()];
+
+			return _entities.back();
+		}
+
+		void Manager::deleteEntity(Id entity)
+		{
+			for (auto &component : _components.at(entity))
 				component.second();
-	}
+			_components.erase(entity);
+			_entities.remove_if([entity] (Id e) {
+				return (e == entity);
+			});
+		}
 
-	Entity::Entity(Entity const &other):
-	_id{other._id},
-	_components{ other._components }
-	{
-	}
+		void Manager::serializeEntity(Id entity, std::ostream &os) const
+		{
+			std::cout << "component map size : " << _components.size() << std::endl;
+			os << "Id n°" << static_cast<long long>(entity) << " {\n";
+			for (auto &component : _components.at(entity))
+				os << "\t" << component.first << std::endl;
+			os << "}" << std::endl;
+		}
 
-	Entity &Entity::operator=(Entity const &other)
-	{
-		_id = other._id;
-		_components = other._components;
-		return *this;
-	}
+		Id Manager::generateId() const
+		{
+			static Id idCounter = 0;
+			return idCounter++;
+		}
 
-	Id Entity::getId() const
-	{
-		return _id;
-	}
-
-	void Entity::serialize(std::ostream &os) const
-	{
-		os << "Entity n°" << _id << " {\n";
-		for (auto const &component : *_components)
-			os << "\t" << component.first << std::endl;
-		os << "}";
-	}
-
-}
-
-std::ostream &operator<<(std::ostream &os, ecs::entity::Entity const &entity)
-{
-	entity.serialize();
-	return os;
 }

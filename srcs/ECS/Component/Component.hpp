@@ -20,21 +20,17 @@ namespace ecs::component {
 		~Manager();
 
 		template<typename ...Args>
-		void addComponentForEntity(entity::Entity &entity, Args &&...args);
-		template<typename ...Args>
-		void addComponentForEntity(entity::Id entityId, Args &&...args);
+		void addComponentForEntity(entity::Id, Args &&...args);
 
-		void removeComponentForEntity(entity::Entity &entity);
-		void removeComponentForEntityId(entity::Id entityId);
+		void removeComponentForEntity(entity::Id);
 
-		T &getComponentForEntity(entity::Entity const &entity);
-		T &getComponentForEntity(entity::Id entityId);
+		T &getComponentForEntity(entity::Id);
 
-		bool hasEntityComponent(entity::Id entityId) const;
+		bool hasEntityComponent(entity::Id) const;
+		void callBackremoveEntity(entity::Id);
 
 	private:
-		std::vector<T> _components;
-		std::unordered_map<entity::Id, std::size_t> _store;
+		std::unordered_map<entity::Id, T> _components;
 	};
 
 }
