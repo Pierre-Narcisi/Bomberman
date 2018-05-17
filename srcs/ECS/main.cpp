@@ -9,12 +9,23 @@
 #include "Component.hpp"
 #include "Filter.hpp"
 
-struct Test {
-
+struct Position {
+	int x;
+	int y;
 };
 
 int main()
 {
-	auto &entityManager = ecs::entity::Manager::get();
-	auto &componentManager = ecs::component::Manager<Test>::get();
+	ecs::entity::Manager &instance = ecs::entity::Manager::get();
+	ecs::entity::Entity &player1 = instance.newEntity();
+
+	ecs::component::Manager<Position>::get().addComponentForEntity(player1);
+
+	std::cout << player1 << std::endl;
+	Position &myPositionComponent = ecs::component::Manager<Position>::get().getComponentForEntity( player1.getId() );
+	myPositionComponent.x = 100;
+	myPositionComponent.y = 300;
+
+	ecs::entity::Manager::get().deleteEntity(player1);
+
 }

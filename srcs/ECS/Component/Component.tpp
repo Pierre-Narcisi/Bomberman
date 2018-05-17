@@ -79,7 +79,6 @@ namespace ecs::component {
 
 			_store.erase(entityId);			
 		}
-		
 	}
 
 	template<class T>

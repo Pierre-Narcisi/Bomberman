@@ -266,6 +266,13 @@ struct BoxCollide : public Component {
 	int s2;
 };
 
+struct Name : public Component {
+	Name(std::string name):
+	name{name}
+	{}
+	std::string name;
+};
+
 /**** Printer ****/
 
 template<class ...Ts>
@@ -363,6 +370,27 @@ private:
 
 };
 
+class PrintSystem {
+	static void printName(Name name) {
+		std::cout << name.name << std::endl;
+	}
+};
+
+class PositionSystem {
+	public:
+	static void updatePosition(Position &pos, int x = 0, int y = 0) {
+		pos.x += x;
+		pos.y += y;
+	}
+
+	static void updateAllPosition() {
+		Filter<Position> fl;
+
+		for (auto &e : fl.list)
+			updatePosition(Storage<Position>::get().getComponentForEntity(e), 1, 0);
+	}
+};
+
 /**** main ****/
 
 
@@ -370,47 +398,68 @@ int main()
 {
 	EntityManager &instance = EntityManager::get();
 	Entity &player1 = instance.newEntity();
+
+	Storage<Position>::get().addComponentForEntity( player1 );
+	Storage<BoxCollide>::get().addComponentForEntity( player1 );
+
+	std::cout << player1 << std::endl;
+
+	auto &pos1 = Storage<Position>::get().getComponentForEntity(player1);
+	pos1.x = 350;
+	pos1.y = -120;
+
+
+	auto &posToPrint = Storage<Position>::get().getComponentForEntity(player1);
+	std::cout << posToPrint.x << "  " << posToPrint.y << std::endl;
+
 	Entity &player2 = instance.newEntity();
 	Entity &player3 = instance.newEntity();
 	Entity &player4 = instance.newEntity();
-	Entity &player5 = instance.newEntity();
-	Entity &player6 = instance.newEntity();
-
-	Storage<Position>::get().addComponentForEntity( player1 );
-	Storage<Position>::get().addComponentForEntity( player1 );
-	Storage<Position>::get().addComponentForEntity( player1 );
-	Storage<BoxCollide>::get().addComponentForEntity( player1 );
-	Storage<BoxCollide>::get().addComponentForEntity( player2 );
-	Storage<BoxCollide>::get().addComponentForEntity( player3 );
-	Storage<BoxCollide>::get().addComponentForEntity( player4 );
+	
+	Storage<Position>::get().addComponentForEntity( player2 );
 	Storage<Position>::get().addComponentForEntity( player4 );
-	Storage<Position>::get().addComponentForEntity( player5 );
-	Storage<Position>::get().addComponentForEntity( player6 );
 
-	Position &myPositionComponent = Storage<Position>::get().getComponentForEntity( player1.getId() );
-	myPositionComponent.x = 100;
-	myPositionComponent.y = 300;
+	Filter<Position> fl;
 
-	Printer<BoxCollide, Position>::print(player1);
-	Printer<BoxCollide, Position>::print(player2);
-
-	EntityManager::get().deleteEntity(player4);
-
-	Filter<BoxCollide> fl;
-	Filter<Position> fl2(&fl.list);
-	std::cout << "filter1 : ";
 	for (auto &e : fl.list) {
-		std::cout << e << " ";
+		std::cout << e << std::endl;
 	}
-	std::cout << std::endl;
-	std::cout << "filter2 : ";
-	for (auto &e : fl2.list) {
-		std::cout << e.getId() << " ";
+
+	Filter<BoxCollide> fl1(&fl.list);
+
+	Storage<Name>::get().addComponentForEntity(player1, "Toto");
+
+	PositionSystem::updateAllPosition();
+
+	for (auto &e : EntityManager::get().list()) {
+		auto &a = Storage<Position>::get().getComponentForEntity( e );
+		std::cout << a.x << "  " << a.y << std::endl;
 	}
-	std::cout << std::endl;
-	std::unique_ptr<System> sys = std::make_unique<HelloSystem>(HelloSystem{player1});
-	sys->update();
-	sys->update();
+
+	// Position &myPositionComponent = Storage<Position>::get().getComponentForEntity( player1.getId() );
+	// myPositionComponent.x = 100;
+	// myPositionComponent.y = 300;
+
+	// Printer<BoxCollide, Position>::print(player1);
+	// Printer<BoxCollide, Position>::print(player2);
+
+	// EntityManager::get().deleteEntity(player4);
+
+	// Filter<BoxCollide> fl;
+	// Filter<Position> fl2(&fl.list);
+	// std::cout << "filter1 : ";
+	// for (auto &e : fl.list) {
+	// 	std::cout << e << " ";
+	// }
+	// std::cout << std::endl;
+	// std::cout << "filter2 : ";
+	// for (auto &e : fl2.list) {
+	// 	std::cout << e.getId() << " ";
+	// }
+	// std::cout << std::endl;
+	// std::unique_ptr<System> sys = std::make_unique<HelloSystem>(HelloSystem{player1});
+	// sys->update();
+	// sys->update();
 }
 
 /*
