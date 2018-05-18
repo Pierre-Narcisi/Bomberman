@@ -13,8 +13,7 @@
 namespace ecs::entity {
 
 	template<class ...Ts>
-	class Filter {
-	public:
+	struct Filter {
 		std::list<Id> list;
 	};
 

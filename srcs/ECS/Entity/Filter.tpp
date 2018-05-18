@@ -14,8 +14,7 @@
 namespace ecs::entity {
 
 	template<class T>
-	class Filter<T> {
-	public:
+	struct Filter<T> {
 		Filter<T>():
 		list{ entity::Manager::get().list() }
 		{
@@ -34,8 +33,7 @@ namespace ecs::entity {
 	};
 
 	template<class T, class ...Ts>
-	class Filter<T, Ts...> {
-	public:
+	struct Filter<T, Ts...> {
 		Filter<T, Ts...>():
 		list{ entity::Manager::get().list() }
 		{
