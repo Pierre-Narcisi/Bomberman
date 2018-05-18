@@ -38,6 +38,7 @@ int main()
 	ecs::component::Manager<BoxCollider>::get().addComponentForEntity(p4);
 	ecs::component::Manager<BoxCollider>::get().addComponentForEntity(p5);
 
+	ecs::entity::Manager::get().deleteEntity(p1);
 	ecs::entity::Filter<Position> fl;
 	std::cout << "print filter 1" << std::endl;
 	for (auto e : fl.list) {

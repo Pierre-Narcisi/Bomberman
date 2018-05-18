@@ -6,7 +6,7 @@
 */
 
 #include <iostream>
-
+#include "JsonEntity.hpp"
 #include "Entity.hpp"
 
 namespace ecs::entity {
@@ -43,6 +43,17 @@ namespace ecs::entity {
 
 		void Manager::serializeEntity(Id entity, std::ostream &os) const
 		{
+			/* json::Entity serializer(json::makeObject {
+				{"Entity", json::Entity::ARR},
+				{"Components", json::Entity::OBJ}
+			});
+			serializer["Components"]["position"].push(json::makeObject {
+				{"id", 12},
+
+			})
+			std::cout << serializer << std::endl;
+			std::string a(json::Entity(12).to<std::string>());
+			serializer = serializer.getData<json::Object>().get(); */
 			std::cout << "component map size : " << _components.size() << std::endl;
 			os << "Id n°" << static_cast<long long>(entity) << " {\n";
 			for (auto &component : _components.at(entity))
@@ -57,3 +68,23 @@ namespace ecs::entity {
 		}
 
 }
+
+/*
+{
+	Entity: [
+		ID1,
+		id2,
+		...
+	},
+	components: {
+		tempateName: [
+			{
+				id: num,
+				vars...
+			}
+			...
+		]
+		...
+	}
+}
+*/

@@ -15,6 +15,11 @@ DEBUG		=	-g
 
 INCLUDES	=	-I ./Entity	\
 			-I ./Component	\
+			-I ../../libs/Json/includes \
+			-I ../../libs/SmartEvent/includes
+
+
+LIBS		=	-L../../libs/Json -L../../libs/SmartEvent -lstatic_Json -lstatic_SmartEvent
 
 CPPFLAGS	=	$(WALL) $(OPTI) $(DEBUG) $(INCLUDES)
 
@@ -22,4 +27,4 @@ SRCS		=	Entity/Entity.cpp	\
 			main.cpp
 
 all:
-	$(CPP) $(INCLUDES) $(CPPFLAGS) $(SRCS)
+	$(CPP) $(INCLUDES) $(CPPFLAGS) $(SRCS) $(LIBS)
