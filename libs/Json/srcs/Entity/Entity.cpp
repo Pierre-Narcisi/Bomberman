@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <cstring>
-#include "Entity.hpp"
+#include "JsonEntity.hpp"
 
 namespace json
 {

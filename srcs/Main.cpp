@@ -9,15 +9,8 @@
 #include "Component.hpp"
 #include "Filter.hpp"
 
-struct Position {
-	int x;
-	int y;
-};
-
-struct BoxCollider {
-	int x;
-	int y;
-};
+#include "Component/Position.hpp"
+#include "Component/BoxCollider.hpp"
 
 int main()
 {

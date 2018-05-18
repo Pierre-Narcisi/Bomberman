@@ -50,7 +50,7 @@ namespace ecs::component {
 	}
 
 	template<class T>
-	T &Manager<T>::getComponentForEntity(entity::Id entity)
+	T &Manager<T>::operator[](entity::Id entity)
 	{
 		return _components.at(entity);
 	}

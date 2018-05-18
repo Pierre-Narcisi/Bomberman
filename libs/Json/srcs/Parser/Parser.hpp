@@ -12,7 +12,7 @@
 
 #include <istream>
 #include <exception>
-#include "Entity/Entity.hpp"
+#include "Entity/JsonEntity.hpp"
 
 
 namespace json

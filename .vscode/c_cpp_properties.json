@@ -10,7 +10,9 @@
             },
             "includePath": [
                 "${workspaceFolder}",
-                "${workspaceFolder}/libs/Json/includes"
+                "${workspaceFolder}/libs/Json/includes",
+                "${workspaceFolder}/srcs/ECS/Entity",
+                "${workspaceFolder}/srcs/ECS/Component"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",

@@ -77,7 +77,7 @@ namespace ecs::entity {
 		...
 	},
 	components: {
-		tempateName: [
+		templateName: [
 			{
 				id: num,
 				vars...

@@ -13,7 +13,7 @@ INCLUDES	+=	$(addprefix -I $(SDIR)/,	\
 			)
 
 MKINCLUDE	=	Parser.hpp	\
-			Entity.hpp
+			JsonEntity.hpp
 
 OUTINCLUDE	=	$(addprefix includes/, $(MKINCLUDE))
 
