@@ -39,6 +39,7 @@ namespace ecs::system {
 	public:
 		static void kill(entity::Id id)
 		{
+			std::cout << "you kill a monster" << std::endl;
 			if (component::Manager<component::Deletable>::get().hasComponent(id))
 				component::Manager<component::Deletable>::get()[id].del = true;
 			else
