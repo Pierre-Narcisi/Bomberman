@@ -12,12 +12,14 @@
 
 int main()
 {
-	auto id = ecs::system::Create::createPlayer();
-	auto id2 = ecs::system::Create::createMonster();
+	ecs::system::Create::createPlayer();
+	ecs::system::Create::createMonster();
 
-	while (1) {
+	while (std::cin.eof() == false) {
+		std::cout << "loop" << std::endl;
 		ecs::system::Position::update();
 		ecs::system::Move::update();
+		ecs::system::Destroyer::update();
 		ecs::system::Render::update();
 	}
 }

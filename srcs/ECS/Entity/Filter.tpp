@@ -19,14 +19,14 @@ namespace ecs::entity {
 		list{ entity::Manager::get().list() }
 		{
 			list.remove_if([] (Id e) {
-				return !component::Manager<T>::get().hasEntityComponent(e);
+				return !component::Manager<T>::get().hasComponent(e);
 			});
 		}
 		Filter<T>(std::list<Id> &li):
 		list { std::move(li) }
 		{
 			list.remove_if([] (Id e) {
-				return !component::Manager<T>::get().hasEntityComponent(e);
+				return !component::Manager<T>::get().hasComponent(e);
 			});
 		}
 		std::list<Id> list;
@@ -41,7 +41,7 @@ namespace ecs::entity {
 
 			list = std::move(filters.list);
 			list.remove_if([] (Id e) {
-				return !component::Manager<T>::get().hasEntityComponent(e);
+				return !component::Manager<T>::get().hasComponent(e);
 			});
 		}
 		Filter<T, Ts...>(std::list<Id> &li)
@@ -50,7 +50,7 @@ namespace ecs::entity {
 
 			list = std::move(filters.list);
 			list.remove_if([] (Id e) {
-				return !component::Manager<T>::get().hasEntityComponent(e);
+				return !component::Manager<T>::get().hasComponent(e);
 			});
 		}
 		std::list<Id> list;

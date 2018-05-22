@@ -26,7 +26,7 @@ namespace ecs::component {
 
 		T &operator[](entity::Id);
 
-		bool hasEntityComponent(entity::Id) const;
+		bool hasComponent(entity::Id) const;
 		void callBackremoveEntity(entity::Id);
 
 	private:

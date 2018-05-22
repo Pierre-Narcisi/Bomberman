@@ -56,7 +56,7 @@ namespace ecs::component {
 	}
 
 	template<class T>
-	bool Manager<T>::hasEntityComponent(entity::Id entity) const
+	bool Manager<T>::hasComponent(entity::Id entity) const
 	{
 		return _components.find(entity) != _components.end();
 	}

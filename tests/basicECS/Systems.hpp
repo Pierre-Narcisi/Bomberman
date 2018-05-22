@@ -30,7 +30,7 @@ namespace ecs::system {
 			auto id = entity::Manager::get().newEntity();
 			component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::Monster);
 			component::Manager<component::Position>::get().addComponentForEntity(id, rand() % 10, rand() % 10);
-
+			component::Manager<component::Deletable>::get().addComponentForEntity(id);
 			return id;
 		}
 	};
@@ -39,7 +39,10 @@ namespace ecs::system {
 	public:
 		static void kill(entity::Id id)
 		{
-			entity::Manager::get().deleteEntity(id);
+			if (component::Manager<component::Deletable>::get().hasComponent(id))
+				component::Manager<component::Deletable>::get()[id].del = true;
+			else
+				entity::Manager::get().deleteEntity(id);
 		}
 	};
 
@@ -92,8 +95,8 @@ namespace ecs::system {
 					pos.y += speed.y;
 					speed = {0, 0};
 				} else {
-					pos.x += rand() % 3 - 1;
-					pos.y += rand() % 3 - 1;
+					// pos.x += rand() % 3 - 1;
+					// pos.y += rand() % 3 - 1;
 				}
 				Collider::check(id, typeManager[id], pos);
 			}
@@ -124,19 +127,36 @@ namespace ecs::system {
 	public:
 		static void update()
 		{
+			std::string str;
 			entity::Filter<component::Speed> fl;
 			auto player = fl.list.front();
 			auto &speed = component::Manager<component::Speed>::get()[player];
-			auto c = getchar();
+			std::cin >> str;
 
-			if (c == 'z')
-				speed.y -= 1;
-			if (c == 'q')
-				speed.x -= 1;
-			if (c == 's')
-				speed.y += 1;
-			if (c == 'd')
-				speed.x += 1;
+			for (auto c : str) {
+				if (c == 'z')
+					speed.y -= 1;
+				else if (c == 'q')
+					speed.x -= 1;
+				else if (c == 's')
+					speed.y += 1;
+				else if (c == 'd')
+					speed.x += 1;
+			}
+		}
+	};
+
+	class Destroyer {
+	public:
+		static void update()
+		{
+			entity::Filter<component::Deletable> fl;
+			auto &deleteManager = component::Manager<component::Deletable>::get();
+
+			for (auto &id : fl.list) {
+				if (deleteManager[id].del == true)
+					entity::Manager::get().deleteEntity(id);
+			}
 		}
 	};
 

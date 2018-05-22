@@ -26,4 +26,8 @@ namespace ecs::component {
 		int y{};
 	};
 
+	struct Deletable {
+		bool del = false;
+	};
+
 }
