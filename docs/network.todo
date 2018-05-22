@@ -1,0 +1,51 @@
+Client -> Server : 
+{
+	Inputs: {
+		__system_name__: {
+				vars...
+		}, ...
+	}
+}
+
+Server -> Client :
+{
+	FirstUpdate: {
+		__SystemName__: [
+			{
+				Id: __entityid__,
+				Vars: {
+					vars...
+				}
+				
+			}, ...
+		], ...
+	},
+	LastUpdate: {
+		__SystemName__: [
+			{
+				Id: __entityid__,
+				Vars: {
+					vars...
+				}
+			}, ...
+		], ...
+	}
+}
+
+Inputs :
+	envoie au server les systèmes d'input activés liés au client
+Update:
+	liste tous les système que les clients devront appeller pour être a jour
+
+
+server:
+	- applique tout les systèmes sur le client // avant ou après l'update des clients ??
+	- regarde pour chaque client si New/Update
+	- à chaque New/Update de component : le stocker dans un jsonObject
+	- envoyer le jsonObject à tous les clients
+
+client:
+	- envoie les updates nécessaires server (seulement les inputs)
+	- recoie le nouvelle état du jeu et New/Update les composants
+
+nécessite qu'il y ai des systèmes pour créé les entités avec les bons composants

@@ -1,7 +1,16 @@
+
+## temporary :
 *#
 *~
+
+## object :
 *.o
-a.out
 .idea
 CMake*
 cmake*
+*.so
+*.a
+
+## binaries :
+a.out
+/bomberman
