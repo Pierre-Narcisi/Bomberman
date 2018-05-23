@@ -6,7 +6,6 @@
 ## object :
 *.o
 .idea
-CMake*
 cmake*
 *.so
 *.a
