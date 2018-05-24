@@ -3,12 +3,12 @@ project(Client)
 
 set(CMAKE_CXX_STANDARD 11)
 
-include_directories(/usr/include/irrlicht)
 include_directories(libs/Json/srcs/Entity)
 include_directories(libs/Json/srcs/Parser)
 include_directories(libs/SmartEvent/srcs/Event)
 include_directories(libs/SmartEvent/srcs/HdlCollector)
 include_directories(libs/SmartEvent/srcs/Manager)
+include_directories(srcs)
 include_directories(srcs/Component)
 include_directories(srcs/ECS/Component)
 include_directories(srcs/ECS/Entity)
@@ -31,7 +31,6 @@ add_executable(Client
         libs/SmartEvent/srcs/Manager/Manager.tpp
         libs/SmartEvent/tests/Event/main.cpp
         libs/SmartEvent/tests/HdlCollector/main.cpp
-        libs/update_extern_libs.sh
         srcs/Component/BoxCollider.hpp
         srcs/Component/Position.hpp
         srcs/ECS/Component/Component.hpp
@@ -43,8 +42,9 @@ add_executable(Client
         srcs/ECS/Entity/Filter.hpp
         srcs/ECS/Entity/Filter.tpp
         srcs/Graphical/Components.hpp
+        srcs/Graphical/Systems.hpp
         srcs/Main.cpp
         tests/basicECS/Components.hpp
         tests/basicECS/Main.cpp
         tests/basicECS/Systems.hpp
-        tests/graphicalTest/test.cpp srcs/Graphical/Systems.hpp)
+        tests/graphicalTest/test.cpp)
