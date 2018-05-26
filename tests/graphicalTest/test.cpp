@@ -26,7 +26,15 @@ int main() {
 	irr::video::IVideoDriver* driver = device->getVideoDriver();
 	irr::scene::ISceneManager* smgr = device->getSceneManager();
 	irr::gui::IGUIEnvironment* guienv = device->getGUIEnvironment();
-	ecs::system::gi::Create::createPlayer(driver, smgr, "../../assets/sydney.md2", "../../assets/sydney.bmp", irr::core::vector2df(0,0));
+
+	irr::core::array<irr::SJoystickInfo> joystickInfo;
+	device->activateJoysticks(joystickInfo);
+
+	for (irr::u32 i = 0; i < joystickInfo.size() ; i++) {
+		printf("%s--%d--%d\n", joystickInfo[i].Name.c_str(), joystickInfo[i].Axes, joystickInfo[i].Buttons);
+	}
+
+	ecs::system::gi::Create::createPlayer(device, driver, smgr, "../../assets/sydney.md2", "../../assets/sydney.bmp", irr::core::vector2df(0,0));
 
 	while(device->run())
 	{
@@ -34,6 +42,7 @@ int main() {
 		driver->beginScene(true, true, irr::video::SColor(255,100,101,140));
 		smgr->drawAll();
 		guienv->drawAll();
+		driver->draw2DPolygon(irr::core::position2d<irr::s32>(500, 500), 100, irr::video::SColor(255, 255, 0, 0), 30);
 		driver->endScene();
 	}
 }

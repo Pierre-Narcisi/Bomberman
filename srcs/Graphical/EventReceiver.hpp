@@ -20,27 +20,12 @@ public:
 
 	virtual bool OnEvent(const irr::SEvent& event)
 	{
-		evt::Manager &m = evt::Manager::get();
-
-		if (event.EventType == irr::EET_KEY_INPUT_EVENT) {
-			m["event"]->fire(event);
-			_keyIsDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
-		}
-		if (event.EventType == irr::EET_JOYSTICK_INPUT_EVENT) {
-			_joystickState = event.JoystickEvent;
-		}
-		_event = event;
+		m["event"]->fire(event);
 		return false;
 	}
 
-	irr::SEvent getEvent();
-
-
-
 private:
-	irr::SEvent _event;
-	bool				_keyIsDown[irr::KEY_KEY_CODES_COUNT];
-	irr::SEvent::SJoystickEvent	_joystickState;
+	evt::Manager &m = evt::Manager::get();
 };
 
 #endif //IRRLICHTWRAPPER_EVENTRECEIVER_HPP

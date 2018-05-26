@@ -9,6 +9,9 @@
 
 #include <irrlicht/irrlicht.h>
 #include <string>
+#include <unordered_map>
+#include <ECS/Entity/Entity.hpp>
+#include <ECS/Component/Component.hpp>
 
 namespace ecs::component::gi {
 	struct Being {
@@ -36,10 +39,6 @@ namespace ecs::component::gi {
 			_node->setRotation(irr::core::vector3df(0,90,0));
 			_node->setPosition(irr::core::vector3df(pos.X, 0, pos.Y));
 
-			irr::scene::ICameraSceneNode* _camera;
-			_camera = smgr->addCameraSceneNode();
-			_camera->setPosition(irr::core::vector3df(0,50,-50));
-			_camera->setTarget(_node->getPosition());
 			_state = ecs::component::gi::Being::State::STANDING;
 			_lastMov = irr::scene::EMAT_STAND;
 		}
@@ -48,6 +47,18 @@ namespace ecs::component::gi {
 		irr::scene::IAnimatedMeshSceneNode*	_node;
 		irr::scene::EMD2_ANIMATION_TYPE		_lastMov;
 		float 					_rotation;
+	};
+
+	struct Camera {
+		Camera(irr::scene::ISceneManager *smgr, ecs::entity::Id id)
+		{
+			irr::core::vector3df pos = ecs::component::Manager<ecs::component::gi::Being>::get()[id]._node->getPosition();
+			_camera = smgr->addCameraSceneNode();
+			_camera->setPosition(irr::core::vector3df(pos.X + 0, pos.Y + 50,pos.Z - 50));
+			_camera->setTarget(pos);
+		};
+
+		irr::scene::ICameraSceneNode* _camera;
 	};
 
 	struct Keyboard {
@@ -68,5 +79,22 @@ namespace ecs::component::gi {
 			};
 		};
 		std::unordered_map<std::string, action> actions;
+	};
+
+	struct Controller360 {
+		struct joyStick {
+			short vertical;
+			short horizonal;
+		};
+		Controller360()
+		{
+			left.horizonal = 0;
+			left.vertical = 0;
+			right.horizonal = 0;
+			right.vertical = 0;
+		};
+		joyStick	left;
+		joyStick	right;
+		irr::u32	buttons;
 	};
 }
