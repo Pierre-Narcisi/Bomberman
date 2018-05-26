@@ -46,6 +46,8 @@
 				<Compiler>
 					<Add directory="/home/seb/Client/libs/Json/srcs/Entity"/>
 					<Add directory="/home/seb/Client/libs/Json/srcs/Parser"/>
+					<Add directory="/home/seb/Client/libs/SmartEvent/includes"/>
+					<Add directory="/home/seb/Client/libs/SmartEvent/srcs"/>
 					<Add directory="/home/seb/Client/libs/SmartEvent/srcs/Event"/>
 					<Add directory="/home/seb/Client/libs/SmartEvent/srcs/HdlCollector"/>
 					<Add directory="/home/seb/Client/libs/SmartEvent/srcs/Manager"/>
@@ -72,6 +74,8 @@
 				<Compiler>
 					<Add directory="/home/seb/Client/libs/Json/srcs/Entity"/>
 					<Add directory="/home/seb/Client/libs/Json/srcs/Parser"/>
+					<Add directory="/home/seb/Client/libs/SmartEvent/includes"/>
+					<Add directory="/home/seb/Client/libs/SmartEvent/srcs"/>
 					<Add directory="/home/seb/Client/libs/SmartEvent/srcs/Event"/>
 					<Add directory="/home/seb/Client/libs/SmartEvent/srcs/HdlCollector"/>
 					<Add directory="/home/seb/Client/libs/SmartEvent/srcs/Manager"/>
@@ -166,6 +170,12 @@
 			<Option target="Client"/>
 		</Unit>
 		<Unit filename="/home/seb/Client/srcs/Graphical/Components.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Graphical/EventReceiver.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Graphical/EventReceiver.hpp">
 			<Option target="Client"/>
 		</Unit>
 		<Unit filename="/home/seb/Client/srcs/Graphical/Systems.hpp">

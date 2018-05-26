@@ -366,6 +366,33 @@ srcs/ECS/Entity/Entity.cpp.s:
 	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/ECS/Entity/Entity.cpp.s
 .PHONY : srcs/ECS/Entity/Entity.cpp.s
 
+srcs/Graphical/EventReceiver.o: srcs/Graphical/EventReceiver.cpp.o
+
+.PHONY : srcs/Graphical/EventReceiver.o
+
+# target to build an object file
+srcs/Graphical/EventReceiver.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/EventReceiver.cpp.o
+.PHONY : srcs/Graphical/EventReceiver.cpp.o
+
+srcs/Graphical/EventReceiver.i: srcs/Graphical/EventReceiver.cpp.i
+
+.PHONY : srcs/Graphical/EventReceiver.i
+
+# target to preprocess a source file
+srcs/Graphical/EventReceiver.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/EventReceiver.cpp.i
+.PHONY : srcs/Graphical/EventReceiver.cpp.i
+
+srcs/Graphical/EventReceiver.s: srcs/Graphical/EventReceiver.cpp.s
+
+.PHONY : srcs/Graphical/EventReceiver.s
+
+# target to generate assembly for a file
+srcs/Graphical/EventReceiver.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/EventReceiver.cpp.s
+.PHONY : srcs/Graphical/EventReceiver.cpp.s
+
 srcs/Main.o: srcs/Main.cpp.o
 
 .PHONY : srcs/Main.o
@@ -483,6 +510,9 @@ help:
 	@echo "... srcs/ECS/Entity/Entity.o"
 	@echo "... srcs/ECS/Entity/Entity.i"
 	@echo "... srcs/ECS/Entity/Entity.s"
+	@echo "... srcs/Graphical/EventReceiver.o"
+	@echo "... srcs/Graphical/EventReceiver.i"
+	@echo "... srcs/Graphical/EventReceiver.s"
 	@echo "... srcs/Main.o"
 	@echo "... srcs/Main.i"
 	@echo "... srcs/Main.s"

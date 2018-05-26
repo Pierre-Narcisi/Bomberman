@@ -1,10 +1,12 @@
 cmake_minimum_required(VERSION 3.10)
 project(Client)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
 include_directories(libs/Json/srcs/Entity)
 include_directories(libs/Json/srcs/Parser)
+include_directories(libs/SmartEvent/includes)
+include_directories(libs/SmartEvent/srcs)
 include_directories(libs/SmartEvent/srcs/Event)
 include_directories(libs/SmartEvent/srcs/HdlCollector)
 include_directories(libs/SmartEvent/srcs/Manager)
@@ -43,6 +45,8 @@ add_executable(Client
         srcs/ECS/Entity/Filter.tpp
         srcs/Graphical/Components.hpp
         srcs/Graphical/Systems.hpp
+        srcs/Graphical/EventReceiver.cpp
+        srcs/Graphical/EventReceiver.hpp
         srcs/Main.cpp
         tests/basicECS/Components.hpp
         tests/basicECS/Main.cpp
