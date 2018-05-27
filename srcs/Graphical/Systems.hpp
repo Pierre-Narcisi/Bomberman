@@ -27,7 +27,7 @@ namespace ecs::system::gi {
 				if (strcmp(joystickInfo[i].Name.c_str(), "Microsoft X-Box 360 pad") == 0)
 					_controller = true;
 
-			component::Manager<component::gi::Being>::get().addComponentForEntity(id, driver, smgr, mesh, texture, pos);
+			component::Manager<component::gi::Being>::get().addComponentForEntity(id, device, driver, smgr, mesh, texture, pos);
 
 			if (_controller)
 				component::Manager<component::gi::Controller360>::get().addComponentForEntity(id);
@@ -52,16 +52,23 @@ namespace ecs::system::gi {
 		static void Deplacement() {
 			entity::Filter<component::gi::Keyboard, component::gi::Being> fl;
 			entity::Filter<component::gi::Controller360, component::gi::Being> list;
+			entity::Filter<component::gi::Camera, component::gi::Being> player;
 
 			auto &key = component::Manager<component::gi::Keyboard>::get();
 			auto &being = component::Manager<component::gi::Being>::get();
 			auto &control = component::Manager<component::gi::Controller360>::get();
+			auto &camera = component::Manager<component::gi::Camera>::get();
+			irr::f32 deltatime;
+			irr::core::vector3df pos;
+			irr::f32 speed = 150.f;
 			float rot;
 			bool moving;
 
 			for (auto id : fl.list) {
 				rot = being[id]._rotation;
 				moving = key[id].actions["up"].state || key[id].actions["down"].state || key[id].actions["left"].state || key[id].actions["right"].state;
+				deltatime = static_cast<irr::f32>((being[id]._device->getTimer()->getTime() - being[id]._then) / 1000.f);
+				being[id]._then = being[id]._device->getTimer()->getTime();
 
 				// Set Rotation
 				if (key[id].actions["up"].state)
@@ -103,40 +110,36 @@ namespace ecs::system::gi {
 					if (key[id].actions["crouch"].state && being[id]._lastMov != irr::scene::EMAT_CROUCH_WALK) {
 						being[id]._node->setMD2Animation(irr::scene::EMAT_CROUCH_WALK);
 						being[id]._lastMov = irr::scene::EMAT_CROUCH_WALK;
+						speed = speed / 2;
 					}
 					else if (key[id].actions["sprint"].state && being[id]._lastMov != irr::scene::EMAT_RUN) {
 						being[id]._node->setMD2Animation(irr::scene::EMAT_RUN);
 						being[id]._lastMov = irr::scene::EMAT_RUN;
+						speed = speed * 2;
 					} else if (key[id].actions["crouch"].state == 0 && key[id].actions["sprint"].state == 0 && being[id]._lastMov != irr::scene::EMAT_RUN) {
 						being[id]._node->setMD2Animation(irr::scene::EMAT_RUN);
 						being[id]._lastMov = irr::scene::EMAT_RUN;
 					}
 					being[id]._rotation = rot;
+					being[id]._node->getPosition();
+					pos.X = pos.X + static_cast<float>(cos(rot * M_PI / 180)) * speed * deltatime;
+					pos.Z = pos.Z + static_cast<float>(sin(rot * M_PI / 180)) * speed * deltatime;
+					being[id]._node->setPosition(pos);
 				}
-
-				// Set Speed
 			}
 
 			for (auto &id : list.list) {
 				const irr::f32 DEAD_ZONE = 0.2f;
-
-				irr::f32 moveHorizontal =
-					(irr::f32)control[id].left.horizonal / 32767.f;
-				if(fabs(moveHorizontal) < DEAD_ZONE)
-					moveHorizontal = 0.f;
-
-				irr::f32 moveVertical =
-					(irr::f32)control[id].left.vertical / -32767.f;
-				if(fabs(moveVertical) < DEAD_ZONE)
-					moveVertical = 0.f;
+				deltatime = static_cast<irr::f32>((being[id]._device->getTimer()->getTime() - being[id]._then) / 1000.f);
+				being[id]._then = being[id]._device->getTimer()->getTime();
 
 				irr::f32 rotHorizontal =
-					(irr::f32)control[id].right.horizonal / 32767.f;
+					(irr::f32)control[id].left.horizonal / 32767.f;
 				if(fabs(rotHorizontal) < DEAD_ZONE)
 					rotHorizontal = 0.f;
 
 				irr::f32 rotVertical =
-					(irr::f32)control[id].right.vertical / -32767.f;
+					(irr::f32)control[id].left.vertical / -32767.f;
 				if(fabs(rotVertical) < DEAD_ZONE)
 					rotVertical = 0.f;
 
@@ -159,6 +162,46 @@ namespace ecs::system::gi {
 
 				being[id]._node->setRotation(irr::core::vector3df(0, rot, 0));
 
+				// Set Animation
+				if (rotHorizontal == 0 && rotVertical == 0) {
+					if ((control[id].buttons >> 1 & 1) && being[id]._lastMov != irr::scene::EMAT_CROUCH_STAND) {
+						being[id]._node->setMD2Animation(irr::scene::EMAT_CROUCH_STAND);
+						being[id]._lastMov = irr::scene::EMAT_CROUCH_STAND;
+					}
+					else if ((control[id].buttons >> 9 & 1) && being[id]._lastMov != irr::scene::EMAT_STAND) {
+						being[id]._node->setMD2Animation(irr::scene::EMAT_STAND);
+						being[id]._lastMov = irr::scene::EMAT_STAND;
+					} else if ((control[id].buttons >> 9 & 1) == 0 && (control[id].buttons >> 1 & 1) == 0 && being[id]._lastMov != irr::scene::EMAT_STAND) {
+						being[id]._node->setMD2Animation(irr::scene::EMAT_STAND);
+						being[id]._lastMov = irr::scene::EMAT_STAND;
+					}
+				} else {
+					if ((control[id].buttons >> 1 & 1) && being[id]._lastMov != irr::scene::EMAT_CROUCH_WALK) {
+						being[id]._node->setMD2Animation(irr::scene::EMAT_CROUCH_WALK);
+						being[id]._lastMov = irr::scene::EMAT_CROUCH_WALK;
+						speed = speed / 2;
+					}
+					else if ((control[id].buttons >> 9 & 1) && being[id]._lastMov != irr::scene::EMAT_RUN) {
+						being[id]._node->setMD2Animation(irr::scene::EMAT_RUN);
+						being[id]._lastMov = irr::scene::EMAT_RUN;
+						speed = speed * 2;
+					} else if ((control[id].buttons >> 9 & 1) == 0 && (control[id].buttons >> 1 & 1) == 0 && being[id]._lastMov != irr::scene::EMAT_RUN) {
+						being[id]._node->setMD2Animation(irr::scene::EMAT_RUN);
+						being[id]._lastMov = irr::scene::EMAT_RUN;
+					}
+
+					being[id]._rotation = rot;
+					pos = being[id]._node->getPosition();
+					pos.X = pos.X + static_cast<float>(cos(rot * M_PI / 180)) * speed * deltatime;
+					pos.Z = pos.Z + static_cast<float>(sin(rot * M_PI / 180)) * speed * deltatime;
+					being[id]._node->setPosition(pos);
+				}
+			}
+
+			for(auto &id : player.list) {
+				pos = being[id]._node->getPosition();
+				camera[id]._camera->setPosition(irr::core::vector3df(pos.X, pos.Y + 100, pos.Z - 100));
+				camera[id]._camera->setTarget(pos);
 			}
 		}
 	};

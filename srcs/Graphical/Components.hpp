@@ -23,9 +23,10 @@ namespace ecs::component::gi {
 			CROUCH_WALKING
 		};
 
-		Being(irr::video::IVideoDriver *driver, irr::scene::ISceneManager *smgr, std::string const &mesh, std::string const &texture, irr::core::vector2df const &pos)
+		Being(irr::IrrlichtDevice *device, irr::video::IVideoDriver *driver, irr::scene::ISceneManager *smgr, std::string const &mesh, std::string const &texture, irr::core::vector2df const &pos)
 		{
 			irr::scene::IAnimatedMesh*		_mesh;
+			_device = device;
 
 			_mesh = smgr->getMesh(mesh.c_str());
 			if (!_mesh)
@@ -41,12 +42,15 @@ namespace ecs::component::gi {
 
 			_state = ecs::component::gi::Being::State::STANDING;
 			_lastMov = irr::scene::EMAT_STAND;
+			_then = device->getTimer()->getTime();
 		}
 
+		irr::IrrlichtDevice			*_device;
 		State					_state;
 		irr::scene::IAnimatedMeshSceneNode*	_node;
 		irr::scene::EMD2_ANIMATION_TYPE		_lastMov;
 		float 					_rotation;
+		irr::u32				_then;
 	};
 
 	struct Camera {
@@ -92,9 +96,13 @@ namespace ecs::component::gi {
 			left.vertical = 0;
 			right.horizonal = 0;
 			right.vertical = 0;
+			leftT = -32767;
+			rightT = -32767;
 		};
 		joyStick	left;
 		joyStick	right;
 		irr::u32	buttons;
+		irr::s16	leftT;
+		irr::s16	rightT;
 	};
 }
