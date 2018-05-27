@@ -21,7 +21,7 @@ int main() {
 
 	if (!device)
 		return 1;
-	device->setWindowCaption(L"Hello World! - Irrlicht Engine Demo");
+	device->setWindowCaption(L"Bomberman");
 
 	irr::video::IVideoDriver* driver = device->getVideoDriver();
 	irr::scene::ISceneManager* smgr = device->getSceneManager();
@@ -39,10 +39,15 @@ int main() {
 	while(device->run())
 	{
 		ecs::system::gi::Routine::Deplacement();
+
+		irr::core::stringw str = L"Bomberman :";
+		str += driver->getFPS();
+		str += " fps";
+		device->setWindowCaption(str.c_str());
+
 		driver->beginScene(true, true, irr::video::SColor(255,100,101,140));
 		smgr->drawAll();
 		guienv->drawAll();
-		driver->draw2DPolygon(irr::core::position2d<irr::s32>(500, 500), 100, irr::video::SColor(255, 255, 0, 0), 30);
 		driver->endScene();
 	}
 }

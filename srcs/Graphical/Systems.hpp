@@ -40,7 +40,7 @@ namespace ecs::system::gi {
 												 irr::EKEY_CODE::KEY_SPACE,
 												 irr::EKEY_CODE::KEY_LCONTROL,
 												 irr::EKEY_CODE::KEY_LSHIFT);
-
+			component::Manager<component::gi::Explosion>::get().addComponentForEntity(id, smgr, driver);
 			component::Manager<component::gi::Camera>::get().addComponentForEntity(id, smgr, id);
 
 			return id;
@@ -93,6 +93,13 @@ namespace ecs::system::gi {
 
 				being[id]._node->setRotation(irr::core::vector3df(0, rot, 0));
 
+				// Set Speed
+
+				if (key[id].actions["crouch"].state)
+					speed = speed / 2;
+				if (key[id].actions["sprint"].state)
+					speed = speed * 2;
+
 				// Set Animation
 				if (moving == 0) {
 					if (key[id].actions["crouch"].state && being[id]._lastMov != irr::scene::EMAT_CROUCH_STAND) {
@@ -110,20 +117,19 @@ namespace ecs::system::gi {
 					if (key[id].actions["crouch"].state && being[id]._lastMov != irr::scene::EMAT_CROUCH_WALK) {
 						being[id]._node->setMD2Animation(irr::scene::EMAT_CROUCH_WALK);
 						being[id]._lastMov = irr::scene::EMAT_CROUCH_WALK;
-						speed = speed / 2;
 					}
 					else if (key[id].actions["sprint"].state && being[id]._lastMov != irr::scene::EMAT_RUN) {
 						being[id]._node->setMD2Animation(irr::scene::EMAT_RUN);
 						being[id]._lastMov = irr::scene::EMAT_RUN;
-						speed = speed * 2;
 					} else if (key[id].actions["crouch"].state == 0 && key[id].actions["sprint"].state == 0 && being[id]._lastMov != irr::scene::EMAT_RUN) {
 						being[id]._node->setMD2Animation(irr::scene::EMAT_RUN);
 						being[id]._lastMov = irr::scene::EMAT_RUN;
 					}
+
 					being[id]._rotation = rot;
-					being[id]._node->getPosition();
+					pos = being[id]._node->getPosition();
 					pos.X = pos.X + static_cast<float>(cos(rot * M_PI / 180)) * speed * deltatime;
-					pos.Z = pos.Z + static_cast<float>(sin(rot * M_PI / 180)) * speed * deltatime;
+					pos.Z = pos.Z - static_cast<float>(sin(rot * M_PI / 180)) * speed * deltatime;
 					being[id]._node->setPosition(pos);
 				}
 			}
@@ -162,6 +168,12 @@ namespace ecs::system::gi {
 
 				being[id]._node->setRotation(irr::core::vector3df(0, rot, 0));
 
+				// Set Speed
+				if ((control[id].buttons >> 1 & 1))
+					speed = speed / 2;
+				if ((control[id].buttons >> 9 & 1))
+					speed = speed * 2;
+
 				// Set Animation
 				if (rotHorizontal == 0 && rotVertical == 0) {
 					if ((control[id].buttons >> 1 & 1) && being[id]._lastMov != irr::scene::EMAT_CROUCH_STAND) {
@@ -179,12 +191,10 @@ namespace ecs::system::gi {
 					if ((control[id].buttons >> 1 & 1) && being[id]._lastMov != irr::scene::EMAT_CROUCH_WALK) {
 						being[id]._node->setMD2Animation(irr::scene::EMAT_CROUCH_WALK);
 						being[id]._lastMov = irr::scene::EMAT_CROUCH_WALK;
-						speed = speed / 2;
 					}
 					else if ((control[id].buttons >> 9 & 1) && being[id]._lastMov != irr::scene::EMAT_RUN) {
 						being[id]._node->setMD2Animation(irr::scene::EMAT_RUN);
 						being[id]._lastMov = irr::scene::EMAT_RUN;
-						speed = speed * 2;
 					} else if ((control[id].buttons >> 9 & 1) == 0 && (control[id].buttons >> 1 & 1) == 0 && being[id]._lastMov != irr::scene::EMAT_RUN) {
 						being[id]._node->setMD2Animation(irr::scene::EMAT_RUN);
 						being[id]._lastMov = irr::scene::EMAT_RUN;
@@ -193,7 +203,7 @@ namespace ecs::system::gi {
 					being[id]._rotation = rot;
 					pos = being[id]._node->getPosition();
 					pos.X = pos.X + static_cast<float>(cos(rot * M_PI / 180)) * speed * deltatime;
-					pos.Z = pos.Z + static_cast<float>(sin(rot * M_PI / 180)) * speed * deltatime;
+					pos.Z = pos.Z - static_cast<float>(sin(rot * M_PI / 180)) * speed * deltatime;
 					being[id]._node->setPosition(pos);
 				}
 			}
