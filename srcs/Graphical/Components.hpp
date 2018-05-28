@@ -90,7 +90,7 @@ namespace ecs::component::gi {
 			short vertical;
 			short horizonal;
 		};
-		Controller360()
+		Controller360(irr::u8 id)
 		{
 			left.horizonal = 0;
 			left.vertical = 0;
@@ -98,12 +98,14 @@ namespace ecs::component::gi {
 			right.vertical = 0;
 			leftT = -32767;
 			rightT = -32767;
+			this->id = id;
 		};
 		joyStick	left;
 		joyStick	right;
 		irr::u32	buttons;
 		irr::s16	leftT;
 		irr::s16	rightT;
+		irr::u8		id;
 	};
 
 	struct Explosion {

@@ -22,15 +22,16 @@ namespace ecs::system::gi {
 			bool 	_controller = false;
 			irr::core::array<irr::SJoystickInfo> joystickInfo;
 			device->activateJoysticks(joystickInfo);
+			irr::u32 i;
 
-			for (irr::u32 i = 0; i < joystickInfo.size(); i++)
+			for (i = 0; i < joystickInfo.size(); i++)
 				if (strcmp(joystickInfo[i].Name.c_str(), "Microsoft X-Box 360 pad") == 0)
 					_controller = true;
 
 			component::Manager<component::gi::Being>::get().addComponentForEntity(id, device, driver, smgr, mesh, texture, pos);
 
 			if (_controller)
-				component::Manager<component::gi::Controller360>::get().addComponentForEntity(id);
+				component::Manager<component::gi::Controller360>::get().addComponentForEntity(id, joystickInfo[i].Joystick);
 			else
 				component::Manager<component::gi::Keyboard>::get().addComponentForEntity(id,
 												 irr::EKEY_CODE::KEY_KEY_Z,
@@ -235,12 +236,14 @@ namespace ecs::system::gi {
 				auto &key = component::Manager<component::gi::Controller360>::get();
 
 				for (auto &id : fl.list) {
-					key[id].left.horizonal = event.JoystickEvent.Axis[irr::SEvent::SJoystickEvent::AXIS_X];
-					key[id].left.vertical = event.JoystickEvent.Axis[irr::SEvent::SJoystickEvent::AXIS_Y];
-					key[id].right.horizonal = event.JoystickEvent.Axis[irr::SEvent::SJoystickEvent::AXIS_R];
-					key[id].right.vertical = event.JoystickEvent.Axis[irr::SEvent::SJoystickEvent::AXIS_U];
+					if (event.JoystickEvent.Joystick == key[id].id) {
+						key[id].left.horizonal = event.JoystickEvent.Axis[irr::SEvent::SJoystickEvent::AXIS_X];
+						key[id].left.vertical = event.JoystickEvent.Axis[irr::SEvent::SJoystickEvent::AXIS_Y];
+						key[id].right.horizonal = event.JoystickEvent.Axis[irr::SEvent::SJoystickEvent::AXIS_R];
+						key[id].right.vertical = event.JoystickEvent.Axis[irr::SEvent::SJoystickEvent::AXIS_U];
 
-					key[id].buttons = event.JoystickEvent.ButtonStates;
+						key[id].buttons = event.JoystickEvent.ButtonStates;
+					}
 				}
 			}
 		}
