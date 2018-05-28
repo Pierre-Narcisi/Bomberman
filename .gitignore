@@ -1,5 +1,13 @@
+
+## temporary :
 *#
 *~
-*.o
-a.out
 
+## object :
+*.o
+*.so
+*.a
+
+## binaries :
+a.out
+/bomberman

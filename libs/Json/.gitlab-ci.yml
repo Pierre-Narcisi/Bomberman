@@ -1,0 +1,17 @@
+image: retoxe/c_cpp_clang_gcc:latest
+
+build:
+  stage: build
+  script:
+    - make
+  artifacts:
+      paths:
+        - ./*.a
+        - ./*.so
+
+test:
+  stage: test
+  script:
+    - (cd tests; ./tests.sh)
+  dependencies:
+    - build

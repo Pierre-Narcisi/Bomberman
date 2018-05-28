@@ -1,0 +1,15 @@
+la gameLoop représente l'ordre des actions :
+
+loop si network server :
+1. appliquer les effets de début (vérifier l'état des bombes, etc...)
+2. si en network : check les inputs des clients
+3. si en network : appliquer les updates des clients
+4. appliquer les inputs
+5. appliquer les effets de boucle (gravité, etc...)
+6. si en network : envoyer la liste de toutes les systèmes à appliquer
+
+loop si client :
+1. check si reçu info
+2. si info reçu : applique les FirstUpdate
+3. si info reçu : envoie les inputs à appliquer au server
+4. si info reçu : applique les LastUpdate
