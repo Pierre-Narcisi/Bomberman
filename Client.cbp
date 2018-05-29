@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Client"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/seb/Client"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/seb/Client"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/seb/Client"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Client">
+				<Option output="/home/seb/Client/Client" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/seb/Client/libs/Json/srcs/Entity"/>
+					<Add directory="/home/seb/Client/libs/Json/srcs/Parser"/>
+					<Add directory="/home/seb/Client/libs/SmartEvent/includes"/>
+					<Add directory="/home/seb/Client/libs/SmartEvent/srcs"/>
+					<Add directory="/home/seb/Client/libs/SmartEvent/srcs/Event"/>
+					<Add directory="/home/seb/Client/libs/SmartEvent/srcs/HdlCollector"/>
+					<Add directory="/home/seb/Client/libs/SmartEvent/srcs/Manager"/>
+					<Add directory="/home/seb/Client/srcs"/>
+					<Add directory="/home/seb/Client/srcs/Component"/>
+					<Add directory="/home/seb/Client/srcs/ECS/Component"/>
+					<Add directory="/home/seb/Client/srcs/ECS/Entity"/>
+					<Add directory="/home/seb/Client/srcs/Graphical"/>
+					<Add directory="/home/seb/Client/tests/basicECS"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 Client"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Client/fast">
+				<Option output="/home/seb/Client/Client" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/seb/Client/libs/Json/srcs/Entity"/>
+					<Add directory="/home/seb/Client/libs/Json/srcs/Parser"/>
+					<Add directory="/home/seb/Client/libs/SmartEvent/includes"/>
+					<Add directory="/home/seb/Client/libs/SmartEvent/srcs"/>
+					<Add directory="/home/seb/Client/libs/SmartEvent/srcs/Event"/>
+					<Add directory="/home/seb/Client/libs/SmartEvent/srcs/HdlCollector"/>
+					<Add directory="/home/seb/Client/libs/SmartEvent/srcs/Manager"/>
+					<Add directory="/home/seb/Client/srcs"/>
+					<Add directory="/home/seb/Client/srcs/Component"/>
+					<Add directory="/home/seb/Client/srcs/ECS/Component"/>
+					<Add directory="/home/seb/Client/srcs/ECS/Entity"/>
+					<Add directory="/home/seb/Client/srcs/Graphical"/>
+					<Add directory="/home/seb/Client/tests/basicECS"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 Client/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/seb/Client/libs/Json/srcs/Entity/Entity.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/libs/Json/srcs/Entity/JsonEntity.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/libs/Json/srcs/Parser/Parser.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/libs/Json/srcs/Parser/Parser.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/libs/Json/tests/Entity/main.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/libs/Json/tests/Parser/main.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/libs/SmartEvent/srcs/Event/Event.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/libs/SmartEvent/srcs/Event/Event.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/libs/SmartEvent/srcs/Event/Event.tpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/libs/SmartEvent/srcs/HdlCollector/HdlCollector.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/libs/SmartEvent/srcs/Manager/Manager.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/libs/SmartEvent/srcs/Manager/Manager.tpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/libs/SmartEvent/tests/Event/main.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/libs/SmartEvent/tests/HdlCollector/main.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Component/BoxCollider.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Component/Position.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/ECS/Component/Component.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/ECS/Component/Component.tpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/ECS/Entity/Entity.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/ECS/Entity/Entity.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/ECS/Entity/Entity.tpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/ECS/Entity/EntityErrors.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/ECS/Entity/Filter.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/ECS/Entity/Filter.tpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Graphical/Components.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Graphical/EventReceiver.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Graphical/EventReceiver.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Graphical/Systems.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Main.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/tests/basicECS/Components.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/tests/basicECS/Main.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/tests/basicECS/Systems.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/tests/graphicalTest/test.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

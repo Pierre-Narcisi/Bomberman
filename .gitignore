@@ -5,6 +5,10 @@
 
 ## object :
 *.o
+.idea
+cmake*
+CMakeCache.txt
+CMakeFiles
 *.so
 *.a
 

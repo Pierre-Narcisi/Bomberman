@@ -12,23 +12,25 @@ OUTPATH		=	../..
 INCLUDES	=	-I$(OUTPATH)/libs/Json/includes		\
 			-I$(OUTPATH)/libs/Json/srcs/Entity      \
 			-I$(OUTPATH)/libs/SmartEvent/includes	\
+			-I$(OUTPATH)/libs/SmartEvent/srcs	\
 			-I$(OUTPATH)/srcs			\
 			-I$(OUTPATH)/srcs/ECS/Entity		\
 			-I$(OUTPATH)/srcs/ECS/Component		\
 
-SRCS		=	Main.cpp			\
-			$(OUTPATH)/srcs/ECS/Entity/Entity.cpp
+SRCS		=	test.cpp	        		\
+			$(OUTPATH)/srcs/ECS/Entity/Entity.cpp   \
+			$(OUTPATH)/srcs/Graphical/EventReceiver.cpp
 
 OBJS		=	$(addprefix $(ODIR)/, $(SRCS:.cpp=.o))
 
 NAME		=	bomberman
 
-EXTERNLIBS	=	-L$(OUTPATH)/libs/Json -lstatic_Json -L$(OUTPATH)/libs/SmartEvent -lstatic_SmartEvent
+EXTERNLIBS	=	-L$(OUTPATH)/libs/Json -lstatic_Json -L$(OUTPATH)/libs/SmartEvent -lstatic_SmartEvent -lIrrlicht -lGL
 
 all		:	$(NAME)
 
 $(NAME)		:
-			$(CPP) -v -o $(NAME) $(CPPFLAGS) $(INCLUDES) $(SRCS) $(EXTERNLIBS)
+			$(CPP) -o $(NAME) $(CPPFLAGS) $(INCLUDES) $(SRCS) $(EXTERNLIBS)
 
 $(ODIR)/%.o	:	%.cpp
 			@mkdir -p $(dir $@)
