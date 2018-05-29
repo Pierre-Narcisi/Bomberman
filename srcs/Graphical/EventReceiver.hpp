@@ -10,7 +10,7 @@
 #include <irrlicht/irrlicht.h>
 #include <irrlicht/IEventReceiver.h>
 #include <iostream>
-#include <Manager.hpp>
+#include "Manager.hpp"
 #include "irrlicht/driverChoice.h"
 
 class MyEventReceiver : public irr::IEventReceiver

@@ -8,11 +8,12 @@
 #include <vector>
 #include <iostream>
 #include <stdlib.h>
-
+#include <Graphical/Systems.hpp>
+#include <Graphical/EventReceiver.hpp>
 
 class mapGen {
 public:
-    mapGen(int x, int y);
+    mapGen(int x, int y, irr::scene::ISceneManager* smgr, irr::video::IVideoDriver* driver);
 private:
     void generate2D();
     void choose_pos();
@@ -26,4 +27,6 @@ private:
     int _ygen;
     std::vector<std::pair<int, int>> gen;
     std::vector<std::vector<char>> _2Dmap;
+    irr::scene::ISceneManager* _smgr;
+    irr::video::IVideoDriver* _driver;
 };

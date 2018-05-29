@@ -25,14 +25,14 @@ void mapGen::create_spawn()
 
 void	mapGen::make_unperfect()
 {
-  int	i;
-  int	j;
+  unsigned long i;
+  unsigned long j;
 
   i = 0;
   while (i < _2Dmap.size()) {
       j = 0;
       while (j < _2Dmap[i].size()) {
-	  		if (_2Dmap[i][j] == '1' && rand() % 100 < 50)
+	  		if (_2Dmap[i][j] == '1' && rand() % 100 < 60)
 	    		_2Dmap[i][j] = '2';
 	  		j++;
 			}
@@ -101,12 +101,32 @@ void	mapGen::choose_pos()
     }
 }
 
-mapGen::mapGen(int x, int y)
+
+void mapGen::createMap()
+{
+	for (int i = 0; i < _ymap; i++) {
+		for (int j = 0; j < _xmap; j++) {
+			if (_2Dmap[i][j] == '2') {
+				irr::scene::ISceneNode * node = _smgr->addSphereSceneNode();
+    		if (node) {
+        		node->setPosition(irr::core::vector3df(i * 10, 0, j * 10));
+        		node->setMaterialTexture(0, _driver->getTexture("../../assets/sydney.bmp"));
+        		node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+    		}
+			}
+		}
+	}
+}
+
+
+mapGen::mapGen(int x, int y, irr::scene::ISceneManager* smgr, irr::video::IVideoDriver* driver)
 {
 	_xmap = x;
 	_ymap = y;
 	_xgen = 0;
 	_ygen = 0;
+	_driver = driver;
+	_smgr = smgr;
 	srand(time(NULL));
 	_2Dmap = std::vector<std::vector<char>>(y, std::vector<char>(x));
 	gen.push_back(std::pair<int, int> (_xgen, _ygen));
@@ -118,5 +138,6 @@ mapGen::mapGen(int x, int y)
 	generate2D();
 	make_unperfect();
 	create_spawn();
+	createMap();
 }
 

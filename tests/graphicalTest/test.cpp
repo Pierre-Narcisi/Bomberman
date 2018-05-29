@@ -7,6 +7,7 @@
 
 #include <Graphical/Systems.hpp>
 #include <Graphical/EventReceiver.hpp>
+#include "MapGen/mapGen.hpp"
 
 int main() {
 	evt::Manager &m = evt::Manager::get();
@@ -26,6 +27,8 @@ int main() {
 	irr::video::IVideoDriver* driver = device->getVideoDriver();
 	irr::scene::ISceneManager* smgr = device->getSceneManager();
 	irr::gui::IGUIEnvironment* guienv = device->getGUIEnvironment();
+
+	mapGen(30, 30, smgr, driver);
 
 	irr::core::array<irr::SJoystickInfo> joystickInfo;
 	device->activateJoysticks(joystickInfo);
