@@ -19,6 +19,8 @@ INCLUDES	=	-I$(OUTPATH)/libs/Json/includes		\
 
 SRCS		=	test.cpp	        		\
 			$(OUTPATH)/srcs/ECS/Entity/Entity.cpp   \
+			$(OUTPATH)/srcs/Settings/Inputs.cpp   \
+			$(OUTPATH)/srcs/Settings/Settings.cpp   \
 			$(OUTPATH)/srcs/Graphical/EventReceiver.cpp
 
 OBJS		=	$(addprefix $(ODIR)/, $(SRCS:.cpp=.o))
@@ -27,7 +29,11 @@ NAME		=	bomberman
 
 EXTERNLIBS	=	-L$(OUTPATH)/libs/Json -lstatic_Json -L$(OUTPATH)/libs/SmartEvent -lstatic_SmartEvent -lIrrlicht -lGL
 
-all		:	$(NAME)
+all		:	makelibs $(NAME)
+
+makelibs	:
+			make -C $(OUTPATH)/libs/Json includes && make -C $(OUTPATH)/libs/Json
+			make -C $(OUTPATH)/libs/SmartEvent includes && make -C $(OUTPATH)/libs/SmartEvent
 
 $(NAME)		:
 			$(CPP) -o $(NAME) $(CPPFLAGS) $(INCLUDES) $(SRCS) $(EXTERNLIBS)
@@ -41,13 +47,13 @@ $(REALODIR)/%.o	:	$(REALSDIR)/%.cpp
 			$(CPP) $(CPPFLAGS) $(INCLUDES)	-c -o $@ $<
 
 clean		:
-			# make -C libs/Json clean
-			# make -C libs/SmartEvent clean
+			make -C $(OUTPATH)/libs/Json clean
+			make -C $(OUTPATH)/libs/SmartEvent clean
 			rm -rf $(ODIR)
 
 fclean		:	clean
-			# make -C libs/Json fclean
-			# make -C libs/SmartEvent fclean
+			make -C $(OUTPATH)/libs/Json fclean
+			make -C $(OUTPATH)/libs/SmartEvent fclean
 			rm -f $(NAME)
 
 re		:	fclean all

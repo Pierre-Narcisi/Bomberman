@@ -35,11 +35,12 @@ namespace ecs::component {
 
 	template<class T>
 	template<typename ...Args>
-	void Manager<T>::addComponentForEntity(entity::Id entity, Args &&...args)
+	T &Manager<T>::addComponentForEntity(entity::Id entity, Args &&...args)
 	{
 		_components.emplace(entity, T{std::forward<Args>(args)...});
 		entity::Manager::get().template setComponent<T>(entity,
 		std::bind(&Manager::callBackremoveEntity, this, entity));
+		return _components.at(entity);
 	}
 
 	template<class T>

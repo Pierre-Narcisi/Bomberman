@@ -4,6 +4,7 @@
 ** File description:
 ** Created by seb,
 */
+
 #ifndef IRRLICHTWRAPPER_EVENTRECEIVER_HPP
 #define IRRLICHTWRAPPER_EVENTRECEIVER_HPP
 

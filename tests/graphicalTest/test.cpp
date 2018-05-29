@@ -13,9 +13,9 @@ int main() {
 	MyEventReceiver event;
 	irr::IrrlichtDevice *device =
 		irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1020, 1080), 16,
-			     false, false, false, &event);
+				false, false, false, &event);
 
-	m["event"]->addHandler<void, irr::SEvent&>((const std::function<void(irr::SEvent &)> &) [] (irr::SEvent &event) {
+	m["event"]->addHandler<void, irr::SEvent&>([] (irr::SEvent &event) {
 			ecs::system::gi::Events::Manager(event);
 		});
 

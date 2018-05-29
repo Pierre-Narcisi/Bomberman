@@ -38,6 +38,7 @@
 		"sstream": "cpp",
 		"typeindex": "cpp",
 		"cstring": "cpp",
-		"fstream": "cpp"
+		"fstream": "cpp",
+		"string": "cpp"
 	}
 }
