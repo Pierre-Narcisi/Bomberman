@@ -393,6 +393,168 @@ srcs/Graphical/EventReceiver.cpp.s:
 	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/EventReceiver.cpp.s
 .PHONY : srcs/Graphical/EventReceiver.cpp.s
 
+srcs/Graphical/SystemCreateDeletableWall.o: srcs/Graphical/SystemCreateDeletableWall.cpp.o
+
+.PHONY : srcs/Graphical/SystemCreateDeletableWall.o
+
+# target to build an object file
+srcs/Graphical/SystemCreateDeletableWall.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreateDeletableWall.cpp.o
+.PHONY : srcs/Graphical/SystemCreateDeletableWall.cpp.o
+
+srcs/Graphical/SystemCreateDeletableWall.i: srcs/Graphical/SystemCreateDeletableWall.cpp.i
+
+.PHONY : srcs/Graphical/SystemCreateDeletableWall.i
+
+# target to preprocess a source file
+srcs/Graphical/SystemCreateDeletableWall.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreateDeletableWall.cpp.i
+.PHONY : srcs/Graphical/SystemCreateDeletableWall.cpp.i
+
+srcs/Graphical/SystemCreateDeletableWall.s: srcs/Graphical/SystemCreateDeletableWall.cpp.s
+
+.PHONY : srcs/Graphical/SystemCreateDeletableWall.s
+
+# target to generate assembly for a file
+srcs/Graphical/SystemCreateDeletableWall.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreateDeletableWall.cpp.s
+.PHONY : srcs/Graphical/SystemCreateDeletableWall.cpp.s
+
+srcs/Graphical/SystemCreateMap.o: srcs/Graphical/SystemCreateMap.cpp.o
+
+.PHONY : srcs/Graphical/SystemCreateMap.o
+
+# target to build an object file
+srcs/Graphical/SystemCreateMap.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreateMap.cpp.o
+.PHONY : srcs/Graphical/SystemCreateMap.cpp.o
+
+srcs/Graphical/SystemCreateMap.i: srcs/Graphical/SystemCreateMap.cpp.i
+
+.PHONY : srcs/Graphical/SystemCreateMap.i
+
+# target to preprocess a source file
+srcs/Graphical/SystemCreateMap.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreateMap.cpp.i
+.PHONY : srcs/Graphical/SystemCreateMap.cpp.i
+
+srcs/Graphical/SystemCreateMap.s: srcs/Graphical/SystemCreateMap.cpp.s
+
+.PHONY : srcs/Graphical/SystemCreateMap.s
+
+# target to generate assembly for a file
+srcs/Graphical/SystemCreateMap.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreateMap.cpp.s
+.PHONY : srcs/Graphical/SystemCreateMap.cpp.s
+
+srcs/Graphical/SystemCreatePlayer.o: srcs/Graphical/SystemCreatePlayer.cpp.o
+
+.PHONY : srcs/Graphical/SystemCreatePlayer.o
+
+# target to build an object file
+srcs/Graphical/SystemCreatePlayer.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreatePlayer.cpp.o
+.PHONY : srcs/Graphical/SystemCreatePlayer.cpp.o
+
+srcs/Graphical/SystemCreatePlayer.i: srcs/Graphical/SystemCreatePlayer.cpp.i
+
+.PHONY : srcs/Graphical/SystemCreatePlayer.i
+
+# target to preprocess a source file
+srcs/Graphical/SystemCreatePlayer.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreatePlayer.cpp.i
+.PHONY : srcs/Graphical/SystemCreatePlayer.cpp.i
+
+srcs/Graphical/SystemCreatePlayer.s: srcs/Graphical/SystemCreatePlayer.cpp.s
+
+.PHONY : srcs/Graphical/SystemCreatePlayer.s
+
+# target to generate assembly for a file
+srcs/Graphical/SystemCreatePlayer.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreatePlayer.cpp.s
+.PHONY : srcs/Graphical/SystemCreatePlayer.cpp.s
+
+srcs/Graphical/SystemCreateWall.o: srcs/Graphical/SystemCreateWall.cpp.o
+
+.PHONY : srcs/Graphical/SystemCreateWall.o
+
+# target to build an object file
+srcs/Graphical/SystemCreateWall.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreateWall.cpp.o
+.PHONY : srcs/Graphical/SystemCreateWall.cpp.o
+
+srcs/Graphical/SystemCreateWall.i: srcs/Graphical/SystemCreateWall.cpp.i
+
+.PHONY : srcs/Graphical/SystemCreateWall.i
+
+# target to preprocess a source file
+srcs/Graphical/SystemCreateWall.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreateWall.cpp.i
+.PHONY : srcs/Graphical/SystemCreateWall.cpp.i
+
+srcs/Graphical/SystemCreateWall.s: srcs/Graphical/SystemCreateWall.cpp.s
+
+.PHONY : srcs/Graphical/SystemCreateWall.s
+
+# target to generate assembly for a file
+srcs/Graphical/SystemCreateWall.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreateWall.cpp.s
+.PHONY : srcs/Graphical/SystemCreateWall.cpp.s
+
+srcs/Graphical/SystemEventManager.o: srcs/Graphical/SystemEventManager.cpp.o
+
+.PHONY : srcs/Graphical/SystemEventManager.o
+
+# target to build an object file
+srcs/Graphical/SystemEventManager.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemEventManager.cpp.o
+.PHONY : srcs/Graphical/SystemEventManager.cpp.o
+
+srcs/Graphical/SystemEventManager.i: srcs/Graphical/SystemEventManager.cpp.i
+
+.PHONY : srcs/Graphical/SystemEventManager.i
+
+# target to preprocess a source file
+srcs/Graphical/SystemEventManager.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemEventManager.cpp.i
+.PHONY : srcs/Graphical/SystemEventManager.cpp.i
+
+srcs/Graphical/SystemEventManager.s: srcs/Graphical/SystemEventManager.cpp.s
+
+.PHONY : srcs/Graphical/SystemEventManager.s
+
+# target to generate assembly for a file
+srcs/Graphical/SystemEventManager.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemEventManager.cpp.s
+.PHONY : srcs/Graphical/SystemEventManager.cpp.s
+
+srcs/Graphical/SystemUpdateDeplacement.o: srcs/Graphical/SystemUpdateDeplacement.cpp.o
+
+.PHONY : srcs/Graphical/SystemUpdateDeplacement.o
+
+# target to build an object file
+srcs/Graphical/SystemUpdateDeplacement.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemUpdateDeplacement.cpp.o
+.PHONY : srcs/Graphical/SystemUpdateDeplacement.cpp.o
+
+srcs/Graphical/SystemUpdateDeplacement.i: srcs/Graphical/SystemUpdateDeplacement.cpp.i
+
+.PHONY : srcs/Graphical/SystemUpdateDeplacement.i
+
+# target to preprocess a source file
+srcs/Graphical/SystemUpdateDeplacement.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemUpdateDeplacement.cpp.i
+.PHONY : srcs/Graphical/SystemUpdateDeplacement.cpp.i
+
+srcs/Graphical/SystemUpdateDeplacement.s: srcs/Graphical/SystemUpdateDeplacement.cpp.s
+
+.PHONY : srcs/Graphical/SystemUpdateDeplacement.s
+
+# target to generate assembly for a file
+srcs/Graphical/SystemUpdateDeplacement.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemUpdateDeplacement.cpp.s
+.PHONY : srcs/Graphical/SystemUpdateDeplacement.cpp.s
+
 srcs/Main.o: srcs/Main.cpp.o
 
 .PHONY : srcs/Main.o
@@ -513,6 +675,24 @@ help:
 	@echo "... srcs/Graphical/EventReceiver.o"
 	@echo "... srcs/Graphical/EventReceiver.i"
 	@echo "... srcs/Graphical/EventReceiver.s"
+	@echo "... srcs/Graphical/SystemCreateDeletableWall.o"
+	@echo "... srcs/Graphical/SystemCreateDeletableWall.i"
+	@echo "... srcs/Graphical/SystemCreateDeletableWall.s"
+	@echo "... srcs/Graphical/SystemCreateMap.o"
+	@echo "... srcs/Graphical/SystemCreateMap.i"
+	@echo "... srcs/Graphical/SystemCreateMap.s"
+	@echo "... srcs/Graphical/SystemCreatePlayer.o"
+	@echo "... srcs/Graphical/SystemCreatePlayer.i"
+	@echo "... srcs/Graphical/SystemCreatePlayer.s"
+	@echo "... srcs/Graphical/SystemCreateWall.o"
+	@echo "... srcs/Graphical/SystemCreateWall.i"
+	@echo "... srcs/Graphical/SystemCreateWall.s"
+	@echo "... srcs/Graphical/SystemEventManager.o"
+	@echo "... srcs/Graphical/SystemEventManager.i"
+	@echo "... srcs/Graphical/SystemEventManager.s"
+	@echo "... srcs/Graphical/SystemUpdateDeplacement.o"
+	@echo "... srcs/Graphical/SystemUpdateDeplacement.i"
+	@echo "... srcs/Graphical/SystemUpdateDeplacement.s"
 	@echo "... srcs/Main.o"
 	@echo "... srcs/Main.i"
 	@echo "... srcs/Main.s"

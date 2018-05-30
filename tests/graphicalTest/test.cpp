@@ -5,21 +5,17 @@
 ** Created by seb,
 */
 
-#include <Graphical/Systems.hpp>
 #include <Graphical/EventReceiver.hpp>
 #include "MapGen/mapGen.hpp"
 #include <ctime>
+#include <Graphical/SystemCreate.hpp>
 
 int main() {
-	evt::Manager &m = evt::Manager::get();
+	srand(time(NULL));
 	MyEventReceiver event;
 	irr::IrrlichtDevice *device =
 		irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1020, 1080), 16,
 			     false, false, false, &event);
-
-	m["event"]->addHandler<void, irr::SEvent&>((const std::function<void(irr::SEvent &)> &) [] (irr::SEvent &event) {
-			ecs::system::gi::Events::Manager(event);
-		});
 
 	if (!device)
 		return 1;
@@ -34,9 +30,10 @@ int main() {
 	irr::core::array<irr::SJoystickInfo> joystickInfo;
 	device->activateJoysticks(joystickInfo);
 
-	ecs::system::gi::Create::createWall(driver, smgr, irr::core::vector2df(200, 200));
+	ecs::system::Create::createWall(driver, smgr, irr::core::vector2df(200, 200));
+	ecs::system::Create::createDeletableWall(driver, smgr, irr::core::vector2df(300, 200));
 
-	ecs::system::gi::Create::createPlayer(device, driver, smgr, "../../assets/sydney.md2", "../../assets/non.jpg", irr::core::vector2df(125,125));
+	ecs::system::Create::createPlayer(device, driver, smgr, "../../assets/sydney.md2", "../../assets/sydney.bmp", irr::core::vector2df(0,0));
 
 	while(device->run())
 	{
