@@ -56,7 +56,7 @@
 					<Add directory="/home/seb/Client/srcs/ECS/Component"/>
 					<Add directory="/home/seb/Client/srcs/ECS/Entity"/>
 					<Add directory="/home/seb/Client/srcs/Graphical"/>
-					<Add directory="/home/seb/Client/tests/basicECS"/>
+					<Add directory="/home/seb/Client/tests"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 Client"/>
@@ -84,7 +84,7 @@
 					<Add directory="/home/seb/Client/srcs/ECS/Component"/>
 					<Add directory="/home/seb/Client/srcs/ECS/Entity"/>
 					<Add directory="/home/seb/Client/srcs/Graphical"/>
-					<Add directory="/home/seb/Client/tests/basicECS"/>
+					<Add directory="/home/seb/Client/tests"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 Client/fast"/>
@@ -169,13 +169,55 @@
 		<Unit filename="/home/seb/Client/srcs/ECS/Entity/Filter.tpp">
 			<Option target="Client"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Graphical/Components.hpp">
+		<Unit filename="/home/seb/Client/srcs/Graphical/ComponentBeing.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Graphical/ComponentCamera.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Graphical/ComponentController360.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Graphical/ComponentExplosion.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Graphical/ComponentKeyboard.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Graphical/ComponentUnanimatedObject.hpp">
 			<Option target="Client"/>
 		</Unit>
 		<Unit filename="/home/seb/Client/srcs/Graphical/EventReceiver.cpp">
 			<Option target="Client"/>
 		</Unit>
 		<Unit filename="/home/seb/Client/srcs/Graphical/EventReceiver.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Graphical/SystemCreate.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Graphical/SystemCreateDeletableWall.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Graphical/SystemCreateMap.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Graphical/SystemCreatePlayer.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Graphical/SystemCreateWall.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Graphical/SystemEvent.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Graphical/SystemEventManager.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Graphical/SystemUpdate.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/seb/Client/srcs/Graphical/SystemUpdateDeplacement.cpp">
 			<Option target="Client"/>
 		</Unit>
 		<Unit filename="/home/seb/Client/srcs/Graphical/Systems.hpp">

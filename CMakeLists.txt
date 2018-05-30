@@ -15,7 +15,7 @@ include_directories(srcs/Component)
 include_directories(srcs/ECS/Component)
 include_directories(srcs/ECS/Entity)
 include_directories(srcs/Graphical)
-include_directories(tests/basicECS)
+include_directories(tests)
 
 add_executable(Client
         libs/Json/srcs/Entity/Entity.cpp
@@ -43,12 +43,10 @@ add_executable(Client
         srcs/ECS/Entity/EntityErrors.hpp
         srcs/ECS/Entity/Filter.hpp
         srcs/ECS/Entity/Filter.tpp
-        srcs/Graphical/Components.hpp
-        srcs/Graphical/Systems.hpp
         srcs/Graphical/EventReceiver.cpp
         srcs/Graphical/EventReceiver.hpp
         srcs/Main.cpp
         tests/basicECS/Components.hpp
         tests/basicECS/Main.cpp
         tests/basicECS/Systems.hpp
-        tests/graphicalTest/test.cpp)
+        tests/graphicalTest/test.cpp srcs/Graphical/ComponentBeing.hpp srcs/Graphical/ComponentKeyboard.hpp srcs/Graphical/ComponentCamera.hpp srcs/Graphical/ComponentUnanimatedObject.hpp srcs/Graphical/ComponentController360.hpp srcs/Graphical/ComponentExplosion.hpp srcs/Graphical/SystemCreate.hpp srcs/Graphical/SystemCreateMap.cpp srcs/Graphical/SystemCreateWall.cpp srcs/Graphical/SystemCreateDeletableWall.cpp srcs/Graphical/SystemCreatePlayer.cpp srcs/Graphical/SystemUpdate.hpp srcs/Graphical/SystemUpdateDeplacement.cpp srcs/Graphical/SystemEvent.hpp srcs/Graphical/SystemEventManager.cpp)
