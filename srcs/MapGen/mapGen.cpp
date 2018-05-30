@@ -104,33 +104,15 @@ void	mapGen::choose_pos()
 
 void mapGen::createBorder()
 {
+	irr::core::vector2df pos;
+
 	for (int i = 0; i < _xmap + 2; i++) {
-		irr::scene::ISceneNode * node = _smgr->addSphereSceneNode(20);
-    		if (node) {
-        		node->setPosition(irr::core::vector3df(i * 40, 0, 0));
-        		node->setMaterialTexture(0, _driver->getTexture("../../assets/sydney.bmp"));
-        		node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-    		}
-		irr::scene::ISceneNode * node1 = _smgr->addSphereSceneNode(20);
-    		if (node1) {
-        		node1->setPosition(irr::core::vector3df(i * 40, 0, (_xmap + 1) * 40));
-        		node1->setMaterialTexture(0, _driver->getTexture("../../assets/sydney.bmp"));
-        		node1->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-    		}
+		ecs::system::gi::Create::createWall(_driver, _smgr, irr::core::vector2df(0, i * 100));
+		ecs::system::gi::Create::createWall(_driver, _smgr, irr::core::vector2df((_xmap + 1) * 100, i * 100));
 	}
 	for (int i = 0; i < _ymap + 2; i++) {
-		irr::scene::ISceneNode * node2 = _smgr->addSphereSceneNode(20);
-    		if (node2) {
-        		node2->setPosition(irr::core::vector3df(0, 0, i * 40));
-        		node2->setMaterialTexture(0, _driver->getTexture("../../assets/sydney.bmp"));
-        		node2->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-    		}
-		irr::scene::ISceneNode * node3 = _smgr->addSphereSceneNode(20);
-    		if (node3) {
-        		node3->setPosition(irr::core::vector3df((_ymap + 1) * 40, 0, i * 40));
-        		node3->setMaterialTexture(0, _driver->getTexture("../../assets/sydney.bmp"));
-        		node3->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-    		}
+		ecs::system::gi::Create::createWall(_driver, _smgr, irr::core::vector2df(i * 100, 0));
+		ecs::system::gi::Create::createWall(_driver, _smgr, irr::core::vector2df(i * 100, (_ymap + 1) * 100));
 	}
 }
 
@@ -142,17 +124,12 @@ void mapGen::createMap()
 			if (_2Dmap[i][j] == '2') {
 				irr::scene::ISceneNode * node = _smgr->addSphereSceneNode(20);
     		if (node) {
-        		node->setPosition(irr::core::vector3df((i + 1) * 40, 0, (j + 1) * 40));
-        		node->setMaterialTexture(0, _driver->getTexture("../../assets/OUI.jpg"));
-        		node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-    		}
-			} else if (_2Dmap[i][j] == '1') {
-				irr::scene::ISceneNode * node = _smgr->addSphereSceneNode(20);
-    		if (node) {
-        		node->setPosition(irr::core::vector3df((i + 1) * 40, 0, (j + 1) * 40));
+        		node->setPosition(irr::core::vector3df((i + 1) * 100, 0, (j + 1) * 100));
         		node->setMaterialTexture(0, _driver->getTexture("../../assets/sydney.bmp"));
         		node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
     		}
+			} else if (_2Dmap[i][j] == '1') {
+						ecs::system::gi::Create::createWall(_driver, _smgr, irr::core::vector2df((i  + 1) * 100, (j + 1) * 100));
 			}
 		}
 	}

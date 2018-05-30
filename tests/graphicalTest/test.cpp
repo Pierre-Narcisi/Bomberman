@@ -36,7 +36,7 @@ int main() {
 
 	ecs::system::gi::Create::createWall(driver, smgr, irr::core::vector2df(200, 200));
 
-	ecs::system::gi::Create::createPlayer(device, driver, smgr, "../../assets/sydney.md2", "../../assets/non.jpg", irr::core::vector2df(0,0));
+	ecs::system::gi::Create::createPlayer(device, driver, smgr, "../../assets/sydney.md2", "../../assets/non.jpg", irr::core::vector2df(125,125));
 
 	while(device->run())
 	{
