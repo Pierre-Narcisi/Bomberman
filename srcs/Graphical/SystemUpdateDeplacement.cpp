@@ -23,6 +23,12 @@ namespace ecs::system {
 		float rot;
 		bool moving;
 
+		for(auto &id : player.list) {
+			pos = being[id]._node->getPosition();
+			camera[id]._camera->setPosition(irr::core::vector3df(pos.X, pos.Y + 250, pos.Z - 250));
+			camera[id]._camera->setTarget(pos);
+		}
+
 		for (auto id : fl.list) {
 			rot = being[id]._rotation;
 			moving = key[id].actions["up"].state || key[id].actions["down"].state || key[id].actions["left"].state || key[id].actions["right"].state;
@@ -165,12 +171,6 @@ namespace ecs::system {
 				pos.Z = pos.Z - static_cast<float>(sin(rot * M_PI / 180)) * speed * deltatime;
 				being[id]._node->setPosition(pos);
 			}
-		}
-
-		for(auto &id : player.list) {
-			pos = being[id]._node->getPosition();
-			camera[id]._camera->setPosition(irr::core::vector3df(pos.X, pos.Y + 250, pos.Z - 250));
-			camera[id]._camera->setTarget(pos);
 		}
 	}
 }

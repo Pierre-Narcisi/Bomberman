@@ -10,6 +10,7 @@
 #include <Graphical/SystemCreate.hpp>
 
 int main() {
+	srand(time(NULL));
 	MyEventReceiver event;
 	irr::IrrlichtDevice *device =
 		irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1020, 1080), 16,
