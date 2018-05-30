@@ -21,6 +21,7 @@ private:
     void make_unperfect();
     void create_spawn();
     void createMap();
+    void createBorder();
     int _xmap;
     int _ymap;
     int _xgen;

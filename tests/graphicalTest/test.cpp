@@ -37,7 +37,7 @@ int main() {
 		printf("%s--%d--%d\n", joystickInfo[i].Name.c_str(), joystickInfo[i].Axes, joystickInfo[i].Buttons);
 	}
 
-	ecs::system::gi::Create::createPlayer(device, driver, smgr, "../../assets/sydney.md2", "../../assets/sydney.bmp", irr::core::vector2df(0,0));
+	ecs::system::gi::Create::createPlayer(device, driver, smgr, "../../assets/sydney.md2", "../../assets/non.jpg", irr::core::vector2df(0,0));
 
 	while(device->run())
 	{

@@ -102,14 +102,54 @@ void	mapGen::choose_pos()
 }
 
 
+void mapGen::createBorder()
+{
+	for (int i = 0; i < _xmap + 2; i++) {
+		irr::scene::ISceneNode * node = _smgr->addSphereSceneNode(20);
+    		if (node) {
+        		node->setPosition(irr::core::vector3df(i * 40, 0, 0));
+        		node->setMaterialTexture(0, _driver->getTexture("../../assets/sydney.bmp"));
+        		node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+    		}
+		irr::scene::ISceneNode * node1 = _smgr->addSphereSceneNode(20);
+    		if (node1) {
+        		node1->setPosition(irr::core::vector3df(i * 40, 0, (_xmap + 1) * 40));
+        		node1->setMaterialTexture(0, _driver->getTexture("../../assets/sydney.bmp"));
+        		node1->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+    		}
+	}
+	for (int i = 0; i < _ymap + 2; i++) {
+		irr::scene::ISceneNode * node2 = _smgr->addSphereSceneNode(20);
+    		if (node2) {
+        		node2->setPosition(irr::core::vector3df(0, 0, i * 40));
+        		node2->setMaterialTexture(0, _driver->getTexture("../../assets/sydney.bmp"));
+        		node2->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+    		}
+		irr::scene::ISceneNode * node3 = _smgr->addSphereSceneNode(20);
+    		if (node3) {
+        		node3->setPosition(irr::core::vector3df((_ymap + 1) * 40, 0, i * 40));
+        		node3->setMaterialTexture(0, _driver->getTexture("../../assets/sydney.bmp"));
+        		node3->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+    		}
+	}
+}
+
 void mapGen::createMap()
 {
+	createBorder();
 	for (int i = 0; i < _ymap; i++) {
 		for (int j = 0; j < _xmap; j++) {
 			if (_2Dmap[i][j] == '2') {
-				irr::scene::ISceneNode * node = _smgr->addSphereSceneNode();
+				irr::scene::ISceneNode * node = _smgr->addSphereSceneNode(20);
     		if (node) {
-        		node->setPosition(irr::core::vector3df(i * 10, 0, j * 10));
+        		node->setPosition(irr::core::vector3df((i + 1) * 40, 0, (j + 1) * 40));
+        		node->setMaterialTexture(0, _driver->getTexture("../../assets/OUI.jpg"));
+        		node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+    		}
+			} else if (_2Dmap[i][j] == '1') {
+				irr::scene::ISceneNode * node = _smgr->addSphereSceneNode(20);
+    		if (node) {
+        		node->setPosition(irr::core::vector3df((i + 1) * 40, 0, (j + 1) * 40));
         		node->setMaterialTexture(0, _driver->getTexture("../../assets/sydney.bmp"));
         		node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
     		}
