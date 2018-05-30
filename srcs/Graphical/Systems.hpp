@@ -16,6 +16,29 @@
 namespace ecs::system::gi {
 	class Create {
 	public:
+		static irr::scene::IMetaTriangleSelector* createMap(irr::scene::ISceneManager *smgr)
+		{
+			irr::scene::IMetaTriangleSelector* worldSel = smgr->createMetaTriangleSelector();
+			entity::Filter<component::gi::UnanimatedObject> fl;
+			auto &map = component::Manager<component::gi::UnanimatedObject>::get();
+			irr::scene::ITriangleSelector* sel1;
+
+			for (auto &id: fl.list) {
+				sel1 = smgr->createTriangleSelectorFromBoundingBox(map[id]._node);
+				worldSel->addTriangleSelector(sel1);
+			}
+			return (worldSel);
+		}
+
+		static entity::Id createWall(irr::video::IVideoDriver *driver, irr::scene::ISceneManager *smgr, irr::core::vector2df pos)
+		{
+			auto	id = entity::Manager::get().newEntity();
+
+			component::Manager<component::gi::UnanimatedObject>::get().addComponentForEntity(id, driver, smgr, "../../assets/cobblestone.jpg", pos);
+
+			return id;
+		}
+
 		static entity::Id createPlayer(irr::IrrlichtDevice *device, irr::video::IVideoDriver *driver, irr::scene::ISceneManager *smgr, std::string const &mesh, std::string const &texture, irr::core::vector2df const &pos)
 		{
 			auto	id = entity::Manager::get().newEntity();
@@ -30,6 +53,12 @@ namespace ecs::system::gi {
 
 			component::Manager<component::gi::Being>::get().addComponentForEntity(id, device, driver, smgr, mesh, texture, pos);
 
+			auto selector = ecs::system::gi::Create::createMap(smgr);
+			irr::scene::ISceneNodeAnimator* anim = smgr->createCollisionResponseAnimator(selector, component::Manager<component::gi::Being>::get()[id]._node, (component::Manager<component::gi::Being>::get()[id]._node->getBoundingBox().MaxEdge - component::Manager<component::gi::Being>::get()[id]._node->getBoundingBox().MinEdge), irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
+			component::Manager<component::gi::Being>::get()[id]._node->addAnimator(anim);
+			selector->drop();
+			anim->drop();
+
 			if (_controller)
 				component::Manager<component::gi::Controller360>::get().addComponentForEntity(id, joystickInfo[i].Joystick);
 			else
@@ -41,7 +70,6 @@ namespace ecs::system::gi {
 												 irr::EKEY_CODE::KEY_SPACE,
 												 irr::EKEY_CODE::KEY_LCONTROL,
 												 irr::EKEY_CODE::KEY_LSHIFT);
-			component::Manager<component::gi::Explosion>::get().addComponentForEntity(id, smgr, driver);
 			component::Manager<component::gi::Camera>::get().addComponentForEntity(id, smgr, id);
 
 			return id;
@@ -61,7 +89,7 @@ namespace ecs::system::gi {
 			auto &camera = component::Manager<component::gi::Camera>::get();
 			irr::f32 deltatime;
 			irr::core::vector3df pos;
-			irr::f32 speed = 150.f;
+			irr::f32 speed = 300.f;
 			float rot;
 			bool moving;
 
@@ -211,7 +239,7 @@ namespace ecs::system::gi {
 
 			for(auto &id : player.list) {
 				pos = being[id]._node->getPosition();
-				camera[id]._camera->setPosition(irr::core::vector3df(pos.X, pos.Y + 100, pos.Z - 100));
+				camera[id]._camera->setPosition(irr::core::vector3df(pos.X, pos.Y + 300, pos.Z - 300));
 				camera[id]._camera->setTarget(pos);
 			}
 		}
@@ -231,6 +259,7 @@ namespace ecs::system::gi {
 							cpn.second.state = event.KeyInput.PressedDown;
 					}
 				}
+				ecs::system::gi::Routine::Deplacement();
 			} else if (event.EventType == irr::EET_JOYSTICK_INPUT_EVENT) {
 				entity::Filter<component::gi::Controller360> fl;
 				auto &key = component::Manager<component::gi::Controller360>::get();
@@ -245,6 +274,7 @@ namespace ecs::system::gi {
 						key[id].buttons = event.JoystickEvent.ButtonStates;
 					}
 				}
+				ecs::system::gi::Routine::Deplacement();
 			}
 		}
 	};

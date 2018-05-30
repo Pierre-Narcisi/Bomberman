@@ -37,8 +37,9 @@ namespace ecs::component::gi {
 			_node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 			_node->setMD2Animation(irr::scene::EMAT_STAND);
 			_node->setMaterialTexture( 0, driver->getTexture(texture.c_str()));
-			_node->setRotation(irr::core::vector3df(0,90,0));
 			_node->setPosition(irr::core::vector3df(pos.X, 0, pos.Y));
+
+			_node->setScale(irr::core::vector3df(1.5, 1.5, 1.5));
 
 			_state = ecs::component::gi::Being::State::STANDING;
 			_lastMov = irr::scene::EMAT_STAND;
@@ -58,12 +59,25 @@ namespace ecs::component::gi {
 		{
 			irr::core::vector3df pos = ecs::component::Manager<ecs::component::gi::Being>::get()[id]._node->getPosition();
 			_camera = smgr->addCameraSceneNode();
-			_camera->setPosition(irr::core::vector3df(pos.X + 0, pos.Y + 50,pos.Z - 50));
+			_camera->setPosition(irr::core::vector3df(pos.X + 0, pos.Y + 500,pos.Z - 500));
 			_camera->setTarget(pos);
 		};
 
 		irr::scene::ICameraSceneNode* _camera;
 	};
+
+	struct UnanimatedObject {
+		UnanimatedObject(irr::video::IVideoDriver *driver, irr::scene::ISceneManager *smgr, std::string const &texture, irr::core::vector2df const &pos)
+		{
+			_node = smgr->addCubeSceneNode(100);
+			_node->setMaterialTexture(0, driver->getTexture(texture.c_str()));
+			_node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+			_node->setPosition(irr::core::vector3df(pos.X, 0, pos.Y));
+		};
+		irr::scene::ISceneNode*	_node;
+	};
+
+	struct Destructible {};
 
 	struct Keyboard {
 		struct action {
