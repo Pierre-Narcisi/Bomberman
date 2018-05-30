@@ -8,6 +8,7 @@
 #include <Graphical/Systems.hpp>
 #include <Graphical/EventReceiver.hpp>
 #include "MapGen/mapGen.hpp"
+#include <ctime>
 
 int main() {
 	evt::Manager &m = evt::Manager::get();
@@ -33,16 +34,12 @@ int main() {
 	irr::core::array<irr::SJoystickInfo> joystickInfo;
 	device->activateJoysticks(joystickInfo);
 
-	for (irr::u32 i = 0; i < joystickInfo.size() ; i++) {
-		printf("%s--%d--%d\n", joystickInfo[i].Name.c_str(), joystickInfo[i].Axes, joystickInfo[i].Buttons);
-	}
+	ecs::system::gi::Create::createWall(driver, smgr, irr::core::vector2df(200, 200));
 
 	ecs::system::gi::Create::createPlayer(device, driver, smgr, "../../assets/sydney.md2", "../../assets/non.jpg", irr::core::vector2df(0,0));
 
 	while(device->run())
 	{
-		ecs::system::gi::Routine::Deplacement();
-
 		irr::core::stringw str = L"Bomberman :";
 		str += driver->getFPS();
 		str += " fps";
