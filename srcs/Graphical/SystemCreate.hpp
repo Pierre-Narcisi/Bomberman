@@ -5,6 +5,8 @@
 ** Created by seb,
 */
 
+#pragma once
+
 #include <irrlicht/irrlicht.h>
 #include <ECS/Entity/Filter.hpp>
 #include "basicECS/Components.hpp"

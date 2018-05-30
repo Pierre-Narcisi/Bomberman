@@ -13,6 +13,7 @@ include_directories(srcs/Component)
 include_directories(srcs/ECS/Component)
 include_directories(srcs/ECS/Entity)
 include_directories(srcs/Graphical)
+include_directories(tests)
 include_directories(tests/basicECS)
 
 add_executable(Client
