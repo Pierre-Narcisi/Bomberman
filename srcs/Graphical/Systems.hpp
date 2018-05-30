@@ -34,7 +34,7 @@ namespace ecs::system::gi {
 		{
 			auto	id = entity::Manager::get().newEntity();
 
-			component::Manager<component::gi::UnanimatedObject>::get().addComponentForEntity(id, driver, smgr, "../../assets/cobblestone.jpg", pos);
+			component::Manager<component::gi::UnanimatedObject>::get().addComponentForEntity(id, driver, smgr, "../../assets/sydney.bmp", pos);
 
 			return id;
 		}
