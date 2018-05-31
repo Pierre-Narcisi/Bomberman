@@ -36,6 +36,30 @@ namespace ecs::system {
 				}
 			}
 			ecs::system::Update::Deplacement();
+		} else if (event.EventType == irr::EET_MOUSE_INPUT_EVENT) {
+			entity::Filter<component::Mouse> fl;
+			auto &mouse = component::Manager<component::Mouse>::get();
+
+			for (auto &id: fl.list) {
+				switch(event.MouseInput.Event)
+				{
+					case irr::EMIE_LMOUSE_PRESSED_DOWN:
+						mouse[id].rightClick = true;
+						break;
+
+					case irr::EMIE_LMOUSE_LEFT_UP:
+						mouse[id].leftClick = false;
+						break;
+
+					case irr::EMIE_MOUSE_MOVED:
+						mouse[id].position.X = event.MouseInput.X;
+						mouse[id].position.Y = event.MouseInput.Y;
+						break;
+
+					default:
+						break;
+				}
+			}
 		}
 	}
 }

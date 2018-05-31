@@ -58,4 +58,4 @@ add_executable(Client
         tests/basicECS/Components.hpp
         tests/basicECS/Main.cpp
         tests/basicECS/Systems.hpp
-        tests/graphicalTest/test.cpp)
+        tests/graphicalTest/test.cpp srcs/Graphical/ComponentMouse.hpp)

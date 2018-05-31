@@ -11,6 +11,7 @@
 #include <ECS/Entity/Filter.hpp>
 #include "ComponentKeyboard.hpp"
 #include "ComponentController360.hpp"
+#include "ComponentMouse.hpp"
 #include "SystemUpdate.hpp"
 
 namespace ecs::system {
