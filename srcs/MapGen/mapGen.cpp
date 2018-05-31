@@ -107,12 +107,12 @@ void mapGen::createBorder()
 	irr::core::vector2df pos;
 
 	for (int i = 0; i < _xmap + 2; i++) {
-		ecs::system::gi::Create::createWall(_driver, _smgr, irr::core::vector2df(0, i * 100));
-		ecs::system::gi::Create::createWall(_driver, _smgr, irr::core::vector2df((_xmap + 1) * 100, i * 100));
+		ecs::system::Create::createWall(_driver, _smgr, irr::core::vector2df(0, i * 100));
+		ecs::system::Create::createWall(_driver, _smgr, irr::core::vector2df((_xmap + 1) * 100, i * 100));
 	}
 	for (int i = 0; i < _ymap + 2; i++) {
-		ecs::system::gi::Create::createWall(_driver, _smgr, irr::core::vector2df(i * 100, 0));
-		ecs::system::gi::Create::createWall(_driver, _smgr, irr::core::vector2df(i * 100, (_ymap + 1) * 100));
+		ecs::system::Create::createWall(_driver, _smgr, irr::core::vector2df(i * 100, 0));
+		ecs::system::Create::createWall(_driver, _smgr, irr::core::vector2df(i * 100, (_ymap + 1) * 100));
 	}
 }
 
@@ -129,7 +129,7 @@ void mapGen::createMap()
         		node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
     		}
 			} else if (_2Dmap[i][j] == '1') {
-						ecs::system::gi::Create::createWall(_driver, _smgr, irr::core::vector2df((i  + 1) * 100, (j + 1) * 100));
+						ecs::system::Create::createWall(_driver, _smgr, irr::core::vector2df((i  + 1) * 100, (j + 1) * 100));
 			}
 		}
 	}

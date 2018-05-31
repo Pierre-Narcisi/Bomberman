@@ -5,11 +5,13 @@
 ** mapGen.hpp
 */
 
+#pragma once
+
 #include <vector>
 #include <iostream>
 #include <stdlib.h>
-#include <Graphical/Systems.hpp>
 #include <Graphical/EventReceiver.hpp>
+#include <Graphical/SystemCreate.hpp>
 
 class mapGen {
 public:
