@@ -122,12 +122,7 @@ void mapGen::createMap()
 	for (int i = 0; i < _ymap; i++) {
 		for (int j = 0; j < _xmap; j++) {
 			if (_2Dmap[i][j] == '2') {
-				irr::scene::ISceneNode * node = _smgr->addSphereSceneNode(20);
-    		if (node) {
-        		node->setPosition(irr::core::vector3df((i + 1) * 100, 0, (j + 1) * 100));
-        		node->setMaterialTexture(0, _driver->getTexture("../../assets/sydney.bmp"));
-        		node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-    		}
+				ecs::system::Create::createDeletableWall(_driver, _smgr, irr::core::vector2df((i  + 1) * 100, (j + 1) * 100));
 			} else if (_2Dmap[i][j] == '1') {
 						ecs::system::Create::createWall(_driver, _smgr, irr::core::vector2df((i  + 1) * 100, (j + 1) * 100));
 			}
@@ -157,4 +152,3 @@ mapGen::mapGen(int x, int y, irr::scene::ISceneManager* smgr, irr::video::IVideo
 	create_spawn();
 	createMap();
 }
-

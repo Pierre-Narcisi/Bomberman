@@ -9,6 +9,7 @@
 
 #include <irrlicht/irrlicht.h>
 #include <irrlicht/IEventReceiver.h>
+#include "irrlicht/driverChoice.h"
 #include "SystemEvent.hpp"
 
 class MyEventReceiver : public irr::IEventReceiver

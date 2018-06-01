@@ -35,9 +35,9 @@ namespace ecs::component {
 			_node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 			_node->setMD2Animation(irr::scene::EMAT_STAND);
 			_node->setMaterialTexture(0, driver->getTexture(texture.c_str()));
-			_node->setPosition(irr::core::vector3df(pos.X, 0, pos.Y));
+			_node->setPosition(irr::core::vector3df(pos.X, 300, pos.Y));
 
-			_node->setScale(irr::core::vector3df(1.5, 1.5, 1.5));
+			_node->setScale(irr::core::vector3df(3, 3, 3));
 
 			_state = ecs::component::Being::State::STANDING;
 			_lastMov = irr::scene::EMAT_STAND;

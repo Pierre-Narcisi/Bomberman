@@ -10,6 +10,7 @@
 #include <vector>
 #include <iostream>
 #include <stdlib.h>
+#include <Graphical/SystemCreate.hpp>
 #include <Graphical/EventReceiver.hpp>
 #include <Graphical/SystemCreate.hpp>
 

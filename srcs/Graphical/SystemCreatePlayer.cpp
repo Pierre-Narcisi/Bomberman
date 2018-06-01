@@ -6,6 +6,7 @@
 */
 
 #include "SystemCreate.hpp"
+#include "ComponentExplosion.hpp"
 
 namespace ecs::system {
 	entity::Id Create::createPlayer(irr::IrrlichtDevice *device, irr::video::IVideoDriver *driver, irr::scene::ISceneManager *smgr, std::string const &mesh, std::string const &texture, irr::core::vector2df const &pos)
@@ -34,6 +35,8 @@ namespace ecs::system {
 				break;
 			}
 		}
+
+		component::Manager<component::Explosion>::get().addComponentForEntity(id, smgr, driver);
 
 		if (_controller)
 			component::Manager<component::Controller360>::get().addComponentForEntity(id, joystickInfo[i].Joystick);
