@@ -21,6 +21,7 @@ SRCS		=	test.cpp	        		\
 			$(OUTPATH)/srcs/ECS/Entity/Entity.cpp   \
 			$(OUTPATH)/srcs/Settings/Inputs.cpp   \
 			$(OUTPATH)/srcs/Settings/Settings.cpp   \
+			$(OUTPATH)/srcs/Game/Game.cpp   \
 			$(OUTPATH)/srcs/Graphical/EventReceiver.cpp
 
 OBJS		=	$(addprefix $(ODIR)/, $(SRCS:.cpp=.o))
