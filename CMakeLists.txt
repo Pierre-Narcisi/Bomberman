@@ -13,7 +13,8 @@ include_directories(srcs/Component)
 include_directories(srcs/ECS/Component)
 include_directories(srcs/ECS/Entity)
 include_directories(srcs/Graphical)
-include_directories(tests/basicECS)
+include_directories(srcs/Systems)
+include_directories(tests)
 
 add_executable(Client
         libs/Json/srcs/Entity/Entity.cpp
@@ -30,7 +31,12 @@ add_executable(Client
         libs/SmartEvent/tests/Event/main.cpp
         libs/SmartEvent/tests/HdlCollector/main.cpp
         srcs/Component/BoxCollider.hpp
-        srcs/Component/Position.hpp
+        srcs/Component/AttributeBomb.hpp
+        srcs/Component/Mesh.hpp
+        srcs/Component/MeshStatic.hpp
+        srcs/Component/ParticleAffector.hpp
+        srcs/Component/ParticleEmitter.hpp
+        srcs/Component/ParticleSystem.hpp
         srcs/ECS/Component/Component.hpp
         srcs/ECS/Entity/Entity.cpp
         srcs/ECS/Entity/Entity.hpp
@@ -53,8 +59,11 @@ add_executable(Client
         srcs/Graphical/SystemEventManager.cpp
         srcs/Graphical/SystemUpdate.hpp
         srcs/Graphical/SystemUpdateDeplacement.cpp
+        srcs/Systems/SystemCreate.cpp
+        srcs/Systems/SystemDestroyer.hpp
+        srcs/Systems/SystemExplode.hpp
         srcs/Main.cpp
         tests/basicECS/Components.hpp
         tests/basicECS/Main.cpp
         tests/basicECS/Systems.hpp
-        tests/graphicalTest/test.cpp)
+        tests/graphicalTest/test.cpp srcs/Systems/SystemCreate.cpp)

@@ -14,27 +14,6 @@
 
 namespace ecs::system {
 
-	class Create {
-	public:
-		static entity::Id createPlayer()
-		{
-			auto id = entity::Manager::get().newEntity();
-			component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::Player);
-			component::Manager<component::Position>::get().addComponentForEntity(id, rand() % 10, rand() % 10);
-			component::Manager<component::Speed>::get().addComponentForEntity(id);
-			return id;
-		}
-
-		static entity::Id createMonster()
-		{
-			auto id = entity::Manager::get().newEntity();
-			component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::Monster);
-			component::Manager<component::Position>::get().addComponentForEntity(id, rand() % 10, rand() % 10);
-			component::Manager<component::Deletable>::get().addComponentForEntity(id);
-			return id;
-		}
-	};
-
 	class Kill {
 	public:
 		static void kill(entity::Id id)
@@ -72,10 +51,8 @@ namespace ecs::system {
 				std::cout << "salut poto" << std::endl;
 			else if (type.t == component::Type::Enum::Player) {
 				Kill::kill(enemyId);
-				Create::createMonster();
 			} else {
 				Kill::kill(id);
-				Create::createMonster();
 			}
 		}
 	};
