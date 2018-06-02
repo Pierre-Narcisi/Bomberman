@@ -10,9 +10,8 @@
 #include <string>
 #include <algorithm>
 
-#include "Json/Entity.hpp"
-#include "Entity.hpp"
-#include "Component.hpp"
+#include "ECS/Entity/Entity.hpp"
+#include "ECS/Component/Component.hpp"
 
 #include "Settings.hpp"
 

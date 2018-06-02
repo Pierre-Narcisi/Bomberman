@@ -5,13 +5,15 @@
 ** Created by seb,
 */
 
-#include <Graphical/EventReceiver.hpp>
-#include "MapGen/mapGen.hpp"
 #include <ctime>
 #include <cstdlib>
-#include <Graphical/SystemCreate.hpp>
-#include <Systems/SystemExplode.hpp>
-#include <basicECS/Systems.hpp>
+
+#include "Graphical/EventReceiver.hpp"
+#include "MapGen/mapGen.hpp"
+
+#include "System/Create.hpp"
+#include "System/Explode.hpp"
+#include "System/Destroyer.hpp"
 
 int main() {
 	std::srand(std::time(NULL));

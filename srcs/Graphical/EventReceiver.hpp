@@ -12,7 +12,7 @@
 #include <irrlicht/IEventReceiver.h>
 #include <irrlicht/driverChoice.h>
 
-#include "SystemEvent.hpp"
+#include "System/Event.hpp"
 
 namespace indie {
 

@@ -10,7 +10,7 @@
 #include <functional>
 
 #include "Component.hpp"
-#include "Entity.hpp"
+#include "../Entity/Entity.hpp"
 
 struct bla {};
 

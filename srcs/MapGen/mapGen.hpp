@@ -9,7 +9,7 @@
 
 #include <vector>
 
-#include "Graphical/SystemCreate.hpp"
+#include "System/Create.hpp"
 #include "Graphical/EventReceiver.hpp"
 
 namespace indie {
