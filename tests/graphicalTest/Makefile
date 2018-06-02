@@ -10,11 +10,10 @@ include ../../common/depend.mk
 OUTPATH		=	../..
 
 INCLUDES	=	-I$(OUTPATH)/libs/Json/includes		\
-			-I$(OUTPATH)/libs/Json/srcs/Entity      \
 			-I$(OUTPATH)/libs/SmartEvent/includes	\
-			-I$(OUTPATH)/libs/SmartEvent/srcs	\
 			-I$(OUTPATH)/srcs			\
 			-I$(OUTPATH)/srcs/ECS/Entity		\
+			-I$(OUTPATH)/srcs/Graphical		\
 			-I$(OUTPATH)/srcs/ECS/Component		\
 
 SRCS		=	test.cpp	        		\
