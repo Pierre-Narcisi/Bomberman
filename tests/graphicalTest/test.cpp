@@ -8,6 +8,9 @@
 #include <Graphical/EventReceiver.hpp>
 #include "MapGen/mapGen.hpp"
 #include <ctime>
+#include <Graphical/SystemCreate.hpp>
+#include <Systems/SystemExplode.hpp>
+#include <basicECS/Systems.hpp>
 
 int main() {
 	srand(time(NULL));
@@ -24,22 +27,18 @@ int main() {
 	irr::scene::ISceneManager* smgr = device->getSceneManager();
 	irr::gui::IGUIEnvironment* guienv = device->getGUIEnvironment();
 
-	mapGen(30, 30, smgr, driver);
+	mapGen(10, 10, smgr, driver);
 
 	irr::core::array<irr::SJoystickInfo> joystickInfo;
 	device->activateJoysticks(joystickInfo);
 
-	ecs::system::Create::createWall(driver, smgr, irr::core::vector2df(200, 200));
-	ecs::system::Create::createDeletableWall(driver, smgr, irr::core::vector2df(300, 200));
-
-	ecs::system::Create::createPlayer(device, driver, smgr, "../../assets/sydney.md2", "../../assets/sydney.bmp", irr::core::vector2df(0,0));
+	ecs::system::Create::createPlayer(device, driver, smgr, "../../assets/sydney.md2", "../../assets/sydney.bmp", irr::core::vector2df(100,100));
 
 	while(device->run())
 	{
-		irr::core::stringw str = L"Bomberman :";
-		str += driver->getFPS();
-		str += " fps";
-		device->setWindowCaption(str.c_str());
+		ecs::system::Explode::update(smgr, driver);
+		ecs::system::Update::Bomb(smgr);
+		ecs::system::Destroyer::update();
 
 		driver->beginScene(true, true, irr::video::SColor(255,100,101,140));
 		smgr->drawAll();

@@ -5,6 +5,7 @@
 ** Created by seb,
 */
 
+#include <Systems/SystemExplode.hpp>
 #include "SystemEvent.hpp"
 
 namespace ecs::system {
@@ -31,6 +32,15 @@ namespace ecs::system {
 					key[id].left.vertical = event.JoystickEvent.Axis[irr::SEvent::SJoystickEvent::AXIS_Y];
 					key[id].right.horizonal = event.JoystickEvent.Axis[irr::SEvent::SJoystickEvent::AXIS_R];
 					key[id].right.vertical = event.JoystickEvent.Axis[irr::SEvent::SJoystickEvent::AXIS_U];
+
+					if (event.JoystickEvent.Axis[irr::SEvent::SJoystickEvent::AXIS_V] == 32767)
+						key[id].rightT = true;
+					else
+						key[id].rightT = false;
+					if (event.JoystickEvent.Axis[irr::SEvent::SJoystickEvent::AXIS_Z] == 32767)
+						key[id].leftT = true;
+					else
+						key[id].leftT = false;
 
 					key[id].buttons = event.JoystickEvent.ButtonStates;
 				}
