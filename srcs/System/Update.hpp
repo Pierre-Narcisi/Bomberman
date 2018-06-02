@@ -21,7 +21,7 @@ namespace ecs::system {
 	class Update {
 	public:
 		static void Deplacement();
-		static void Bomb(irr::scene::ISceneManager *smgr)
+		static void Bomb()
 		{
 			entity::Filter<component::Keyboard, component::Being> fl;
 			entity::Filter<component::Controller360, component::Being> list;
@@ -34,7 +34,7 @@ namespace ecs::system {
 				if (key[id].actions["action"].state) {
 					pos.X = being[id]._node->getPosition().X - (static_cast<int>(being[id]._node->getPosition().X) % 100);
 					pos.Y = being[id]._node->getPosition().Z - (static_cast<int>(being[id]._node->getPosition().Z) % 100);
-					ecs::system::Create::createBomb(smgr, pos);
+					ecs::system::Create::createBomb(pos);
 					key[id].actions["action"].state = false;
 				}
 			}
@@ -43,7 +43,7 @@ namespace ecs::system {
 				if (ctrl[id].rightT) {
 					pos.X = being[id]._node->getPosition().X - (static_cast<int>(being[id]._node->getPosition().X) % 100);
 					pos.Y = being[id]._node->getPosition().Z - (static_cast<int>(being[id]._node->getPosition().Z) % 100);
-					ecs::system::Create::createBomb(smgr, pos);
+					ecs::system::Create::createBomb(pos);
 					ctrl[id].rightT = false;
 				}
 			}

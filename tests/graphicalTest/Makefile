@@ -11,15 +11,12 @@ OUTPATH		=	../..
 
 INCLUDES	=	-I$(OUTPATH)/libs/Json/includes			\
 			-I$(OUTPATH)/srcs				\
-			-I$(OUTPATH)/srcs/Graphical			\
-			-I$(OUTPATH)/srcs/Component			\
-			-I$(OUTPATH)/srcs/Systems			\
-
 
 SRCS		=	test.cpp					\
 			$(OUTPATH)/srcs/ECS/Entity/Entity.cpp		\
 			$(OUTPATH)/srcs/Settings/Inputs.cpp		\
 			$(OUTPATH)/srcs/Settings/Settings.cpp		\
+			$(OUTPATH)/srcs/Graphical/EventReceiver.cpp	\
 			$(OUTPATH)/srcs/Game/Game.cpp			\
 			$(OUTPATH)/srcs/MapGen/mapGen.cpp		\
 			$(OUTPATH)/srcs/System/Create.cpp		\
@@ -30,13 +27,12 @@ OBJS		=	$(addprefix $(ODIR)/, $(SRCS:.cpp=.o))
 
 NAME		=	bomberman
 
-EXTERNLIBS	=	-L$(OUTPATH)/libs/Json -lstatic_Json -L$(OUTPATH)/libs/SmartEvent -lstatic_SmartEvent -lIrrlicht -lGL
+EXTERNLIBS	=	-L$(OUTPATH)/libs/Json -lstatic_Json -lIrrlicht -lGL
 
 all		:	makelibs $(NAME)
 
 makelibs	:
 			make -C $(OUTPATH)/libs/Json includes && make -C $(OUTPATH)/libs/Json
-			make -C $(OUTPATH)/libs/SmartEvent includes && make -C $(OUTPATH)/libs/SmartEvent
 
 $(NAME)		:
 			$(CPP) -o $(NAME) $(CPPFLAGS) $(INCLUDES) $(SRCS) $(EXTERNLIBS)
@@ -51,12 +47,10 @@ $(REALODIR)/%.o	:	$(REALSDIR)/%.cpp
 
 clean		:
 			make -C $(OUTPATH)/libs/Json clean
-			make -C $(OUTPATH)/libs/SmartEvent clean
 			rm -rf $(ODIR)
 
 fclean		:	clean
 			make -C $(OUTPATH)/libs/Json fclean
-			make -C $(OUTPATH)/libs/SmartEvent fclean
 			rm -f $(NAME)
 
 re		:	fclean all

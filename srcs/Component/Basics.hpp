@@ -13,6 +13,7 @@ namespace ecs::component {
 		enum class Enum {
 			Player,
 			Monster,
+			Wall,
 			Bomb,
 			Explosion
 		};

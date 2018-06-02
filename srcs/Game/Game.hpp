@@ -12,7 +12,7 @@
 #include <exception>
 
 #include "Json/Entity.hpp"
-#include "EventReceiver.hpp"
+#include "Graphical/EventReceiver.hpp"
 #include "Score.hpp"
 
 namespace indie {

@@ -9,10 +9,15 @@
 
 #include "Game.hpp"
 
+#include "System/Explode.hpp"
+#include "System/Update.hpp"
+#include "System/Destroyer.hpp"
+
 namespace indie {
 
 	Game::Game()
 	{
+		std::srand(std::time(NULL));	
 		try {
 			_settings = json::Parser::fromFile(".settings");
 		} catch (json::Parser::ParserException &e) {
@@ -64,6 +69,9 @@ namespace indie {
 			_driver->beginScene(true, true, irr::video::SColor(255,100,101,140));
 
 			/* Set the game loop here */
+			ecs::system::Explode::update();
+			ecs::system::Update::Bomb();
+			ecs::system::Destroyer::update();
 /*
 	update background
 	update bombes

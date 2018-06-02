@@ -5,14 +5,11 @@
 ** Created by seb,
 */
 
-#ifndef IRRLICHTWRAPPER_EVENTRECEIVER_HPP
-#define IRRLICHTWRAPPER_EVENTRECEIVER_HPP
+#pragma once
 
 #include <irrlicht/irrlicht.h>
 #include <irrlicht/IEventReceiver.h>
 #include <irrlicht/driverChoice.h>
-
-#include "System/Event.hpp"
 
 namespace indie {
 
@@ -20,13 +17,7 @@ namespace indie {
 	public:
 		MyEventReceiver() = default;
 
-		virtual bool OnEvent(irr::SEvent const &event)
-		{
-			ecs::system::Events::Manager(event);
-			return false;
-		}
+		virtual bool OnEvent(irr::SEvent const &event);
 	};
 
 }
-
-#endif //IRRLICHTWRAPPER_EVENTRECEIVER_HPP

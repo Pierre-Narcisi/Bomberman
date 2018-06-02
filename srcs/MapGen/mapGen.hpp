@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <irrlicht/irrlicht.h>
 #include <vector>
 
 #include "System/Create.hpp"
@@ -16,7 +17,7 @@ namespace indie {
 
 	class mapGen {
 	public:
-		mapGen(int x, int y, irr::scene::ISceneManager *smgr, irr::video::IVideoDriver *driver);
+		mapGen(int x, int y);
 	private:
 		void generate2D();
 		void choose_pos();
@@ -24,17 +25,15 @@ namespace indie {
 		void make_unperfect();
 		void create_spawn();
 		void createMap();
-		void createBorder();
+		void createBorder();	
 
 	private:
 		int					_xgen{};
 		int					_ygen{};
-		std::vector<std::pair<int, int>>	gen;
-		std::vector<std::vector<char>>		_2Dmap;
 		int					_xmap;
 		int					_ymap;
-		irr::video::IVideoDriver		*_driver;
-		irr::scene::ISceneManager		*_smgr;
+		std::vector<std::pair<int, int>>	gen;
+		std::vector<std::vector<char>>		_2Dmap;
 	};
 
 }

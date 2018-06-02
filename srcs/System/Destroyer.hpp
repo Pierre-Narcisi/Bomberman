@@ -22,7 +22,7 @@ namespace ecs::system {
 			entity::Filter<component::Deletable> fl;
 			auto &deleteManager = component::Manager<component::Deletable>::get();
 
-			for (auto &id : fl.list) {
+			for (auto id : fl.list) {
 				if (deleteManager[id].del == true)
 					entity::Manager::get().deleteEntity(id);
 			}

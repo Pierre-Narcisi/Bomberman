@@ -5,10 +5,13 @@
 ** Created by seb,
 */
 
+#include "Game/Game.hpp"
+
 #include "System/Update.hpp"
 
 namespace ecs::system {
 	void Update::Deplacement() {
+		auto &game = indie::Game::get();
 		entity::Filter<component::Keyboard, component::Being> fl;
 		entity::Filter<component::Controller360, component::Being> list;
 		entity::Filter<component::Camera, component::Being> player;
@@ -32,8 +35,8 @@ namespace ecs::system {
 		for (auto id : fl.list) {
 			rot = being[id]._rotation;
 			moving = key[id].actions["up"].state || key[id].actions["down"].state || key[id].actions["left"].state || key[id].actions["right"].state;
-			deltatime = static_cast<irr::f32>((being[id]._device->getTimer()->getTime() - being[id]._then) / 1000.f);
-			being[id]._then = being[id]._device->getTimer()->getTime();
+			deltatime = static_cast<irr::f32>((game.getDevice()->getTimer()->getTime() - being[id]._then) / 1000.f);
+			being[id]._then = game.getDevice()->getTimer()->getTime();
 
 			// Set Rotation
 			if (key[id].actions["up"].state)
@@ -101,8 +104,8 @@ namespace ecs::system {
 
 		for (auto id : list.list) {
 			const irr::f32 DEAD_ZONE = 0.2f;
-			deltatime = static_cast<irr::f32>((being[id]._device->getTimer()->getTime() - being[id]._then) / 1000.f);
-			being[id]._then = being[id]._device->getTimer()->getTime();
+			deltatime = static_cast<irr::f32>((game.getDevice()->getTimer()->getTime() - being[id]._then) / 1000.f);
+			being[id]._then = game.getDevice()->getTimer()->getTime();
 
 			irr::f32 rotHorizontal =
 				(irr::f32)control[id].left.horizonal / 32767.f;

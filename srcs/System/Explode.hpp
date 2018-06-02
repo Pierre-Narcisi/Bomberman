@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include "Game/Game.hpp"
 #include "ECS/Entity/Entity.hpp"
 #include "ECS/Entity/Filter.hpp"
 
@@ -20,8 +21,9 @@ namespace ecs::system {
 
 	class Explode {
 	public:
-		static void update(irr::scene::ISceneManager *scene_manager, irr::video::IVideoDriver *driver)
+		static void update()
 		{
+			auto &game = indie::Game::get();
 			entity::Filter<component::Type> fl;
 
 			auto &typeManager = component::Manager<component::Type>::get();
@@ -30,32 +32,28 @@ namespace ecs::system {
 			auto &meshManager = component::Manager<component::Mesh>::get();
 
 			auto &particleSystemManager = component::Manager<component::ParticleSystem>::get();
-			auto &particleAffectorManager = component::Manager<component::ParticleAffector>::get();
+			// auto &particleAffectorManager = component::Manager<component::ParticleAffector>::get();
 
 			for (auto &id : fl.list) {
-				if (typeManager[id].t == component::Type::Enum::Bomb) {
-					if ((long double) time(NULL) >= attributesManager[id].since){
-						scene_manager->addToDeletionQueue(meshManager[id].mesh);
-						Create::createExplosion(scene_manager, driver, positionManager[id], 5);
-						component::Manager<component::Deletable>::get()[id].del = true;
-					}
+				if (typeManager[id].t == component::Type::Enum::Bomb
+				&& (long double) time(NULL) >= attributesManager[id].since) {
+					game.getSmgr()->addToDeletionQueue(meshManager[id].mesh);
+					Create::createExplosion(positionManager[id], 5);
+					component::Manager<component::Deletable>::get()[id].del = true;
 				}
-				if (typeManager[id].t == component::Type::Enum::Explosion)
-				{
-					if ((long double) time(NULL) >= attributesManager[id].since)
-					{
-						particleSystemManager[id].PSUp->removeAllAffectors();
-						particleSystemManager[id].PSDown->removeAllAffectors();
-						particleSystemManager[id].PSLeft->removeAllAffectors();
-						particleSystemManager[id].PSRight->removeAllAffectors();
+				if (typeManager[id].t == component::Type::Enum::Explosion
+				&& (long double) time(NULL) >= attributesManager[id].since) {
+					particleSystemManager[id].PSUp->removeAllAffectors();
+					particleSystemManager[id].PSDown->removeAllAffectors();
+					particleSystemManager[id].PSLeft->removeAllAffectors();
+					particleSystemManager[id].PSRight->removeAllAffectors();
 
-						scene_manager->addToDeletionQueue(particleSystemManager[id].PSUp);
-						scene_manager->addToDeletionQueue(particleSystemManager[id].PSDown);
-						scene_manager->addToDeletionQueue(particleSystemManager[id].PSLeft);
-						scene_manager->addToDeletionQueue(particleSystemManager[id].PSRight);
+					game.getSmgr()->addToDeletionQueue(particleSystemManager[id].PSUp);
+					game.getSmgr()->addToDeletionQueue(particleSystemManager[id].PSDown);
+					game.getSmgr()->addToDeletionQueue(particleSystemManager[id].PSLeft);
+					game.getSmgr()->addToDeletionQueue(particleSystemManager[id].PSRight);
 
-						component::Manager<component::Deletable>::get()[id].del = true;
-					}
+					component::Manager<component::Deletable>::get()[id].del = true;
 				}
 			}
 		}
