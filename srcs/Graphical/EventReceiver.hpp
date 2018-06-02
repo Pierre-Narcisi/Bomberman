@@ -10,23 +10,23 @@
 
 #include <irrlicht/irrlicht.h>
 #include <irrlicht/IEventReceiver.h>
-#include <iostream>
-#include "SmartEvent/Manager.hpp"
-#include "irrlicht/driverChoice.h"
+#include <irrlicht/driverChoice.h>
 
-class MyEventReceiver : public irr::IEventReceiver
-{
-public:
-	MyEventReceiver();
+#include "SystemEvent.hpp"
 
-	virtual bool OnEvent(const irr::SEvent& event)
-	{
-		m["event"]->fire(event);
-		return false;
-	}
+namespace indie {
 
-private:
-	evt::Manager &m = evt::Manager::get();
-};
+	class MyEventReceiver : public irr::IEventReceiver {
+	public:
+		MyEventReceiver() = default;
+
+		virtual bool OnEvent(irr::SEvent const &event)
+		{
+			ecs::system::Events::Manager(event);
+			return false;
+		}
+	};
+
+}
 
 #endif //IRRLICHTWRAPPER_EVENTRECEIVER_HPP

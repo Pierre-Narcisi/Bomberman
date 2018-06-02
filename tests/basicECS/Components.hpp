@@ -11,7 +11,10 @@ namespace ecs::component {
 
 	struct Type {
 		enum class Enum {
-			Player, Monster
+			Player,
+			Monster,
+			Bomb,
+			Explosion
 		};
 		Enum t;
 	};
