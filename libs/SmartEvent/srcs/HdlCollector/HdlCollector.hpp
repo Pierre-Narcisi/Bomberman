@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "Event/Event.hpp"
+#include "Event.hpp"
 
 namespace evt
 {

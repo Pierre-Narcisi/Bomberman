@@ -40,6 +40,8 @@
 		"cstring": "cpp",
 		"fstream": "cpp",
 		"string": "cpp",
-		"thread": "cpp"
+		"thread": "cpp",
+		"chrono": "cpp",
+		"ratio": "cpp"
 	}
 }

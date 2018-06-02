@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../../srcs/Parser/Parser.hpp"
+#include "srcs/Parser/Parser.hpp"
 
 int main(int ac, char **av)
 {

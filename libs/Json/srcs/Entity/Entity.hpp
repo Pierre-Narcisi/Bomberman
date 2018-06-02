@@ -19,6 +19,14 @@
 #include <memory>
 #include <functional>
 
+#ifdef TARGET_WINDOWS
+ #define STRCASECMP ::_stricmp
+ #define STRDUP ::_strdup
+#else
+ #define STRCASECMP ::strcasecmp
+ #define STRDUP ::strdup
+#endif
+
 namespace json
 {
 	class AbstractData;

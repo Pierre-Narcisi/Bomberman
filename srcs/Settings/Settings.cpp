@@ -10,7 +10,7 @@
 #include <string>
 #include <algorithm>
 
-#include "JsonEntity.hpp"
+#include "Json/Entity.hpp"
 #include "Entity.hpp"
 #include "Component.hpp"
 
@@ -19,8 +19,32 @@
 json::Entity getSettings()
 {
 	json::Entity serializer(json::makeObject {
-		{"Settings", json::Entity::OBJ},
-		{"Components", json::Entity::OBJ}
+		{"Settings", json::makeObject {
+			{"gameName", "VoodooBomber"},
+			{"display", json::makeObject {
+				{"width", 1920},
+				{"height", 1080},
+				{"fps-max", 60}
+			}},
+			{"Input", json::makeObject {
+				{"player1", json::makeObject {
+					{"up", "Z"},
+					{"down", "S"},
+					{"right", "D"},
+					{"left", "Q"},
+					{"fire", "SPACE"},
+					{"event", "E"}
+				}},
+				{"player2", json::makeObject {
+					{"up", "UP"},
+					{"down", "DOWN"},
+					{"right", "RIGHT"},
+					{"left", "LEFT"},
+					{"fire", "M"},
+					{"event", "L"}
+				}}
+			}}
+		}}
 	});
 	return json::Entity();
 }

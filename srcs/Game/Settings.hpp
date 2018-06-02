@@ -21,11 +21,11 @@ namespace indie {
 			"width": Int,
 			"height": Int,
 			"fps-max": Int
-		}
+		},
 		"inputs": {
 			"event": InputStringified // defined in Inputs.hpp
 			...
-		},
+		}
 	}
 }
 
@@ -36,7 +36,7 @@ exemple:
 		"display": {
 			"width": 1020,
 			"height": 1080
-		}
+		},
 		"inputs": {
 			"player1": {
 				"up": "Z",

@@ -11,7 +11,7 @@
 #include <string>
 #include <exception>
 
-#include "JsonEntity.hpp"
+#include "Json/Entity.hpp"
 #include "EventReceiver.hpp"
 #include "Score.hpp"
 
@@ -29,30 +29,33 @@ namespace indie {
 		static Game		&get();
 		json::Entity		&getSettings();
 		irr::IrrlichtDevice	*getDevice();
-		irr::IVideoDriver	*getDriver();
-		irr::ISceneManager	*getSmgr();
+		irr::video::IVideoDriver	*getDriver();
+		irr::scene::ISceneManager	*getSmgr();
 
 	protected:
-		json::Entity			settings;
-		MyEventReceiver			event;
-		irr::IrrlichtDevice		*device;
-		irr::video::IVideoDriver	*driver;
-		irr::scene::ISceneManager	*smgr;
-		irr::gui::IGUIEnvironment	*guienv;
+		json::Entity			_settings;
+		MyEventReceiver			_event;
+		irr::IrrlichtDevice		*_device;
+		irr::video::IVideoDriver	*_driver;
+		irr::scene::ISceneManager	*_smgr;
+		irr::gui::IGUIEnvironment	*_guienv;
 
-		Score				score;
+		Score				_score;
 
 	private:
 		/* init the window */
 		Game();
 
 	public:
-		struct GameException : public std::exception
-		{
+		struct GameException : public std::exception {
 		public:
 			GameException(std::string const &msg):_msg{msg} {}
+			virtual ~GameException() throw(){}
 
-			const char	*what() const throw();
+			const char	*what() const throw() override
+			{
+				return _msg.c_str();
+			}
 		private:
 			std::string	_msg;
 		};

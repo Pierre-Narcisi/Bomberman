@@ -5,7 +5,7 @@
 ** Game.cpp
 */
 
-#include "Parser.hpp"
+#include "Json/Parser.hpp"
 
 #include "Game.hpp"
 
@@ -48,12 +48,12 @@ namespace indie {
 		return _device;
 	}
 
-	irr::IVideoDriver	*Game::getDriver()
+	irr::video::IVideoDriver	*Game::getDriver()
 	{
 		return _driver;
 	}
 
-	irr::ISceneManager	*Game::getSmgr()
+	irr::scene::ISceneManager	*Game::getSmgr()
 	{
 		return _smgr;
 	}

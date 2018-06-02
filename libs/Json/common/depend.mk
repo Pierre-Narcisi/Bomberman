@@ -46,9 +46,16 @@ ifeq	($(WALL),true)
   CPPFLAGS	+=	-W -Wall -Wextra
 endif
 
+ifndef TARGET
+  TARGET=linux
+endif
+
 ifeq	($(RELEASE),true)
   CPPFLAGS	+=	$(OPTI_FLAG)
-  CPPFLAGS	+=	-Werror -Wno-unused-result
+  CPPFLAGS	+= -Wno-unused-result
+  ifneq ($(TARGET),windows)
+    CPPFLAGS	+= -Werror
+  endif
   DEBUG		=	false
 else
   CPPFLAGS	+=	-O0

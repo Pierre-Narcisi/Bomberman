@@ -12,7 +12,7 @@
 
 #include <istream>
 #include <exception>
-#include "Entity.hpp"
+#include "Entity/Entity.hpp"
 
 #ifdef TARGET_WINDOWS
  #define TOLOWER ::tolower
