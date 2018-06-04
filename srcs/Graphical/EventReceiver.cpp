@@ -1,11 +1,20 @@
 /*
-** EPITECH PROJECT, 2021
-** irrlichtWrapper
+** EPITECH PROJECT, 2017
+** Client
 ** File description:
-** Created by seb,
+** EventReceiver.cpp
 */
+
+#include "System/Event.hpp"
 #include "EventReceiver.hpp"
 
-MyEventReceiver::MyEventReceiver()
-{
+namespace indie {
+
+		bool MyEventReceiver::OnEvent(irr::SEvent const &event)
+		{
+			ecs::system::Events::Manager(event);
+			return false;
+		}
+
+
 }

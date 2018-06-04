@@ -12,7 +12,9 @@
                 "${workspaceFolder}",
                 "${workspaceFolder}/libs/Json/includes",
                 "${workspaceFolder}/srcs/ECS/Entity",
-                "${workspaceFolder}/srcs/ECS/Component"
+                "${workspaceFolder}/srcs/ECS/Component",
+                "${workspaceFolder}/srcs",
+                "${workspaceFolder}/srcs/Component"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",

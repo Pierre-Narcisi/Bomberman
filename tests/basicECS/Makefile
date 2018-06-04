@@ -10,7 +10,7 @@ include ../../common/depend.mk
 OUTPATH		=	../..
 
 INCLUDES	=	-I$(OUTPATH)/libs/Json/includes		\
-			-I$(OUTPATH)/libs/Json/srcs/Entity      \
+			-I$(OUTPATH)/libs/Json/srcs/		\
 			-I$(OUTPATH)/libs/SmartEvent/includes	\
 			-I$(OUTPATH)/srcs			\
 			-I$(OUTPATH)/srcs/ECS/Entity		\
