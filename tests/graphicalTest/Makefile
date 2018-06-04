@@ -9,8 +9,29 @@ include ../../common/depend.mk
 
 OUTPATH		=	../..
 
-INCLUDES	=	-I$(OUTPATH)/libs/Json/includes			\
-			-I$(OUTPATH)/srcs				\
+INCLUDES	=	-I$(OUTPATH)/srcs				\
+			-I$(OUTPATH)/libs                               \
+                        -I$(OUTPATH)/libs/Json/srcs                     \
+                        -I$(OUTPATH)/libs/Json/srcs/Entity              \
+                        -I$(OUTPATH)/libs/Json/srcs/Parser              \
+                        -I$(OUTPATH)/libs/Json/tests/Parser/srcs/Entity \
+                        -I$(OUTPATH)/libs/Json/tests/Parser/srcs/Parser \
+                        -I$(OUTPATH)/libs/SmartEvent/srcs               \
+                        -I$(OUTPATH)/libs/SmartEvent/srcs/Event         \
+                        -I$(OUTPATH)/libs/SmartEvent/srcs/HdlCollector  \
+                        -I$(OUTPATH)/libs/SmartEvent/srcs/Manager       \
+                        -I$(OUTPATH)/srcs                               \
+                        -I$(OUTPATH)/srcs/Component                     \
+                        -I$(OUTPATH)/srcs/Console                       \
+                        -I$(OUTPATH)/srcs/ECS/Component                 \
+                        -I$(OUTPATH)/srcs/ECS/Entity                    \
+                        -I$(OUTPATH)/srcs/Game                          \
+                        -I$(OUTPATH)/srcs/Graphical                     \
+                        -I$(OUTPATH)/srcs/MapGen                        \
+                        -I$(OUTPATH)/srcs/Settings                      \
+                        -I$(OUTPATH)/srcs/System                        \
+                        -I$(OUTPATH)/srcs/Systems                       \
+                        -I$(OUTPATH)/tests/basicECS                     \
 
 SRCS		=	test.cpp					\
 			$(OUTPATH)/srcs/ECS/Entity/Entity.cpp		\

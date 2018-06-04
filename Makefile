@@ -48,10 +48,10 @@ RM = /home/seb/.bin/clion-2018.1.2/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/seb/Client
+CMAKE_SOURCE_DIR = /home/seb/tmp/Client
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/seb/Client
+CMAKE_BINARY_DIR = /home/seb/tmp/Client
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/seb/Client/CMakeFiles /home/seb/Client/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/seb/tmp/Client/CMakeFiles /home/seb/tmp/Client/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/seb/Client/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/seb/tmp/Client/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -231,6 +231,60 @@ libs/Json/tests/Parser/main.cpp.s:
 	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/Json/tests/Parser/main.cpp.s
 .PHONY : libs/Json/tests/Parser/main.cpp.s
 
+libs/Json/tests/Parser/srcs/Entity/Entity.o: libs/Json/tests/Parser/srcs/Entity/Entity.cpp.o
+
+.PHONY : libs/Json/tests/Parser/srcs/Entity/Entity.o
+
+# target to build an object file
+libs/Json/tests/Parser/srcs/Entity/Entity.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/Json/tests/Parser/srcs/Entity/Entity.cpp.o
+.PHONY : libs/Json/tests/Parser/srcs/Entity/Entity.cpp.o
+
+libs/Json/tests/Parser/srcs/Entity/Entity.i: libs/Json/tests/Parser/srcs/Entity/Entity.cpp.i
+
+.PHONY : libs/Json/tests/Parser/srcs/Entity/Entity.i
+
+# target to preprocess a source file
+libs/Json/tests/Parser/srcs/Entity/Entity.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/Json/tests/Parser/srcs/Entity/Entity.cpp.i
+.PHONY : libs/Json/tests/Parser/srcs/Entity/Entity.cpp.i
+
+libs/Json/tests/Parser/srcs/Entity/Entity.s: libs/Json/tests/Parser/srcs/Entity/Entity.cpp.s
+
+.PHONY : libs/Json/tests/Parser/srcs/Entity/Entity.s
+
+# target to generate assembly for a file
+libs/Json/tests/Parser/srcs/Entity/Entity.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/Json/tests/Parser/srcs/Entity/Entity.cpp.s
+.PHONY : libs/Json/tests/Parser/srcs/Entity/Entity.cpp.s
+
+libs/Json/tests/Parser/srcs/Parser/Parser.o: libs/Json/tests/Parser/srcs/Parser/Parser.cpp.o
+
+.PHONY : libs/Json/tests/Parser/srcs/Parser/Parser.o
+
+# target to build an object file
+libs/Json/tests/Parser/srcs/Parser/Parser.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/Json/tests/Parser/srcs/Parser/Parser.cpp.o
+.PHONY : libs/Json/tests/Parser/srcs/Parser/Parser.cpp.o
+
+libs/Json/tests/Parser/srcs/Parser/Parser.i: libs/Json/tests/Parser/srcs/Parser/Parser.cpp.i
+
+.PHONY : libs/Json/tests/Parser/srcs/Parser/Parser.i
+
+# target to preprocess a source file
+libs/Json/tests/Parser/srcs/Parser/Parser.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/Json/tests/Parser/srcs/Parser/Parser.cpp.i
+.PHONY : libs/Json/tests/Parser/srcs/Parser/Parser.cpp.i
+
+libs/Json/tests/Parser/srcs/Parser/Parser.s: libs/Json/tests/Parser/srcs/Parser/Parser.cpp.s
+
+.PHONY : libs/Json/tests/Parser/srcs/Parser/Parser.s
+
+# target to generate assembly for a file
+libs/Json/tests/Parser/srcs/Parser/Parser.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/Json/tests/Parser/srcs/Parser/Parser.cpp.s
+.PHONY : libs/Json/tests/Parser/srcs/Parser/Parser.cpp.s
+
 libs/SmartEvent/srcs/Event/Event.o: libs/SmartEvent/srcs/Event/Event.cpp.o
 
 .PHONY : libs/SmartEvent/srcs/Event/Event.o
@@ -339,6 +393,33 @@ libs/SmartEvent/tests/HdlCollector/main.cpp.s:
 	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/SmartEvent/tests/HdlCollector/main.cpp.s
 .PHONY : libs/SmartEvent/tests/HdlCollector/main.cpp.s
 
+srcs/Console/Console.o: srcs/Console/Console.cpp.o
+
+.PHONY : srcs/Console/Console.o
+
+# target to build an object file
+srcs/Console/Console.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Console/Console.cpp.o
+.PHONY : srcs/Console/Console.cpp.o
+
+srcs/Console/Console.i: srcs/Console/Console.cpp.i
+
+.PHONY : srcs/Console/Console.i
+
+# target to preprocess a source file
+srcs/Console/Console.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Console/Console.cpp.i
+.PHONY : srcs/Console/Console.cpp.i
+
+srcs/Console/Console.s: srcs/Console/Console.cpp.s
+
+.PHONY : srcs/Console/Console.s
+
+# target to generate assembly for a file
+srcs/Console/Console.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Console/Console.cpp.s
+.PHONY : srcs/Console/Console.cpp.s
+
 srcs/ECS/Entity/Entity.o: srcs/ECS/Entity/Entity.cpp.o
 
 .PHONY : srcs/ECS/Entity/Entity.o
@@ -365,6 +446,33 @@ srcs/ECS/Entity/Entity.s: srcs/ECS/Entity/Entity.cpp.s
 srcs/ECS/Entity/Entity.cpp.s:
 	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/ECS/Entity/Entity.cpp.s
 .PHONY : srcs/ECS/Entity/Entity.cpp.s
+
+srcs/Game/Game.o: srcs/Game/Game.cpp.o
+
+.PHONY : srcs/Game/Game.o
+
+# target to build an object file
+srcs/Game/Game.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Game/Game.cpp.o
+.PHONY : srcs/Game/Game.cpp.o
+
+srcs/Game/Game.i: srcs/Game/Game.cpp.i
+
+.PHONY : srcs/Game/Game.i
+
+# target to preprocess a source file
+srcs/Game/Game.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Game/Game.cpp.i
+.PHONY : srcs/Game/Game.cpp.i
+
+srcs/Game/Game.s: srcs/Game/Game.cpp.s
+
+.PHONY : srcs/Game/Game.s
+
+# target to generate assembly for a file
+srcs/Game/Game.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Game/Game.cpp.s
+.PHONY : srcs/Game/Game.cpp.s
 
 srcs/Graphical/EventReceiver.o: srcs/Graphical/EventReceiver.cpp.o
 
@@ -393,221 +501,221 @@ srcs/Graphical/EventReceiver.cpp.s:
 	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/EventReceiver.cpp.s
 .PHONY : srcs/Graphical/EventReceiver.cpp.s
 
-srcs/Graphical/SystemCreateDeletableWall.o: srcs/Graphical/SystemCreateDeletableWall.cpp.o
+srcs/MapGen/mapGen.o: srcs/MapGen/mapGen.cpp.o
 
-.PHONY : srcs/Graphical/SystemCreateDeletableWall.o
-
-# target to build an object file
-srcs/Graphical/SystemCreateDeletableWall.cpp.o:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreateDeletableWall.cpp.o
-.PHONY : srcs/Graphical/SystemCreateDeletableWall.cpp.o
-
-srcs/Graphical/SystemCreateDeletableWall.i: srcs/Graphical/SystemCreateDeletableWall.cpp.i
-
-.PHONY : srcs/Graphical/SystemCreateDeletableWall.i
-
-# target to preprocess a source file
-srcs/Graphical/SystemCreateDeletableWall.cpp.i:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreateDeletableWall.cpp.i
-.PHONY : srcs/Graphical/SystemCreateDeletableWall.cpp.i
-
-srcs/Graphical/SystemCreateDeletableWall.s: srcs/Graphical/SystemCreateDeletableWall.cpp.s
-
-.PHONY : srcs/Graphical/SystemCreateDeletableWall.s
-
-# target to generate assembly for a file
-srcs/Graphical/SystemCreateDeletableWall.cpp.s:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreateDeletableWall.cpp.s
-.PHONY : srcs/Graphical/SystemCreateDeletableWall.cpp.s
-
-srcs/Graphical/SystemCreateMap.o: srcs/Graphical/SystemCreateMap.cpp.o
-
-.PHONY : srcs/Graphical/SystemCreateMap.o
+.PHONY : srcs/MapGen/mapGen.o
 
 # target to build an object file
-srcs/Graphical/SystemCreateMap.cpp.o:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreateMap.cpp.o
-.PHONY : srcs/Graphical/SystemCreateMap.cpp.o
+srcs/MapGen/mapGen.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/MapGen/mapGen.cpp.o
+.PHONY : srcs/MapGen/mapGen.cpp.o
 
-srcs/Graphical/SystemCreateMap.i: srcs/Graphical/SystemCreateMap.cpp.i
+srcs/MapGen/mapGen.i: srcs/MapGen/mapGen.cpp.i
 
-.PHONY : srcs/Graphical/SystemCreateMap.i
+.PHONY : srcs/MapGen/mapGen.i
 
 # target to preprocess a source file
-srcs/Graphical/SystemCreateMap.cpp.i:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreateMap.cpp.i
-.PHONY : srcs/Graphical/SystemCreateMap.cpp.i
+srcs/MapGen/mapGen.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/MapGen/mapGen.cpp.i
+.PHONY : srcs/MapGen/mapGen.cpp.i
 
-srcs/Graphical/SystemCreateMap.s: srcs/Graphical/SystemCreateMap.cpp.s
+srcs/MapGen/mapGen.s: srcs/MapGen/mapGen.cpp.s
 
-.PHONY : srcs/Graphical/SystemCreateMap.s
+.PHONY : srcs/MapGen/mapGen.s
 
 # target to generate assembly for a file
-srcs/Graphical/SystemCreateMap.cpp.s:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreateMap.cpp.s
-.PHONY : srcs/Graphical/SystemCreateMap.cpp.s
+srcs/MapGen/mapGen.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/MapGen/mapGen.cpp.s
+.PHONY : srcs/MapGen/mapGen.cpp.s
 
-srcs/Graphical/SystemCreatePlayer.o: srcs/Graphical/SystemCreatePlayer.cpp.o
+srcs/Settings/Inputs.o: srcs/Settings/Inputs.cpp.o
 
-.PHONY : srcs/Graphical/SystemCreatePlayer.o
+.PHONY : srcs/Settings/Inputs.o
 
 # target to build an object file
-srcs/Graphical/SystemCreatePlayer.cpp.o:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreatePlayer.cpp.o
-.PHONY : srcs/Graphical/SystemCreatePlayer.cpp.o
+srcs/Settings/Inputs.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Settings/Inputs.cpp.o
+.PHONY : srcs/Settings/Inputs.cpp.o
 
-srcs/Graphical/SystemCreatePlayer.i: srcs/Graphical/SystemCreatePlayer.cpp.i
+srcs/Settings/Inputs.i: srcs/Settings/Inputs.cpp.i
 
-.PHONY : srcs/Graphical/SystemCreatePlayer.i
+.PHONY : srcs/Settings/Inputs.i
 
 # target to preprocess a source file
-srcs/Graphical/SystemCreatePlayer.cpp.i:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreatePlayer.cpp.i
-.PHONY : srcs/Graphical/SystemCreatePlayer.cpp.i
+srcs/Settings/Inputs.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Settings/Inputs.cpp.i
+.PHONY : srcs/Settings/Inputs.cpp.i
 
-srcs/Graphical/SystemCreatePlayer.s: srcs/Graphical/SystemCreatePlayer.cpp.s
+srcs/Settings/Inputs.s: srcs/Settings/Inputs.cpp.s
 
-.PHONY : srcs/Graphical/SystemCreatePlayer.s
+.PHONY : srcs/Settings/Inputs.s
 
 # target to generate assembly for a file
-srcs/Graphical/SystemCreatePlayer.cpp.s:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreatePlayer.cpp.s
-.PHONY : srcs/Graphical/SystemCreatePlayer.cpp.s
+srcs/Settings/Inputs.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Settings/Inputs.cpp.s
+.PHONY : srcs/Settings/Inputs.cpp.s
 
-srcs/Graphical/SystemCreateWall.o: srcs/Graphical/SystemCreateWall.cpp.o
+srcs/Settings/Settings.o: srcs/Settings/Settings.cpp.o
 
-.PHONY : srcs/Graphical/SystemCreateWall.o
+.PHONY : srcs/Settings/Settings.o
 
 # target to build an object file
-srcs/Graphical/SystemCreateWall.cpp.o:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreateWall.cpp.o
-.PHONY : srcs/Graphical/SystemCreateWall.cpp.o
+srcs/Settings/Settings.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Settings/Settings.cpp.o
+.PHONY : srcs/Settings/Settings.cpp.o
 
-srcs/Graphical/SystemCreateWall.i: srcs/Graphical/SystemCreateWall.cpp.i
+srcs/Settings/Settings.i: srcs/Settings/Settings.cpp.i
 
-.PHONY : srcs/Graphical/SystemCreateWall.i
+.PHONY : srcs/Settings/Settings.i
 
 # target to preprocess a source file
-srcs/Graphical/SystemCreateWall.cpp.i:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreateWall.cpp.i
-.PHONY : srcs/Graphical/SystemCreateWall.cpp.i
+srcs/Settings/Settings.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Settings/Settings.cpp.i
+.PHONY : srcs/Settings/Settings.cpp.i
 
-srcs/Graphical/SystemCreateWall.s: srcs/Graphical/SystemCreateWall.cpp.s
+srcs/Settings/Settings.s: srcs/Settings/Settings.cpp.s
 
-.PHONY : srcs/Graphical/SystemCreateWall.s
+.PHONY : srcs/Settings/Settings.s
 
 # target to generate assembly for a file
-srcs/Graphical/SystemCreateWall.cpp.s:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemCreateWall.cpp.s
-.PHONY : srcs/Graphical/SystemCreateWall.cpp.s
+srcs/Settings/Settings.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Settings/Settings.cpp.s
+.PHONY : srcs/Settings/Settings.cpp.s
 
-srcs/Graphical/SystemEventManager.o: srcs/Graphical/SystemEventManager.cpp.o
+srcs/System/Being.o: srcs/System/Being.cpp.o
 
-.PHONY : srcs/Graphical/SystemEventManager.o
+.PHONY : srcs/System/Being.o
 
 # target to build an object file
-srcs/Graphical/SystemEventManager.cpp.o:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemEventManager.cpp.o
-.PHONY : srcs/Graphical/SystemEventManager.cpp.o
+srcs/System/Being.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/System/Being.cpp.o
+.PHONY : srcs/System/Being.cpp.o
 
-srcs/Graphical/SystemEventManager.i: srcs/Graphical/SystemEventManager.cpp.i
+srcs/System/Being.i: srcs/System/Being.cpp.i
 
-.PHONY : srcs/Graphical/SystemEventManager.i
+.PHONY : srcs/System/Being.i
 
 # target to preprocess a source file
-srcs/Graphical/SystemEventManager.cpp.i:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemEventManager.cpp.i
-.PHONY : srcs/Graphical/SystemEventManager.cpp.i
+srcs/System/Being.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/System/Being.cpp.i
+.PHONY : srcs/System/Being.cpp.i
 
-srcs/Graphical/SystemEventManager.s: srcs/Graphical/SystemEventManager.cpp.s
+srcs/System/Being.s: srcs/System/Being.cpp.s
 
-.PHONY : srcs/Graphical/SystemEventManager.s
+.PHONY : srcs/System/Being.s
 
 # target to generate assembly for a file
-srcs/Graphical/SystemEventManager.cpp.s:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemEventManager.cpp.s
-.PHONY : srcs/Graphical/SystemEventManager.cpp.s
+srcs/System/Being.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/System/Being.cpp.s
+.PHONY : srcs/System/Being.cpp.s
 
-srcs/Graphical/SystemUpdateDeplacement.o: srcs/Graphical/SystemUpdateDeplacement.cpp.o
+srcs/System/Create.o: srcs/System/Create.cpp.o
 
-.PHONY : srcs/Graphical/SystemUpdateDeplacement.o
+.PHONY : srcs/System/Create.o
 
 # target to build an object file
-srcs/Graphical/SystemUpdateDeplacement.cpp.o:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemUpdateDeplacement.cpp.o
-.PHONY : srcs/Graphical/SystemUpdateDeplacement.cpp.o
+srcs/System/Create.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/System/Create.cpp.o
+.PHONY : srcs/System/Create.cpp.o
 
-srcs/Graphical/SystemUpdateDeplacement.i: srcs/Graphical/SystemUpdateDeplacement.cpp.i
+srcs/System/Create.i: srcs/System/Create.cpp.i
 
-.PHONY : srcs/Graphical/SystemUpdateDeplacement.i
+.PHONY : srcs/System/Create.i
 
 # target to preprocess a source file
-srcs/Graphical/SystemUpdateDeplacement.cpp.i:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemUpdateDeplacement.cpp.i
-.PHONY : srcs/Graphical/SystemUpdateDeplacement.cpp.i
+srcs/System/Create.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/System/Create.cpp.i
+.PHONY : srcs/System/Create.cpp.i
 
-srcs/Graphical/SystemUpdateDeplacement.s: srcs/Graphical/SystemUpdateDeplacement.cpp.s
+srcs/System/Create.s: srcs/System/Create.cpp.s
 
-.PHONY : srcs/Graphical/SystemUpdateDeplacement.s
+.PHONY : srcs/System/Create.s
 
 # target to generate assembly for a file
-srcs/Graphical/SystemUpdateDeplacement.cpp.s:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Graphical/SystemUpdateDeplacement.cpp.s
-.PHONY : srcs/Graphical/SystemUpdateDeplacement.cpp.s
+srcs/System/Create.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/System/Create.cpp.s
+.PHONY : srcs/System/Create.cpp.s
 
-srcs/Main.o: srcs/Main.cpp.o
+srcs/System/EventManager.o: srcs/System/EventManager.cpp.o
 
-.PHONY : srcs/Main.o
+.PHONY : srcs/System/EventManager.o
 
 # target to build an object file
-srcs/Main.cpp.o:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Main.cpp.o
-.PHONY : srcs/Main.cpp.o
+srcs/System/EventManager.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/System/EventManager.cpp.o
+.PHONY : srcs/System/EventManager.cpp.o
 
-srcs/Main.i: srcs/Main.cpp.i
+srcs/System/EventManager.i: srcs/System/EventManager.cpp.i
 
-.PHONY : srcs/Main.i
+.PHONY : srcs/System/EventManager.i
 
 # target to preprocess a source file
-srcs/Main.cpp.i:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Main.cpp.i
-.PHONY : srcs/Main.cpp.i
+srcs/System/EventManager.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/System/EventManager.cpp.i
+.PHONY : srcs/System/EventManager.cpp.i
 
-srcs/Main.s: srcs/Main.cpp.s
+srcs/System/EventManager.s: srcs/System/EventManager.cpp.s
 
-.PHONY : srcs/Main.s
+.PHONY : srcs/System/EventManager.s
 
 # target to generate assembly for a file
-srcs/Main.cpp.s:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/Main.cpp.s
-.PHONY : srcs/Main.cpp.s
+srcs/System/EventManager.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/System/EventManager.cpp.s
+.PHONY : srcs/System/EventManager.cpp.s
 
-tests/basicECS/Main.o: tests/basicECS/Main.cpp.o
+srcs/System/UpdateDeplacement.o: srcs/System/UpdateDeplacement.cpp.o
 
-.PHONY : tests/basicECS/Main.o
+.PHONY : srcs/System/UpdateDeplacement.o
 
 # target to build an object file
-tests/basicECS/Main.cpp.o:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/tests/basicECS/Main.cpp.o
-.PHONY : tests/basicECS/Main.cpp.o
+srcs/System/UpdateDeplacement.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/System/UpdateDeplacement.cpp.o
+.PHONY : srcs/System/UpdateDeplacement.cpp.o
 
-tests/basicECS/Main.i: tests/basicECS/Main.cpp.i
+srcs/System/UpdateDeplacement.i: srcs/System/UpdateDeplacement.cpp.i
 
-.PHONY : tests/basicECS/Main.i
+.PHONY : srcs/System/UpdateDeplacement.i
 
 # target to preprocess a source file
-tests/basicECS/Main.cpp.i:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/tests/basicECS/Main.cpp.i
-.PHONY : tests/basicECS/Main.cpp.i
+srcs/System/UpdateDeplacement.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/System/UpdateDeplacement.cpp.i
+.PHONY : srcs/System/UpdateDeplacement.cpp.i
 
-tests/basicECS/Main.s: tests/basicECS/Main.cpp.s
+srcs/System/UpdateDeplacement.s: srcs/System/UpdateDeplacement.cpp.s
 
-.PHONY : tests/basicECS/Main.s
+.PHONY : srcs/System/UpdateDeplacement.s
 
 # target to generate assembly for a file
-tests/basicECS/Main.cpp.s:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/tests/basicECS/Main.cpp.s
-.PHONY : tests/basicECS/Main.cpp.s
+srcs/System/UpdateDeplacement.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/System/UpdateDeplacement.cpp.s
+.PHONY : srcs/System/UpdateDeplacement.cpp.s
+
+tests/bla.o: tests/bla.cpp.o
+
+.PHONY : tests/bla.o
+
+# target to build an object file
+tests/bla.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/tests/bla.cpp.o
+.PHONY : tests/bla.cpp.o
+
+tests/bla.i: tests/bla.cpp.i
+
+.PHONY : tests/bla.i
+
+# target to preprocess a source file
+tests/bla.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/tests/bla.cpp.i
+.PHONY : tests/bla.cpp.i
+
+tests/bla.s: tests/bla.cpp.s
+
+.PHONY : tests/bla.s
+
+# target to generate assembly for a file
+tests/bla.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/tests/bla.cpp.s
+.PHONY : tests/bla.cpp.s
 
 tests/graphicalTest/test.o: tests/graphicalTest/test.cpp.o
 
@@ -657,6 +765,12 @@ help:
 	@echo "... libs/Json/tests/Parser/main.o"
 	@echo "... libs/Json/tests/Parser/main.i"
 	@echo "... libs/Json/tests/Parser/main.s"
+	@echo "... libs/Json/tests/Parser/srcs/Entity/Entity.o"
+	@echo "... libs/Json/tests/Parser/srcs/Entity/Entity.i"
+	@echo "... libs/Json/tests/Parser/srcs/Entity/Entity.s"
+	@echo "... libs/Json/tests/Parser/srcs/Parser/Parser.o"
+	@echo "... libs/Json/tests/Parser/srcs/Parser/Parser.i"
+	@echo "... libs/Json/tests/Parser/srcs/Parser/Parser.s"
 	@echo "... libs/SmartEvent/srcs/Event/Event.o"
 	@echo "... libs/SmartEvent/srcs/Event/Event.i"
 	@echo "... libs/SmartEvent/srcs/Event/Event.s"
@@ -669,36 +783,42 @@ help:
 	@echo "... libs/SmartEvent/tests/HdlCollector/main.o"
 	@echo "... libs/SmartEvent/tests/HdlCollector/main.i"
 	@echo "... libs/SmartEvent/tests/HdlCollector/main.s"
+	@echo "... srcs/Console/Console.o"
+	@echo "... srcs/Console/Console.i"
+	@echo "... srcs/Console/Console.s"
 	@echo "... srcs/ECS/Entity/Entity.o"
 	@echo "... srcs/ECS/Entity/Entity.i"
 	@echo "... srcs/ECS/Entity/Entity.s"
+	@echo "... srcs/Game/Game.o"
+	@echo "... srcs/Game/Game.i"
+	@echo "... srcs/Game/Game.s"
 	@echo "... srcs/Graphical/EventReceiver.o"
 	@echo "... srcs/Graphical/EventReceiver.i"
 	@echo "... srcs/Graphical/EventReceiver.s"
-	@echo "... srcs/Graphical/SystemCreateDeletableWall.o"
-	@echo "... srcs/Graphical/SystemCreateDeletableWall.i"
-	@echo "... srcs/Graphical/SystemCreateDeletableWall.s"
-	@echo "... srcs/Graphical/SystemCreateMap.o"
-	@echo "... srcs/Graphical/SystemCreateMap.i"
-	@echo "... srcs/Graphical/SystemCreateMap.s"
-	@echo "... srcs/Graphical/SystemCreatePlayer.o"
-	@echo "... srcs/Graphical/SystemCreatePlayer.i"
-	@echo "... srcs/Graphical/SystemCreatePlayer.s"
-	@echo "... srcs/Graphical/SystemCreateWall.o"
-	@echo "... srcs/Graphical/SystemCreateWall.i"
-	@echo "... srcs/Graphical/SystemCreateWall.s"
-	@echo "... srcs/Graphical/SystemEventManager.o"
-	@echo "... srcs/Graphical/SystemEventManager.i"
-	@echo "... srcs/Graphical/SystemEventManager.s"
-	@echo "... srcs/Graphical/SystemUpdateDeplacement.o"
-	@echo "... srcs/Graphical/SystemUpdateDeplacement.i"
-	@echo "... srcs/Graphical/SystemUpdateDeplacement.s"
-	@echo "... srcs/Main.o"
-	@echo "... srcs/Main.i"
-	@echo "... srcs/Main.s"
-	@echo "... tests/basicECS/Main.o"
-	@echo "... tests/basicECS/Main.i"
-	@echo "... tests/basicECS/Main.s"
+	@echo "... srcs/MapGen/mapGen.o"
+	@echo "... srcs/MapGen/mapGen.i"
+	@echo "... srcs/MapGen/mapGen.s"
+	@echo "... srcs/Settings/Inputs.o"
+	@echo "... srcs/Settings/Inputs.i"
+	@echo "... srcs/Settings/Inputs.s"
+	@echo "... srcs/Settings/Settings.o"
+	@echo "... srcs/Settings/Settings.i"
+	@echo "... srcs/Settings/Settings.s"
+	@echo "... srcs/System/Being.o"
+	@echo "... srcs/System/Being.i"
+	@echo "... srcs/System/Being.s"
+	@echo "... srcs/System/Create.o"
+	@echo "... srcs/System/Create.i"
+	@echo "... srcs/System/Create.s"
+	@echo "... srcs/System/EventManager.o"
+	@echo "... srcs/System/EventManager.i"
+	@echo "... srcs/System/EventManager.s"
+	@echo "... srcs/System/UpdateDeplacement.o"
+	@echo "... srcs/System/UpdateDeplacement.i"
+	@echo "... srcs/System/UpdateDeplacement.s"
+	@echo "... tests/bla.o"
+	@echo "... tests/bla.i"
+	@echo "... tests/bla.s"
 	@echo "... tests/graphicalTest/test.o"
 	@echo "... tests/graphicalTest/test.i"
 	@echo "... tests/graphicalTest/test.s"

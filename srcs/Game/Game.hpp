@@ -11,9 +11,11 @@
 #include <string>
 #include <exception>
 
-#include "Json/Entity.hpp"
-#include "Graphical/EventReceiver.hpp"
+#include "EventReceiver.hpp"
 #include "Score.hpp"
+
+#include "ECS/Entity/Entity.hpp"
+#include "Json/srcs/Entity/Entity.hpp"
 
 namespace indie {
 

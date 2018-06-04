@@ -7,16 +7,13 @@
 
 #pragma once
 
-#include "basicECS/Components.hpp"
-#include "Component/ParticleEmitter.hpp"
-#include "Entity.hpp"
-#include "Filter.hpp"
-
-#include "AttributeBomb.hpp"
-#include "Mesh.hpp"
-#include "ParticleSystem.hpp"
-#include "ParticleAffector.hpp"
-#include "SystemCreate.hpp"
+#include "irrlicht/irrlicht.h"
+#include "Components.hpp"
+#include "ECS/Entity/Filter.hpp"
+#include "Component/UnanimatedObject.hpp"
+#include "Component/AttributeBomb.hpp"
+#include "Component/Graphicals.hpp"
+#include "System/Create.hpp"
 
 namespace ecs::system {
 
@@ -42,7 +39,7 @@ namespace ecs::system {
 				if (typeManager[id].t == component::Type::Enum::Bomb) {
 					if ((long double) time(NULL) >= attributesManager[id].since){
 						scene_manager->addToDeletionQueue(meshManager[id].mesh);
-						Create::createExplosion(scene_manager, driver, positionManager[id], 5);
+						Create::createExplosion(positionManager[id], 5);
 						component::Manager<component::Deletable>::get()[id].del = true;
 						auto pos = positionManager[id];
 

@@ -8,8 +8,9 @@
 #pragma once
 
 #include <irrlicht/irrlicht.h>
+#include <vector>
 
-#include "Game/Game.hpp"
+#include "Game.hpp"
 
 namespace ecs::component {
 

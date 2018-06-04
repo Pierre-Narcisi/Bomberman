@@ -8,13 +8,10 @@
 #include <ctime>
 #include <cstdlib>
 
-#include "Game/Game.hpp"
-#include "Graphical/EventReceiver.hpp"
-#include "MapGen/mapGen.hpp"
+#include "Game.hpp"
+#include "mapGen.hpp"
+#include "Create.hpp"
 
-#include "System/Create.hpp"
-#include "System/Explode.hpp"
-#include "System/Destroyer.hpp"
 
 int main() {
 	indie::Game &game = indie::Game::get();
