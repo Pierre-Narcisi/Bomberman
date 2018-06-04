@@ -28,6 +28,7 @@ namespace ecs::system {
 		for (auto id : fl.list) {
 			sel1 = game.getSmgr()->createTriangleSelectorFromBoundingBox(map[id]._node);
 			worldSel->addTriangleSelector(sel1);
+			// worldSel->removeTriangleSelector(sel1);
 		}
 		return (worldSel);
 	}

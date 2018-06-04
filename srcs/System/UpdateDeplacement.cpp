@@ -8,8 +8,10 @@
 #include "Game/Game.hpp"
 
 #include "System/Update.hpp"
+#include "System/Being.hpp"
 
 namespace ecs::system {
+
 	void Update::Deplacement() {
 		auto &game = indie::Game::get();
 		entity::Filter<component::Keyboard, component::Being> fl;
@@ -70,29 +72,19 @@ namespace ecs::system {
 
 			// Set Animation
 			if (moving == 0) {
-				if (key[id].actions["crouch"].state && being[id]._lastMov != irr::scene::EMAT_CROUCH_STAND) {
-					being[id]._node->setMD2Animation(irr::scene::EMAT_CROUCH_STAND);
-					being[id]._lastMov = irr::scene::EMAT_CROUCH_STAND;
-				}
-				else if (key[id].actions["sprint"].state && being[id]._lastMov != irr::scene::EMAT_STAND) {
-					being[id]._node->setMD2Animation(irr::scene::EMAT_STAND);
-					being[id]._lastMov = irr::scene::EMAT_STAND;
-				} else if (key[id].actions["crouch"].state == 0 && key[id].actions["sprint"].state == 0 && being[id]._lastMov != irr::scene::EMAT_STAND) {
-					being[id]._node->setMD2Animation(irr::scene::EMAT_STAND);
-					being[id]._lastMov = irr::scene::EMAT_STAND;
-				}
+				if (key[id].actions["crouch"].state && being[id]._lastMov != irr::scene::EMAT_CROUCH_STAND)
+					Being::updateState(being[id], irr::scene::EMAT_CROUCH_STAND);
+				else if (key[id].actions["sprint"].state && being[id]._lastMov != irr::scene::EMAT_STAND)
+					Being::updateState(being[id], irr::scene::EMAT_STAND);
+				else if (key[id].actions["crouch"].state == 0 && key[id].actions["sprint"].state == 0 && being[id]._lastMov != irr::scene::EMAT_STAND)
+					Being::updateState(being[id], irr::scene::EMAT_STAND);
 			} else {
-				if (key[id].actions["crouch"].state && being[id]._lastMov != irr::scene::EMAT_CROUCH_WALK) {
-					being[id]._node->setMD2Animation(irr::scene::EMAT_CROUCH_WALK);
-					being[id]._lastMov = irr::scene::EMAT_CROUCH_WALK;
-				}
-				else if (key[id].actions["sprint"].state && being[id]._lastMov != irr::scene::EMAT_RUN) {
-					being[id]._node->setMD2Animation(irr::scene::EMAT_RUN);
-					being[id]._lastMov = irr::scene::EMAT_RUN;
-				} else if (key[id].actions["crouch"].state == 0 && key[id].actions["sprint"].state == 0 && being[id]._lastMov != irr::scene::EMAT_RUN) {
-					being[id]._node->setMD2Animation(irr::scene::EMAT_RUN);
-					being[id]._lastMov = irr::scene::EMAT_RUN;
-				}
+				if (key[id].actions["crouch"].state && being[id]._lastMov != irr::scene::EMAT_CROUCH_WALK)
+					Being::updateState(being[id], irr::scene::EMAT_CROUCH_WALK);
+				else if (key[id].actions["sprint"].state && being[id]._lastMov != irr::scene::EMAT_RUN)
+					Being::updateState(being[id], irr::scene::EMAT_RUN);
+				else if (key[id].actions["crouch"].state == 0 && key[id].actions["sprint"].state == 0 && being[id]._lastMov != irr::scene::EMAT_RUN)
+					Being::updateState(being[id], irr::scene::EMAT_RUN);
 
 				being[id]._rotation = rot;
 				pos = being[id]._node->getPosition();
@@ -108,25 +100,25 @@ namespace ecs::system {
 			being[id]._then = game.getDevice()->getTimer()->getTime();
 
 			irr::f32 rotHorizontal =
-				(irr::f32)control[id].left.horizonal / 32767.f;
+				static_cast<irr::f32>(control[id].left.horizonal / 32767.f);
 			if(fabs(rotHorizontal) < DEAD_ZONE)
 				rotHorizontal = 0.f;
 
 			irr::f32 rotVertical =
-				(irr::f32)control[id].left.vertical / -32767.f;
+				static_cast<irr::f32>(control[id].left.vertical / -32767.f);
 			if(fabs(rotVertical) < DEAD_ZONE)
 				rotVertical = 0.f;
 
 			if (rotHorizontal >= 0) {
 				if (rotVertical >= 0)
-					rot = 360 - static_cast<float>(atan(rotVertical/rotHorizontal) * (180 /M_PI));
+					rot = 360 - static_cast<float>(atan(rotVertical / rotHorizontal) * (180 / M_PI));
 				else
-					rot = -static_cast<float>(atan((rotVertical)/rotHorizontal) * (180 /M_PI));
+					rot = -static_cast<float>(atan(rotVertical / rotHorizontal) * (180 / M_PI));
 			} else {
 				if (rotVertical >= 0)
-					rot = 180 - static_cast<float>(atan(rotVertical/(rotHorizontal)) * (180 /M_PI));
+					rot = 180 - static_cast<float>(atan(rotVertical / rotHorizontal) * (180 / M_PI));
 				else
-					rot = 180 - static_cast<float>(atan((rotVertical)/(rotHorizontal)) * (180 /M_PI));
+					rot = 180 - static_cast<float>(atan(rotVertical / rotHorizontal) * (180 / M_PI));
 			}
 
 			if (rotHorizontal == 0 && rotVertical == 0)
@@ -144,36 +136,27 @@ namespace ecs::system {
 
 			// Set Animation
 			if (rotHorizontal == 0 && rotVertical == 0) {
-				if ((control[id].buttons >> 1 & 1) && being[id]._lastMov != irr::scene::EMAT_CROUCH_STAND) {
-					being[id]._node->setMD2Animation(irr::scene::EMAT_CROUCH_STAND);
-					being[id]._lastMov = irr::scene::EMAT_CROUCH_STAND;
-				}
-				else if ((control[id].buttons >> 9 & 1) && being[id]._lastMov != irr::scene::EMAT_STAND) {
-					being[id]._node->setMD2Animation(irr::scene::EMAT_STAND);
-					being[id]._lastMov = irr::scene::EMAT_STAND;
-				} else if ((control[id].buttons >> 9 & 1) == 0 && (control[id].buttons >> 1 & 1) == 0 && being[id]._lastMov != irr::scene::EMAT_STAND) {
-					being[id]._node->setMD2Animation(irr::scene::EMAT_STAND);
-					being[id]._lastMov = irr::scene::EMAT_STAND;
-				}
+				if ((control[id].buttons >> 1 & 1) && being[id]._lastMov != irr::scene::EMAT_CROUCH_STAND)
+					Being::updateState(being[id], irr::scene::EMAT_CROUCH_STAND);
+				else if ((control[id].buttons >> 9 & 1) && being[id]._lastMov != irr::scene::EMAT_STAND)
+					Being::updateState(being[id], irr::scene::EMAT_STAND);
+				else if ((control[id].buttons >> 9 & 1) == 0 && (control[id].buttons >> 1 & 1) == 0 && being[id]._lastMov != irr::scene::EMAT_STAND)
+					Being::updateState(being[id], irr::scene::EMAT_STAND);
 			} else {
-				if ((control[id].buttons >> 1 & 1) && being[id]._lastMov != irr::scene::EMAT_CROUCH_WALK) {
-					being[id]._node->setMD2Animation(irr::scene::EMAT_CROUCH_WALK);
-					being[id]._lastMov = irr::scene::EMAT_CROUCH_WALK;
-				}
-				else if ((control[id].buttons >> 9 & 1) && being[id]._lastMov != irr::scene::EMAT_RUN) {
-					being[id]._node->setMD2Animation(irr::scene::EMAT_RUN);
-					being[id]._lastMov = irr::scene::EMAT_RUN;
-				} else if ((control[id].buttons >> 9 & 1) == 0 && (control[id].buttons >> 1 & 1) == 0 && being[id]._lastMov != irr::scene::EMAT_RUN) {
-					being[id]._node->setMD2Animation(irr::scene::EMAT_RUN);
-					being[id]._lastMov = irr::scene::EMAT_RUN;
-				}
+				if ((control[id].buttons >> 1 & 1) && being[id]._lastMov != irr::scene::EMAT_CROUCH_WALK)
+					Being::updateState(being[id], irr::scene::EMAT_CROUCH_WALK);
+				else if ((control[id].buttons >> 9 & 1) && being[id]._lastMov != irr::scene::EMAT_RUN)
+					Being::updateState(being[id], irr::scene::EMAT_RUN);
+				else if ((control[id].buttons >> 9 & 1) == 0 && (control[id].buttons >> 1 & 1) == 0 && being[id]._lastMov != irr::scene::EMAT_RUN)
+					Being::updateState(being[id], irr::scene::EMAT_RUN);
 
 				being[id]._rotation = rot;
 				pos = being[id]._node->getPosition();
-				pos.X = pos.X + static_cast<float>(cos(rot * M_PI / 180)) * speed * deltatime;
-				pos.Z = pos.Z - static_cast<float>(sin(rot * M_PI / 180)) * speed * deltatime;
+				pos.X += static_cast<float>(cos(rot * M_PI / 180)) * speed * deltatime;
+				pos.Z -= static_cast<float>(sin(rot * M_PI / 180)) * speed * deltatime;
 				being[id]._node->setPosition(pos);
 			}
 		}
 	}
+
 }

@@ -17,7 +17,6 @@ namespace indie {
 
 	Game::Game()
 	{
-		std::srand(std::time(NULL));	
 		try {
 			_settings = json::Parser::fromFile(".settings");
 		} catch (json::Parser::ParserException &e) {
@@ -43,22 +42,22 @@ namespace indie {
 		return game;
 	}
 
-	json::Entity		&Game::getSettings()
+	json::Entity const &Game::getSettings() const
 	{
 		return _settings;
 	}
 
-	irr::IrrlichtDevice	*Game::getDevice()
+	irr::IrrlichtDevice *Game::getDevice() const
 	{
 		return _device;
 	}
 
-	irr::video::IVideoDriver	*Game::getDriver()
+	irr::video::IVideoDriver *Game::getDriver() const
 	{
 		return _driver;
 	}
 
-	irr::scene::ISceneManager	*Game::getSmgr()
+	irr::scene::ISceneManager *Game::getSmgr() const
 	{
 		return _smgr;
 	}

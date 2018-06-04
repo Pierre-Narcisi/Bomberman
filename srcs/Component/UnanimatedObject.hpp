@@ -24,7 +24,11 @@ namespace ecs::component {
 			_node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 			_node->setPosition(irr::core::vector3df(pos.X, 0, pos.Y));
 		};
-
+		~UnanimatedObject()
+		{
+			auto &game = indie::Game::get();
+			// game.getSmgr()->addToDeletionQueue(_node);
+		}
 		irr::scene::ISceneNode	*_node;
 	};
 

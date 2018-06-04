@@ -18,6 +18,6 @@ namespace ecs::system {
 
 	class Events {
 	public:
-		static void Manager(irr::SEvent event);
+		static void Manager(irr::SEvent const &event);
 	};
 }

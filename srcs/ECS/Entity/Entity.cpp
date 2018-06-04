@@ -32,6 +32,7 @@ namespace ecs::entity {
 
 		void Manager::deleteEntity(Id entity)
 		{
+			std::cerr << "delete entity " << entity << std::endl;
 			for (auto &component : _components.at(entity))
 				component.second();
 			_components.erase(entity);

@@ -14,7 +14,7 @@
 namespace ecs::component {
 
 	struct Explosion {
-		std::vector<std::string> particle = {
+		const std::vector<std::string> particle = {
 			"../../assets/Particle.tga",
 			"../../assets/particlegreen.jpg",
 			"../../assets/particlered.bmp",
@@ -143,6 +143,7 @@ namespace ecs::component {
 			fire_top->setMaterialTexture(0, game.getDriver()->getTexture(particle[rand()%particle.size()].c_str()));
 			fire_top->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
 		};
+
 		irr::scene::IParticleSystemSceneNode	*fire_up;
 		irr::scene::IParticleSystemSceneNode	*fire_left;
 		irr::scene::IParticleSystemSceneNode	*fire_down;

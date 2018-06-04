@@ -20,6 +20,7 @@ SRCS		=	test.cpp					\
 			$(OUTPATH)/srcs/Game/Game.cpp			\
 			$(OUTPATH)/srcs/MapGen/mapGen.cpp		\
 			$(OUTPATH)/srcs/System/Create.cpp		\
+			$(OUTPATH)/srcs/System/Being.cpp		\
 			$(OUTPATH)/srcs/System/EventManager.cpp		\
 			$(OUTPATH)/srcs/System/UpdateDeplacement.cpp	\
 
@@ -34,19 +35,16 @@ all		:	makelibs $(NAME)
 makelibs	:
 			make -C $(OUTPATH)/libs/Json includes && make -C $(OUTPATH)/libs/Json
 
-$(NAME)		:
-			$(CPP) -o $(NAME) $(CPPFLAGS) $(INCLUDES) $(SRCS) $(EXTERNLIBS)
+$(NAME)		:	$(OBJS)
+			$(CPP) -o $(NAME) $(CPPFLAGS) $(INCLUDES) $(OBJS) $(EXTERNLIBS)
 
 $(ODIR)/%.o	:	%.cpp
 			@mkdir -p $(dir $@)
 			$(CPP) $(CPPFLAGS) $(INCLUDES)	-c -o $@ $<
 
-$(REALODIR)/%.o	:	$(REALSDIR)/%.cpp
-			@mkdir -p $(dir $@)
-			$(CPP) $(CPPFLAGS) $(INCLUDES)	-c -o $@ $<
-
 clean		:
 			make -C $(OUTPATH)/libs/Json clean
+			rm -rf $(OBJS)
 			rm -rf $(ODIR)
 
 fclean		:	clean

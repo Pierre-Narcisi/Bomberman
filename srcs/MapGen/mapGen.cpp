@@ -5,8 +5,7 @@
 ** mapGen.c pp
 */
 
-#include <cstdlib>
-#include <ctime>
+#include <random>
 
 #include "Game/Game.hpp"
 #include "mapGen.hpp"
@@ -31,9 +30,13 @@ namespace indie {
 
 	void	mapGen::make_unperfect()
 	{
+		std::uniform_int_distribution<int> distribution(0, 100);
+		std::random_device rd;
+		std::mt19937 engine(rd());
+
 		for (std::size_t i = 0; i < _2Dmap.size(); ++i) {
 			for (std::size_t j = 0; j < _2Dmap[i].size(); ++j) {
-				if (_2Dmap[i][j] == '1' && std::rand() % 100 < 60)
+				if (_2Dmap[i][j] == '1' && distribution(engine) < 60)
 					_2Dmap[i][j] = '2';
 			}
 		}
@@ -76,8 +79,12 @@ namespace indie {
 
 	void	mapGen::choose_pos()
 	{
+		std::uniform_int_distribution<int> distribution(0, 3);
+		std::random_device rd;
+		std::mt19937 engine(rd());
+
 		do {
-			int dir = std::rand() % 4;
+			int dir = distribution(engine);
 
 			if (dir == 0 && _xgen + 2 < _xmap && _2Dmap[_ygen][_xgen + 2] == '1')
 				_xgen += 2;
@@ -92,7 +99,7 @@ namespace indie {
 		} while (false);
 	}
 
-	void mapGen::createMap()
+	void mapGen::createMap() const
 	{
 		for (int i = 0; i < _ymap; i++) {
 			for (int j = 0; j < _xmap; j++) {
@@ -104,7 +111,7 @@ namespace indie {
 		}
 	}
 
-	void mapGen::createBorder()
+	void mapGen::createBorder() const
 	{
 		for (int i = 0; i < _xmap + 2; i++) {
 			ecs::system::Create::createWall(irr::core::vector2df(0, i * 100));

@@ -23,6 +23,7 @@ namespace ecs::system {
 			auto &deleteManager = component::Manager<component::Deletable>::get();
 
 			for (auto id : fl.list) {
+				// std::cout << "delete " << deleteManager[id].del << std::endl;
 				if (deleteManager[id].del == true)
 					entity::Manager::get().deleteEntity(id);
 			}

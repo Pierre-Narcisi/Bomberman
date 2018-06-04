@@ -139,7 +139,7 @@ namespace ecs {
 		std::make_pair("X", irr::KEY_KEY_X),
 		std::make_pair("Y", irr::KEY_KEY_Y),
 		std::make_pair("Z", irr::KEY_KEY_Z),
-		std::make_pair("", irr::KEY_LWIN),  // Left Windows key (Microsoft� Natural� keyboard)
+		std::make_pair("", irr::KEY_LWIN),  // Left Windows key (Microsoft Natural keyboard)
 		std::make_pair("", irr::KEY_RWIN),  // Right Windows key (Natural keyboard)
 		std::make_pair("", irr::KEY_APPS),  // Applications key (Natural keyboard)
 		std::make_pair("", irr::KEY_SLEEP),  // Computer Sleep key

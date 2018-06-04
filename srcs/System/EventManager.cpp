@@ -10,7 +10,7 @@
 
 namespace ecs::system {
 
-	void Events::Manager(irr::SEvent event)
+	void Events::Manager(irr::SEvent const &event)
 	{
 		if (event.EventType == irr::EET_KEY_INPUT_EVENT) {
 			entity::Filter<component::Keyboard> fl;

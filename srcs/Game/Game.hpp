@@ -26,11 +26,11 @@ namespace indie {
 		void		loadScore();
 
 	public:
-		static Game		&get();
-		json::Entity		&getSettings();
-		irr::IrrlichtDevice	*getDevice();
-		irr::video::IVideoDriver	*getDriver();
-		irr::scene::ISceneManager	*getSmgr();
+		static Game			&get();
+		json::Entity const		&getSettings() const;
+		irr::IrrlichtDevice		*getDevice() const;
+		irr::video::IVideoDriver	*getDriver() const;
+		irr::scene::ISceneManager	*getSmgr() const;
 
 	protected:
 		json::Entity			_settings;

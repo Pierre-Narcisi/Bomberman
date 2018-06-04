@@ -42,6 +42,8 @@
 		"string": "cpp",
 		"thread": "cpp",
 		"chrono": "cpp",
-		"ratio": "cpp"
+		"ratio": "cpp",
+		"cmath": "cpp",
+		"numeric": "cpp"
 	}
 }

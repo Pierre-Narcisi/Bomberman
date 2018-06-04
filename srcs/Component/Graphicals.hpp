@@ -8,14 +8,23 @@
 #pragma once
 
 #include <irrlicht/irrlicht.h>
+#include "Game/Game.hpp"
 
 namespace ecs::component {
 
 	struct Mesh {
+		// ~Mesh()
+		// {
+		// 	indie::Game::get().getSmgr()->addToDeletionQueue(mesh);
+		// }
 		irr::scene::IAnimatedMeshSceneNode	*mesh;
 	};
 
 	struct MeshStatic {
+		// ~MeshStatic()
+		// {
+		// 	indie::Game::get().getSmgr()->addToDeletionQueue(mesh);
+		// }
 		irr::scene::ISceneNode	*mesh;
 	};
 

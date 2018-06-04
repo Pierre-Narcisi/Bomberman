@@ -24,8 +24,8 @@ namespace indie {
 		int check_wall();
 		void make_unperfect();
 		void create_spawn();
-		void createMap();
-		void createBorder();	
+		void createMap() const;
+		void createBorder() const;
 
 	private:
 		int					_xgen{};
