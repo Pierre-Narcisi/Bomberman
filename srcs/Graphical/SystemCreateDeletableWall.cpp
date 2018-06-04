@@ -14,6 +14,7 @@ namespace ecs::system {
 
 		component::Manager<component::UnanimatedObject>::get().addComponentForEntity(id, driver, smgr, "../../assets/wooddencreate.png", pos);
 		component::Manager<component::Deletable>::get().addComponentForEntity(id);
+		component::Manager<component::Position>::get().addComponentForEntity(id, static_cast<int>(pos.X), static_cast<int>(pos.Y));
 
 		return id;
 	}

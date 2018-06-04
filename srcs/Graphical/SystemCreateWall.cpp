@@ -13,6 +13,7 @@ namespace ecs::system {
 		auto	id = entity::Manager::get().newEntity();
 
 		component::Manager<component::UnanimatedObject>::get().addComponentForEntity(id, driver, smgr, "../../assets/cobblestone.jpg", pos);
+		component::Manager<component::Position>::get().addComponentForEntity(id, static_cast<int>(pos.X), static_cast<int>(pos.Y));
 
 		return id;
 	}

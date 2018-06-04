@@ -38,7 +38,7 @@ EXTERNLIBS	=	-L$(OUTPATH)/libs/Json -lstatic_Json -L$(OUTPATH)/libs/SmartEvent -
 all		:	$(NAME)
 
 $(NAME)		:
-			$(CPP) -o $(NAME) $(CPPFLAGS) $(INCLUDES) $(SRCS) $(EXTERNLIBS)
+			$(CPP) -g -o $(NAME) $(CPPFLAGS) $(INCLUDES) $(SRCS) $(EXTERNLIBS)
 
 $(ODIR)/%.o	:	%.cpp
 			@mkdir -p $(dir $@)

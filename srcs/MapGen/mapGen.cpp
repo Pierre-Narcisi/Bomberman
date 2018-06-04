@@ -124,7 +124,7 @@ void mapGen::createMap()
 			if (_2Dmap[i][j] == '2') {
 				ecs::system::Create::createDeletableWall(_driver, _smgr, irr::core::vector2df((i  + 1) * 100, (j + 1) * 100));
 			} else if (_2Dmap[i][j] == '1') {
-						ecs::system::Create::createWall(_driver, _smgr, irr::core::vector2df((i  + 1) * 100, (j + 1) * 100));
+				ecs::system::Create::createWall(_driver, _smgr, irr::core::vector2df((i  + 1) * 100, (j + 1) * 100));
 			}
 		}
 	}

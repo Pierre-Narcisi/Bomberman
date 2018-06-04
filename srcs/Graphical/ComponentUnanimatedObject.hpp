@@ -18,7 +18,14 @@ namespace ecs::component {
 			_node->setMaterialTexture(0, driver->getTexture(texture.c_str()));
 			_node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 			_node->setPosition(irr::core::vector3df(pos.X, 0, pos.Y));
+			_smgr = smgr;
 		};
+
+		~UnanimatedObject()
+		{
+		};
+
+		irr::scene::ISceneManager *_smgr;
 		irr::scene::ISceneNode*	_node;
 	};
 }
