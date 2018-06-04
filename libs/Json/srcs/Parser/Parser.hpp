@@ -12,8 +12,15 @@
 
 #include <istream>
 #include <exception>
-#include "Entity/JsonEntity.hpp"
+#include "Entity.hpp"
 
+#ifdef TARGET_WINDOWS
+ #define TOLOWER ::tolower
+ #define ISPRINT ::isprint
+#else
+ #define TOLOWER std::tolower
+ #define ISPRINT std::isprint
+#endif
 
 namespace json
 {

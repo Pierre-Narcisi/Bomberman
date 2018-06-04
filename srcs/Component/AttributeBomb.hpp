@@ -11,13 +11,12 @@
 
 namespace ecs::component
 {
-	struct Attributes
-	{
-		long double	since;
-		enum class Enum
-		{
+	struct Attributes {
+		enum class Enum {
 			Default
 		};
-		Enum t;
+
+		long double	since;
+		Enum		t;
 	};
 }

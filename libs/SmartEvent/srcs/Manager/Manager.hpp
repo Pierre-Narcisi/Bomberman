@@ -12,7 +12,7 @@
 
 #include <unordered_map>
 #include <functional>
-#include "Event/Event.hpp"
+#include "Event.hpp"
 
 namespace evt
 {	

@@ -1,6 +1,8 @@
 *.o
 *.a
 *.so
+*.dll
+*.lib
 *dSYM
 includes/
 info.plist

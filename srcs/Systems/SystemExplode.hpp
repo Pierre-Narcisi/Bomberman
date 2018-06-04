@@ -25,14 +25,18 @@ namespace ecs::system {
 		static void update(irr::scene::ISceneManager *scene_manager, irr::video::IVideoDriver *driver)
 		{
 			entity::Filter<component::Type> fl;
+			entity::Filter<component::UnanimatedObject, component::Deletable> walls;
 
 			auto &typeManager = component::Manager<component::Type>::get();
 			auto &attributesManager = component::Manager<component::Attributes>::get();
 			auto &positionManager = component::Manager<component::Position>::get();
 			auto &meshManager = component::Manager<component::Mesh>::get();
+			auto &wall = component::Manager<component::Deletable>::get();
+			auto &being = component::Manager<component::UnanimatedObject>::get();
+
+			int dist = 1 * 100 + 100;
 
 			auto &particleSystemManager = component::Manager<component::ParticleSystem>::get();
-			auto &particleAffectorManager = component::Manager<component::ParticleAffector>::get();
 
 			for (auto &id : fl.list) {
 				if (typeManager[id].t == component::Type::Enum::Bomb) {
@@ -40,6 +44,18 @@ namespace ecs::system {
 						scene_manager->addToDeletionQueue(meshManager[id].mesh);
 						Create::createExplosion(scene_manager, driver, positionManager[id], 5);
 						component::Manager<component::Deletable>::get()[id].del = true;
+						auto pos = positionManager[id];
+
+						for (auto &ID : walls.list) {
+							if (positionManager[ID].x == pos.x) {
+								if (positionManager[ID].y > (pos.y - dist) && positionManager[ID].y < (pos.y + dist))
+									being[ID]._node->setPosition(irr::core::vector3df(10,10,10));
+							}
+							if (positionManager[ID].y == pos.y) {
+								if (positionManager[ID].x > (pos.x - dist) && positionManager[ID].x < (pos.x + dist))
+									being[ID]._node->setPosition(irr::core::vector3df(10,10,10));
+							}
+						}
 					}
 				}
 				if (typeManager[id].t == component::Type::Enum::Explosion)

@@ -62,6 +62,8 @@ add_executable(Client
         srcs/Systems/SystemCreate.cpp
         srcs/Systems/SystemDestroyer.hpp
         srcs/Systems/SystemExplode.hpp
+        srcs/MapGen/mapGen.cpp
+        srcs/MapGen/mapGen.hpp
         srcs/Main.cpp
         tests/basicECS/Components.hpp
         tests/basicECS/Main.cpp

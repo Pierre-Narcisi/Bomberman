@@ -20,7 +20,7 @@ namespace ecs::component {
 		~Manager();
 
 		template<typename ...Args>
-		void addComponentForEntity(entity::Id, Args &&...args);
+		T &addComponentForEntity(entity::Id, Args &&...args);
 
 		void removeComponentForEntity(entity::Id);
 

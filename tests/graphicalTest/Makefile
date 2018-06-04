@@ -9,53 +9,46 @@ include ../../common/depend.mk
 
 OUTPATH		=	../..
 
-INCLUDES	=	-I$(OUTPATH)/libs/Json/includes		\
-			-I$(OUTPATH)/libs/Json/srcs/Entity      \
-			-I$(OUTPATH)/libs/SmartEvent/includes	\
-			-I$(OUTPATH)/libs/SmartEvent/srcs	\
-			-I$(OUTPATH)/libs/SmartEvent/srcs/Manager	\
-			-I$(OUTPATH)/srcs			\
-			-I$(OUTPATH)/srcs/Graphical		\
-			-I$(OUTPATH)/srcs/ECS/Entity		\
-			-I$(OUTPATH)/srcs/ECS/Component		\
-			-I$(OUTPATH)/tests      		\
-			-I$(OUTPATH)/srcs/Component             \
-			-I$(OUTPATH)/srcs/Systems
+INCLUDES	=	-I$(OUTPATH)/libs/Json/includes			\
+			-I$(OUTPATH)/srcs				\
 
-
-SRCS		=	test.cpp	        		\
-			$(OUTPATH)/srcs/ECS/Entity/Entity.cpp   \
-			$(OUTPATH)/srcs/Graphical/*.cpp	\
-			$(OUTPATH)/srcs/MapGen/mapGen.cpp       \
-			$(OUTPATH)/srcs/Systems/SystemCreate.cpp
+SRCS		=	test.cpp					\
+			$(OUTPATH)/srcs/ECS/Entity/Entity.cpp		\
+			$(OUTPATH)/srcs/Settings/Inputs.cpp		\
+			$(OUTPATH)/srcs/Settings/Settings.cpp		\
+			$(OUTPATH)/srcs/Graphical/EventReceiver.cpp	\
+			$(OUTPATH)/srcs/Game/Game.cpp			\
+			$(OUTPATH)/srcs/MapGen/mapGen.cpp		\
+			$(OUTPATH)/srcs/System/Create.cpp		\
+			$(OUTPATH)/srcs/System/Being.cpp		\
+			$(OUTPATH)/srcs/System/EventManager.cpp		\
+			$(OUTPATH)/srcs/System/UpdateDeplacement.cpp	\
 
 OBJS		=	$(addprefix $(ODIR)/, $(SRCS:.cpp=.o))
 
 NAME		=	bomberman
 
-EXTERNLIBS	=	-L$(OUTPATH)/libs/Json -lstatic_Json -L$(OUTPATH)/libs/SmartEvent -lstatic_SmartEvent -lIrrlicht -lGL
+EXTERNLIBS	=	-L$(OUTPATH)/libs/Json -lstatic_Json -lIrrlicht -lGL
 
-all		:	$(NAME)
+all		:	makelibs $(NAME)
 
-$(NAME)		:
-			$(CPP) -o $(NAME) $(CPPFLAGS) $(INCLUDES) $(SRCS) $(EXTERNLIBS)
+makelibs	:
+			make -C $(OUTPATH)/libs/Json includes && make -C $(OUTPATH)/libs/Json
+
+$(NAME)		:	$(OBJS)
+			$(CPP) -o $(NAME) $(CPPFLAGS) $(INCLUDES) $(OBJS) $(EXTERNLIBS)
 
 $(ODIR)/%.o	:	%.cpp
 			@mkdir -p $(dir $@)
 			$(CPP) $(CPPFLAGS) $(INCLUDES)	-c -o $@ $<
 
-$(REALODIR)/%.o	:	$(REALSDIR)/%.cpp
-			@mkdir -p $(dir $@)
-			$(CPP) $(CPPFLAGS) $(INCLUDES)	-c -o $@ $<
-
 clean		:
-			# make -C libs/Json clean
-			# make -C libs/SmartEvent clean
+			make -C $(OUTPATH)/libs/Json clean
+			rm -rf $(OBJS)
 			rm -rf $(ODIR)
 
 fclean		:	clean
-			# make -C libs/Json fclean
-			# make -C libs/SmartEvent fclean
+			make -C $(OUTPATH)/libs/Json fclean
 			rm -f $(NAME)
 
 re		:	fclean all

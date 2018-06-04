@@ -8,7 +8,7 @@
 #pragma once
 
 #include "Entity.hpp"
-#include "Component.hpp"
+#include "../Component/Component.hpp"
 
 namespace ecs::entity {
 

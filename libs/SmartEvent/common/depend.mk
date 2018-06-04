@@ -28,7 +28,7 @@ ifndef	WALL
 endif
 
 ifndef	RELEASE
- RELEASE	=	false
+ RELEASE	=	true
 endif
 
 ifndef	OPTI_FLAG
