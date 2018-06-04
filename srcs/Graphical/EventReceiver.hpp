@@ -10,9 +10,7 @@
 
 #include <irrlicht/irrlicht.h>
 #include <irrlicht/IEventReceiver.h>
-#include <iostream>
-#include <Manager.hpp>
-#include "irrlicht/driverChoice.h"
+#include "SystemEvent.hpp"
 
 class MyEventReceiver : public irr::IEventReceiver
 {
@@ -21,12 +19,9 @@ public:
 
 	virtual bool OnEvent(const irr::SEvent& event)
 	{
-		m["event"]->fire(event);
+		ecs::system::Events::Manager(event);
 		return false;
 	}
-
-private:
-	evt::Manager &m = evt::Manager::get();
 };
 
 #endif //IRRLICHTWRAPPER_EVENTRECEIVER_HPP

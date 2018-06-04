@@ -14,14 +14,13 @@ INCLUDES	=	-I$(OUTPATH)/libs/Json/includes		\
 			-I$(OUTPATH)/libs/SmartEvent/includes	\
 			-I$(OUTPATH)/libs/SmartEvent/srcs	\
 			-I$(OUTPATH)/srcs			\
-			-I$(OUTPATH)/srcs/ECS/Entity		\
+			-I$(OUTPATH)/srcs/ECS		\
 			-I$(OUTPATH)/srcs/ECS/Component		\
+			-I$(OUTPATH)/tests      		\
 
 SRCS		=	test.cpp	        		\
 			$(OUTPATH)/srcs/ECS/Entity/Entity.cpp   \
-			$(OUTPATH)/srcs/Settings/Inputs.cpp   \
-			$(OUTPATH)/srcs/Settings/Settings.cpp   \
-			$(OUTPATH)/srcs/Graphical/EventReceiver.cpp
+			$(OUTPATH)/srcs/Graphical/*.cpp
 
 OBJS		=	$(addprefix $(ODIR)/, $(SRCS:.cpp=.o))
 

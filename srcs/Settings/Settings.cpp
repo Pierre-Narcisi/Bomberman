@@ -10,8 +10,7 @@
 #include <string>
 #include <algorithm>
 
-#include "Entity.hpp"
-#include "Component.hpp"
+#include "Entity/Entity.hpp"
 
 #include "Settings.hpp"
 

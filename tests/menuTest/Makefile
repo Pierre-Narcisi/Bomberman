@@ -14,6 +14,7 @@ INCLUDES	=	-I$(OUTPATH)/libs/Json/includes		\
 			-I$(OUTPATH)/srcs			\
 			-I$(OUTPATH)/srcs/ECS/Entity		\
 			-I$(OUTPATH)/srcs/ECS/Component		\
+			-I$(OUTPATH)/srcs/Graphical		\
 
 SRCS		=	Main.cpp	        		\
 			$(OUTPATH)/srcs/ECS/Entity/Entity.cpp   \
