@@ -31,19 +31,11 @@ add_executable(Client
         libs/Json/srcs/Entity/Entity.hpp
         libs/Json/srcs/Parser/Parser.cpp
         libs/Json/srcs/Parser/Parser.hpp
-        libs/Json/tests/Entity/main.cpp
-        libs/Json/tests/Parser/srcs/Entity/Entity.cpp
-        libs/Json/tests/Parser/srcs/Entity/Entity.hpp
-        libs/Json/tests/Parser/srcs/Parser/Parser.cpp
-        libs/Json/tests/Parser/srcs/Parser/Parser.hpp
-        libs/Json/tests/Parser/main.cpp
         libs/SmartEvent/srcs/Event/Event.cpp
         libs/SmartEvent/srcs/Event/Event.hpp
         libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp
         libs/SmartEvent/srcs/HdlCollector/HdlCollector.hpp
         libs/SmartEvent/srcs/Manager/Manager.hpp
-        libs/SmartEvent/tests/Event/main.cpp
-        libs/SmartEvent/tests/HdlCollector/main.cpp
         srcs/Component/AttributeBomb.hpp
         srcs/Component/Basics.hpp
         srcs/Component/Being.hpp
@@ -89,5 +81,9 @@ add_executable(Client
         srcs/Systems/SystemExplode.hpp
         tests/basicECS/Components.hpp
         tests/basicECS/Systems.hpp
-        tests/graphicalTest/test.cpp
-        tests/bla.cpp)
+        tests/graphicalTest/test.cpp)
+
+target_link_libraries(Client /usr/lib/x86_64-linux-gnu/libIrrlicht.so)
+target_link_libraries(Client /usr/lib/x86_64-linux-gnu/libGL.so)
+target_link_libraries(Client /home/seb/tmp/Client/libs/Json/libJson.so)
+target_link_libraries(Client /usr/lib/x86_64-linux-gnu/libpthread.so)

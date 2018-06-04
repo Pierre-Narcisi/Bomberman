@@ -124,24 +124,6 @@
 		<Unit filename="/home/seb/tmp/Client/libs/Json/srcs/Parser/Parser.hpp">
 			<Option target="Client"/>
 		</Unit>
-		<Unit filename="/home/seb/tmp/Client/libs/Json/tests/Entity/main.cpp">
-			<Option target="Client"/>
-		</Unit>
-		<Unit filename="/home/seb/tmp/Client/libs/Json/tests/Parser/main.cpp">
-			<Option target="Client"/>
-		</Unit>
-		<Unit filename="/home/seb/tmp/Client/libs/Json/tests/Parser/srcs/Entity/Entity.cpp">
-			<Option target="Client"/>
-		</Unit>
-		<Unit filename="/home/seb/tmp/Client/libs/Json/tests/Parser/srcs/Entity/Entity.hpp">
-			<Option target="Client"/>
-		</Unit>
-		<Unit filename="/home/seb/tmp/Client/libs/Json/tests/Parser/srcs/Parser/Parser.cpp">
-			<Option target="Client"/>
-		</Unit>
-		<Unit filename="/home/seb/tmp/Client/libs/Json/tests/Parser/srcs/Parser/Parser.hpp">
-			<Option target="Client"/>
-		</Unit>
 		<Unit filename="/home/seb/tmp/Client/libs/SmartEvent/srcs/Event/Event.cpp">
 			<Option target="Client"/>
 		</Unit>
@@ -155,12 +137,6 @@
 			<Option target="Client"/>
 		</Unit>
 		<Unit filename="/home/seb/tmp/Client/libs/SmartEvent/srcs/Manager/Manager.hpp">
-			<Option target="Client"/>
-		</Unit>
-		<Unit filename="/home/seb/tmp/Client/libs/SmartEvent/tests/Event/main.cpp">
-			<Option target="Client"/>
-		</Unit>
-		<Unit filename="/home/seb/tmp/Client/libs/SmartEvent/tests/HdlCollector/main.cpp">
 			<Option target="Client"/>
 		</Unit>
 		<Unit filename="/home/seb/tmp/Client/srcs/Component/AttributeBomb.hpp">
@@ -296,9 +272,6 @@
 			<Option target="Client"/>
 		</Unit>
 		<Unit filename="/home/seb/tmp/Client/tests/basicECS/Systems.hpp">
-			<Option target="Client"/>
-		</Unit>
-		<Unit filename="/home/seb/tmp/Client/tests/bla.cpp">
 			<Option target="Client"/>
 		</Unit>
 		<Unit filename="/home/seb/tmp/Client/tests/graphicalTest/test.cpp">

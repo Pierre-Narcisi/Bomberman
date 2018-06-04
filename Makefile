@@ -39,10 +39,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/seb/.bin/clion-2018.1.2/bin/cmake/bin/cmake
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = /home/seb/.bin/clion-2018.1.2/bin/cmake/bin/cmake -E remove -f
+RM = /usr/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/seb/tmp/Client
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/seb/.bin/clion-2018.1.2/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/seb/.bin/clion-2018.1.2/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -177,114 +177,6 @@ libs/Json/srcs/Parser/Parser.cpp.s:
 	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/Json/srcs/Parser/Parser.cpp.s
 .PHONY : libs/Json/srcs/Parser/Parser.cpp.s
 
-libs/Json/tests/Entity/main.o: libs/Json/tests/Entity/main.cpp.o
-
-.PHONY : libs/Json/tests/Entity/main.o
-
-# target to build an object file
-libs/Json/tests/Entity/main.cpp.o:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/Json/tests/Entity/main.cpp.o
-.PHONY : libs/Json/tests/Entity/main.cpp.o
-
-libs/Json/tests/Entity/main.i: libs/Json/tests/Entity/main.cpp.i
-
-.PHONY : libs/Json/tests/Entity/main.i
-
-# target to preprocess a source file
-libs/Json/tests/Entity/main.cpp.i:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/Json/tests/Entity/main.cpp.i
-.PHONY : libs/Json/tests/Entity/main.cpp.i
-
-libs/Json/tests/Entity/main.s: libs/Json/tests/Entity/main.cpp.s
-
-.PHONY : libs/Json/tests/Entity/main.s
-
-# target to generate assembly for a file
-libs/Json/tests/Entity/main.cpp.s:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/Json/tests/Entity/main.cpp.s
-.PHONY : libs/Json/tests/Entity/main.cpp.s
-
-libs/Json/tests/Parser/main.o: libs/Json/tests/Parser/main.cpp.o
-
-.PHONY : libs/Json/tests/Parser/main.o
-
-# target to build an object file
-libs/Json/tests/Parser/main.cpp.o:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/Json/tests/Parser/main.cpp.o
-.PHONY : libs/Json/tests/Parser/main.cpp.o
-
-libs/Json/tests/Parser/main.i: libs/Json/tests/Parser/main.cpp.i
-
-.PHONY : libs/Json/tests/Parser/main.i
-
-# target to preprocess a source file
-libs/Json/tests/Parser/main.cpp.i:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/Json/tests/Parser/main.cpp.i
-.PHONY : libs/Json/tests/Parser/main.cpp.i
-
-libs/Json/tests/Parser/main.s: libs/Json/tests/Parser/main.cpp.s
-
-.PHONY : libs/Json/tests/Parser/main.s
-
-# target to generate assembly for a file
-libs/Json/tests/Parser/main.cpp.s:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/Json/tests/Parser/main.cpp.s
-.PHONY : libs/Json/tests/Parser/main.cpp.s
-
-libs/Json/tests/Parser/srcs/Entity/Entity.o: libs/Json/tests/Parser/srcs/Entity/Entity.cpp.o
-
-.PHONY : libs/Json/tests/Parser/srcs/Entity/Entity.o
-
-# target to build an object file
-libs/Json/tests/Parser/srcs/Entity/Entity.cpp.o:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/Json/tests/Parser/srcs/Entity/Entity.cpp.o
-.PHONY : libs/Json/tests/Parser/srcs/Entity/Entity.cpp.o
-
-libs/Json/tests/Parser/srcs/Entity/Entity.i: libs/Json/tests/Parser/srcs/Entity/Entity.cpp.i
-
-.PHONY : libs/Json/tests/Parser/srcs/Entity/Entity.i
-
-# target to preprocess a source file
-libs/Json/tests/Parser/srcs/Entity/Entity.cpp.i:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/Json/tests/Parser/srcs/Entity/Entity.cpp.i
-.PHONY : libs/Json/tests/Parser/srcs/Entity/Entity.cpp.i
-
-libs/Json/tests/Parser/srcs/Entity/Entity.s: libs/Json/tests/Parser/srcs/Entity/Entity.cpp.s
-
-.PHONY : libs/Json/tests/Parser/srcs/Entity/Entity.s
-
-# target to generate assembly for a file
-libs/Json/tests/Parser/srcs/Entity/Entity.cpp.s:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/Json/tests/Parser/srcs/Entity/Entity.cpp.s
-.PHONY : libs/Json/tests/Parser/srcs/Entity/Entity.cpp.s
-
-libs/Json/tests/Parser/srcs/Parser/Parser.o: libs/Json/tests/Parser/srcs/Parser/Parser.cpp.o
-
-.PHONY : libs/Json/tests/Parser/srcs/Parser/Parser.o
-
-# target to build an object file
-libs/Json/tests/Parser/srcs/Parser/Parser.cpp.o:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/Json/tests/Parser/srcs/Parser/Parser.cpp.o
-.PHONY : libs/Json/tests/Parser/srcs/Parser/Parser.cpp.o
-
-libs/Json/tests/Parser/srcs/Parser/Parser.i: libs/Json/tests/Parser/srcs/Parser/Parser.cpp.i
-
-.PHONY : libs/Json/tests/Parser/srcs/Parser/Parser.i
-
-# target to preprocess a source file
-libs/Json/tests/Parser/srcs/Parser/Parser.cpp.i:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/Json/tests/Parser/srcs/Parser/Parser.cpp.i
-.PHONY : libs/Json/tests/Parser/srcs/Parser/Parser.cpp.i
-
-libs/Json/tests/Parser/srcs/Parser/Parser.s: libs/Json/tests/Parser/srcs/Parser/Parser.cpp.s
-
-.PHONY : libs/Json/tests/Parser/srcs/Parser/Parser.s
-
-# target to generate assembly for a file
-libs/Json/tests/Parser/srcs/Parser/Parser.cpp.s:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/Json/tests/Parser/srcs/Parser/Parser.cpp.s
-.PHONY : libs/Json/tests/Parser/srcs/Parser/Parser.cpp.s
-
 libs/SmartEvent/srcs/Event/Event.o: libs/SmartEvent/srcs/Event/Event.cpp.o
 
 .PHONY : libs/SmartEvent/srcs/Event/Event.o
@@ -338,60 +230,6 @@ libs/SmartEvent/srcs/HdlCollector/HdlCollector.s: libs/SmartEvent/srcs/HdlCollec
 libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.s:
 	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.s
 .PHONY : libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.s
-
-libs/SmartEvent/tests/Event/main.o: libs/SmartEvent/tests/Event/main.cpp.o
-
-.PHONY : libs/SmartEvent/tests/Event/main.o
-
-# target to build an object file
-libs/SmartEvent/tests/Event/main.cpp.o:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/SmartEvent/tests/Event/main.cpp.o
-.PHONY : libs/SmartEvent/tests/Event/main.cpp.o
-
-libs/SmartEvent/tests/Event/main.i: libs/SmartEvent/tests/Event/main.cpp.i
-
-.PHONY : libs/SmartEvent/tests/Event/main.i
-
-# target to preprocess a source file
-libs/SmartEvent/tests/Event/main.cpp.i:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/SmartEvent/tests/Event/main.cpp.i
-.PHONY : libs/SmartEvent/tests/Event/main.cpp.i
-
-libs/SmartEvent/tests/Event/main.s: libs/SmartEvent/tests/Event/main.cpp.s
-
-.PHONY : libs/SmartEvent/tests/Event/main.s
-
-# target to generate assembly for a file
-libs/SmartEvent/tests/Event/main.cpp.s:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/SmartEvent/tests/Event/main.cpp.s
-.PHONY : libs/SmartEvent/tests/Event/main.cpp.s
-
-libs/SmartEvent/tests/HdlCollector/main.o: libs/SmartEvent/tests/HdlCollector/main.cpp.o
-
-.PHONY : libs/SmartEvent/tests/HdlCollector/main.o
-
-# target to build an object file
-libs/SmartEvent/tests/HdlCollector/main.cpp.o:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/SmartEvent/tests/HdlCollector/main.cpp.o
-.PHONY : libs/SmartEvent/tests/HdlCollector/main.cpp.o
-
-libs/SmartEvent/tests/HdlCollector/main.i: libs/SmartEvent/tests/HdlCollector/main.cpp.i
-
-.PHONY : libs/SmartEvent/tests/HdlCollector/main.i
-
-# target to preprocess a source file
-libs/SmartEvent/tests/HdlCollector/main.cpp.i:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/SmartEvent/tests/HdlCollector/main.cpp.i
-.PHONY : libs/SmartEvent/tests/HdlCollector/main.cpp.i
-
-libs/SmartEvent/tests/HdlCollector/main.s: libs/SmartEvent/tests/HdlCollector/main.cpp.s
-
-.PHONY : libs/SmartEvent/tests/HdlCollector/main.s
-
-# target to generate assembly for a file
-libs/SmartEvent/tests/HdlCollector/main.cpp.s:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/libs/SmartEvent/tests/HdlCollector/main.cpp.s
-.PHONY : libs/SmartEvent/tests/HdlCollector/main.cpp.s
 
 srcs/Console/Console.o: srcs/Console/Console.cpp.o
 
@@ -690,33 +528,6 @@ srcs/System/UpdateDeplacement.cpp.s:
 	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/srcs/System/UpdateDeplacement.cpp.s
 .PHONY : srcs/System/UpdateDeplacement.cpp.s
 
-tests/bla.o: tests/bla.cpp.o
-
-.PHONY : tests/bla.o
-
-# target to build an object file
-tests/bla.cpp.o:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/tests/bla.cpp.o
-.PHONY : tests/bla.cpp.o
-
-tests/bla.i: tests/bla.cpp.i
-
-.PHONY : tests/bla.i
-
-# target to preprocess a source file
-tests/bla.cpp.i:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/tests/bla.cpp.i
-.PHONY : tests/bla.cpp.i
-
-tests/bla.s: tests/bla.cpp.s
-
-.PHONY : tests/bla.s
-
-# target to generate assembly for a file
-tests/bla.cpp.s:
-	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/tests/bla.cpp.s
-.PHONY : tests/bla.cpp.s
-
 tests/graphicalTest/test.o: tests/graphicalTest/test.cpp.o
 
 .PHONY : tests/graphicalTest/test.o
@@ -751,38 +562,20 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... edit_cache"
 	@echo "... Client"
+	@echo "... edit_cache"
 	@echo "... libs/Json/srcs/Entity/Entity.o"
 	@echo "... libs/Json/srcs/Entity/Entity.i"
 	@echo "... libs/Json/srcs/Entity/Entity.s"
 	@echo "... libs/Json/srcs/Parser/Parser.o"
 	@echo "... libs/Json/srcs/Parser/Parser.i"
 	@echo "... libs/Json/srcs/Parser/Parser.s"
-	@echo "... libs/Json/tests/Entity/main.o"
-	@echo "... libs/Json/tests/Entity/main.i"
-	@echo "... libs/Json/tests/Entity/main.s"
-	@echo "... libs/Json/tests/Parser/main.o"
-	@echo "... libs/Json/tests/Parser/main.i"
-	@echo "... libs/Json/tests/Parser/main.s"
-	@echo "... libs/Json/tests/Parser/srcs/Entity/Entity.o"
-	@echo "... libs/Json/tests/Parser/srcs/Entity/Entity.i"
-	@echo "... libs/Json/tests/Parser/srcs/Entity/Entity.s"
-	@echo "... libs/Json/tests/Parser/srcs/Parser/Parser.o"
-	@echo "... libs/Json/tests/Parser/srcs/Parser/Parser.i"
-	@echo "... libs/Json/tests/Parser/srcs/Parser/Parser.s"
 	@echo "... libs/SmartEvent/srcs/Event/Event.o"
 	@echo "... libs/SmartEvent/srcs/Event/Event.i"
 	@echo "... libs/SmartEvent/srcs/Event/Event.s"
 	@echo "... libs/SmartEvent/srcs/HdlCollector/HdlCollector.o"
 	@echo "... libs/SmartEvent/srcs/HdlCollector/HdlCollector.i"
 	@echo "... libs/SmartEvent/srcs/HdlCollector/HdlCollector.s"
-	@echo "... libs/SmartEvent/tests/Event/main.o"
-	@echo "... libs/SmartEvent/tests/Event/main.i"
-	@echo "... libs/SmartEvent/tests/Event/main.s"
-	@echo "... libs/SmartEvent/tests/HdlCollector/main.o"
-	@echo "... libs/SmartEvent/tests/HdlCollector/main.i"
-	@echo "... libs/SmartEvent/tests/HdlCollector/main.s"
 	@echo "... srcs/Console/Console.o"
 	@echo "... srcs/Console/Console.i"
 	@echo "... srcs/Console/Console.s"
@@ -816,9 +609,6 @@ help:
 	@echo "... srcs/System/UpdateDeplacement.o"
 	@echo "... srcs/System/UpdateDeplacement.i"
 	@echo "... srcs/System/UpdateDeplacement.s"
-	@echo "... tests/bla.o"
-	@echo "... tests/bla.i"
-	@echo "... tests/bla.s"
 	@echo "... tests/graphicalTest/test.o"
 	@echo "... tests/graphicalTest/test.i"
 	@echo "... tests/graphicalTest/test.s"
