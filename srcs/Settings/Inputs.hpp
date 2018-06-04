@@ -10,6 +10,8 @@
 #include <irrlicht/irrlicht.h>
 #include <vector>
 
+#include "ECS/Entity/Entity.hpp"
+
 namespace ecs::component {
 
 	struct Input {
@@ -36,19 +38,18 @@ namespace ecs::component {
 		irr::u8			controllerId{};
 	};
 
+	struct Mouse {
+		irr::core::position2di position;
+		bool leftButtonDown{false};
+	};
+
+	struct Button {
+		enum class Type { None = 0, Quit, Play };
+		Type		type;
+		entity::Id	id;
+	};
+
 	struct MenuInput {
-		struct Mouse {
-			irr::core::position2di position;
-			bool leftButtonDown{false};
-		};
-		struct Button {
-			enum class Type { None = 0, Quit, Play };
-			Type type;
-			irr::core::position2di position;
-			irr::core::position2di size;
-		};
-		Mouse			mouse;
-		std::vector<Button>	buttons;
 		int			pos{-1};
 	};
 

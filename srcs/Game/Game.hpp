@@ -31,6 +31,7 @@ namespace indie {
 		irr::IrrlichtDevice		*getDevice() const;
 		irr::video::IVideoDriver	*getDriver() const;
 		irr::scene::ISceneManager	*getSmgr() const;
+		ecs::entity::Id			getMouse() const;
 
 	protected:
 		json::Entity			_settings;
@@ -39,6 +40,7 @@ namespace indie {
 		irr::video::IVideoDriver	*_driver;
 		irr::scene::ISceneManager	*_smgr;
 		irr::gui::IGUIEnvironment	*_guienv;
+		ecs::entity::Id			_mouse;
 
 		Score				_score;
 

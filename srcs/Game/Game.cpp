@@ -9,6 +9,7 @@
 
 #include "Game.hpp"
 
+#include "Settings/Inputs.hpp"
 #include "System/Explode.hpp"
 #include "System/Update.hpp"
 #include "System/Destroyer.hpp"
@@ -33,6 +34,8 @@ namespace indie {
 		_driver = _device->getVideoDriver();
 		_smgr = _device->getSceneManager();
 		_guienv = _device->getGUIEnvironment();
+		_mouse = ecs::entity::Manager::get().newEntity();
+		ecs::component::Manager<ecs::component::Mouse>::get().addComponentForEntity(_mouse);
 	}
 
 	Game &Game::get()
@@ -60,6 +63,11 @@ namespace indie {
 	irr::scene::ISceneManager *Game::getSmgr() const
 	{
 		return _smgr;
+	}
+
+	ecs::entity::Id		Game::getMouse() const
+	{
+		return _mouse;
 	}
 
 	void Game::gameLoop()
