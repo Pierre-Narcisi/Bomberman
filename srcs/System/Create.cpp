@@ -68,6 +68,7 @@ namespace ecs::system {
 				_controller = true;
 
 		component::Manager<component::Being>::get().addComponentForEntity(id, mesh, texture, pos);
+		component::Manager<component::Stat>::get().addComponentForEntity();
 
 		auto selector = ecs::system::Create::createMap();
 		irr::scene::ISceneNodeAnimator *anim = game.getSmgr()->createCollisionResponseAnimator(selector,
