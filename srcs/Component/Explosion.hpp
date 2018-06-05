@@ -8,21 +8,22 @@
 #pragma once
 
 #include <irrlicht/irrlicht.h>
+#include <vector>
 
-#include "Game/Game.hpp"
+#include "Game.hpp"
 
 namespace ecs::component {
 
 	struct Explosion {
 		const std::vector<std::string> particle = {
-			"../../assets/Particle.tga",
-			"../../assets/particlegreen.jpg",
-			"../../assets/particlered.bmp",
-			"../../assets/particlewhite.bmp",
-			"../../assets/portal1.bmp",
-			"../../assets/portal6.bmp",
-			"../../assets/portal7.bmp",
-			"../../assets/smoke.bmp"
+			"./assets/Particle.tga",
+			"./assets/particlegreen.jpg",
+			"./assets/particlered.bmp",
+			"./assets/particlewhite.bmp",
+			"./assets/portal1.bmp",
+			"./assets/portal6.bmp",
+			"./assets/portal7.bmp",
+			"./assets/smoke.bmp"
 		};
 		Explosion() {
 			auto &game = indie::Game::get();

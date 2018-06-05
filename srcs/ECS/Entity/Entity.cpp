@@ -6,6 +6,7 @@
 */
 
 #include <iostream>
+
 #include "Entity.hpp"
 
 namespace ecs::entity {

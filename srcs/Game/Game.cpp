@@ -5,13 +5,11 @@
 ** Game.cpp
 */
 
-#include "Json/Parser.hpp"
-
+#include "Parser.hpp"
 #include "Game.hpp"
-
-#include "System/Explode.hpp"
-#include "System/Update.hpp"
-#include "System/Destroyer.hpp"
+#include "Explode.hpp"
+#include "Update.hpp"
+#include "Destroyer.hpp"
 
 namespace indie {
 
