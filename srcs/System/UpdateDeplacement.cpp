@@ -35,6 +35,7 @@ namespace ecs::system {
 		}
 
 		for (auto id : fl.list) {
+			spped = speed * component::Manager<component::Stat>::get().speed;
 			rot = being[id]._rotation;
 			moving = key[id].actions["up"].state || key[id].actions["down"].state || key[id].actions["left"].state || key[id].actions["right"].state;
 			deltatime = static_cast<irr::f32>((game.getDevice()->getTimer()->getTime() - being[id]._then) / 1000.f);
@@ -66,9 +67,9 @@ namespace ecs::system {
 			// Set Speed
 
 			if (key[id].actions["crouch"].state)
-				speed = speed / 2;
+				spped = spped / 2;
 			if (key[id].actions["sprint"].state)
-				speed = speed * 2;
+				spped = spped * 2;
 
 			// Set Animation
 			if (moving == 0) {
@@ -88,13 +89,14 @@ namespace ecs::system {
 
 				being[id]._rotation = rot;
 				pos = being[id]._node->getPosition();
-				pos.X = pos.X + static_cast<float>(cos(rot * M_PI / 180)) * speed * deltatime;
-				pos.Z = pos.Z - static_cast<float>(sin(rot * M_PI / 180)) * speed * deltatime;
+				pos.X = pos.X + static_cast<float>(cos(rot * M_PI / 180)) * spped * deltatime;
+				pos.Z = pos.Z - static_cast<float>(sin(rot * M_PI / 180)) * spped * deltatime;
 				being[id]._node->setPosition(pos);
 			}
 		}
 
 		for (auto id : list.list) {
+			spped = speed * component::Manager<component::Stat>::get().speed;
 			const irr::f32 DEAD_ZONE = 0.2f;
 			deltatime = static_cast<irr::f32>((game.getDevice()->getTimer()->getTime() - being[id]._then) / 1000.f);
 			being[id]._then = game.getDevice()->getTimer()->getTime();
@@ -130,9 +132,9 @@ namespace ecs::system {
 
 			// Set Speed
 			if ((control[id].buttons >> 1 & 1))
-				speed = speed / 2;
+				spped = spped / 2;
 			if ((control[id].buttons >> 9 & 1))
-				speed = speed * 2;
+				spped = spped * 2;
 
 			// Set Animation
 			if (rotHorizontal == 0 && rotVertical == 0) {
@@ -152,8 +154,8 @@ namespace ecs::system {
 
 				being[id]._rotation = rot;
 				pos = being[id]._node->getPosition();
-				pos.X += static_cast<float>(cos(rot * M_PI / 180)) * speed * deltatime;
-				pos.Z -= static_cast<float>(sin(rot * M_PI / 180)) * speed * deltatime;
+				pos.X += static_cast<float>(cos(rot * M_PI / 180)) * spped * deltatime;
+				pos.Z -= static_cast<float>(sin(rot * M_PI / 180)) * spped * deltatime;
 				being[id]._node->setPosition(pos);
 			}
 		}

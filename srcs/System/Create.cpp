@@ -105,14 +105,14 @@ namespace ecs::system {
 		return id;
 	}
 
-	entity::Id Create::createBomb(irr::core::vector2di pos)
+	entity::Id Create::createBomb(irr::core::vector2di pos, int range)
 	{
 		auto &game = indie::Game::get();
 		auto id = entity::Manager::get().newEntity();
 
 		component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::Bomb);
 		component::Manager<component::Position>::get().addComponentForEntity(id, pos.X, pos.Y);
-		component::Manager<component::Attributes>::get().addComponentForEntity(id, (long double) time(NULL) + 2, component::Attributes::Enum::Default);
+		component::Manager<component::Attributes>::get().addComponentForEntity(id, (long double) time(NULL) + 2, range, component::Attributes::Enum::Default);
 		component::Manager<component::Mesh>::get().addComponentForEntity(id, game.getSmgr()->addAnimatedMeshSceneNode(game.getSmgr()->getMesh("../../assets/bomb.obj")));
 		component::Manager<component::Mesh>::get()[id].mesh->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 		component::Manager<component::Mesh>::get()[id].mesh->setPosition({static_cast<float>(pos.X), 0, static_cast<float>(pos.Y)});

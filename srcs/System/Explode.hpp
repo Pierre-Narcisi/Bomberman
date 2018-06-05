@@ -38,7 +38,7 @@ namespace ecs::system {
 				if (typeManager[id].t == component::Type::Enum::Bomb
 				&& (long double) time(NULL) >= attributesManager[id].since) {
 					game.getSmgr()->addToDeletionQueue(meshManager[id].mesh);
-					Create::createExplosion(positionManager[id], 5);
+					Create::createExplosion(positionManager[id], component::Manager<component::AttributeBomb>::get().range);
 					component::Manager<component::Deletable>::get()[id].del = true;
 				}
 				if (typeManager[id].t == component::Type::Enum::Explosion
