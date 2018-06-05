@@ -16,7 +16,6 @@ namespace ecs::component {
 			short vertical;
 			short horizonal;
 		};
-		explicit Controller360(irr::u8 id): id{id} {};
 
 		joyStick	left{};
 		joyStick	right{};

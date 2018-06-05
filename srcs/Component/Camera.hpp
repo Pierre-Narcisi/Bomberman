@@ -18,16 +18,6 @@
 namespace ecs::component {
 
 	struct Camera {
-		Camera(ecs::entity::Id id)
-		{
-			auto &game = indie::Game::get();
-
-			irr::core::vector3df pos = ecs::component::Manager<ecs::component::Being>::get()[id]._node->getPosition();
-			_camera = game.getSmgr()->addCameraSceneNode();
-			_camera->setPosition(irr::core::vector3df(pos.X + 0, pos.Y + 500,pos.Z - 500));
-			_camera->setTarget(pos);
-		};
-
 		irr::scene::ICameraSceneNode	*_camera;
 	};
 
