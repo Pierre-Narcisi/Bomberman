@@ -26,8 +26,8 @@ namespace ecs::system {
 		static entity::Id	createWall(irr::core::vector2df pos);
 		static entity::Id	createDeletableWall(irr::core::vector2df pos);
 		static entity::Id	createPlayer(std::string const &mesh, std::string const &texture, irr::core::vector2df const &pos);
-		static entity::Id	createBomb(irr::core::vector2di pos);
-		static void		createExplosion(component::Position pos, int range);
+		static entity::Id	createBomb(entity::Id id, irr::core::vector2di pos);
+		static void		createExplosion(entity::Id id, component::Position pos);
 	};
 
 }

@@ -163,6 +163,9 @@
 		<Unit filename="/home/seb/tmp/Client/srcs/Component/Keyboard.hpp">
 			<Option target="Bomberman"/>
 		</Unit>
+		<Unit filename="/home/seb/tmp/Client/srcs/Component/Stat.hpp">
+			<Option target="Bomberman"/>
+		</Unit>
 		<Unit filename="/home/seb/tmp/Client/srcs/Component/UnanimatedObject.hpp">
 			<Option target="Bomberman"/>
 		</Unit>
