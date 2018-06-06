@@ -33,7 +33,6 @@ add_executable(bomberman
         srcs/Component/BoxCollider.hpp
         srcs/Component/Camera.hpp
         srcs/Component/Controller360.hpp
-        srcs/Component/Explosion.hpp
         srcs/Component/Graphicals.hpp
         srcs/Component/Keyboard.hpp
         srcs/Component/UnanimatedObject.hpp
@@ -69,10 +68,9 @@ add_executable(bomberman
         srcs/System/Explode.hpp
         srcs/System/Update.hpp
         srcs/System/UpdateDeplacement.cpp
-        srcs/Systems/SystemExplode.hpp
         tests/basicECS/Components.hpp
         tests/basicECS/Systems.hpp
-        tests/graphicalTest/test.cpp)
+        tests/graphicalTest/test.cpp srcs/Constructors/BeingConsruct.hpp srcs/Constructors/Destructors.hpp)
 
 target_link_libraries(bomberman /usr/lib/x86_64-linux-gnu/libIrrlicht.so)
 target_link_libraries(bomberman /usr/lib/x86_64-linux-gnu/libGL.so)
