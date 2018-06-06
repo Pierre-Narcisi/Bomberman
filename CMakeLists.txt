@@ -44,6 +44,7 @@ add_executable(Bomberman
         srcs/Component/Controller360.hpp
         srcs/Component/Graphicals.hpp
         srcs/Component/Keyboard.hpp
+        srcs/Component/Stat.hpp
         srcs/Component/UnanimatedObject.hpp
         srcs/Console/Console.cpp
         srcs/Console/Console.hpp

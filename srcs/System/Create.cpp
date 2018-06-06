@@ -11,6 +11,7 @@
 #include "Component/Basics.hpp"
 #include "Constructors/BeingConsruct.hpp"
 #include "Component/AttributeBomb.hpp"
+#include "Component/Stat.hpp"
 #include "Component/Graphicals.hpp"
 
 #include "System/Create.hpp"
@@ -71,6 +72,8 @@ namespace ecs::system {
 			if (strcmp(joystickInfo[i].Name.c_str(), "Microsoft X-Box 360 pad") == 0)
 				_controller = true;
 
+		// component::Manager<component::Being>::get().addComponentForEntity(id, mesh, texture, pos);
+		// component::Manager<component::Stat>::get().addComponentForEntity();
 		component::Manager<component::Being>::get().addComponentForEntity(id);
 		ecs::component::Constructors::Being(id, mesh, texture, pos);
 
@@ -106,21 +109,34 @@ namespace ecs::system {
 							  irr::EKEY_CODE::KEY_LSHIFT);
 		}
 
+		component::Manager<component::Stat>::get().addComponentForEntity(id);
+
 		component::Manager<component::Camera>::get().addComponentForEntity(id);
 		component::Constructors::Camera(id);
 
 		return id;
 	}
 
-	entity::Id Create::createBomb(irr::core::vector2di pos)
+	entity::Id Create::createBomb(entity::Id ID, irr::core::vector2di pos)
 	{
 		auto &game = indie::Game::get();
 
+		// component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::Bomb);
+		// component::Manager<component::Position>::get().addComponentForEntity(id, pos.X, pos.Y);
+		// component::Manager<component::Attributes>::get().addComponentForEntity(id, (long double) time(NULL) + 2, range, component::Attributes::Enum::Default);
+		// component::Manager<component::Mesh>::get().addComponentForEntity(id, game.getSmgr()->addAnimatedMeshSceneNode(game.getSmgr()->getMesh("../../assets/bomb.obj")));
+		// component::Manager<component::Mesh>::get()[id].mesh->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+		// component::Manager<component::Mesh>::get()[id].mesh->setPosition({static_cast<float>(pos.X), 0, static_cast<float>(pos.Y)});
+		// component::Manager<component::Mesh>::get()[id].mesh->setScale({25, 25, 25});
+		// component::Manager<component::Deletable>::get().addComponentForEntity(id);
+		// return id;
 		entity::Filter<component::Type, component::Mesh> fl;
 		auto &mesh = component::Manager<component::Mesh>::get();
 		auto &type = component::Manager<component::Type>::get();
 		bool existing = true;
 
+		if (component::Manager<component::Stat>::get()[ID].bombMax == 0)
+			existing = false;
 
 		for (auto &id : fl.list) {
 			if (pos.X == mesh[id].mesh->getPosition().X && pos.Y == mesh[id].mesh->getPosition().Z)
@@ -131,25 +147,26 @@ namespace ecs::system {
 			auto id = entity::Manager::get().newEntity();
 			component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::Bomb);
 			component::Manager<component::Position>::get().addComponentForEntity(id, pos.X, pos.Y);
-			component::Manager<component::Attributes>::get().addComponentForEntity(id, (long double) time(NULL) + 2, component::Attributes::Enum::Default);
+			component::Manager<component::Attributes>::get().addComponentForEntity(id, (long double) time(NULL) + 2, component::Manager<component::Stat>::get()[ID].range, component::Attributes::Enum::Default, ID);
 			component::Manager<component::Mesh>::get().addComponentForEntity(id, game.getSmgr()->addAnimatedMeshSceneNode(game.getSmgr()->getMesh("./assets/bomb.obj")));
 			component::Manager<component::Mesh>::get()[id].mesh->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 			component::Manager<component::Mesh>::get()[id].mesh->setPosition({static_cast<float>(pos.X), 0, static_cast<float>(pos.Y)});
 			component::Manager<component::Mesh>::get()[id].mesh->setScale({25, 25, 25});
 			component::Manager<component::Deletable>::get().addComponentForEntity(id);
+			component::Manager<component::Stat>::get()[ID].bombMax -= 1;
 			return id;
 		}
 		return static_cast<unsigned int>(-1);
 	}
 
-	void Create::createExplosion(component::Position pos, int range)
+	void Create::createExplosion(entity::Id ID, component::Position pos)
 	{
 		auto &game = indie::Game::get();
 		auto id = entity::Manager::get().newEntity();
 
 		component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::Explosion);
 		component::Manager<component::Position>::get().addComponentForEntity(id, pos.x, pos.y);
-		component::Manager<component::Attributes>::get().addComponentForEntity(id, (long double) time(NULL) + 1, component::Attributes::Enum::Default);
+		component::Manager<component::Attributes>::get().addComponentForEntity(id, (long double) time(NULL) + 1, component::Manager<component::Attributes>::get()[ID].range, component::Attributes::Enum::Default);
 		component::Manager<component::Deletable>::get().addComponentForEntity(id);
 
 		component::Manager<component::ParticleSystem>::get().addComponentForEntity(id,	game.getSmgr()->addParticleSystemSceneNode(false),
@@ -170,7 +187,7 @@ namespace ecs::system {
 			8000,10000,
 			irr::video::SColor(0,255,255,255),
 			irr::video::SColor(0,255,255,255),
-			80 + (150 * (range - 1)), 200 + (150 * (range - 1)),0,
+			80 + (150 * (component::Manager<component::Attributes>::get()[ID].range - 1)), 200 + (150 * (component::Manager<component::Attributes>::get()[ID].range - 1)),0,
 			irr::core::dimension2df(10.f,10.f),
 			irr::core::dimension2df(20.f,20.f)
 		);
@@ -181,7 +198,7 @@ namespace ecs::system {
 			8000,10000,
 			irr::video::SColor(0,255,255,255),
 			irr::video::SColor(0,255,255,255),
-			80 + (150 * (range - 1)), 200 + (150 * (range - 1)),0,
+			80 + (150 * (component::Manager<component::Attributes>::get()[ID].range - 1)), 200 + (150 * (component::Manager<component::Attributes>::get()[ID].range - 1)),0,
 			irr::core::dimension2df(10.f,10.f),
 			irr::core::dimension2df(20.f,20.f)
 		);
@@ -192,7 +209,7 @@ namespace ecs::system {
 			8000,10000,
 			irr::video::SColor(0,255,255,255),
 			irr::video::SColor(0,255,255,255),
-			80 + (150 * (range - 1)), 200 + (150 * (range - 1)),0,
+			80 + (150 * (component::Manager<component::Attributes>::get()[ID].range - 1)), 200 + (150 * (component::Manager<component::Attributes>::get()[ID].range - 1)),0,
 			irr::core::dimension2df(10.f,10.f),
 			irr::core::dimension2df(20.f,20.f)
 		);
@@ -203,7 +220,7 @@ namespace ecs::system {
 			8000,10000,
 			irr::video::SColor(0,255,255,255),
 			irr::video::SColor(0,255,255,255),
-			80 + (150 * (range - 1)), 200 + (150 * (range - 1)),0,
+			80 + (150 * (component::Manager<component::Attributes>::get()[ID].range - 1)), 200 + (150 * (component::Manager<component::Attributes>::get()[ID].range - 1)),0,
 			irr::core::dimension2df(10.f,10.f),
 			irr::core::dimension2df(20.f,20.f)
 		);

@@ -35,6 +35,7 @@ namespace ecs::system {
 		}
 
 		for (auto id : fl.list) {
+			speed = speed * component::Manager<component::Stat>::get()[id].speed;
 			rot = being[id]._rotation;
 			moving = key[id].actions["up"].state || key[id].actions["down"].state || key[id].actions["left"].state || key[id].actions["right"].state;
 			deltatime = static_cast<irr::f32>((game.getDevice()->getTimer()->getTime() - being[id]._then) / 1000.f);
@@ -95,6 +96,7 @@ namespace ecs::system {
 		}
 
 		for (auto id : list.list) {
+			speed = speed * component::Manager<component::Stat>::get()[id].speed;
 			const irr::f32 DEAD_ZONE = 0.2f;
 			deltatime = static_cast<irr::f32>((game.getDevice()->getTimer()->getTime() - being[id]._then) / 1000.f);
 			being[id]._then = game.getDevice()->getTimer()->getTime();

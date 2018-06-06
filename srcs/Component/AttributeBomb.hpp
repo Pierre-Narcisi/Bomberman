@@ -17,6 +17,8 @@ namespace ecs::component
 		};
 
 		long double	since;
+		int		range;
 		Enum		t;
+		entity::Id 	player;
 	};
 }
