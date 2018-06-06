@@ -13,6 +13,7 @@
 
 #include "ECS/Entity/Entity.hpp"
 #include "Component/Map.hpp"
+#include "System/Ai.hpp"
 
 namespace indie {
 
@@ -80,6 +81,7 @@ namespace indie {
 			ecs::system::Explode::update();
 			ecs::system::Update::Bomb();
 			ecs::system::Destroyer::update();
+			ecs::system::Ai::updateAll();
 /*
 	update background
 	update bombes

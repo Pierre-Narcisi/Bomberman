@@ -70,6 +70,8 @@ add_executable(Bomberman
         srcs/Settings/Settings.hpp
         srcs/System/Being.cpp
         srcs/System/Being.hpp
+        srcs/System/Ai.cpp
+        srcs/System/Ai.hpp
         srcs/System/Create.cpp
         srcs/System/Create.hpp
         srcs/System/Destroyer.hpp

@@ -420,6 +420,33 @@ srcs/Settings/Settings.cpp.s:
 	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/Settings/Settings.cpp.s
 .PHONY : srcs/Settings/Settings.cpp.s
 
+srcs/System/Ai.o: srcs/System/Ai.cpp.o
+
+.PHONY : srcs/System/Ai.o
+
+# target to build an object file
+srcs/System/Ai.cpp.o:
+	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/Ai.cpp.o
+.PHONY : srcs/System/Ai.cpp.o
+
+srcs/System/Ai.i: srcs/System/Ai.cpp.i
+
+.PHONY : srcs/System/Ai.i
+
+# target to preprocess a source file
+srcs/System/Ai.cpp.i:
+	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/Ai.cpp.i
+.PHONY : srcs/System/Ai.cpp.i
+
+srcs/System/Ai.s: srcs/System/Ai.cpp.s
+
+.PHONY : srcs/System/Ai.s
+
+# target to generate assembly for a file
+srcs/System/Ai.cpp.s:
+	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/Ai.cpp.s
+.PHONY : srcs/System/Ai.cpp.s
+
 srcs/System/Being.o: srcs/System/Being.cpp.o
 
 .PHONY : srcs/System/Being.o
@@ -597,6 +624,9 @@ help:
 	@echo "... srcs/Settings/Settings.o"
 	@echo "... srcs/Settings/Settings.i"
 	@echo "... srcs/Settings/Settings.s"
+	@echo "... srcs/System/Ai.o"
+	@echo "... srcs/System/Ai.i"
+	@echo "... srcs/System/Ai.s"
 	@echo "... srcs/System/Being.o"
 	@echo "... srcs/System/Being.i"
 	@echo "... srcs/System/Being.s"

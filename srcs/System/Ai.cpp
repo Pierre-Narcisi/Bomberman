@@ -6,6 +6,7 @@
 */
 
 #include "Ai.hpp"
+#include "Component/Graphicals.hpp"
 
 namespace ecs::system {
 
@@ -16,33 +17,35 @@ namespace ecs::system {
 
 	void Ai::updateAll()
 	{
-		entity::Filter<component::UnanimatedObject> fl;
+		entity::Filter<component::Type> fl;
 		entity::Filter<component::UnanimatedObject, component::Deletable> list;
 		entity::Filter<component::Map> mapList;
 		auto &wall = component::Manager<component::UnanimatedObject>::get();
-		auto &delWall = component::Manager<component::UnanimatedObject, component::Deletable>::get();
-		map_t &map;
-		irr::core::vector2df pos;
+		auto &mesh = component::Manager<component::Mesh>::get();
+		auto &delWall = component::Manager<component::Deletable>::get();
+		auto &type = component::Manager<component::Type>::get();
+
 
 		for (auto &id : mapList.list) {
-			map = component::Manager<ecs::component::Map>::get()[id].map;
-		}
-		for (int i = 0; i < 100; i++) {
-			for (int j = 0; j < 100; j++) {
-				map[i][j] = 0;			
-			}	
-		}
-		for (auto &id : fl.list) {
-			pos = wall[id]._node.getPosition();
-			if (wall[id]._node.getType() == component::Type::Bomb) {
-				map[pos.y / 100][pos.x / 100] = 3;
-			} else if (wall[id]._node.getType() == component::Type::Wall) {
-				map[pos.y / 100][pos.x / 100] = 1;
+			auto &map = component::Manager<component::Map>::get()[id].map;
+			for (int i = 0; i < map.size(); i++) {
+				for (int j = 0; j < map[i].size(); j++) {
+					map[i][j] = 0;		
+				}	
 			}
-		}
-		for (auto &id : list.list) {
-			pos = delWall[id]._node.getPosition();
-			map[pos.y / 100][pos.x / 100] = 2;		
+			for (auto &id : fl.list) {
+				if (type[id].t == component::Type::Enum::Bomb) {
+					auto pos = mesh[id].mesh->getPosition();
+					map[pos.Z / 100][pos.X / 100] = 3;
+				} else if (type[id].t == component::Type::Enum::Wall) {
+					auto pos = wall[id]._node->getPosition();
+					map[pos.Z / 100][pos.X / 100] = 1;
+				}
+			}
+			for (auto &id : list.list) {
+				auto pos = wall[id]._node->getPosition();
+				map[pos.Z / 100][pos.X / 100] = 2;		
+			}
 		}
 	}
 }

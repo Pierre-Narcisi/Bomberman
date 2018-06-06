@@ -128,7 +128,7 @@ namespace indie {
 	_xmap{x},
 	_ymap{y},
 	gen{std::make_pair(_xgen, _ygen)},
-	_2Dmap(y, std::vector<int>(x, 1))
+	_2Dmap(y + 2, std::vector<int>(x + 2, 1))
 	{
 		generate2D();
 		make_unperfect();
