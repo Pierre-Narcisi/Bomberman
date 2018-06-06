@@ -9,15 +9,20 @@
 include ./common/depend.mk
 
 INCLUDES	+=	$(addprefix -I $(SDIR)/,	\
-				./			\
+				Entity		\
+				Parser		\
 			)
 
 MKINCLUDE	=	Parser.hpp	\
-			JsonEntity.hpp
+			Entity.hpp
 
-OUTINCLUDE	=	$(addprefix includes/, $(MKINCLUDE))
+OUTINCLUDE	=	$(addprefix includes/Json/, $(MKINCLUDE))
 
-CPPFLAGS	+=	-fPIC
+ifneq ($(TARGET),windows)
+  CPPFLAGS	+=	-fPIC
+else
+  CPPFLAGS	+=	-D TARGET_WINDOWS
+endif
 
 SRCS		=	Parser/Parser.cpp	\
 			Entity/Entity.cpp
@@ -30,10 +35,10 @@ ST_NAME		=	$(OUTPATH)/libstatic_$(NAME).a
 
 all		:	$(NAME)
 
-includes/%.hpp	:	$(SDIR)/**/%.hpp
-			@printf $(BLUE)"Creating $@\n"$(DEFAULT)
-			@mkdir -p $(dir $@)
-			@cp $< $@
+includes/Json/%.hpp	:	$(SDIR)/**/%.hpp
+				@printf $(BLUE)"Creating $@\n"$(DEFAULT)
+				@mkdir -p $(dir $@)
+				@cp $< $@
 
 includes	:	$(OUTINCLUDE)
 

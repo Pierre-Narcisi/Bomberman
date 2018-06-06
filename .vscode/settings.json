@@ -39,6 +39,11 @@
 		"typeindex": "cpp",
 		"cstring": "cpp",
 		"fstream": "cpp",
-		"string": "cpp"
+		"string": "cpp",
+		"thread": "cpp",
+		"chrono": "cpp",
+		"ratio": "cpp",
+		"cmath": "cpp",
+		"numeric": "cpp"
 	}
 }

@@ -7,7 +7,11 @@
 
 #pragma once
 
-struct BoxCollider {
-	int x;
-	int y;
-};
+namespace ecs {
+
+	struct BoxCollider {
+		int x;
+		int y;
+	};
+
+}

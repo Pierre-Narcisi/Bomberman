@@ -5,23 +5,19 @@
 ** Created by seb,
 */
 
-#ifndef IRRLICHTWRAPPER_EVENTRECEIVER_HPP
-#define IRRLICHTWRAPPER_EVENTRECEIVER_HPP
+#pragma once
 
 #include <irrlicht/irrlicht.h>
 #include <irrlicht/IEventReceiver.h>
-#include "SystemEvent.hpp"
+#include <irrlicht/driverChoice.h>
 
-class MyEventReceiver : public irr::IEventReceiver
-{
-public:
-	MyEventReceiver();
+namespace indie {
 
-	virtual bool OnEvent(const irr::SEvent& event)
-	{
-		ecs::system::Events::Manager(event);
-		return false;
-	}
-};
+	class MyEventReceiver : public irr::IEventReceiver {
+	public:
+		MyEventReceiver() = default;
 
-#endif //IRRLICHTWRAPPER_EVENTRECEIVER_HPP
+		virtual bool OnEvent(irr::SEvent const &event);
+	};
+
+}

@@ -2,6 +2,7 @@
 ## temporary :
 *#
 *~
+/Makefile
 
 ## object :
 *.o
@@ -15,4 +16,4 @@ CMakeFiles
 ## binaries :
 a.out
 /bomberman
-/tests/graphicalTest/bomberman
+tests/graphicalTest/bomberman

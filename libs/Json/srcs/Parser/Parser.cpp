@@ -189,7 +189,7 @@ namespace json
 			_count.offset++;
 			std::string toLower = sValue.str();
 			for (std::size_t i = 0; i < toLower.size(); i++)
-				toLower[i] = std::tolower(toLower[i]);
+				toLower[i] = TOLOWER(toLower[i]);
 			if (toLower == "true" ||
 			    toLower == "false")
 				break;
@@ -211,7 +211,7 @@ namespace json
 			_count.offset++;
 			std::string toLower = sValue.str();
 			for (std::size_t i = 0; i < toLower.size(); i++)
-				toLower[i] = std::tolower(toLower[i]);
+				toLower[i] = TOLOWER(toLower[i]);
 			if (toLower == "null")
 				break;
 			max--;
@@ -268,7 +268,7 @@ namespace json
 			<< "(Ln " << _pos.line << ": Col "
 			<< _pos.col << "): "
 			<< "Unexpected charater: '";
-		if (std::isprint(c)) {
+		if (ISPRINT(c)) {
 			_sstm << c;
 		} else if ((char) c == -1) {
 			_sstm << "EOF";

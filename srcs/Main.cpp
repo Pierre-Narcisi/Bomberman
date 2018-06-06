@@ -2,52 +2,25 @@
 ** EPITECH PROJECT, 2017
 ** Client
 ** File description:
-** main.cpp
+** Main.cpp
 */
 
-#include "Entity.hpp"
-#include "Component.hpp"
-#include "Filter.hpp"
-
-#include "Component/Position.hpp"
-#include "Component/BoxCollider.hpp"
+#include "Game/Game.hpp"
+#include "MapGen/mapGen.hpp"
+#include "System/Create.hpp"
+#include "System/CreateButton.hpp"
 
 int main()
 {
-	ecs::entity::Manager &instance = ecs::entity::Manager::get();
-	ecs::entity::Id p0 = instance.newEntity();
-	ecs::entity::Id p1 = instance.newEntity();
-	ecs::entity::Id p2 = instance.newEntity();
-	ecs::entity::Id p3 = instance.newEntity();
-	ecs::entity::Id p4 = instance.newEntity();
-	ecs::entity::Id p5 = instance.newEntity();
+	indie::Game &game = indie::Game::get();
 
-	ecs::component::Manager<Position>::get().addComponentForEntity(p0);
-	ecs::component::Manager<Position>::get().addComponentForEntity(p1);
-	ecs::component::Manager<Position>::get().addComponentForEntity(p3);
-	ecs::component::Manager<Position>::get().addComponentForEntity(p4);
-	ecs::component::Manager<BoxCollider>::get().addComponentForEntity(p1);
-	ecs::component::Manager<BoxCollider>::get().addComponentForEntity(p2);
-	ecs::component::Manager<BoxCollider>::get().addComponentForEntity(p4);
-	ecs::component::Manager<BoxCollider>::get().addComponentForEntity(p5);
-
-	ecs::entity::Manager::get().deleteEntity(p1);
-	ecs::entity::Filter<Position> fl;
-	std::cout << "print filter 1" << std::endl;
-	for (auto e : fl.list) {
-		ecs::entity::Manager::get().serializeEntity(e);
-	}
-
-	ecs::entity::Filter<Position, BoxCollider> fl2;
-	std::cout << "print filter 2" << std::endl;
-	for (auto e : fl2.list) {
-		ecs::entity::Manager::get().serializeEntity(e);
-	}
-
-	ecs::entity::Filter<BoxCollider> fl3(fl.list);
-	std::cout << "print filter 3" << std::endl;
-	for (auto e : fl3.list) {
-		ecs::entity::Manager::get().serializeEntity(e);
-	}
+	indie::mapGen(10, 10);
+	irr::core::array<irr::SJoystickInfo> joystickInfo;
+	game.getDevice()->activateJoysticks(joystickInfo);
+	ecs::system::Create::createPlayer("./assets/sydney.md2", "./assets/sydney.bmp", irr::core::vector2df(100,100));
+	// ecs::system::createBackground("./assets/buttons/maxresdefault.jpg", ecs::component::Rect{0, 0, 1920, 1080});
+	// ecs::system::createButton(ecs::component::Button::Type::Quit, "./assets/buttons/exitWhite1.png",
+	// ecs::component::Rect{700, 750, 400, 150}, "./assets/buttons/exitBlack1.png");
+	game.gameLoop();
 
 }

@@ -8,25 +8,31 @@
 #pragma once
 
 #include <irrlicht/irrlicht.h>
+#include <vector>
+
+#include "Game/Game.hpp"
 
 namespace ecs::component {
+
 	struct Explosion {
-		std::vector<std::string> particle = {
-			"../../assets/Particle.tga",
-			"../../assets/particlegreen.jpg",
-			"../../assets/particlered.bmp",
-			"../../assets/particlewhite.bmp",
-			"../../assets/portal1.bmp",
-			"../../assets/portal6.bmp",
-			"../../assets/portal7.bmp",
-			"../../assets/smoke.bmp"
+		const std::vector<std::string> particle = {
+			"./assets/Particle.tga",
+			"./assets/particlegreen.jpg",
+			"./assets/particlered.bmp",
+			"./assets/particlewhite.bmp",
+			"./assets/portal1.bmp",
+			"./assets/portal6.bmp",
+			"./assets/portal7.bmp",
+			"./assets/smoke.bmp"
 		};
-		Explosion(irr::scene::ISceneManager *smgr, irr::video::IVideoDriver *driver) {
-			fire_up = smgr->addParticleSystemSceneNode(false);
-			fire_left = smgr->addParticleSystemSceneNode(false);
-			fire_down = smgr->addParticleSystemSceneNode(false);
-			fire_right = smgr->addParticleSystemSceneNode(false);
-			fire_top = smgr->addParticleSystemSceneNode(false);
+		Explosion() {
+			auto &game = indie::Game::get();
+
+			fire_up = game.getSmgr()->addParticleSystemSceneNode(false);
+			fire_left = game.getSmgr()->addParticleSystemSceneNode(false);
+			fire_down = game.getSmgr()->addParticleSystemSceneNode(false);
+			fire_right = game.getSmgr()->addParticleSystemSceneNode(false);
+			fire_top = game.getSmgr()->addParticleSystemSceneNode(false);
 
 			irr::scene::IParticleEmitter *em_up = fire_up->createBoxEmitter(
 				irr::core::aabbox3d<irr::f32>(-10, -1, -10, 10, 0, 10),
@@ -103,7 +109,7 @@ namespace ecs::component {
 			fire_up->setScale(irr::core::vector3df(2, 2, 2));
 			fire_up->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 			fire_up->setMaterialFlag(irr::video::EMF_ZWRITE_ENABLE, false);
-			fire_up->setMaterialTexture(0, driver->getTexture(particle[rand()%particle.size()].c_str()));
+			fire_up->setMaterialTexture(0, game.getDriver()->getTexture(particle[rand()%particle.size()].c_str()));
 			fire_up->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
 
 			fire_left->setPosition(irr::core::vector3df(0, 0, 0));
@@ -111,7 +117,7 @@ namespace ecs::component {
 			fire_left->setScale(irr::core::vector3df(2, 2, 2));
 			fire_left->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 			fire_left->setMaterialFlag(irr::video::EMF_ZWRITE_ENABLE, false);
-			fire_left->setMaterialTexture(0, driver->getTexture(particle[rand()%particle.size()].c_str()));
+			fire_left->setMaterialTexture(0, game.getDriver()->getTexture(particle[rand()%particle.size()].c_str()));
 			fire_left->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
 
 			fire_down->setPosition(irr::core::vector3df(0, 0, 0));
@@ -119,7 +125,7 @@ namespace ecs::component {
 			fire_down->setScale(irr::core::vector3df(2, 2, 2));
 			fire_down->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 			fire_down->setMaterialFlag(irr::video::EMF_ZWRITE_ENABLE, false);
-			fire_down->setMaterialTexture(0, driver->getTexture(particle[rand()%particle.size()].c_str()));
+			fire_down->setMaterialTexture(0, game.getDriver()->getTexture(particle[rand()%particle.size()].c_str()));
 			fire_down->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
 
 			fire_right->setPosition(irr::core::vector3df(0, 0, 0));
@@ -127,7 +133,7 @@ namespace ecs::component {
 			fire_right->setScale(irr::core::vector3df(2, 2, 2));
 			fire_right->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 			fire_right->setMaterialFlag(irr::video::EMF_ZWRITE_ENABLE, false);
-			fire_right->setMaterialTexture(0, driver->getTexture(particle[rand()%particle.size()].c_str()));
+			fire_right->setMaterialTexture(0, game.getDriver()->getTexture(particle[rand()%particle.size()].c_str()));
 			fire_right->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
 
 			fire_top->setPosition(irr::core::vector3df(0, 0, 0));
@@ -135,13 +141,15 @@ namespace ecs::component {
 			fire_top->setScale(irr::core::vector3df(2, 2, 2));
 			fire_top->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 			fire_top->setMaterialFlag(irr::video::EMF_ZWRITE_ENABLE, false);
-			fire_top->setMaterialTexture(0, driver->getTexture(particle[rand()%particle.size()].c_str()));
+			fire_top->setMaterialTexture(0, game.getDriver()->getTexture(particle[rand()%particle.size()].c_str()));
 			fire_top->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
 		};
-		irr::scene::IParticleSystemSceneNode* fire_up;
-		irr::scene::IParticleSystemSceneNode* fire_left;
-		irr::scene::IParticleSystemSceneNode* fire_down;
-		irr::scene::IParticleSystemSceneNode* fire_right;
-		irr::scene::IParticleSystemSceneNode* fire_top;
+
+		irr::scene::IParticleSystemSceneNode	*fire_up;
+		irr::scene::IParticleSystemSceneNode	*fire_left;
+		irr::scene::IParticleSystemSceneNode	*fire_down;
+		irr::scene::IParticleSystemSceneNode	*fire_right;
+		irr::scene::IParticleSystemSceneNode	*fire_top;
 	};
+
 }

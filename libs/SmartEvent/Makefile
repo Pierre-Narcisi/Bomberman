@@ -9,7 +9,9 @@
 include ./common/depend.mk
 
 INCLUDES	+=	$(addprefix -I $(SDIR)/,	\
-				./			\
+				Event			\
+				HdlCollector	\
+				Manager		\
 			)
 
 CPPFLAGS	+=	-fPIC
@@ -20,7 +22,7 @@ MKINCLUDE	=	Event.hpp		\
 			Manager.hpp		\
 			Manager.tpp
 
-OUTINCLUDE	=	$(addprefix includes/, $(MKINCLUDE))
+OUTINCLUDE	=	$(addprefix includes/SmartEvent/, $(MKINCLUDE))
 
 SRCS		=	Event/Event.cpp			\
 			HdlCollector/HdlCollector.cpp
@@ -34,15 +36,15 @@ ST_NAME		=	$(OUTPATH)/libstatic_$(NAME).a
 
 all		:	$(NAME)
 
-includes/%.hpp	:	$(SDIR)/**/%.hpp
-			@printf $(BLUE)"Creating $@\n"$(DEFAULT)
-			@mkdir -p $(dir $@)
-			@cp $< $@
+includes/SmartEvent/%.hpp	:	$(SDIR)/**/%.hpp
+					@printf $(BLUE)"Creating $@\n"$(DEFAULT)
+					@mkdir -p $(dir $@)
+					@cp $< $@
 
-includes/%.tpp	:	$(SDIR)/**/%.tpp
-			@printf $(BLUE)"Creating $@\n"$(DEFAULT)
-			@mkdir -p $(dir $@)
-			@cp $< $@
+includes/SmartEvent/%.tpp	:	$(SDIR)/**/%.tpp
+					@printf $(BLUE)"Creating $@\n"$(DEFAULT)
+					@mkdir -p $(dir $@)
+					@cp $< $@
 
 includes	:	$(OUTINCLUDE)
 
@@ -64,5 +66,6 @@ clean		:
 
 fclean		:	clean
 			rm -f $(SH_NAME) $(ST_NAME)
+			rm -r includes
 
 re		:	fclean all

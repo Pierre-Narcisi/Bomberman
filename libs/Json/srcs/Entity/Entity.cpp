@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <cstring>
-#include "JsonEntity.hpp"
+#include "Entity.hpp"
 
 namespace json
 {
@@ -102,7 +102,7 @@ namespace json
 	template <>
 	char	*Entity::to<char *>() const
 	{	
-		return ::strdup(_data->toString().c_str());
+		return STRDUP(_data->toString().c_str());
 	}
 
 	template <>
@@ -434,9 +434,9 @@ namespace json
 
 	bool		String::toBool(void) const
 	{
-		if (::strcasecmp(this->c_str(), "true") == 0) {
+		if (STRCASECMP(this->c_str(), "true") == 0) {
 			return true;
-		} else if (::strcasecmp(this->c_str(), "false") == 0) {
+		} else if (STRCASECMP(this->c_str(), "false") == 0) {
 			return false;
 		} else {
 			throw std::runtime_error("Json : Error : "
