@@ -10,10 +10,8 @@
 #include <string>
 #include <algorithm>
 
+#include "Json/srcs/Entity/Entity.hpp"
 #include "ECS/Entity/Entity.hpp"
-#include "ECS/Component/Component.hpp"
-
-#include "Settings.hpp"
 
 json::Entity getSettings()
 {
@@ -50,26 +48,4 @@ json::Entity getSettings()
 json::Entity saveSettings()
 {
 	return json::Entity();
-}
-
-namespace ecs::system {
-
-	void InitInputs::CreateInputsForPlayer(entity::Id id, std::string const &player)
-	{
-		component::Input &inputs = component::Manager<component::Input>::get().addComponentForEntity(id);
-		json::Entity settings = getSettings();
-
-		/* json::Entity serializer(json::makeObject {
-			{"Entity", json::Entity::ARR},
-			{"Components", json::Entity::OBJ}
-		});
-		serializer["Components"]["position"].push(json::makeObject {
-			{"id", 12},
-
-		})
-		std::cout << serializer << std::endl;
-		std::string a(json::Entity(12).to<std::string>());
-		serializer = serializer.getData<json::Object>().get(); */
-	}
-
 }

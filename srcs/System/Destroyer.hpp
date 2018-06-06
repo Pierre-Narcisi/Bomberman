@@ -24,7 +24,7 @@ namespace ecs::system {
 
 			for (auto id : fl.list) {
 				// std::cout << "delete " << deleteManager[id].del << std::endl;
-				if (deleteManager[id].del == true)
+				if (deleteManager[id].del)
 					entity::Manager::get().deleteEntity(id);
 			}
 		}

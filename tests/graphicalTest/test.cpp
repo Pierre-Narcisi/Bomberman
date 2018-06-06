@@ -8,13 +8,10 @@
 #include <ctime>
 #include <cstdlib>
 
-#include "Game/Game.hpp"
-#include "Graphical/EventReceiver.hpp"
-#include "MapGen/mapGen.hpp"
+#include "Game.hpp"
+#include "mapGen.hpp"
+#include "Create.hpp"
 
-#include "System/Create.hpp"
-#include "System/Explode.hpp"
-#include "System/Destroyer.hpp"
 
 int main() {
 	indie::Game &game = indie::Game::get();
@@ -22,7 +19,7 @@ int main() {
 	indie::mapGen(10, 10);
 	irr::core::array<irr::SJoystickInfo> joystickInfo;
 	game.getDevice()->activateJoysticks(joystickInfo);
-	ecs::system::Create::createPlayer("../../assets/sydney.md2", "../../assets/sydney.bmp", irr::core::vector2df(100,100));
+	ecs::system::Create::createPlayer("./assets/sydney.md2", "./assets/sydney.bmp", irr::core::vector2df(100,100));
 
 	game.gameLoop();
 }

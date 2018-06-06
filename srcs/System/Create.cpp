@@ -9,8 +9,9 @@
 #include "ECS/Entity/Entity.hpp"
 
 #include "Component/Basics.hpp"
+#include "Constructors/BeingConsruct.hpp"
 #include "Component/AttributeBomb.hpp"
-#include "Component/Explosion.hpp"
+#include "Component/Stat.hpp"
 #include "Component/Graphicals.hpp"
 
 #include "System/Create.hpp"
@@ -37,8 +38,10 @@ namespace ecs::system {
 	{
 		auto	id = entity::Manager::get().newEntity();
 
-		component::Manager<component::UnanimatedObject>::get().addComponentForEntity(id, "../../assets/cobblestone.jpg", pos);
-		component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::Wall);
+		component::Manager<component::UnanimatedObject>::get().addComponentForEntity(id);
+		component::Constructors::UnanimatedObject(id, "./assets/cobblestone.jpg", pos);
+		component::Manager<component::Type>::get().addComponentForEntity(id);
+		component::Constructors::Type(id, component::Type::Enum::Wall);
 
 		return id;
 	}
@@ -47,9 +50,11 @@ namespace ecs::system {
 	{
 		auto	id = entity::Manager::get().newEntity();
 
-		component::Manager<component::UnanimatedObject>::get().addComponentForEntity(id, "../../assets/wooddencreate.png", pos);
+		component::Manager<component::UnanimatedObject>::get().addComponentForEntity(id);
+		component::Constructors::UnanimatedObject(id, "./assets/wooddencreate.png", pos);
 		component::Manager<component::Deletable>::get().addComponentForEntity(id);
-		component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::Wall);
+		component::Manager<component::Type>::get().addComponentForEntity(id);
+		component::Constructors::Type(id, component::Type::Enum::Wall);
 
 		return id;
 	}
@@ -67,8 +72,10 @@ namespace ecs::system {
 			if (strcmp(joystickInfo[i].Name.c_str(), "Microsoft X-Box 360 pad") == 0)
 				_controller = true;
 
-		component::Manager<component::Being>::get().addComponentForEntity(id, mesh, texture, pos);
-		component::Manager<component::Stat>::get().addComponentForEntity();
+		// component::Manager<component::Being>::get().addComponentForEntity(id, mesh, texture, pos);
+		// component::Manager<component::Stat>::get().addComponentForEntity();
+		component::Manager<component::Being>::get().addComponentForEntity(id);
+		ecs::component::Constructors::Being(id, mesh, texture, pos);
 
 		auto selector = ecs::system::Create::createMap();
 		irr::scene::ISceneNodeAnimator *anim = game.getSmgr()->createCollisionResponseAnimator(selector,
@@ -87,20 +94,23 @@ namespace ecs::system {
 			}
 		}
 
-		component::Manager<component::Explosion>::get().addComponentForEntity(id);
+		if (_controller) {
+			component::Manager<component::Controller360>::get().addComponentForEntity(id);
+			component::Constructors::Controller360(id, joystickInfo[i].Joystick);
+		} else {
+			component::Manager<component::Keyboard>::get().addComponentForEntity(id);
+			component::Constructors::Keyboard(id,
+							  irr::EKEY_CODE::KEY_KEY_Z,
+							  irr::EKEY_CODE::KEY_KEY_Q,
+							  irr::EKEY_CODE::KEY_KEY_S,
+							  irr::EKEY_CODE::KEY_KEY_D,
+							  irr::EKEY_CODE::KEY_SPACE,
+							  irr::EKEY_CODE::KEY_LCONTROL,
+							  irr::EKEY_CODE::KEY_LSHIFT);
+		}
 
-		if (_controller)
-			component::Manager<component::Controller360>::get().addComponentForEntity(id, joystickInfo[i].Joystick);
-		else
-			component::Manager<component::Keyboard>::get().addComponentForEntity(id,
-										irr::EKEY_CODE::KEY_KEY_Z,
-										irr::EKEY_CODE::KEY_KEY_Q,
-										irr::EKEY_CODE::KEY_KEY_S,
-										irr::EKEY_CODE::KEY_KEY_D,
-										irr::EKEY_CODE::KEY_SPACE,
-										irr::EKEY_CODE::KEY_LCONTROL,
-										irr::EKEY_CODE::KEY_LSHIFT);
-		component::Manager<component::Camera>::get().addComponentForEntity(id, id);
+		component::Manager<component::Camera>::get().addComponentForEntity(id);
+		component::Constructors::Camera(id);
 
 		return id;
 	}
@@ -108,17 +118,40 @@ namespace ecs::system {
 	entity::Id Create::createBomb(irr::core::vector2di pos, int range)
 	{
 		auto &game = indie::Game::get();
-		auto id = entity::Manager::get().newEntity();
 
-		component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::Bomb);
-		component::Manager<component::Position>::get().addComponentForEntity(id, pos.X, pos.Y);
-		component::Manager<component::Attributes>::get().addComponentForEntity(id, (long double) time(NULL) + 2, range, component::Attributes::Enum::Default);
-		component::Manager<component::Mesh>::get().addComponentForEntity(id, game.getSmgr()->addAnimatedMeshSceneNode(game.getSmgr()->getMesh("../../assets/bomb.obj")));
-		component::Manager<component::Mesh>::get()[id].mesh->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-		component::Manager<component::Mesh>::get()[id].mesh->setPosition({static_cast<float>(pos.X), 0, static_cast<float>(pos.Y)});
-		component::Manager<component::Mesh>::get()[id].mesh->setScale({25, 25, 25});
-		component::Manager<component::Deletable>::get().addComponentForEntity(id);
-		return id;
+		// component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::Bomb);
+		// component::Manager<component::Position>::get().addComponentForEntity(id, pos.X, pos.Y);
+		// component::Manager<component::Attributes>::get().addComponentForEntity(id, (long double) time(NULL) + 2, range, component::Attributes::Enum::Default);
+		// component::Manager<component::Mesh>::get().addComponentForEntity(id, game.getSmgr()->addAnimatedMeshSceneNode(game.getSmgr()->getMesh("../../assets/bomb.obj")));
+		// component::Manager<component::Mesh>::get()[id].mesh->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+		// component::Manager<component::Mesh>::get()[id].mesh->setPosition({static_cast<float>(pos.X), 0, static_cast<float>(pos.Y)});
+		// component::Manager<component::Mesh>::get()[id].mesh->setScale({25, 25, 25});
+		// component::Manager<component::Deletable>::get().addComponentForEntity(id);
+		// return id;
+		entity::Filter<component::Type, component::Mesh> fl;
+		auto &mesh = component::Manager<component::Mesh>::get();
+		auto &type = component::Manager<component::Type>::get();
+		bool existing = true;
+
+
+		for (auto &id : fl.list) {
+			if (pos.X == mesh[id].mesh->getPosition().X && pos.Y == mesh[id].mesh->getPosition().Z)
+				existing = false;
+		}
+
+		if (existing) {
+			auto id = entity::Manager::get().newEntity();
+			component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::Bomb);
+			component::Manager<component::Position>::get().addComponentForEntity(id, pos.X, pos.Y);
+			component::Manager<component::Attributes>::get().addComponentForEntity(id, (long double) time(NULL) + 2, range, component::Attributes::Enum::Default);
+			component::Manager<component::Mesh>::get().addComponentForEntity(id, game.getSmgr()->addAnimatedMeshSceneNode(game.getSmgr()->getMesh("./assets/bomb.obj")));
+			component::Manager<component::Mesh>::get()[id].mesh->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+			component::Manager<component::Mesh>::get()[id].mesh->setPosition({static_cast<float>(pos.X), 0, static_cast<float>(pos.Y)});
+			component::Manager<component::Mesh>::get()[id].mesh->setScale({25, 25, 25});
+			component::Manager<component::Deletable>::get().addComponentForEntity(id);
+			return id;
+		}
+		return static_cast<unsigned int>(-1);
 	}
 
 	void Create::createExplosion(component::Position pos, int range)
@@ -128,7 +161,7 @@ namespace ecs::system {
 
 		component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::Explosion);
 		component::Manager<component::Position>::get().addComponentForEntity(id, pos.x, pos.y);
-		component::Manager<component::Attributes>::get().addComponentForEntity(id, (long double) time(NULL) + 1, component::Attributes::Enum::Default);
+		component::Manager<component::Attributes>::get().addComponentForEntity(id, (long double) time(NULL) + 1, range, component::Attributes::Enum::Default);
 		component::Manager<component::Deletable>::get().addComponentForEntity(id);
 
 		component::Manager<component::ParticleSystem>::get().addComponentForEntity(id,	game.getSmgr()->addParticleSystemSceneNode(false),
@@ -201,28 +234,28 @@ namespace ecs::system {
 		ParticleSystemManager[id].PSUp->setScale(irr::core::vector3df(2,2,2));
 		ParticleSystemManager[id].PSUp->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 		ParticleSystemManager[id].PSUp->setMaterialFlag(irr::video::EMF_ZWRITE_ENABLE, false);
-		ParticleSystemManager[id].PSUp->setMaterialTexture(0, game.getDriver()->getTexture("../../assets/fire.bmp"));
+		ParticleSystemManager[id].PSUp->setMaterialTexture(0, game.getDriver()->getTexture("./assets/fire.bmp"));
 		ParticleSystemManager[id].PSUp->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
 
 		ParticleSystemManager[id].PSDown->setPosition(irr::core::vector3df(pos.x,0,pos.y));
 		ParticleSystemManager[id].PSDown->setScale(irr::core::vector3df(2,2,2));
 		ParticleSystemManager[id].PSDown->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 		ParticleSystemManager[id].PSDown->setMaterialFlag(irr::video::EMF_ZWRITE_ENABLE, false);
-		ParticleSystemManager[id].PSDown->setMaterialTexture(0, game.getDriver()->getTexture("../../assets/fire.bmp"));
+		ParticleSystemManager[id].PSDown->setMaterialTexture(0, game.getDriver()->getTexture("./assets/fire.bmp"));
 		ParticleSystemManager[id].PSDown->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
 
 		ParticleSystemManager[id].PSLeft->setPosition(irr::core::vector3df(pos.x,0,pos.y));
 		ParticleSystemManager[id].PSLeft->setScale(irr::core::vector3df(2,2,2));
 		ParticleSystemManager[id].PSLeft->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 		ParticleSystemManager[id].PSLeft->setMaterialFlag(irr::video::EMF_ZWRITE_ENABLE, false);
-		ParticleSystemManager[id].PSLeft->setMaterialTexture(0, game.getDriver()->getTexture("../../assets/fire.bmp"));
+		ParticleSystemManager[id].PSLeft->setMaterialTexture(0, game.getDriver()->getTexture("./assets/fire.bmp"));
 		ParticleSystemManager[id].PSLeft->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
 
 		ParticleSystemManager[id].PSRight->setPosition(irr::core::vector3df(pos.x,0,pos.y));
 		ParticleSystemManager[id].PSRight->setScale(irr::core::vector3df(2,2,2));
 		ParticleSystemManager[id].PSRight->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 		ParticleSystemManager[id].PSRight->setMaterialFlag(irr::video::EMF_ZWRITE_ENABLE, false);
-		ParticleSystemManager[id].PSRight->setMaterialTexture(0, game.getDriver()->getTexture("../../assets/fire.bmp"));
+		ParticleSystemManager[id].PSRight->setMaterialTexture(0, game.getDriver()->getTexture("./assets/fire.bmp"));
 		ParticleSystemManager[id].PSRight->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
 	}
 

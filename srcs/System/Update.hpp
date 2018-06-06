@@ -34,7 +34,7 @@ namespace ecs::system {
 				if (key[id].actions["attack"].state) {
 					pos.Y = being[id]._node->getPosition().Z + 28 - std::fmod(static_cast<double>(being[id]._node->getPosition().Z + 28) , 100.0);
 					pos.X = being[id]._node->getPosition().X + 37 - std::fmod(static_cast<double>(being[id]._node->getPosition().X + 37) , 100.0);
-					ecs::system::Create::createBomb(smgr, pos);
+					ecs::system::Create::createBomb(pos, component::Manager<component::Stat>::get()[i].range);
 					key[id].actions["action"].state = false;
 				}
 			}
@@ -43,7 +43,7 @@ namespace ecs::system {
 				if (ctrl[id].rightT) {
 					pos.Y = being[id]._node->getPosition().Z + 28 - std::fmod(static_cast<double>(being[id]._node->getPosition().Z + 28) , 100.0);
 					pos.X = being[id]._node->getPosition().X + 37 - std::fmod(static_cast<double>(being[id]._node->getPosition().X + 37) , 100.0);
-					ecs::system::Create::createBomb(smgr, pos);
+					ecs::system::Create::createBomb(pos, component::Manager<component::Stat>::get()[i].range);
 					ctrl[id].rightT = false;
 				}
 			}
