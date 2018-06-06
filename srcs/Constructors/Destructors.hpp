@@ -18,11 +18,11 @@ namespace ecs::component {
 		static void UnanimatedObject(entity::Id id)
 		{
 			//auto &game = indie::Game::get();
-			//auto &obj = component::Manager<component::UnanimatedObject>::get();
+			auto &obj = component::Manager<component::UnanimatedObject>::get();
 
-			printf("JE DETRUIT LE MUR\n");
+			obj[id]._node->setPosition(irr::core::vector3df(1000, 1000, 1000));
 			//obj[id]._node->removeAnimators();
-			//Zgame.getSmgr()->addToDeletionQueue(obj[id]._node);
+			//game.getSmgr()->addToDeletionQueue(obj[id]._node);
 		}
 	};
 }

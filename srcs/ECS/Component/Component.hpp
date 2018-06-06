@@ -10,6 +10,8 @@
 #include <vector>
 #include <unordered_map>
 
+#include "ECS/Entity/Entity.hpp"
+
 namespace ecs::component {
 
 	template<class T>
