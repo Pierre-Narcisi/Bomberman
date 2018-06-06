@@ -188,43 +188,48 @@ namespace ecs::system {
 		component::Manager<component::ParticleAffector>::get().addComponentForEntity(id);
 		auto &ParticleAffectorManager = component::Manager<component::ParticleAffector>::get();
 
+
+
+
+
+
+
 		int rangeLeft = 0;
 		int rangeRight = 0;
 		int rangeUp = 0;
 		int rangeDown = 0;
 
-		for (; rangeLeft < component::Manager<component::Attributes>::get()[ID].range; ++rangeLeft) {
-			//if (caisse destructible) {
-				//rangeLeft += 1;
-				//break;
-			//}
-			//if (caisse indestructible)
-				//break;
+		entity::Filter<component::Map> fl;
+		for (auto &entit : fl.list) {
+			auto &map = component::Manager<component::Map>::get()[entit].map;
+
+			std::cout << pos.x / 100 << std::endl;
+			std::cout << pos.y / 100 << std::endl;
+
+			std::cout << "OUI: " << map[(pos.y / 100) + 1][(pos.x / 100) + 1] << std::endl;
+
+			for (; map[(pos.y / 100) + 1 - rangeLeft][(pos.x / 100) + 1] != 1 && map[(pos.y / 100) + 1 - rangeLeft][(pos.x / 100) + 1] != 2; rangeLeft++) {
+				std::cout << "1" << std::endl;
+			}
+			for (; map[(pos.y / 100) + 1 + rangeRight][(pos.x / 100) + 1] != 1 && map[(pos.y / 100) + 1 + rangeRight][(pos.x / 100) + 1] != 2; rangeRight++) {
+				std::cout << "2" << std::endl;
+			}
+			for (; map[(pos.y / 100) + 1][(pos.x / 100) + 1 + rangeUp] != 1 && map[(pos.y / 100) + 1][(pos.x / 100) + 1 + rangeUp] != 2; rangeUp++) {
+				std::cout << "3" << std::endl;
+			}
+			for (; map[(pos.y / 100) + 1][(pos.x / 100) + 1 - rangeDown] != 1 && map[(pos.y / 100) + 1][(pos.x / 100) + 1 - rangeDown] != 2; rangeDown++) {
+				std::cout << "4" << std::endl;
+			}
+
+			std::cout << rangeLeft << std::endl;
+			std::cout << rangeRight << std::endl;
+			std::cout << rangeUp << std::endl;
+			std::cout << rangeDown << std::endl;
+
 		}
-		for (; rangeRight < component::Manager<component::Attributes>::get()[ID].range; ++rangeRight) {
-			//if (caisse destructible) {
-				//rangeRight += 1;
-				//break;
-			//}
-			//if (caisse indestructible)
-				//break;
-		}
-		for (; rangeUp < component::Manager<component::Attributes>::get()[ID].range; ++rangeUp) {
-			//if (caisse destructible) {
-				//rangeUp += 1;
-				//break;
-			//}
-			//if (caisse indestructible)
-				//break;
-		}
-		for (; rangeDown < component::Manager<component::Attributes>::get()[ID].range; ++rangeDown) {
-			//if (caisse destructible) {
-				//rangeDown += 1;
-				//break;
-			//}
-			//if (caisse indestructible)
-				//break;
-		}
+
+
+
 
 
 
