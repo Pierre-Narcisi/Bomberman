@@ -84,5 +84,5 @@ add_executable(Bomberman
 
 target_link_libraries(Bomberman /usr/lib/x86_64-linux-gnu/libIrrlicht.so)
 target_link_libraries(Bomberman /usr/lib/x86_64-linux-gnu/libGL.so)
-target_link_libraries(Bomberman /home/seb/tmp/Client/libs/Json/libJson.so)
+target_link_libraries(Bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/Json/libJson.so)
 target_link_libraries(Bomberman /usr/lib/x86_64-linux-gnu/libpthread.so)
