@@ -9,7 +9,6 @@
 
 #include <irrlicht/irrlicht.h>
 #include <vector>
-
 #include "System/Create.hpp"
 #include "Graphical/EventReceiver.hpp"
 
@@ -33,7 +32,7 @@ namespace indie {
 		int					_xmap;
 		int					_ymap;
 		std::vector<std::pair<int, int>>	gen;
-		std::vector<std::vector<char>>		_2Dmap;
+		std::vector<std::vector<int>>		_2Dmap;
 	};
 
 }
