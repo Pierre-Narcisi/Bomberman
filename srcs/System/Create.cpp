@@ -159,20 +159,26 @@ namespace ecs::system {
 		return static_cast<unsigned int>(-1);
 	}
 
-	void Create::createExplosion(entity::Id ID, component::Position pos)
-	{
+	void Create::createExplosion(entity::Id ID, component::Position pos) {
 		auto &game = indie::Game::get();
 		auto id = entity::Manager::get().newEntity();
 
 		component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::Explosion);
 		component::Manager<component::Position>::get().addComponentForEntity(id, pos.x, pos.y);
-		component::Manager<component::Attributes>::get().addComponentForEntity(id, (long double) time(NULL) + 1, component::Manager<component::Attributes>::get()[ID].range, component::Attributes::Enum::Default);
+		component::Manager<component::Attributes>::get().addComponentForEntity(id, (long double) time(NULL) + 1,
+										       component::Manager<component::Attributes>::get()[ID].range,
+										       component::Attributes::Enum::Default);
 		component::Manager<component::Deletable>::get().addComponentForEntity(id);
 
-		component::Manager<component::ParticleSystem>::get().addComponentForEntity(id,	game.getSmgr()->addParticleSystemSceneNode(false),
-												game.getSmgr()->addParticleSystemSceneNode(false),
-												game.getSmgr()->addParticleSystemSceneNode(false),
-												game.getSmgr()->addParticleSystemSceneNode(false));
+		component::Manager<component::ParticleSystem>::get().addComponentForEntity(id,
+											   game.getSmgr()->addParticleSystemSceneNode(
+												   false),
+											   game.getSmgr()->addParticleSystemSceneNode(
+												   false),
+											   game.getSmgr()->addParticleSystemSceneNode(
+												   false),
+											   game.getSmgr()->addParticleSystemSceneNode(
+												   false));
 		auto &ParticleSystemManager = component::Manager<component::ParticleSystem>::get();
 
 		component::Manager<component::ParticleEmitter>::get().addComponentForEntity(id);
@@ -181,13 +187,56 @@ namespace ecs::system {
 		component::Manager<component::ParticleAffector>::get().addComponentForEntity(id);
 		auto &ParticleAffectorManager = component::Manager<component::ParticleAffector>::get();
 
+		int rangeLeft = 0;
+		int rangeRight = 0;
+		int rangeUp = 0;
+		int rangeDown = 0;
+
+		for (; rangeLeft < component::Manager<component::Attributes>::get()[ID].range; ++rangeLeft) {
+			//if (caisse destructible) {
+				//rangeLeft += 1;
+				//break;
+			//}
+			//if (caisse indestructible)
+				//break;
+		}
+		for (; rangeRight < component::Manager<component::Attributes>::get()[ID].range; ++rangeRight) {
+			//if (caisse destructible) {
+				//rangeRight += 1;
+				//break;
+			//}
+			//if (caisse indestructible)
+				//break;
+		}
+		for (; rangeUp < component::Manager<component::Attributes>::get()[ID].range; ++rangeUp) {
+			//if (caisse destructible) {
+				//rangeUp += 1;
+				//break;
+			//}
+			//if (caisse indestructible)
+				//break;
+		}
+		for (; rangeDown < component::Manager<component::Attributes>::get()[ID].range; ++rangeDown) {
+			//if (caisse destructible) {
+				//rangeDown += 1;
+				//break;
+			//}
+			//if (caisse indestructible)
+				//break;
+		}
+
+
+
+
+
+
 		ParticleEmitterManager[id].PEUp = ParticleSystemManager[id].PSUp->createBoxEmitter(
 			irr::core::aabbox3d<irr::f32>(-10, -1, -10, 10, 0, 10),
 			irr::core::vector3df(0.0f,0.0f,0.6f),
 			8000,10000,
 			irr::video::SColor(0,255,255,255),
 			irr::video::SColor(0,255,255,255),
-			80 + (150 * (component::Manager<component::Attributes>::get()[ID].range - 1)), 200 + (150 * (component::Manager<component::Attributes>::get()[ID].range - 1)),0,
+			80 + (150 * (rangeUp - 1)), 200 + (150 * (rangeUp - 1)),0,
 			irr::core::dimension2df(10.f,10.f),
 			irr::core::dimension2df(20.f,20.f)
 		);
@@ -198,7 +247,7 @@ namespace ecs::system {
 			8000,10000,
 			irr::video::SColor(0,255,255,255),
 			irr::video::SColor(0,255,255,255),
-			80 + (150 * (component::Manager<component::Attributes>::get()[ID].range - 1)), 200 + (150 * (component::Manager<component::Attributes>::get()[ID].range - 1)),0,
+			80 + (150 * (rangeDown - 1)), 200 + (150 * (rangeDown - 1)),0,
 			irr::core::dimension2df(10.f,10.f),
 			irr::core::dimension2df(20.f,20.f)
 		);
@@ -209,7 +258,7 @@ namespace ecs::system {
 			8000,10000,
 			irr::video::SColor(0,255,255,255),
 			irr::video::SColor(0,255,255,255),
-			80 + (150 * (component::Manager<component::Attributes>::get()[ID].range - 1)), 200 + (150 * (component::Manager<component::Attributes>::get()[ID].range - 1)),0,
+			80 + (150 * (rangeRight - 1)), 200 + (150 * (rangeRight - 1)),0,
 			irr::core::dimension2df(10.f,10.f),
 			irr::core::dimension2df(20.f,20.f)
 		);
@@ -220,7 +269,7 @@ namespace ecs::system {
 			8000,10000,
 			irr::video::SColor(0,255,255,255),
 			irr::video::SColor(0,255,255,255),
-			80 + (150 * (component::Manager<component::Attributes>::get()[ID].range - 1)), 200 + (150 * (component::Manager<component::Attributes>::get()[ID].range - 1)),0,
+			80 + (150 * (rangeLeft - 1)), 200 + (150 * (rangeLeft - 1)),0,
 			irr::core::dimension2df(10.f,10.f),
 			irr::core::dimension2df(20.f,20.f)
 		);
