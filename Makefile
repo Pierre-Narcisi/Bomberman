@@ -258,6 +258,33 @@ srcs/Graphical/EventReceiver.cpp.s:
 	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/Graphical/EventReceiver.cpp.s
 .PHONY : srcs/Graphical/EventReceiver.cpp.s
 
+srcs/Main.o: srcs/Main.cpp.o
+
+.PHONY : srcs/Main.o
+
+# target to build an object file
+srcs/Main.cpp.o:
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/Main.cpp.o
+.PHONY : srcs/Main.cpp.o
+
+srcs/Main.i: srcs/Main.cpp.i
+
+.PHONY : srcs/Main.i
+
+# target to preprocess a source file
+srcs/Main.cpp.i:
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/Main.cpp.i
+.PHONY : srcs/Main.cpp.i
+
+srcs/Main.s: srcs/Main.cpp.s
+
+.PHONY : srcs/Main.s
+
+# target to generate assembly for a file
+srcs/Main.cpp.s:
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/Main.cpp.s
+.PHONY : srcs/Main.cpp.s
+
 srcs/MapGen/mapGen.o: srcs/MapGen/mapGen.cpp.o
 
 .PHONY : srcs/MapGen/mapGen.o
@@ -474,33 +501,6 @@ srcs/System/UpdateDeplacement.cpp.s:
 	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/UpdateDeplacement.cpp.s
 .PHONY : srcs/System/UpdateDeplacement.cpp.s
 
-tests/graphicalTest/test.o: tests/graphicalTest/test.cpp.o
-
-.PHONY : tests/graphicalTest/test.o
-
-# target to build an object file
-tests/graphicalTest/test.cpp.o:
-	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/tests/graphicalTest/test.cpp.o
-.PHONY : tests/graphicalTest/test.cpp.o
-
-tests/graphicalTest/test.i: tests/graphicalTest/test.cpp.i
-
-.PHONY : tests/graphicalTest/test.i
-
-# target to preprocess a source file
-tests/graphicalTest/test.cpp.i:
-	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/tests/graphicalTest/test.cpp.i
-.PHONY : tests/graphicalTest/test.cpp.i
-
-tests/graphicalTest/test.s: tests/graphicalTest/test.cpp.s
-
-.PHONY : tests/graphicalTest/test.s
-
-# target to generate assembly for a file
-tests/graphicalTest/test.cpp.s:
-	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/tests/graphicalTest/test.cpp.s
-.PHONY : tests/graphicalTest/test.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -525,6 +525,9 @@ help:
 	@echo "... srcs/Graphical/EventReceiver.o"
 	@echo "... srcs/Graphical/EventReceiver.i"
 	@echo "... srcs/Graphical/EventReceiver.s"
+	@echo "... srcs/Main.o"
+	@echo "... srcs/Main.i"
+	@echo "... srcs/Main.s"
 	@echo "... srcs/MapGen/mapGen.o"
 	@echo "... srcs/MapGen/mapGen.i"
 	@echo "... srcs/MapGen/mapGen.s"
@@ -549,9 +552,6 @@ help:
 	@echo "... srcs/System/UpdateDeplacement.o"
 	@echo "... srcs/System/UpdateDeplacement.i"
 	@echo "... srcs/System/UpdateDeplacement.s"
-	@echo "... tests/graphicalTest/test.o"
-	@echo "... tests/graphicalTest/test.i"
-	@echo "... tests/graphicalTest/test.s"
 .PHONY : help
 
 

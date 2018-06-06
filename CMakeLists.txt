@@ -4,23 +4,12 @@ project(bomberman)
 set(CMAKE_CXX_STANDARD 17)
 
 include_directories(libs)
-include_directories(libs/Json/srcs)
+include_directories(libs/Json/includes)
 include_directories(libs/Json/srcs/Entity)
 include_directories(libs/Json/srcs/Parser)
 include_directories(libs/Json/tests/Parser/srcs/Entity)
 include_directories(libs/Json/tests/Parser/srcs/Parser)
 include_directories(srcs)
-include_directories(srcs/Component)
-include_directories(srcs/Console)
-include_directories(srcs/ECS/Component)
-include_directories(srcs/ECS/Entity)
-include_directories(srcs/Game)
-include_directories(srcs/Graphical)
-include_directories(srcs/MapGen)
-include_directories(srcs/Settings)
-include_directories(srcs/System)
-include_directories(srcs/Systems)
-include_directories(tests/basicECS)
 
 add_executable(bomberman
         libs/Json/srcs/Entity/Entity.cpp
@@ -68,10 +57,7 @@ add_executable(bomberman
         srcs/System/Explode.hpp
         srcs/System/Update.hpp
         srcs/System/UpdateDeplacement.cpp
-        tests/basicECS/Components.hpp
-        tests/basicECS/Systems.hpp
-        tests/graphicalTest/test.cpp srcs/Constructors/BeingConsruct.hpp srcs/Constructors/Destructors.hpp)
+        srcs/Main.cpp)
 
 target_link_libraries(bomberman /usr/lib/x86_64-linux-gnu/libIrrlicht.so)
-target_link_libraries(bomberman /usr/lib/x86_64-linux-gnu/libGL.so)
 target_link_libraries(bomberman ${CMAKE_SOURCE_DIR}/libs/Json/libJson.so)

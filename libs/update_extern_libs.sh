@@ -7,7 +7,6 @@ rootPath="$(
 
 libsUrl=(
 	"https://gitlab.holidev.net/open-libs/Json/-/archive/master/Json-master.zip" "Json"
-	"https://gitlab.holidev.net/open-libs/SmartEvent/-/archive/master/SmartEvent-master.zip" "SmartEvent"
 );
 
 importRepo() {
