@@ -11,6 +11,9 @@
 #include "Update.hpp"
 #include "Destroyer.hpp"
 
+#include "ECS/Entity/Entity.hpp"
+#include "Component/Map.hpp"
+
 namespace indie {
 
 	Game::Game()
@@ -64,7 +67,15 @@ namespace indie {
 	{
 		while(_device->run() == true) {
 			_driver->beginScene(true, true, irr::video::SColor(255,100,101,140));
-
+			ecs::entity::Filter<ecs::component::Map> fl;
+			for (auto &id : fl.list) {
+				for (auto line : ecs::component::Manager<ecs::component::Map>::get()[id].map) {
+					for (auto nb : line) 
+						std::cout << nb;
+					std::cout << std::endl;
+				}
+				std::cout << std::endl;
+			}
 			/* Set the game loop here */
 			ecs::system::Explode::update();
 			ecs::system::Update::Bomb();

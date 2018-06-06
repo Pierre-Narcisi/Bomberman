@@ -5,20 +5,21 @@
 ** Created by seb,
 */
 
-#include "Game/Game.hpp"
 #include "ECS/Entity/Entity.hpp"
+#include "Game/Game.hpp"
 
 #include "Component/Basics.hpp"
 #include "Constructors/BeingConsruct.hpp"
 #include "Component/AttributeBomb.hpp"
 #include "Component/Stat.hpp"
+#include "Component/Map.hpp"
 #include "Component/Graphicals.hpp"
 
 #include "System/Create.hpp"
 
 namespace ecs::system {
 
-	irr::scene::IMetaTriangleSelector *Create::createMap()
+	irr::scene::IMetaTriangleSelector *Create::createCollision()
 	{
 		auto &game = indie::Game::get();
 		irr::scene::IMetaTriangleSelector *worldSel = game.getSmgr()->createMetaTriangleSelector();
@@ -77,7 +78,7 @@ namespace ecs::system {
 		component::Manager<component::Being>::get().addComponentForEntity(id);
 		ecs::component::Constructors::Being(id, mesh, texture, pos);
 
-		auto selector = ecs::system::Create::createMap();
+		auto selector = ecs::system::Create::createCollision();
 		irr::scene::ISceneNodeAnimator *anim = game.getSmgr()->createCollisionResponseAnimator(selector,
 													component::Manager<component::Being>::get()[id]._node,
 													(component::Manager<component::Being>::get()[id]._node->getBoundingBox().MaxEdge
@@ -262,6 +263,14 @@ namespace ecs::system {
 		ParticleSystemManager[id].PSRight->setMaterialFlag(irr::video::EMF_ZWRITE_ENABLE, false);
 		ParticleSystemManager[id].PSRight->setMaterialTexture(0, game.getDriver()->getTexture("./assets/fire.bmp"));
 		ParticleSystemManager[id].PSRight->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
+	}
+
+	entity::Id Create::createMap(std::vector<std::vector<int>> map) {
+		auto id = entity::Manager::get().newEntity();
+
+		component::Manager<component::Map>::get().addComponentForEntity(id, map);
+
+		return id;
 	}
 
 }

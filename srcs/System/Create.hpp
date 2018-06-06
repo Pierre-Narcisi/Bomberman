@@ -22,12 +22,13 @@ namespace ecs::system {
 
 	class Create {
 	public:
-		static irr::scene::IMetaTriangleSelector* createMap();
+		static irr::scene::IMetaTriangleSelector* createCollision();
 		static entity::Id	createWall(irr::core::vector2df pos);
 		static entity::Id	createDeletableWall(irr::core::vector2df pos);
 		static entity::Id	createPlayer(std::string const &mesh, std::string const &texture, irr::core::vector2df const &pos);
 		static entity::Id	createBomb(entity::Id id, irr::core::vector2di pos);
 		static void		createExplosion(entity::Id id, component::Position pos);
+		static entity::Id	createMap(std::vector<std::vector<int>>);
 	};
 
 }
