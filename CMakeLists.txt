@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(Client)
+project(Bomberman)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -26,7 +26,7 @@ include_directories(srcs/System)
 include_directories(srcs/Systems)
 include_directories(tests/basicECS)
 
-add_executable(Client
+add_executable(Bomberman
         libs/Json/srcs/Entity/Entity.cpp
         libs/Json/srcs/Entity/Entity.hpp
         libs/Json/srcs/Parser/Parser.cpp
@@ -42,7 +42,6 @@ add_executable(Client
         srcs/Component/BoxCollider.hpp
         srcs/Component/Camera.hpp
         srcs/Component/Controller360.hpp
-        srcs/Component/Explosion.hpp
         srcs/Component/Graphicals.hpp
         srcs/Component/Keyboard.hpp
         srcs/Component/UnanimatedObject.hpp
@@ -78,12 +77,11 @@ add_executable(Client
         srcs/System/Explode.hpp
         srcs/System/Update.hpp
         srcs/System/UpdateDeplacement.cpp
-        srcs/Systems/SystemExplode.hpp
         tests/basicECS/Components.hpp
         tests/basicECS/Systems.hpp
-        tests/graphicalTest/test.cpp)
+        tests/graphicalTest/test.cpp srcs/Constructors/BeingConsruct.hpp srcs/Constructors/Destructors.hpp)
 
-target_link_libraries(Client /usr/lib/x86_64-linux-gnu/libIrrlicht.so)
-target_link_libraries(Client /usr/lib/x86_64-linux-gnu/libGL.so)
-target_link_libraries(Client /home/seb/tmp/Client/libs/Json/libJson.so)
-target_link_libraries(Client /usr/lib/x86_64-linux-gnu/libpthread.so)
+target_link_libraries(Bomberman /usr/lib/x86_64-linux-gnu/libIrrlicht.so)
+target_link_libraries(Bomberman /usr/lib/x86_64-linux-gnu/libGL.so)
+target_link_libraries(Bomberman /home/seb/tmp/Client/libs/Json/libJson.so)
+target_link_libraries(Bomberman /usr/lib/x86_64-linux-gnu/libpthread.so)
