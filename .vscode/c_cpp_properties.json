@@ -14,7 +14,8 @@
                 "${workspaceFolder}/srcs/ECS/Entity",
                 "${workspaceFolder}/srcs/ECS/Component",
                 "${workspaceFolder}/srcs",
-                "${workspaceFolder}/srcs/Component"
+                "${workspaceFolder}/srcs/Component",
+                "${workspaceFolder}/libs"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",

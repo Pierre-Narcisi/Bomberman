@@ -46,11 +46,7 @@ namespace ecs::component {
 	struct Button {
 		enum class Type { None = 0, Quit, Play };
 		Type		type;
-		entity::Id	id;
-	};
-
-	struct MenuInput {
-		int			pos{-1};
+		/* normalState // hoverState */
 	};
 
 }
@@ -60,7 +56,7 @@ namespace ecs::system {
 	class Inputs {
 	public:
 		static void handle(component::Input &, irr::SEvent const &);
-		static void handle(component::MenuInput &, irr::SEvent const &);
+		// static void handle(component::MenuInput &, irr::SEvent const &);
 	};
 
 }

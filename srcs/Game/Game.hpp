@@ -11,9 +11,11 @@
 #include <string>
 #include <exception>
 
-#include "Json/Entity.hpp"
 #include "Graphical/EventReceiver.hpp"
 #include "Score.hpp"
+
+#include "ECS/Entity/Entity.hpp"
+#include "Json/srcs/Entity/Entity.hpp"
 
 namespace indie {
 
@@ -44,9 +46,10 @@ namespace indie {
 
 		Score				_score;
 
-	private:
+	protected:
 		/* init the window */
 		Game();
+		void drawAll();
 
 	public:
 		struct GameException : public std::exception {

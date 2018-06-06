@@ -21,27 +21,31 @@
 
 namespace ecs::system {
 
-	static void createBackground(std::string const &image, component::Rect rect, component::Color color)
+	static entity::Id createBackground(std::string const &image, component::Rect const &rect)
 	{
 		auto &game = indie::Game::get();
 		auto id = entity::Manager::get().newEntity();
 
 		irr::video::ITexture *texture = game.getDriver()->getTexture(image.c_str());
-		// component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::Background);
-		component::Manager<component::Image>::get().addComponentForEntity(id, texture, rect, color);
+		component::Manager<component::Image>::get().addComponentForEntity(id, texture, rect);
+		return id;
 	}
 
-	static void createButton(std::string const &image, component::Rect rect, component::Color color, component::Button::Type type)
+	static entity::Id createButton(component::Button::Type const &type,
+		std::string const &image, component::Rect const &rect,
+		std::string const &hover = "")
 	{
 		auto &game = indie::Game::get();
 		auto id = entity::Manager::get().newEntity();
 
 		irr::video::ITexture *texture = game.getDriver()->getTexture(image.c_str());
-		// component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::Background);
-		component::Manager<component::Image>::get().addComponentForEntity(id, texture, rect, color);
-		component::Manager<component::Button>::get().addComponentForEntity(id, type, id);
-		// ecs::entity::Filter<component::MenuInput> fl;
-		// auto &menu = component::Manager<component::MenuInput>::get()[*fl.list.begin()];
+		component::Manager<component::Button>::get().addComponentForEntity(id, type);
+		component::Manager<component::Image>::get().addComponentForEntity(id, texture, rect);
+		if (hover != "") {
+			irr::video::ITexture *hoverTexture = game.getDriver()->getTexture(hover.c_str());
+			component::Manager<component::HoverImage>::get().addComponentForEntity(id, hoverTexture, rect);
+		}
+		return id;
 	}
 
 }

@@ -5,13 +5,16 @@
 ** Game.cpp
 */
 
-#include "Json/Parser.hpp"
+#include <irrlicht/irrlicht.h>
 
+#include "Parser.hpp"
 #include "Game.hpp"
+#include "ECS/Entity/Filter.hpp"
 
 #include "Settings/Inputs.hpp"
 #include "System/Explode.hpp"
 #include "System/Update.hpp"
+#include "System/Collider.hpp"
 #include "System/Destroyer.hpp"
 
 namespace indie {
@@ -24,7 +27,7 @@ namespace indie {
 			/* set default settings */
 		}
 		/* change width and height by the settings-width and settings-height */
-		_device = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1020, 1080), 16,
+		_device = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1920, 1080), 16,
 					false, false, false, &_event);
 
 		if (_device == nullptr)
@@ -79,15 +82,38 @@ namespace indie {
 			ecs::system::Explode::update();
 			ecs::system::Update::Bomb();
 			ecs::system::Destroyer::update();
+			ecs::system::Collider::update();
 /*
 	update background
 	update bombes
 	update deletable
 */
-
-			_smgr->drawAll();
-			_guienv->drawAll();
+			drawAll();
 			_driver->endScene();
+		}
+	}
+
+	void Game::drawAll()
+	{
+		ecs::entity::Filter<ecs::component::Image> fl;
+		ecs::entity::Filter<ecs::component::HoverImage> fl2;
+		auto &imgManager = ecs::component::Manager<ecs::component::Image>::get();
+		auto &hoverImgManager = ecs::component::Manager<ecs::component::HoverImage>::get();
+
+		_smgr->drawAll();
+		_guienv->drawAll();
+		for (auto e : fl.list) {
+			auto const &img = imgManager[e];
+			if (img.draw == true) {
+				_driver->draw2DImage(img.image, irr::core::position2d<irr::s32>(img.rect.xs, img.rect.ys),
+						irr::core::rect<irr::s32>(0, 0, img.rect.xi, img.rect.yi), 0,
+						irr::video::SColor(255, 255, 255, 255), true);
+			} else if (hoverImgManager.hasComponent(e) == true) {
+				auto const &hoverImg = hoverImgManager[e];
+				_driver->draw2DImage(hoverImg.image, irr::core::position2d<irr::s32>(img.rect.xs, img.rect.ys),
+					irr::core::rect<irr::s32>(0, 0, img.rect.xi, img.rect.yi), 0,
+					irr::video::SColor(255, 255, 255, 255), true);
+			}
 		}
 	}
 

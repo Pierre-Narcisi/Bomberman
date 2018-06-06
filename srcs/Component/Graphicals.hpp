@@ -8,6 +8,7 @@
 #pragma once
 
 #include <irrlicht/irrlicht.h>
+
 #include "Game/Game.hpp"
 
 namespace ecs::component {
@@ -50,26 +51,29 @@ namespace ecs::component {
 	};
 
 	struct Rect {
-		int xs{};
-		int ys{};
-		int xi{};
-		int yi{};
+		int xs;
+		int ys;
+		int xi;
+		int yi;
 	};
 
 	struct Color {
-		int a = 255;
-		int r = 255;
-		int g = 255;
-		int b = 255;
+		int a;
+		int r;
+		int g;
+		int b;
 	};
 
 	struct Image {
+		irr::video::ITexture	*image;
+		Rect			rect;
+		Position		pos{};
+		bool			draw{true};
+	};
+
+	struct HoverImage {
 		irr::video::ITexture *image;
 		Rect rect;
-		Color color;
 		Position pos{};
-		int i{};
-		bool last{};
-		bool draw{};
 	};
 }

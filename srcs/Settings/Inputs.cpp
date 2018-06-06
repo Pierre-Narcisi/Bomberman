@@ -31,8 +31,8 @@ namespace ecs::system {
 		}
 	}
 
-	void Inputs::handle(component::MenuInput &input, irr::SEvent const &event)
-	{
+	// void Inputs::handle(component::MenuInput &input, irr::SEvent const &event)
+	// {
 		// if (event.EventType == irr::EET_MOUSE_INPUT_EVENT) {
 		// 	switch(event.MouseInput.Event) {
 		// 		case irr::EMIE_LMOUSE_PRESSED_DOWN:
@@ -49,6 +49,6 @@ namespace ecs::system {
 		// && event.JoystickEvent.Joystick == 0) {
 		// 	/* check joystick up down left right accept */
 		// }
-	}
+	// }
 
 }

@@ -13,7 +13,8 @@
 #include <unordered_map>
 #include <array>
 
-#include "Json/Entity.hpp"
+#include "ECS/Entity/Entity.hpp"
+#include "Json/srcs/Entity/Entity.hpp"
 
 /* implemented by benjamin */
 json::Entity getSettings();

@@ -122,7 +122,7 @@ namespace indie {
 			ecs::system::Create::createWall(irr::core::vector2df(i * 100, (_ymap + 1) * 100));
 		}
 	}
-	
+
 	mapGen::mapGen(int x, int y):
 	_xmap{x},
 	_ymap{y},

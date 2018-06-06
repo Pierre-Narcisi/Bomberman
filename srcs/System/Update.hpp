@@ -31,9 +31,9 @@ namespace ecs::system {
 			irr::core::vector2di pos;
 
 			for (auto &id : fl.list) {
-				if (key[id].actions["action"].state) {
-					pos.X = being[id]._node->getPosition().X - (static_cast<int>(being[id]._node->getPosition().X) % 100);
-					pos.Y = being[id]._node->getPosition().Z - (static_cast<int>(being[id]._node->getPosition().Z) % 100);
+				if (key[id].actions["attack"].state) {
+					pos.Y = being[id]._node->getPosition().Z + 28 - std::fmod(static_cast<double>(being[id]._node->getPosition().Z + 28) , 100.0);
+					pos.X = being[id]._node->getPosition().X + 37 - std::fmod(static_cast<double>(being[id]._node->getPosition().X + 37) , 100.0);
 					ecs::system::Create::createBomb(pos);
 					key[id].actions["action"].state = false;
 				}
@@ -41,8 +41,8 @@ namespace ecs::system {
 
 			for (auto &id : list.list) {
 				if (ctrl[id].rightT) {
-					pos.X = being[id]._node->getPosition().X - (static_cast<int>(being[id]._node->getPosition().X) % 100);
-					pos.Y = being[id]._node->getPosition().Z - (static_cast<int>(being[id]._node->getPosition().Z) % 100);
+					pos.Y = being[id]._node->getPosition().Z + 28 - std::fmod(static_cast<double>(being[id]._node->getPosition().Z + 28) , 100.0);
+					pos.X = being[id]._node->getPosition().X + 37 - std::fmod(static_cast<double>(being[id]._node->getPosition().X + 37) , 100.0);
 					ecs::system::Create::createBomb(pos);
 					ctrl[id].rightT = false;
 				}

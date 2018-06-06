@@ -1,69 +1,79 @@
 cmake_minimum_required(VERSION 3.10)
-project(Client)
+project(bomberman)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
-include_directories(srcs)
+include_directories(libs)
+include_directories(libs/Json/srcs)
 include_directories(libs/Json/srcs/Entity)
 include_directories(libs/Json/srcs/Parser)
-include_directories(libs/SmartEvent/srcs/Event)
-include_directories(libs/SmartEvent/srcs/HdlCollector)
-include_directories(libs/SmartEvent/srcs/Manager)
+include_directories(libs/Json/tests/Parser/srcs/Entity)
+include_directories(libs/Json/tests/Parser/srcs/Parser)
+include_directories(srcs)
 include_directories(srcs/Component)
+include_directories(srcs/Console)
 include_directories(srcs/ECS/Component)
 include_directories(srcs/ECS/Entity)
+include_directories(srcs/Game)
 include_directories(srcs/Graphical)
+include_directories(srcs/MapGen)
+include_directories(srcs/Settings)
+include_directories(srcs/System)
 include_directories(srcs/Systems)
-include_directories(tests)
+include_directories(tests/basicECS)
 
-add_executable(Client
+add_executable(bomberman
         libs/Json/srcs/Entity/Entity.cpp
-        libs/Json/srcs/Entity/JsonEntity.hpp
+        libs/Json/srcs/Entity/Entity.hpp
         libs/Json/srcs/Parser/Parser.cpp
         libs/Json/srcs/Parser/Parser.hpp
-        libs/Json/tests/Entity/main.cpp
-        libs/Json/tests/Parser/main.cpp
-        libs/SmartEvent/srcs/Event/Event.cpp
-        libs/SmartEvent/srcs/Event/Event.hpp
-        libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp
-        libs/SmartEvent/srcs/HdlCollector/HdlCollector.hpp
-        libs/SmartEvent/srcs/Manager/Manager.hpp
-        libs/SmartEvent/tests/Event/main.cpp
-        libs/SmartEvent/tests/HdlCollector/main.cpp
-        srcs/Component/BoxCollider.hpp
         srcs/Component/AttributeBomb.hpp
-        srcs/Component/Mesh.hpp
-        srcs/Component/MeshStatic.hpp
-        srcs/Component/ParticleAffector.hpp
-        srcs/Component/ParticleEmitter.hpp
-        srcs/Component/ParticleSystem.hpp
+        srcs/Component/Basics.hpp
+        srcs/Component/Being.hpp
+        srcs/Component/BoxCollider.hpp
+        srcs/Component/Camera.hpp
+        srcs/Component/Controller360.hpp
+        srcs/Component/Explosion.hpp
+        srcs/Component/Graphicals.hpp
+        srcs/Component/Keyboard.hpp
+        srcs/Component/UnanimatedObject.hpp
         srcs/ECS/Component/Component.hpp
+        srcs/ECS/Component/Component.tpp
         srcs/ECS/Entity/Entity.cpp
         srcs/ECS/Entity/Entity.hpp
+        srcs/ECS/Entity/Entity.tpp
         srcs/ECS/Entity/EntityErrors.hpp
         srcs/ECS/Entity/Filter.hpp
-        srcs/Graphical/ComponentBeing.hpp
-        srcs/Graphical/ComponentCamera.hpp
-        srcs/Graphical/ComponentController360.hpp
-        srcs/Graphical/ComponentExplosion.hpp
-        srcs/Graphical/ComponentKeyboard.hpp
-        srcs/Graphical/ComponentUnanimatedObject.hpp
+        srcs/ECS/Entity/Filter.tpp
+        srcs/Game/Game.cpp
+        srcs/Game/Game.hpp
+        srcs/Game/Score.hpp
+        srcs/Game/Settings.hpp
         srcs/Graphical/EventReceiver.cpp
         srcs/Graphical/EventReceiver.hpp
-        srcs/Graphical/SystemCreate.hpp
-        srcs/Graphical/SystemCreateDeletableWall.cpp
-        srcs/Graphical/SystemCreateMap.cpp
-        srcs/Graphical/SystemCreatePlayer.cpp
-        srcs/Graphical/SystemCreateWall.cpp
-        srcs/Graphical/SystemEvent.hpp
-        srcs/Graphical/SystemEventManager.cpp
-        srcs/Graphical/SystemUpdate.hpp
-        srcs/Graphical/SystemUpdateDeplacement.cpp
-        srcs/Systems/SystemCreate.cpp
-        srcs/Systems/SystemDestroyer.hpp
+        srcs/MapGen/mapGen.cpp
+        srcs/MapGen/mapGen.hpp
+        srcs/Settings/Inputs.cpp
+        srcs/Settings/Inputs.hpp
+        srcs/Settings/Settings.cpp
+        srcs/Settings/Settings.hpp
+        srcs/System/Being.cpp
+        srcs/System/Being.hpp
+        srcs/System/Create.cpp
+        srcs/System/Create.hpp
+        srcs/System/Destroyer.hpp
+        srcs/System/Event.hpp
+        srcs/System/EventManager.cpp
+        srcs/System/Collider.cpp
+        srcs/System/Collider.hpp
+        srcs/System/Explode.hpp
+        srcs/System/Update.hpp
+        srcs/System/UpdateDeplacement.cpp
         srcs/Systems/SystemExplode.hpp
-        srcs/Main.cpp
         tests/basicECS/Components.hpp
-        tests/basicECS/Main.cpp
         tests/basicECS/Systems.hpp
-        tests/graphicalTest/test.cpp srcs/Systems/SystemCreate.cpp)
+        tests/graphicalTest/test.cpp)
+
+target_link_libraries(bomberman /usr/lib/x86_64-linux-gnu/libIrrlicht.so)
+target_link_libraries(bomberman /usr/lib/x86_64-linux-gnu/libGL.so)
+target_link_libraries(bomberman ${CMAKE_SOURCE_DIR}/libs/Json/libJson.so)
