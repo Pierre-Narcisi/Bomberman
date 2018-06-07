@@ -70,15 +70,10 @@ namespace indie {
 			/* Set the game loop here */
 
 			ecs::entity::Filter<ecs::component::Map> fl;
-			for (auto id : fl.list) {
-			for (auto line : ecs::component::Manager<ecs::component::Map>::get()[id].map) {
-				for (auto a : line)
-					std::cout << a;
-				std::cout << std::endl;
-			}
-				std::cout << std::endl;
+			//for (auto id : fl.list) {
 
-			}
+
+			//}
 
 			ecs::system::Explode::update();
 			ecs::system::Update::Bomb();

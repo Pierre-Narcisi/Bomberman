@@ -197,50 +197,57 @@ namespace ecs::system {
 			pos.x = pos.x / 100;
 			pos.y = pos.y / 100;
 
-			std::cout << pos.x - 1 << " " << pos.y - 1 << std::endl;
+			std::cout << "x:" << pos.x - 1 << " y:" << pos.y - 1 << std::endl;
 			std::cout << map[pos.y - 1][pos.x - 1] << std::endl;
 
-			for (rangeLeft = 0; rangeLeft < 5 && pos.y - 1 + rangeLeft >= 0; rangeLeft++) {
-				if (map[pos.y - 1 + rangeLeft][pos.x - 1] == 1) {
+			for (rangeLeft = 0; rangeLeft < 5 && pos.x - 1 - rangeLeft >= 0; rangeLeft++) {
+				if (map[pos.y - 1][pos.x - 1 - rangeLeft] == 1) {
 					rangeLeft--;
 					break;
-				} else if (map[pos.y - 1 + rangeLeft][pos.x - 1] == 2) {
-					map[pos.y - 1 + rangeLeft][pos.x - 1] = 0;
+				} else if (map[pos.y - 1][pos.x - 1 - rangeLeft] == 2) {
+					map[pos.y - 1][pos.x - 1 - rangeLeft] = 0;
 					break;
 				}
 			}
-			for (rangeRight = 0; rangeRight < 5 && pos.y - 1 - rangeRight >= 0; rangeRight++) {
-				if (map[pos.y - 1 - rangeRight][pos.x - 1] == 1) {
+			/*for (rangeRight = 0; rangeRight < 5 && pos.x - 1 + rangeRight >= 0; rangeRight++) {
+				if (map[pos.y - 1][pos.x - 1 + rangeRight] == 1) {
 					rangeRight--;
 					break;
-				} else if (map[pos.y - 1 - rangeRight][pos.x - 1] == 2) {
-					map[pos.y - 1 - rangeRight][pos.x - 1] = 0;
+				} else if (map[pos.y - 1][pos.x - 1 + rangeRight] == 2) {
+					map[pos.y - 1][pos.x - 1 + rangeRight] = 0;
 					break;
 				}
 			}
 			for (rangeUp = 0; rangeUp < 5; rangeUp++) {
-				if (map[pos.y - 1][pos.x - 1 + rangeUp] == 1) {
+				if (map[pos.y - 1 + rangeUp][pos.x - 1] == 1) {
 					rangeUp--;
 					break;
-				} else if (map[pos.y - 1][pos.x - 1 + rangeUp] == 2) {
-					map[pos.y - 1][pos.x - 1 + rangeUp] = 0;
+				} else if (map[pos.y - 1 + rangeUp][pos.x - 1] == 2) {
+					map[pos.y - 1 + rangeUp][pos.x - 1] = 0;
 					break;
 				}
 			}
 			for (rangeDown = 0; rangeDown < 5 && pos.x - 1 - rangeDown >= 0; rangeDown++) {
-				if (map[pos.y - 1][pos.x - 1 - rangeDown] == 1) {
+				if (map[pos.y - 1 - rangeDown][pos.x - 1] == 1) {
 					rangeDown--;
 					break;
-				} else if (map[pos.y - 1][pos.x - 1 - rangeDown] == 2) {
-					map[pos.y - 1][pos.x - 1 - rangeDown] = 0;
+				} else if (map[pos.y - 1 - rangeDown][pos.x - 1] == 2) {
+					map[pos.y - 1 - rangeDown][pos.x - 1] = 0;
 					break;
 				}
-			}
+			}*/
 
 			std::cout << "rangeLeft:\t" << rangeLeft << std::endl;
 			std::cout << "rangeRight:\t" << rangeRight << std::endl;
 			std::cout << "rangeUp:\t" << rangeUp << std::endl;
 			std::cout << "rangeDown:\t" << rangeDown << std::endl;
+			std::cout << std::endl;
+
+			for (auto line : map) {
+				for (auto a : line)
+					std::cout << a;
+				std::cout << std::endl;
+			}
 			std::cout << std::endl;
 
 
