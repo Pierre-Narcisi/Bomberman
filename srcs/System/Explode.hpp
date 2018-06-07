@@ -44,7 +44,8 @@ namespace ecs::system {
 
 			for (auto &id : fl.list) {
 				if (typeManager[id].t == component::Type::Enum::Bomb
-				    && (long double) time(NULL) >= attributesManager[id].since) {
+				    && ((long double) time(NULL) >= attributesManager[id].since || attributesManager[id].explode == true)) {
+					std::cout << id << "      " << attributesManager[id].explode << std::endl;
 					auto pos = positionManager[id];
 					game.getSmgr()->addToDeletionQueue(bomb[id].mesh);
 					for (auto &ID : walls.list) {

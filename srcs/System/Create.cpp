@@ -184,6 +184,9 @@ namespace ecs::system {
 		component::Manager<component::ParticleAffector>::get().addComponentForEntity(id);
 		auto &ParticleAffectorManager = component::Manager<component::ParticleAffector>::get();
 
+		auto &POS = component::Manager<component::Position>::get();
+		auto &TYPE = component::Manager<component::Type>::get();
+
 		int rangeLeft = 0;
 		int rangeRight = 0;
 		int rangeUp = 0;
@@ -197,45 +200,69 @@ namespace ecs::system {
 			pos.x = pos.x / 100;
 			pos.y = pos.y / 100;
 
-			std::cout << "x:" << pos.x - 1 << " y:" << pos.y - 1 << std::endl;
-			std::cout << map[pos.y - 1][pos.x - 1] << std::endl;
+			std::cout << "x:" << pos.x << " y:" << pos.y << std::endl;
+			std::cout << map[pos.y][pos.x] << std::endl;
 
-			for (rangeLeft = 0; rangeLeft < 5 && pos.x - 1 - rangeLeft >= 0; rangeLeft++) {
-				if (map[pos.y - 1][pos.x - 1 - rangeLeft] == 1) {
-					rangeLeft--;
+			for (rangeLeft = 0; rangeLeft < component::Manager<component::Attributes>::get()[ID].range; ++rangeLeft) {
+				if (map[pos.y][pos.x - (rangeLeft + 1)] == 1) {
 					break;
-				} else if (map[pos.y - 1][pos.x - 1 - rangeLeft] == 2) {
-					map[pos.y - 1][pos.x - 1 - rangeLeft] = 0;
+				} else if (map[pos.y][pos.x - (rangeLeft + 1)] == 2) {
+					rangeLeft++;
+					map[pos.y][pos.x - (rangeLeft + 1)] = 0;
 					break;
+				} else if (map[pos.y][pos.x - (rangeLeft + 1)] == 3) {
+					entity::Filter<component::Position, component::Type>	poty;
+					for (auto &bomb : poty.list){
+						if (POS[bomb].x == (pos.x - (rangeLeft + 1)) * 100 && POS[bomb].y == pos.y * 100 && TYPE[bomb].t == ecs::component::Type::Enum::Bomb)
+							component::Manager<component::Attributes>::get()[bomb].explode = true;
+					}
 				}
 			}
-			/*for (rangeRight = 0; rangeRight < 5 && pos.x - 1 + rangeRight >= 0; rangeRight++) {
-				if (map[pos.y - 1][pos.x - 1 + rangeRight] == 1) {
-					rangeRight--;
+			for (rangeRight = 0; rangeRight < component::Manager<component::Attributes>::get()[ID].range; ++rangeRight) {
+				if (map[pos.y][pos.x + (rangeRight + 1)] == 1) {
 					break;
-				} else if (map[pos.y - 1][pos.x - 1 + rangeRight] == 2) {
-					map[pos.y - 1][pos.x - 1 + rangeRight] = 0;
+				} else if (map[pos.y][pos.x + (rangeRight + 1)] == 2) {
+					rangeRight++;
+					map[pos.y][pos.x + (rangeRight + 1)] = 0;
 					break;
+				} else if (map[pos.y][pos.x + (rangeRight + 1)] == 3) {
+					entity::Filter<component::Position, component::Type>	poty;
+					for (auto &bomb : poty.list){
+						if (POS[bomb].x == (pos.x + (rangeRight + 1)) * 100 && POS[bomb].y == pos.y * 100 && TYPE[bomb].t == ecs::component::Type::Enum::Bomb)
+							component::Manager<component::Attributes>::get()[bomb].explode = true;
+					}
 				}
 			}
-			for (rangeUp = 0; rangeUp < 5; rangeUp++) {
-				if (map[pos.y - 1 + rangeUp][pos.x - 1] == 1) {
-					rangeUp--;
+			for (rangeUp = 0; rangeUp < component::Manager<component::Attributes>::get()[ID].range; ++rangeUp) {
+				if (map[pos.y + (rangeUp + 1)][pos.x] == 1) {
 					break;
-				} else if (map[pos.y - 1 + rangeUp][pos.x - 1] == 2) {
-					map[pos.y - 1 + rangeUp][pos.x - 1] = 0;
+				} else if (map[pos.y + (rangeUp + 1)][pos.x] == 2) {
+					rangeUp++;
+					map[pos.y + (rangeUp + 1)][pos.x] = 0;
 					break;
+				} else if (map[pos.y + (rangeUp + 1)][pos.x] == 3) {
+					entity::Filter<component::Position, component::Type>	poty;
+					for (auto &bomb : poty.list){
+						if (POS[bomb].x == pos.x * 100 && POS[bomb].y == (pos.y + (rangeUp + 1)) * 100 && TYPE[bomb].t == ecs::component::Type::Enum::Bomb)
+							component::Manager<component::Attributes>::get()[bomb].explode = true;
+					}
 				}
 			}
-			for (rangeDown = 0; rangeDown < 5 && pos.x - 1 - rangeDown >= 0; rangeDown++) {
-				if (map[pos.y - 1 - rangeDown][pos.x - 1] == 1) {
-					rangeDown--;
+			for (rangeDown = 0; rangeDown < component::Manager<component::Attributes>::get()[ID].range; ++rangeDown) {
+				if (map[pos.y - (rangeDown + 1)][pos.x] == 1) {
 					break;
-				} else if (map[pos.y - 1 - rangeDown][pos.x - 1] == 2) {
-					map[pos.y - 1 - rangeDown][pos.x - 1] = 0;
+				} else if (map[pos.y - (rangeDown + 1)][pos.x] == 2) {
+					rangeDown++;
+					map[pos.y - (rangeDown + 1)][pos.x] = 0;
 					break;
+				} else if (map[pos.y - (rangeDown + 1)][pos.x] == 3) {
+					entity::Filter<component::Position, component::Type>	poty;
+					for (auto &bomb : poty.list){
+						if (POS[bomb].x == pos.x * 100 && POS[bomb].y == (pos.y - (rangeDown + 1)) * 100 && TYPE[bomb].t == ecs::component::Type::Enum::Bomb)
+							component::Manager<component::Attributes>::get()[bomb].explode = true;
+					}
 				}
-			}*/
+			}
 
 			std::cout << "rangeLeft:\t" << rangeLeft << std::endl;
 			std::cout << "rangeRight:\t" << rangeRight << std::endl;
@@ -243,11 +270,11 @@ namespace ecs::system {
 			std::cout << "rangeDown:\t" << rangeDown << std::endl;
 			std::cout << std::endl;
 
-			for (auto line : map) {
+			/*for (auto line : map) {
 				for (auto a : line)
 					std::cout << a;
 				std::cout << std::endl;
-			}
+			}*/
 			std::cout << std::endl;
 
 
@@ -256,10 +283,6 @@ namespace ecs::system {
 		pos.x = pos.x * 100;
 		pos.y = pos.y * 100;
 
-		/*rangeLeft = 1;
-		rangeUp = 2;
-		rangeRight = 3;
-		rangeDown = 4;*/
 
 		ParticleEmitterManager[id].PEUp = ParticleSystemManager[id].PSUp->createBoxEmitter(
 			irr::core::aabbox3d<irr::f32>(-10, -1, -10, 10, 0, 10),

@@ -78,12 +78,13 @@ namespace indie {
 			ecs::system::Explode::update();
 			ecs::system::Update::Bomb();
 			ecs::system::Destroyer::update();
-
-			/*
-				update background
-				update bombes
-				update deletable
-			*/
+			ecs::system::Ai::updateAll();
+			ecs::system::Ai::update(10);
+/*
+	update background
+	update bombes
+	update deletable
+*/
 
 			_smgr->drawAll();
 			_guienv->drawAll();
