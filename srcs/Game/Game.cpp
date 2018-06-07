@@ -14,6 +14,7 @@
 #include "Settings/Inputs.hpp"
 #include "System/Explode.hpp"
 #include "System/Update.hpp"
+#include "System/Graphical.hpp"
 #include "System/Collider.hpp"
 #include "System/Destroyer.hpp"
 
@@ -78,16 +79,19 @@ namespace indie {
 		while(_device->run() == true) {
 			_driver->beginScene(true, true, irr::video::SColor(255,100,101,140));
 
+			/* menu loop */
+			ecs::system::Blur::update();
+
 			/* Set the game loop here */
 			ecs::system::Explode::update();
 			ecs::system::Update::Bomb();
 			ecs::system::Destroyer::update();
 			ecs::system::Collider::update();
-/*
-	update background
-	update bombes
-	update deletable
-*/
+			/*
+				update background
+				update bombes
+				update deletable
+			*/
 			drawAll();
 			_driver->endScene();
 		}
@@ -98,21 +102,29 @@ namespace indie {
 		ecs::entity::Filter<ecs::component::Image> fl;
 		ecs::entity::Filter<ecs::component::HoverImage> fl2;
 		auto &imgManager = ecs::component::Manager<ecs::component::Image>::get();
+		auto &colorManager = ecs::component::Manager<ecs::component::Color>::get();
 		auto &hoverImgManager = ecs::component::Manager<ecs::component::HoverImage>::get();
 
 		_smgr->drawAll();
 		_guienv->drawAll();
 		for (auto e : fl.list) {
 			auto const &img = imgManager[e];
+			ecs::component::Color color{255, 255, 255, 255};
+			if (img.del == true) {
+					_driver->removeTexture(img.image);
+					continue;
+			}
+			if (colorManager.hasComponent(e) == true)
+				color = colorManager[e];
 			if (img.draw == true) {
 				_driver->draw2DImage(img.image, irr::core::position2d<irr::s32>(img.rect.xs, img.rect.ys),
 						irr::core::rect<irr::s32>(0, 0, img.rect.xi, img.rect.yi), 0,
-						irr::video::SColor(255, 255, 255, 255), true);
+						irr::video::SColor(color.a, color.r, color.g, color.b), true);
 			} else if (hoverImgManager.hasComponent(e) == true) {
 				auto const &hoverImg = hoverImgManager[e];
 				_driver->draw2DImage(hoverImg.image, irr::core::position2d<irr::s32>(img.rect.xs, img.rect.ys),
 					irr::core::rect<irr::s32>(0, 0, img.rect.xi, img.rect.yi), 0,
-					irr::video::SColor(255, 255, 255, 255), true);
+					irr::video::SColor(color.a, color.r, color.g, color.b), true);
 			}
 		}
 	}

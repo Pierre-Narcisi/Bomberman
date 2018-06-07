@@ -69,6 +69,7 @@ namespace ecs::component {
 		Rect			rect;
 		Position		pos{};
 		bool			draw{true};
+		bool			del{};
 	};
 
 	struct HoverImage {
