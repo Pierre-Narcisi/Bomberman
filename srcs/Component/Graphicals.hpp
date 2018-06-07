@@ -9,7 +9,7 @@
 
 #include <irrlicht/irrlicht.h>
 
-#include "Game.hpp"
+#include "Game/Game.hpp"
 
 namespace ecs::component {
 
@@ -42,4 +42,31 @@ namespace ecs::component {
 		irr::scene::IParticleSystemSceneNode	*PSRight;
 	};
 
+	struct Rect {
+		int xs;
+		int ys;
+		int xi;
+		int yi;
+	};
+
+	struct Color {
+		int a;
+		int r;
+		int g;
+		int b;
+	};
+
+	struct Image {
+		irr::video::ITexture	*image;
+		Rect			rect;
+		Position		pos{};
+		bool			draw{true};
+		bool			del{};
+	};
+
+	struct HoverImage {
+		irr::video::ITexture *image;
+		Rect rect;
+		Position pos{};
+	};
 }

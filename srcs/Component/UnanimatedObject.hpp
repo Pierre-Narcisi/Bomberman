@@ -10,7 +10,7 @@
 #include <irrlicht/irrlicht.h>
 #include <string>
 
-#include "Game.hpp"
+#include "Game/Game.hpp"
 
 namespace ecs::component {
 

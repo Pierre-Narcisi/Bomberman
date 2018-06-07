@@ -9,41 +9,18 @@ include ../../common/depend.mk
 
 OUTPATH		=	../..
 
-INCLUDES	=	-I$(OUTPATH)/srcs				\
-			-I$(OUTPATH)/libs                               \
-                        -I$(OUTPATH)/libs/Json/srcs                     \
-                        -I$(OUTPATH)/libs/Json/srcs/Entity              \
-                        -I$(OUTPATH)/libs/Json/srcs/Parser              \
-                        -I$(OUTPATH)/libs/Json/tests/Parser/srcs/Entity \
-                        -I$(OUTPATH)/libs/Json/tests/Parser/srcs/Parser \
-                        -I$(OUTPATH)/libs/SmartEvent/srcs               \
-                        -I$(OUTPATH)/libs/SmartEvent/srcs/Event         \
-                        -I$(OUTPATH)/libs/SmartEvent/srcs/HdlCollector  \
-                        -I$(OUTPATH)/libs/SmartEvent/srcs/Manager       \
-                        -I$(OUTPATH)/srcs                               \
-                        -I$(OUTPATH)/srcs/Component                     \
-                        -I$(OUTPATH)/srcs/Console                       \
-                        -I$(OUTPATH)/srcs/ECS/Component                 \
-                        -I$(OUTPATH)/srcs/ECS/Entity                    \
-                        -I$(OUTPATH)/srcs/Game                          \
-                        -I$(OUTPATH)/srcs/Graphical                     \
-                        -I$(OUTPATH)/srcs/MapGen                        \
-                        -I$(OUTPATH)/srcs/Settings                      \
-                        -I$(OUTPATH)/srcs/System                        \
-                        -I$(OUTPATH)/srcs/Systems                       \
-                        -I$(OUTPATH)/tests/basicECS                     \
+INCLUDES	=	-I$(OUTPATH)/libs/Json/includes		\
+			-I$(OUTPATH)/libs/Json/srcs/Entity      \
+			-I$(OUTPATH)/libs/SmartEvent/includes	\
+			-I$(OUTPATH)/libs/SmartEvent/srcs	\
+			-I$(OUTPATH)/srcs			\
+			-I$(OUTPATH)/srcs/ECS		\
+			-I$(OUTPATH)/srcs/ECS/Component		\
+			-I$(OUTPATH)/tests      		\
 
-SRCS		=	test.cpp					\
-			$(OUTPATH)/srcs/ECS/Entity/Entity.cpp		\
-			$(OUTPATH)/srcs/Settings/Inputs.cpp		\
-			$(OUTPATH)/srcs/Settings/Settings.cpp		\
-			$(OUTPATH)/srcs/Graphical/EventReceiver.cpp	\
-			$(OUTPATH)/srcs/Game/Game.cpp			\
-			$(OUTPATH)/srcs/MapGen/mapGen.cpp		\
-			$(OUTPATH)/srcs/System/Create.cpp		\
-			$(OUTPATH)/srcs/System/Being.cpp		\
-			$(OUTPATH)/srcs/System/EventManager.cpp		\
-			$(OUTPATH)/srcs/System/UpdateDeplacement.cpp	\
+SRCS		=	test.cpp	        		\
+			$(OUTPATH)/srcs/ECS/Entity/Entity.cpp   \
+			$(OUTPATH)/srcs/Graphical/*.cpp
 
 OBJS		=	$(addprefix $(ODIR)/, $(SRCS:.cpp=.o))
 

@@ -1,41 +1,17 @@
 cmake_minimum_required(VERSION 3.10)
-project(Bomberman)
+project(bomberman)
 
 set(CMAKE_CXX_STANDARD 17)
 
 include_directories(libs)
-include_directories(libs/Json/srcs)
+include_directories(libs/Json/includes)
 include_directories(libs/Json/srcs/Entity)
 include_directories(libs/Json/srcs/Parser)
 include_directories(libs/Json/tests/Parser/srcs/Entity)
 include_directories(libs/Json/tests/Parser/srcs/Parser)
-include_directories(libs/SmartEvent/srcs)
-include_directories(libs/SmartEvent/srcs/Event)
-include_directories(libs/SmartEvent/srcs/HdlCollector)
-include_directories(libs/SmartEvent/srcs/Manager)
 include_directories(srcs)
-include_directories(srcs/Component)
-include_directories(srcs/Console)
-include_directories(srcs/ECS/Component)
-include_directories(srcs/ECS/Entity)
-include_directories(srcs/Game)
-include_directories(srcs/Graphical)
-include_directories(srcs/MapGen)
-include_directories(srcs/Settings)
-include_directories(srcs/System)
-include_directories(srcs/Systems)
-include_directories(tests/basicECS)
 
-add_executable(Bomberman
-        libs/Json/srcs/Entity/Entity.cpp
-        libs/Json/srcs/Entity/Entity.hpp
-        libs/Json/srcs/Parser/Parser.cpp
-        libs/Json/srcs/Parser/Parser.hpp
-        libs/SmartEvent/srcs/Event/Event.cpp
-        libs/SmartEvent/srcs/Event/Event.hpp
-        libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp
-        libs/SmartEvent/srcs/HdlCollector/HdlCollector.hpp
-        libs/SmartEvent/srcs/Manager/Manager.hpp
+add_executable(bomberman
         srcs/Component/AttributeBomb.hpp
         srcs/Component/Basics.hpp
         srcs/Component/Being.hpp
@@ -46,8 +22,6 @@ add_executable(Bomberman
         srcs/Component/Keyboard.hpp
         srcs/Component/Stat.hpp
         srcs/Component/UnanimatedObject.hpp
-        srcs/Console/Console.cpp
-        srcs/Console/Console.hpp
         srcs/ECS/Component/Component.hpp
         srcs/ECS/Component/Component.tpp
         srcs/ECS/Entity/Entity.cpp
@@ -77,14 +51,14 @@ add_executable(Bomberman
         srcs/System/Destroyer.hpp
         srcs/System/Event.hpp
         srcs/System/EventManager.cpp
+        srcs/System/Collider.cpp
+        srcs/System/Collider.hpp
         srcs/System/Explode.hpp
+				srcs/System/Graphical.hpp
         srcs/System/Update.hpp
         srcs/System/UpdateDeplacement.cpp
-        tests/basicECS/Components.hpp
-        tests/basicECS/Systems.hpp
-        tests/graphicalTest/test.cpp srcs/Constructors/BeingConsruct.hpp srcs/Constructors/Destructors.hpp)
+        srcs/Main.cpp)
 
-target_link_libraries(Bomberman /usr/lib/x86_64-linux-gnu/libIrrlicht.so)
-target_link_libraries(Bomberman /usr/lib/x86_64-linux-gnu/libGL.so)
-target_link_libraries(Bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/Json/libJson.so)
-target_link_libraries(Bomberman /usr/lib/x86_64-linux-gnu/libpthread.so)
+target_link_libraries(bomberman /usr/lib/x86_64-linux-gnu/libIrrlicht.so)
+target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/Json/libJson.so)
+target_link_libraries(bomberman /usr/lib/x86_64-linux-gnu/libpthread.so)

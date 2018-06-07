@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pierre/Work/C++/Client
+CMAKE_SOURCE_DIR = /home/alexandre/Documents/tek2/B_CPP/indi/Client
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pierre/Work/C++/Client
+CMAKE_BINARY_DIR = /home/alexandre/Documents/tek2/B_CPP/indi/Client
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pierre/Work/C++/Client/CMakeFiles /home/pierre/Work/C++/Client/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/alexandre/Documents/tek2/B_CPP/indi/Client/CMakeFiles /home/alexandre/Documents/tek2/B_CPP/indi/Client/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pierre/Work/C++/Client/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/alexandre/Documents/tek2/B_CPP/indi/Client/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,152 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Bomberman
+# Target rules for targets named bomberman
 
 # Build rule for target.
-Bomberman: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Bomberman
-.PHONY : Bomberman
+bomberman: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 bomberman
+.PHONY : bomberman
 
 # fast build rule for target.
-Bomberman/fast:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/build
-.PHONY : Bomberman/fast
-
-libs/Json/srcs/Entity/Entity.o: libs/Json/srcs/Entity/Entity.cpp.o
-
-.PHONY : libs/Json/srcs/Entity/Entity.o
-
-# target to build an object file
-libs/Json/srcs/Entity/Entity.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/Json/srcs/Entity/Entity.cpp.o
-.PHONY : libs/Json/srcs/Entity/Entity.cpp.o
-
-libs/Json/srcs/Entity/Entity.i: libs/Json/srcs/Entity/Entity.cpp.i
-
-.PHONY : libs/Json/srcs/Entity/Entity.i
-
-# target to preprocess a source file
-libs/Json/srcs/Entity/Entity.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/Json/srcs/Entity/Entity.cpp.i
-.PHONY : libs/Json/srcs/Entity/Entity.cpp.i
-
-libs/Json/srcs/Entity/Entity.s: libs/Json/srcs/Entity/Entity.cpp.s
-
-.PHONY : libs/Json/srcs/Entity/Entity.s
-
-# target to generate assembly for a file
-libs/Json/srcs/Entity/Entity.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/Json/srcs/Entity/Entity.cpp.s
-.PHONY : libs/Json/srcs/Entity/Entity.cpp.s
-
-libs/Json/srcs/Parser/Parser.o: libs/Json/srcs/Parser/Parser.cpp.o
-
-.PHONY : libs/Json/srcs/Parser/Parser.o
-
-# target to build an object file
-libs/Json/srcs/Parser/Parser.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/Json/srcs/Parser/Parser.cpp.o
-.PHONY : libs/Json/srcs/Parser/Parser.cpp.o
-
-libs/Json/srcs/Parser/Parser.i: libs/Json/srcs/Parser/Parser.cpp.i
-
-.PHONY : libs/Json/srcs/Parser/Parser.i
-
-# target to preprocess a source file
-libs/Json/srcs/Parser/Parser.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/Json/srcs/Parser/Parser.cpp.i
-.PHONY : libs/Json/srcs/Parser/Parser.cpp.i
-
-libs/Json/srcs/Parser/Parser.s: libs/Json/srcs/Parser/Parser.cpp.s
-
-.PHONY : libs/Json/srcs/Parser/Parser.s
-
-# target to generate assembly for a file
-libs/Json/srcs/Parser/Parser.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/Json/srcs/Parser/Parser.cpp.s
-.PHONY : libs/Json/srcs/Parser/Parser.cpp.s
-
-libs/SmartEvent/srcs/Event/Event.o: libs/SmartEvent/srcs/Event/Event.cpp.o
-
-.PHONY : libs/SmartEvent/srcs/Event/Event.o
-
-# target to build an object file
-libs/SmartEvent/srcs/Event/Event.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/SmartEvent/srcs/Event/Event.cpp.o
-.PHONY : libs/SmartEvent/srcs/Event/Event.cpp.o
-
-libs/SmartEvent/srcs/Event/Event.i: libs/SmartEvent/srcs/Event/Event.cpp.i
-
-.PHONY : libs/SmartEvent/srcs/Event/Event.i
-
-# target to preprocess a source file
-libs/SmartEvent/srcs/Event/Event.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/SmartEvent/srcs/Event/Event.cpp.i
-.PHONY : libs/SmartEvent/srcs/Event/Event.cpp.i
-
-libs/SmartEvent/srcs/Event/Event.s: libs/SmartEvent/srcs/Event/Event.cpp.s
-
-.PHONY : libs/SmartEvent/srcs/Event/Event.s
-
-# target to generate assembly for a file
-libs/SmartEvent/srcs/Event/Event.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/SmartEvent/srcs/Event/Event.cpp.s
-.PHONY : libs/SmartEvent/srcs/Event/Event.cpp.s
-
-libs/SmartEvent/srcs/HdlCollector/HdlCollector.o: libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.o
-
-.PHONY : libs/SmartEvent/srcs/HdlCollector/HdlCollector.o
-
-# target to build an object file
-libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.o
-.PHONY : libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.o
-
-libs/SmartEvent/srcs/HdlCollector/HdlCollector.i: libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.i
-
-.PHONY : libs/SmartEvent/srcs/HdlCollector/HdlCollector.i
-
-# target to preprocess a source file
-libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.i
-.PHONY : libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.i
-
-libs/SmartEvent/srcs/HdlCollector/HdlCollector.s: libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.s
-
-.PHONY : libs/SmartEvent/srcs/HdlCollector/HdlCollector.s
-
-# target to generate assembly for a file
-libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.s
-.PHONY : libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.s
-
-srcs/Console/Console.o: srcs/Console/Console.cpp.o
-
-.PHONY : srcs/Console/Console.o
-
-# target to build an object file
-srcs/Console/Console.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/Console/Console.cpp.o
-.PHONY : srcs/Console/Console.cpp.o
-
-srcs/Console/Console.i: srcs/Console/Console.cpp.i
-
-.PHONY : srcs/Console/Console.i
-
-# target to preprocess a source file
-srcs/Console/Console.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/Console/Console.cpp.i
-.PHONY : srcs/Console/Console.cpp.i
-
-srcs/Console/Console.s: srcs/Console/Console.cpp.s
-
-.PHONY : srcs/Console/Console.s
-
-# target to generate assembly for a file
-srcs/Console/Console.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/Console/Console.cpp.s
-.PHONY : srcs/Console/Console.cpp.s
+bomberman/fast:
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/build
+.PHONY : bomberman/fast
 
 srcs/ECS/Entity/Entity.o: srcs/ECS/Entity/Entity.cpp.o
 
@@ -264,7 +129,7 @@ srcs/ECS/Entity/Entity.o: srcs/ECS/Entity/Entity.cpp.o
 
 # target to build an object file
 srcs/ECS/Entity/Entity.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/ECS/Entity/Entity.cpp.o
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/ECS/Entity/Entity.cpp.o
 .PHONY : srcs/ECS/Entity/Entity.cpp.o
 
 srcs/ECS/Entity/Entity.i: srcs/ECS/Entity/Entity.cpp.i
@@ -273,7 +138,7 @@ srcs/ECS/Entity/Entity.i: srcs/ECS/Entity/Entity.cpp.i
 
 # target to preprocess a source file
 srcs/ECS/Entity/Entity.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/ECS/Entity/Entity.cpp.i
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/ECS/Entity/Entity.cpp.i
 .PHONY : srcs/ECS/Entity/Entity.cpp.i
 
 srcs/ECS/Entity/Entity.s: srcs/ECS/Entity/Entity.cpp.s
@@ -282,7 +147,7 @@ srcs/ECS/Entity/Entity.s: srcs/ECS/Entity/Entity.cpp.s
 
 # target to generate assembly for a file
 srcs/ECS/Entity/Entity.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/ECS/Entity/Entity.cpp.s
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/ECS/Entity/Entity.cpp.s
 .PHONY : srcs/ECS/Entity/Entity.cpp.s
 
 srcs/Game/Game.o: srcs/Game/Game.cpp.o
@@ -291,7 +156,7 @@ srcs/Game/Game.o: srcs/Game/Game.cpp.o
 
 # target to build an object file
 srcs/Game/Game.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/Game/Game.cpp.o
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/Game/Game.cpp.o
 .PHONY : srcs/Game/Game.cpp.o
 
 srcs/Game/Game.i: srcs/Game/Game.cpp.i
@@ -300,7 +165,7 @@ srcs/Game/Game.i: srcs/Game/Game.cpp.i
 
 # target to preprocess a source file
 srcs/Game/Game.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/Game/Game.cpp.i
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/Game/Game.cpp.i
 .PHONY : srcs/Game/Game.cpp.i
 
 srcs/Game/Game.s: srcs/Game/Game.cpp.s
@@ -309,7 +174,7 @@ srcs/Game/Game.s: srcs/Game/Game.cpp.s
 
 # target to generate assembly for a file
 srcs/Game/Game.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/Game/Game.cpp.s
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/Game/Game.cpp.s
 .PHONY : srcs/Game/Game.cpp.s
 
 srcs/Graphical/EventReceiver.o: srcs/Graphical/EventReceiver.cpp.o
@@ -318,7 +183,7 @@ srcs/Graphical/EventReceiver.o: srcs/Graphical/EventReceiver.cpp.o
 
 # target to build an object file
 srcs/Graphical/EventReceiver.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/Graphical/EventReceiver.cpp.o
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/Graphical/EventReceiver.cpp.o
 .PHONY : srcs/Graphical/EventReceiver.cpp.o
 
 srcs/Graphical/EventReceiver.i: srcs/Graphical/EventReceiver.cpp.i
@@ -327,7 +192,7 @@ srcs/Graphical/EventReceiver.i: srcs/Graphical/EventReceiver.cpp.i
 
 # target to preprocess a source file
 srcs/Graphical/EventReceiver.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/Graphical/EventReceiver.cpp.i
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/Graphical/EventReceiver.cpp.i
 .PHONY : srcs/Graphical/EventReceiver.cpp.i
 
 srcs/Graphical/EventReceiver.s: srcs/Graphical/EventReceiver.cpp.s
@@ -336,8 +201,35 @@ srcs/Graphical/EventReceiver.s: srcs/Graphical/EventReceiver.cpp.s
 
 # target to generate assembly for a file
 srcs/Graphical/EventReceiver.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/Graphical/EventReceiver.cpp.s
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/Graphical/EventReceiver.cpp.s
 .PHONY : srcs/Graphical/EventReceiver.cpp.s
+
+srcs/Main.o: srcs/Main.cpp.o
+
+.PHONY : srcs/Main.o
+
+# target to build an object file
+srcs/Main.cpp.o:
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/Main.cpp.o
+.PHONY : srcs/Main.cpp.o
+
+srcs/Main.i: srcs/Main.cpp.i
+
+.PHONY : srcs/Main.i
+
+# target to preprocess a source file
+srcs/Main.cpp.i:
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/Main.cpp.i
+.PHONY : srcs/Main.cpp.i
+
+srcs/Main.s: srcs/Main.cpp.s
+
+.PHONY : srcs/Main.s
+
+# target to generate assembly for a file
+srcs/Main.cpp.s:
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/Main.cpp.s
+.PHONY : srcs/Main.cpp.s
 
 srcs/MapGen/mapGen.o: srcs/MapGen/mapGen.cpp.o
 
@@ -345,7 +237,7 @@ srcs/MapGen/mapGen.o: srcs/MapGen/mapGen.cpp.o
 
 # target to build an object file
 srcs/MapGen/mapGen.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/MapGen/mapGen.cpp.o
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/MapGen/mapGen.cpp.o
 .PHONY : srcs/MapGen/mapGen.cpp.o
 
 srcs/MapGen/mapGen.i: srcs/MapGen/mapGen.cpp.i
@@ -354,7 +246,7 @@ srcs/MapGen/mapGen.i: srcs/MapGen/mapGen.cpp.i
 
 # target to preprocess a source file
 srcs/MapGen/mapGen.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/MapGen/mapGen.cpp.i
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/MapGen/mapGen.cpp.i
 .PHONY : srcs/MapGen/mapGen.cpp.i
 
 srcs/MapGen/mapGen.s: srcs/MapGen/mapGen.cpp.s
@@ -363,7 +255,7 @@ srcs/MapGen/mapGen.s: srcs/MapGen/mapGen.cpp.s
 
 # target to generate assembly for a file
 srcs/MapGen/mapGen.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/MapGen/mapGen.cpp.s
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/MapGen/mapGen.cpp.s
 .PHONY : srcs/MapGen/mapGen.cpp.s
 
 srcs/Settings/Inputs.o: srcs/Settings/Inputs.cpp.o
@@ -372,7 +264,7 @@ srcs/Settings/Inputs.o: srcs/Settings/Inputs.cpp.o
 
 # target to build an object file
 srcs/Settings/Inputs.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/Settings/Inputs.cpp.o
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/Settings/Inputs.cpp.o
 .PHONY : srcs/Settings/Inputs.cpp.o
 
 srcs/Settings/Inputs.i: srcs/Settings/Inputs.cpp.i
@@ -381,7 +273,7 @@ srcs/Settings/Inputs.i: srcs/Settings/Inputs.cpp.i
 
 # target to preprocess a source file
 srcs/Settings/Inputs.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/Settings/Inputs.cpp.i
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/Settings/Inputs.cpp.i
 .PHONY : srcs/Settings/Inputs.cpp.i
 
 srcs/Settings/Inputs.s: srcs/Settings/Inputs.cpp.s
@@ -390,7 +282,7 @@ srcs/Settings/Inputs.s: srcs/Settings/Inputs.cpp.s
 
 # target to generate assembly for a file
 srcs/Settings/Inputs.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/Settings/Inputs.cpp.s
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/Settings/Inputs.cpp.s
 .PHONY : srcs/Settings/Inputs.cpp.s
 
 srcs/Settings/Settings.o: srcs/Settings/Settings.cpp.o
@@ -399,7 +291,7 @@ srcs/Settings/Settings.o: srcs/Settings/Settings.cpp.o
 
 # target to build an object file
 srcs/Settings/Settings.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/Settings/Settings.cpp.o
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/Settings/Settings.cpp.o
 .PHONY : srcs/Settings/Settings.cpp.o
 
 srcs/Settings/Settings.i: srcs/Settings/Settings.cpp.i
@@ -408,7 +300,7 @@ srcs/Settings/Settings.i: srcs/Settings/Settings.cpp.i
 
 # target to preprocess a source file
 srcs/Settings/Settings.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/Settings/Settings.cpp.i
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/Settings/Settings.cpp.i
 .PHONY : srcs/Settings/Settings.cpp.i
 
 srcs/Settings/Settings.s: srcs/Settings/Settings.cpp.s
@@ -417,7 +309,7 @@ srcs/Settings/Settings.s: srcs/Settings/Settings.cpp.s
 
 # target to generate assembly for a file
 srcs/Settings/Settings.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/Settings/Settings.cpp.s
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/Settings/Settings.cpp.s
 .PHONY : srcs/Settings/Settings.cpp.s
 
 srcs/System/Ai.o: srcs/System/Ai.cpp.o
@@ -426,7 +318,7 @@ srcs/System/Ai.o: srcs/System/Ai.cpp.o
 
 # target to build an object file
 srcs/System/Ai.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/Ai.cpp.o
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/Ai.cpp.o
 .PHONY : srcs/System/Ai.cpp.o
 
 srcs/System/Ai.i: srcs/System/Ai.cpp.i
@@ -435,7 +327,7 @@ srcs/System/Ai.i: srcs/System/Ai.cpp.i
 
 # target to preprocess a source file
 srcs/System/Ai.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/Ai.cpp.i
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/Ai.cpp.i
 .PHONY : srcs/System/Ai.cpp.i
 
 srcs/System/Ai.s: srcs/System/Ai.cpp.s
@@ -444,7 +336,7 @@ srcs/System/Ai.s: srcs/System/Ai.cpp.s
 
 # target to generate assembly for a file
 srcs/System/Ai.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/Ai.cpp.s
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/Ai.cpp.s
 .PHONY : srcs/System/Ai.cpp.s
 
 srcs/System/Being.o: srcs/System/Being.cpp.o
@@ -453,7 +345,7 @@ srcs/System/Being.o: srcs/System/Being.cpp.o
 
 # target to build an object file
 srcs/System/Being.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/Being.cpp.o
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/Being.cpp.o
 .PHONY : srcs/System/Being.cpp.o
 
 srcs/System/Being.i: srcs/System/Being.cpp.i
@@ -462,7 +354,7 @@ srcs/System/Being.i: srcs/System/Being.cpp.i
 
 # target to preprocess a source file
 srcs/System/Being.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/Being.cpp.i
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/Being.cpp.i
 .PHONY : srcs/System/Being.cpp.i
 
 srcs/System/Being.s: srcs/System/Being.cpp.s
@@ -471,8 +363,35 @@ srcs/System/Being.s: srcs/System/Being.cpp.s
 
 # target to generate assembly for a file
 srcs/System/Being.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/Being.cpp.s
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/Being.cpp.s
 .PHONY : srcs/System/Being.cpp.s
+
+srcs/System/Collider.o: srcs/System/Collider.cpp.o
+
+.PHONY : srcs/System/Collider.o
+
+# target to build an object file
+srcs/System/Collider.cpp.o:
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/Collider.cpp.o
+.PHONY : srcs/System/Collider.cpp.o
+
+srcs/System/Collider.i: srcs/System/Collider.cpp.i
+
+.PHONY : srcs/System/Collider.i
+
+# target to preprocess a source file
+srcs/System/Collider.cpp.i:
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/Collider.cpp.i
+.PHONY : srcs/System/Collider.cpp.i
+
+srcs/System/Collider.s: srcs/System/Collider.cpp.s
+
+.PHONY : srcs/System/Collider.s
+
+# target to generate assembly for a file
+srcs/System/Collider.cpp.s:
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/Collider.cpp.s
+.PHONY : srcs/System/Collider.cpp.s
 
 srcs/System/Create.o: srcs/System/Create.cpp.o
 
@@ -480,7 +399,7 @@ srcs/System/Create.o: srcs/System/Create.cpp.o
 
 # target to build an object file
 srcs/System/Create.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/Create.cpp.o
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/Create.cpp.o
 .PHONY : srcs/System/Create.cpp.o
 
 srcs/System/Create.i: srcs/System/Create.cpp.i
@@ -489,7 +408,7 @@ srcs/System/Create.i: srcs/System/Create.cpp.i
 
 # target to preprocess a source file
 srcs/System/Create.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/Create.cpp.i
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/Create.cpp.i
 .PHONY : srcs/System/Create.cpp.i
 
 srcs/System/Create.s: srcs/System/Create.cpp.s
@@ -498,7 +417,7 @@ srcs/System/Create.s: srcs/System/Create.cpp.s
 
 # target to generate assembly for a file
 srcs/System/Create.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/Create.cpp.s
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/Create.cpp.s
 .PHONY : srcs/System/Create.cpp.s
 
 srcs/System/EventManager.o: srcs/System/EventManager.cpp.o
@@ -507,7 +426,7 @@ srcs/System/EventManager.o: srcs/System/EventManager.cpp.o
 
 # target to build an object file
 srcs/System/EventManager.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/EventManager.cpp.o
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/EventManager.cpp.o
 .PHONY : srcs/System/EventManager.cpp.o
 
 srcs/System/EventManager.i: srcs/System/EventManager.cpp.i
@@ -516,7 +435,7 @@ srcs/System/EventManager.i: srcs/System/EventManager.cpp.i
 
 # target to preprocess a source file
 srcs/System/EventManager.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/EventManager.cpp.i
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/EventManager.cpp.i
 .PHONY : srcs/System/EventManager.cpp.i
 
 srcs/System/EventManager.s: srcs/System/EventManager.cpp.s
@@ -525,7 +444,7 @@ srcs/System/EventManager.s: srcs/System/EventManager.cpp.s
 
 # target to generate assembly for a file
 srcs/System/EventManager.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/EventManager.cpp.s
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/EventManager.cpp.s
 .PHONY : srcs/System/EventManager.cpp.s
 
 srcs/System/UpdateDeplacement.o: srcs/System/UpdateDeplacement.cpp.o
@@ -534,7 +453,7 @@ srcs/System/UpdateDeplacement.o: srcs/System/UpdateDeplacement.cpp.o
 
 # target to build an object file
 srcs/System/UpdateDeplacement.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/UpdateDeplacement.cpp.o
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/UpdateDeplacement.cpp.o
 .PHONY : srcs/System/UpdateDeplacement.cpp.o
 
 srcs/System/UpdateDeplacement.i: srcs/System/UpdateDeplacement.cpp.i
@@ -543,7 +462,7 @@ srcs/System/UpdateDeplacement.i: srcs/System/UpdateDeplacement.cpp.i
 
 # target to preprocess a source file
 srcs/System/UpdateDeplacement.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/UpdateDeplacement.cpp.i
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/UpdateDeplacement.cpp.i
 .PHONY : srcs/System/UpdateDeplacement.cpp.i
 
 srcs/System/UpdateDeplacement.s: srcs/System/UpdateDeplacement.cpp.s
@@ -552,35 +471,8 @@ srcs/System/UpdateDeplacement.s: srcs/System/UpdateDeplacement.cpp.s
 
 # target to generate assembly for a file
 srcs/System/UpdateDeplacement.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/UpdateDeplacement.cpp.s
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/UpdateDeplacement.cpp.s
 .PHONY : srcs/System/UpdateDeplacement.cpp.s
-
-tests/graphicalTest/test.o: tests/graphicalTest/test.cpp.o
-
-.PHONY : tests/graphicalTest/test.o
-
-# target to build an object file
-tests/graphicalTest/test.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/tests/graphicalTest/test.cpp.o
-.PHONY : tests/graphicalTest/test.cpp.o
-
-tests/graphicalTest/test.i: tests/graphicalTest/test.cpp.i
-
-.PHONY : tests/graphicalTest/test.i
-
-# target to preprocess a source file
-tests/graphicalTest/test.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/tests/graphicalTest/test.cpp.i
-.PHONY : tests/graphicalTest/test.cpp.i
-
-tests/graphicalTest/test.s: tests/graphicalTest/test.cpp.s
-
-.PHONY : tests/graphicalTest/test.s
-
-# target to generate assembly for a file
-tests/graphicalTest/test.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/tests/graphicalTest/test.cpp.s
-.PHONY : tests/graphicalTest/test.cpp.s
 
 # Help Target
 help:
@@ -589,23 +481,8 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... Bomberman"
+	@echo "... bomberman"
 	@echo "... edit_cache"
-	@echo "... libs/Json/srcs/Entity/Entity.o"
-	@echo "... libs/Json/srcs/Entity/Entity.i"
-	@echo "... libs/Json/srcs/Entity/Entity.s"
-	@echo "... libs/Json/srcs/Parser/Parser.o"
-	@echo "... libs/Json/srcs/Parser/Parser.i"
-	@echo "... libs/Json/srcs/Parser/Parser.s"
-	@echo "... libs/SmartEvent/srcs/Event/Event.o"
-	@echo "... libs/SmartEvent/srcs/Event/Event.i"
-	@echo "... libs/SmartEvent/srcs/Event/Event.s"
-	@echo "... libs/SmartEvent/srcs/HdlCollector/HdlCollector.o"
-	@echo "... libs/SmartEvent/srcs/HdlCollector/HdlCollector.i"
-	@echo "... libs/SmartEvent/srcs/HdlCollector/HdlCollector.s"
-	@echo "... srcs/Console/Console.o"
-	@echo "... srcs/Console/Console.i"
-	@echo "... srcs/Console/Console.s"
 	@echo "... srcs/ECS/Entity/Entity.o"
 	@echo "... srcs/ECS/Entity/Entity.i"
 	@echo "... srcs/ECS/Entity/Entity.s"
@@ -615,6 +492,9 @@ help:
 	@echo "... srcs/Graphical/EventReceiver.o"
 	@echo "... srcs/Graphical/EventReceiver.i"
 	@echo "... srcs/Graphical/EventReceiver.s"
+	@echo "... srcs/Main.o"
+	@echo "... srcs/Main.i"
+	@echo "... srcs/Main.s"
 	@echo "... srcs/MapGen/mapGen.o"
 	@echo "... srcs/MapGen/mapGen.i"
 	@echo "... srcs/MapGen/mapGen.s"
@@ -630,6 +510,9 @@ help:
 	@echo "... srcs/System/Being.o"
 	@echo "... srcs/System/Being.i"
 	@echo "... srcs/System/Being.s"
+	@echo "... srcs/System/Collider.o"
+	@echo "... srcs/System/Collider.i"
+	@echo "... srcs/System/Collider.s"
 	@echo "... srcs/System/Create.o"
 	@echo "... srcs/System/Create.i"
 	@echo "... srcs/System/Create.s"
@@ -639,9 +522,6 @@ help:
 	@echo "... srcs/System/UpdateDeplacement.o"
 	@echo "... srcs/System/UpdateDeplacement.i"
 	@echo "... srcs/System/UpdateDeplacement.s"
-	@echo "... tests/graphicalTest/test.o"
-	@echo "... tests/graphicalTest/test.i"
-	@echo "... tests/graphicalTest/test.s"
 .PHONY : help
 
 

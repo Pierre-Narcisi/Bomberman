@@ -112,33 +112,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/seb/tmp/Client/libs/Json/srcs/Entity/Entity.cpp">
-			<Option target="Bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/tmp/Client/libs/Json/srcs/Entity/Entity.hpp">
-			<Option target="Bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/tmp/Client/libs/Json/srcs/Parser/Parser.cpp">
-			<Option target="Bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/tmp/Client/libs/Json/srcs/Parser/Parser.hpp">
-			<Option target="Bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/tmp/Client/libs/SmartEvent/srcs/Event/Event.cpp">
-			<Option target="Bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/tmp/Client/libs/SmartEvent/srcs/Event/Event.hpp">
-			<Option target="Bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/tmp/Client/libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp">
-			<Option target="Bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/tmp/Client/libs/SmartEvent/srcs/HdlCollector/HdlCollector.hpp">
-			<Option target="Bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/tmp/Client/libs/SmartEvent/srcs/Manager/Manager.hpp">
-			<Option target="Bomberman"/>
-		</Unit>
 		<Unit filename="/home/seb/tmp/Client/srcs/Component/AttributeBomb.hpp">
 			<Option target="Bomberman"/>
 		</Unit>
@@ -239,6 +212,12 @@
 			<Option target="Bomberman"/>
 		</Unit>
 		<Unit filename="/home/seb/tmp/Client/srcs/Settings/Settings.hpp">
+			<Option target="Bomberman"/>
+		</Unit>
+		<Unit filename="/home/seb/tmp/Client/srcs/System/Ai.cpp">
+			<Option target="Bomberman"/>
+		</Unit>
+		<Unit filename="/home/seb/tmp/Client/srcs/System/Ai.hpp">
 			<Option target="Bomberman"/>
 		</Unit>
 		<Unit filename="/home/seb/tmp/Client/srcs/System/Being.cpp">

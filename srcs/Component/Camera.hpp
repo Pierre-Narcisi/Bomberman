@@ -10,10 +10,10 @@
 #include <irrlicht/irrlicht.h>
 
 #include "Entity.hpp"
-#include "Game.hpp"
-#include "Component.hpp"
-#include "Entity.hpp"
-#include "Being.hpp"
+#include "Game/Game.hpp"
+#include "ECS/Component/Component.hpp"
+#include "ECS/Entity/Entity.hpp"
+#include "Component/Being.hpp"
 
 namespace ecs::component {
 

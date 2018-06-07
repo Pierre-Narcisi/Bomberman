@@ -11,7 +11,7 @@
 #include <string>
 #include <exception>
 
-#include "EventReceiver.hpp"
+#include "Graphical/EventReceiver.hpp"
 #include "Score.hpp"
 
 #include "ECS/Entity/Entity.hpp"
@@ -33,6 +33,7 @@ namespace indie {
 		irr::IrrlichtDevice		*getDevice() const;
 		irr::video::IVideoDriver	*getDriver() const;
 		irr::scene::ISceneManager	*getSmgr() const;
+		ecs::entity::Id			getMouse() const;
 
 	protected:
 		json::Entity			_settings;
@@ -41,12 +42,15 @@ namespace indie {
 		irr::video::IVideoDriver	*_driver;
 		irr::scene::ISceneManager	*_smgr;
 		irr::gui::IGUIEnvironment	*_guienv;
+		ecs::entity::Id			_mouse;
 
 		Score				_score;
 
-	private:
+	protected:
 		/* init the window */
 		Game();
+		void drawAll() const;
+		void setDefaultSettings();
 
 	public:
 		struct GameException : public std::exception {

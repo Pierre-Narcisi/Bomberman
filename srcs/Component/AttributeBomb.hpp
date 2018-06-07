@@ -20,5 +20,6 @@ namespace ecs::component
 		int		range;
 		Enum		t;
 		entity::Id 	player;
+		bool 		explode = false;
 	};
 }
