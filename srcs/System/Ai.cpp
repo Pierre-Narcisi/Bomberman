@@ -111,12 +111,12 @@ namespace ecs::system {
 			auto map = component::Manager<component::Map>::get()[id].map;
 			zone(map);
 			deplacement(0, 200, 100);
-			for (auto line : map) {
-				for (auto nb : line) {
-					std::cout << nb;
-				}
-				std::cout << std::endl;
-			}
+			// for (auto line : map) {
+			// 	for (auto nb : line) {
+			// 		std::cout << nb;
+			// 	}
+			// 	std::cout << std::endl;
+			// }
 			//std::cout << std::endl;
 		}
 
@@ -129,7 +129,7 @@ namespace ecs::system {
 		entity::Filter<component::UnanimatedObject> listWall;
 		entity::Filter<component::UnanimatedObject, component::Deletable> list;
 		entity::Filter<component::Map> mapList;
-		
+
 		auto &wall = component::Manager<component::UnanimatedObject>::get();
 		auto &mesh = component::Manager<component::Mesh>::get();
 		auto &delWall = component::Manager<component::Deletable>::get();
@@ -158,7 +158,7 @@ namespace ecs::system {
 			}
 			for (auto &id : listWall.list) {
 				auto pos = wall[id]._node->getPosition();
-	
+
 				if (type.hasComponent(id) == true && type[id].t == component::Type::Enum::Wall) {
 					map[pos.Z / 100][pos.X / 100] = 1;
 				}

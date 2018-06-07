@@ -86,18 +86,35 @@ namespace indie {
 	void Game::gameLoop()
 	{
 		while(_device->run() == true) {
+			auto Res = _driver->getScreenSize();
+			_driver->setViewPort(irr::core::rect<irr::s32>(0,0,Res.Width,Res.Height));
 			_driver->beginScene(true, true, irr::video::SColor(255,100,101,140));
 
 			/* menu loop */
 			ecs::system::Blur::update();
 
+			/* camera loop */
+			
+			ecs::entity::Filter<ecs::component::Camera> fl;
+			auto &cam = ecs::component::Manager<ecs::component::Camera>::get();
+
+			if (fl.list.size() == 2) {
+				auto it = fl.list.begin();
+
+				_smgr->setActiveCamera(cam[*it]._camera);
+				//Set viewpoint to the first quarter (left top)
+				_driver->setViewPort(irr::core::rect<irr::s32>(0,0,Res.Width/2,Res.Height/2));
+				//Draw scene
+				_smgr->drawAll();
+				//Activate camera2
+				it++;
+				_smgr->setActiveCamera(cam[*it]._camera);
+				//Set viewpoint to the second quarter (right top)
+				_driver->setViewPort(irr::core::rect<irr::s32>(Res.Width/2,0,Res.Width,Res.Height/2));
+				//Draw scene
+				_smgr->drawAll();
+			}
 			/* Set the game loop here */
-
-			ecs::entity::Filter<ecs::component::Map> fl;
-			//for (auto id : fl.list) {
-
-
-			//}
 
 			ecs::system::Explode::update();
 			ecs::system::Update::Bomb();
