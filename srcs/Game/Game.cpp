@@ -12,6 +12,7 @@
 #include "Destroyer.hpp"
 
 #include "Component/Map.hpp"
+#include "System/Ai.hpp"
 
 namespace indie {
 
@@ -67,6 +68,18 @@ namespace indie {
 		while(_device->run() == true) {
 			_driver->beginScene(true, true, irr::video::SColor(255,100,101,140));
 			/* Set the game loop here */
+
+			ecs::entity::Filter<ecs::component::Map> fl;
+			for (auto id : fl.list) {
+			for (auto line : ecs::component::Manager<ecs::component::Map>::get()[id].map) {
+				for (auto a : line)
+					std::cout << a;
+				std::cout << std::endl;
+			}
+				std::cout << std::endl;
+
+			}
+
 			ecs::system::Explode::update();
 			ecs::system::Update::Bomb();
 			ecs::system::Destroyer::update();

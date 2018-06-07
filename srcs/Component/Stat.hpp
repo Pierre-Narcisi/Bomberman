@@ -14,6 +14,6 @@ namespace ecs::component {
 	struct Stat {
 		int	range = 1;
 		float	speed = 1;
-		int	bombMax = 1;
+		int	bombMax = 100;
 	};
 }

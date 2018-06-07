@@ -7,17 +7,12 @@
 
 #pragma once
 
+#include "Component/Map.hpp"
 #include <vector>
 #include <irrlicht/irrlicht.h>
 #include "ECS/Entity/Entity.hpp"
-
-namespace ecs::component {
-
-	struct Ai {
-	
-	};
-
-}
+#include "System/Event.hpp"
+#include "Component/Basics.hpp"
 
 namespace ecs::system {
 

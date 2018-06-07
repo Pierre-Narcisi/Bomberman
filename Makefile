@@ -39,10 +39,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = /home/seb/.bin/clion-2018.1.2/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E remove -f
+RM = /home/seb/.bin/clion-2018.1.2/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/seb/tmp/Client
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/seb/.bin/clion-2018.1.2/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/seb/.bin/clion-2018.1.2/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -122,114 +122,6 @@ Bomberman: cmake_check_build_system
 Bomberman/fast:
 	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/build
 .PHONY : Bomberman/fast
-
-libs/Json/srcs/Entity/Entity.o: libs/Json/srcs/Entity/Entity.cpp.o
-
-.PHONY : libs/Json/srcs/Entity/Entity.o
-
-# target to build an object file
-libs/Json/srcs/Entity/Entity.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/Json/srcs/Entity/Entity.cpp.o
-.PHONY : libs/Json/srcs/Entity/Entity.cpp.o
-
-libs/Json/srcs/Entity/Entity.i: libs/Json/srcs/Entity/Entity.cpp.i
-
-.PHONY : libs/Json/srcs/Entity/Entity.i
-
-# target to preprocess a source file
-libs/Json/srcs/Entity/Entity.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/Json/srcs/Entity/Entity.cpp.i
-.PHONY : libs/Json/srcs/Entity/Entity.cpp.i
-
-libs/Json/srcs/Entity/Entity.s: libs/Json/srcs/Entity/Entity.cpp.s
-
-.PHONY : libs/Json/srcs/Entity/Entity.s
-
-# target to generate assembly for a file
-libs/Json/srcs/Entity/Entity.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/Json/srcs/Entity/Entity.cpp.s
-.PHONY : libs/Json/srcs/Entity/Entity.cpp.s
-
-libs/Json/srcs/Parser/Parser.o: libs/Json/srcs/Parser/Parser.cpp.o
-
-.PHONY : libs/Json/srcs/Parser/Parser.o
-
-# target to build an object file
-libs/Json/srcs/Parser/Parser.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/Json/srcs/Parser/Parser.cpp.o
-.PHONY : libs/Json/srcs/Parser/Parser.cpp.o
-
-libs/Json/srcs/Parser/Parser.i: libs/Json/srcs/Parser/Parser.cpp.i
-
-.PHONY : libs/Json/srcs/Parser/Parser.i
-
-# target to preprocess a source file
-libs/Json/srcs/Parser/Parser.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/Json/srcs/Parser/Parser.cpp.i
-.PHONY : libs/Json/srcs/Parser/Parser.cpp.i
-
-libs/Json/srcs/Parser/Parser.s: libs/Json/srcs/Parser/Parser.cpp.s
-
-.PHONY : libs/Json/srcs/Parser/Parser.s
-
-# target to generate assembly for a file
-libs/Json/srcs/Parser/Parser.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/Json/srcs/Parser/Parser.cpp.s
-.PHONY : libs/Json/srcs/Parser/Parser.cpp.s
-
-libs/SmartEvent/srcs/Event/Event.o: libs/SmartEvent/srcs/Event/Event.cpp.o
-
-.PHONY : libs/SmartEvent/srcs/Event/Event.o
-
-# target to build an object file
-libs/SmartEvent/srcs/Event/Event.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/SmartEvent/srcs/Event/Event.cpp.o
-.PHONY : libs/SmartEvent/srcs/Event/Event.cpp.o
-
-libs/SmartEvent/srcs/Event/Event.i: libs/SmartEvent/srcs/Event/Event.cpp.i
-
-.PHONY : libs/SmartEvent/srcs/Event/Event.i
-
-# target to preprocess a source file
-libs/SmartEvent/srcs/Event/Event.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/SmartEvent/srcs/Event/Event.cpp.i
-.PHONY : libs/SmartEvent/srcs/Event/Event.cpp.i
-
-libs/SmartEvent/srcs/Event/Event.s: libs/SmartEvent/srcs/Event/Event.cpp.s
-
-.PHONY : libs/SmartEvent/srcs/Event/Event.s
-
-# target to generate assembly for a file
-libs/SmartEvent/srcs/Event/Event.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/SmartEvent/srcs/Event/Event.cpp.s
-.PHONY : libs/SmartEvent/srcs/Event/Event.cpp.s
-
-libs/SmartEvent/srcs/HdlCollector/HdlCollector.o: libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.o
-
-.PHONY : libs/SmartEvent/srcs/HdlCollector/HdlCollector.o
-
-# target to build an object file
-libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.o:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.o
-.PHONY : libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.o
-
-libs/SmartEvent/srcs/HdlCollector/HdlCollector.i: libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.i
-
-.PHONY : libs/SmartEvent/srcs/HdlCollector/HdlCollector.i
-
-# target to preprocess a source file
-libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.i:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.i
-.PHONY : libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.i
-
-libs/SmartEvent/srcs/HdlCollector/HdlCollector.s: libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.s
-
-.PHONY : libs/SmartEvent/srcs/HdlCollector/HdlCollector.s
-
-# target to generate assembly for a file
-libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.s:
-	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.s
-.PHONY : libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp.s
 
 srcs/Console/Console.o: srcs/Console/Console.cpp.o
 
@@ -420,6 +312,33 @@ srcs/Settings/Settings.cpp.s:
 	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/Settings/Settings.cpp.s
 .PHONY : srcs/Settings/Settings.cpp.s
 
+srcs/System/Ai.o: srcs/System/Ai.cpp.o
+
+.PHONY : srcs/System/Ai.o
+
+# target to build an object file
+srcs/System/Ai.cpp.o:
+	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/Ai.cpp.o
+.PHONY : srcs/System/Ai.cpp.o
+
+srcs/System/Ai.i: srcs/System/Ai.cpp.i
+
+.PHONY : srcs/System/Ai.i
+
+# target to preprocess a source file
+srcs/System/Ai.cpp.i:
+	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/Ai.cpp.i
+.PHONY : srcs/System/Ai.cpp.i
+
+srcs/System/Ai.s: srcs/System/Ai.cpp.s
+
+.PHONY : srcs/System/Ai.s
+
+# target to generate assembly for a file
+srcs/System/Ai.cpp.s:
+	$(MAKE) -f CMakeFiles/Bomberman.dir/build.make CMakeFiles/Bomberman.dir/srcs/System/Ai.cpp.s
+.PHONY : srcs/System/Ai.cpp.s
+
 srcs/System/Being.o: srcs/System/Being.cpp.o
 
 .PHONY : srcs/System/Being.o
@@ -562,20 +481,8 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... Bomberman"
 	@echo "... edit_cache"
-	@echo "... libs/Json/srcs/Entity/Entity.o"
-	@echo "... libs/Json/srcs/Entity/Entity.i"
-	@echo "... libs/Json/srcs/Entity/Entity.s"
-	@echo "... libs/Json/srcs/Parser/Parser.o"
-	@echo "... libs/Json/srcs/Parser/Parser.i"
-	@echo "... libs/Json/srcs/Parser/Parser.s"
-	@echo "... libs/SmartEvent/srcs/Event/Event.o"
-	@echo "... libs/SmartEvent/srcs/Event/Event.i"
-	@echo "... libs/SmartEvent/srcs/Event/Event.s"
-	@echo "... libs/SmartEvent/srcs/HdlCollector/HdlCollector.o"
-	@echo "... libs/SmartEvent/srcs/HdlCollector/HdlCollector.i"
-	@echo "... libs/SmartEvent/srcs/HdlCollector/HdlCollector.s"
+	@echo "... Bomberman"
 	@echo "... srcs/Console/Console.o"
 	@echo "... srcs/Console/Console.i"
 	@echo "... srcs/Console/Console.s"
@@ -597,6 +504,9 @@ help:
 	@echo "... srcs/Settings/Settings.o"
 	@echo "... srcs/Settings/Settings.i"
 	@echo "... srcs/Settings/Settings.s"
+	@echo "... srcs/System/Ai.o"
+	@echo "... srcs/System/Ai.i"
+	@echo "... srcs/System/Ai.s"
 	@echo "... srcs/System/Being.o"
 	@echo "... srcs/System/Being.i"
 	@echo "... srcs/System/Being.s"

@@ -172,14 +172,10 @@ namespace ecs::system {
 		component::Manager<component::Deletable>::get().addComponentForEntity(id);
 
 		component::Manager<component::ParticleSystem>::get().addComponentForEntity(id,
-											   game.getSmgr()->addParticleSystemSceneNode(
-												   false),
-											   game.getSmgr()->addParticleSystemSceneNode(
-												   false),
-											   game.getSmgr()->addParticleSystemSceneNode(
-												   false),
-											   game.getSmgr()->addParticleSystemSceneNode(
-												   false));
+											   game.getSmgr()->addParticleSystemSceneNode(false),
+											   game.getSmgr()->addParticleSystemSceneNode(false),
+											   game.getSmgr()->addParticleSystemSceneNode(false),
+											   game.getSmgr()->addParticleSystemSceneNode(false));
 		auto &ParticleSystemManager = component::Manager<component::ParticleSystem>::get();
 
 		component::Manager<component::ParticleEmitter>::get().addComponentForEntity(id);
@@ -187,12 +183,6 @@ namespace ecs::system {
 
 		component::Manager<component::ParticleAffector>::get().addComponentForEntity(id);
 		auto &ParticleAffectorManager = component::Manager<component::ParticleAffector>::get();
-
-
-
-
-
-
 
 		int rangeLeft = 0;
 		int rangeRight = 0;
@@ -203,38 +193,66 @@ namespace ecs::system {
 		for (auto &entit : fl.list) {
 			auto &map = component::Manager<component::Map>::get()[entit].map;
 
-			std::cout << pos.x / 100 << std::endl;
-			std::cout << pos.y / 100 << std::endl;
 
-			std::cout << "OUI: " << map[(pos.y / 100) + 1][(pos.x / 100) + 1] << std::endl;
+			pos.x = pos.x / 100;
+			pos.y = pos.y / 100;
 
-			for (; map[(pos.y / 100) + 1 - rangeLeft][(pos.x / 100) + 1] != 1 && map[(pos.y / 100) + 1 - rangeLeft][(pos.x / 100) + 1] != 2; rangeLeft++) {
-				std::cout << "1" << std::endl;
+			std::cout << pos.x - 1 << " " << pos.y - 1 << std::endl;
+			std::cout << map[pos.y - 1][pos.x - 1] << std::endl;
+
+			for (rangeLeft = 0; rangeLeft < 5 && pos.y - 1 + rangeLeft >= 0; rangeLeft++) {
+				if (map[pos.y - 1 + rangeLeft][pos.x - 1] == 1) {
+					rangeLeft--;
+					break;
+				} else if (map[pos.y - 1 + rangeLeft][pos.x - 1] == 2) {
+					map[pos.y - 1 + rangeLeft][pos.x - 1] = 0;
+					break;
+				}
 			}
-			for (; map[(pos.y / 100) + 1 + rangeRight][(pos.x / 100) + 1] != 1 && map[(pos.y / 100) + 1 + rangeRight][(pos.x / 100) + 1] != 2; rangeRight++) {
-				std::cout << "2" << std::endl;
+			for (rangeRight = 0; rangeRight < 5 && pos.y - 1 - rangeRight >= 0; rangeRight++) {
+				if (map[pos.y - 1 - rangeRight][pos.x - 1] == 1) {
+					rangeRight--;
+					break;
+				} else if (map[pos.y - 1 - rangeRight][pos.x - 1] == 2) {
+					map[pos.y - 1 - rangeRight][pos.x - 1] = 0;
+					break;
+				}
 			}
-			for (; map[(pos.y / 100) + 1][(pos.x / 100) + 1 + rangeUp] != 1 && map[(pos.y / 100) + 1][(pos.x / 100) + 1 + rangeUp] != 2; rangeUp++) {
-				std::cout << "3" << std::endl;
+			for (rangeUp = 0; rangeUp < 5; rangeUp++) {
+				if (map[pos.y - 1][pos.x - 1 + rangeUp] == 1) {
+					rangeUp--;
+					break;
+				} else if (map[pos.y - 1][pos.x - 1 + rangeUp] == 2) {
+					map[pos.y - 1][pos.x - 1 + rangeUp] = 0;
+					break;
+				}
 			}
-			for (; map[(pos.y / 100) + 1][(pos.x / 100) + 1 - rangeDown] != 1 && map[(pos.y / 100) + 1][(pos.x / 100) + 1 - rangeDown] != 2; rangeDown++) {
-				std::cout << "4" << std::endl;
+			for (rangeDown = 0; rangeDown < 5 && pos.x - 1 - rangeDown >= 0; rangeDown++) {
+				if (map[pos.y - 1][pos.x - 1 - rangeDown] == 1) {
+					rangeDown--;
+					break;
+				} else if (map[pos.y - 1][pos.x - 1 - rangeDown] == 2) {
+					map[pos.y - 1][pos.x - 1 - rangeDown] = 0;
+					break;
+				}
 			}
 
-			std::cout << rangeLeft << std::endl;
-			std::cout << rangeRight << std::endl;
-			std::cout << rangeUp << std::endl;
-			std::cout << rangeDown << std::endl;
+			std::cout << "rangeLeft:\t" << rangeLeft << std::endl;
+			std::cout << "rangeRight:\t" << rangeRight << std::endl;
+			std::cout << "rangeUp:\t" << rangeUp << std::endl;
+			std::cout << "rangeDown:\t" << rangeDown << std::endl;
+			std::cout << std::endl;
+
 
 		}
 
+		pos.x = pos.x * 100;
+		pos.y = pos.y * 100;
 
-
-
-
-
-
-
+		/*rangeLeft = 1;
+		rangeUp = 2;
+		rangeRight = 3;
+		rangeDown = 4;*/
 
 		ParticleEmitterManager[id].PEUp = ParticleSystemManager[id].PSUp->createBoxEmitter(
 			irr::core::aabbox3d<irr::f32>(-10, -1, -10, 10, 0, 10),

@@ -27,15 +27,6 @@ include_directories(srcs/Systems)
 include_directories(tests/basicECS)
 
 add_executable(Bomberman
-        libs/Json/srcs/Entity/Entity.cpp
-        libs/Json/srcs/Entity/Entity.hpp
-        libs/Json/srcs/Parser/Parser.cpp
-        libs/Json/srcs/Parser/Parser.hpp
-        libs/SmartEvent/srcs/Event/Event.cpp
-        libs/SmartEvent/srcs/Event/Event.hpp
-        libs/SmartEvent/srcs/HdlCollector/HdlCollector.cpp
-        libs/SmartEvent/srcs/HdlCollector/HdlCollector.hpp
-        libs/SmartEvent/srcs/Manager/Manager.hpp
         srcs/Component/AttributeBomb.hpp
         srcs/Component/Basics.hpp
         srcs/Component/Being.hpp
@@ -70,6 +61,8 @@ add_executable(Bomberman
         srcs/Settings/Settings.hpp
         srcs/System/Being.cpp
         srcs/System/Being.hpp
+        srcs/System/Ai.cpp
+        srcs/System/Ai.hpp
         srcs/System/Create.cpp
         srcs/System/Create.hpp
         srcs/System/Destroyer.hpp
