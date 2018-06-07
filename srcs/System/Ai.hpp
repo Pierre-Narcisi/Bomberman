@@ -13,6 +13,7 @@
 #include "ECS/Entity/Entity.hpp"
 #include "System/Event.hpp"
 #include "Component/Basics.hpp"
+#include "System/Being.hpp"
 
 namespace ecs::system {
 
@@ -21,6 +22,7 @@ namespace ecs::system {
 	public:
 		static void updateAll(); // create map // boucle sur tout les ai
 		static void update(entity::Id ai); // chercher le chemin // poser
+		static void deplacement(int dir, int y, int x);
 		static void line(map_t &map, int y, int x);
 		static void zone(map_t &map);
 	};
