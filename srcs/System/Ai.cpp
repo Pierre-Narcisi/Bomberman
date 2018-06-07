@@ -78,7 +78,7 @@ namespace ecs::system {
 			}
 			for (auto &id : player.list) {
 				auto pos = being[id]._node->getPosition();
-				map[static_cast<int>(pos.Z) / 100][static_cast<int>(pos.X) / 100] = 4;
+				map[static_cast<int>(pos.Z + 50) / 100][static_cast<int>(pos.X + 50) / 100] = 4;
 			}
 			for (auto &id : fl.list) {
 				if (mesh.hasComponent(id) == true) {

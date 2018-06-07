@@ -33,8 +33,8 @@ namespace ecs::system {
 
 			for (auto &id : fl.list) {
 				if (key[id].actions["attack"].state) {
-					pos.Y = being[id]._node->getPosition().Z + 36 - std::fmod(static_cast<double>(being[id]._node->getPosition().Z + 36) , 100.0);
-					pos.X = being[id]._node->getPosition().X + 55 - std::fmod(static_cast<double>(being[id]._node->getPosition().X + 55) , 100.0);
+					pos.Y = being[id]._node->getPosition().Z + 50 - std::fmod(static_cast<double>(being[id]._node->getPosition().Z + 50) , 100.0);
+					pos.X = being[id]._node->getPosition().X + 50 - std::fmod(static_cast<double>(being[id]._node->getPosition().X + 50) , 100.0);
 					ecs::system::Create::createBomb(id, pos);
 					key[id].actions["action"].state = false;
 				}
@@ -42,8 +42,8 @@ namespace ecs::system {
 
 			for (auto &id : list.list) {
 				if (ctrl[id].rightT) {
-					pos.Y = being[id]._node->getPosition().Z + 28 - std::fmod(static_cast<double>(being[id]._node->getPosition().Z + 28) , 100.0);
-					pos.X = being[id]._node->getPosition().X + 37 - std::fmod(static_cast<double>(being[id]._node->getPosition().X + 37) , 100.0);
+					pos.Y = being[id]._node->getPosition().Z + 50 - std::fmod(static_cast<double>(being[id]._node->getPosition().Z + 50) , 100.0);
+					pos.X = being[id]._node->getPosition().X + 50 - std::fmod(static_cast<double>(being[id]._node->getPosition().X + 50) , 100.0);
 					ecs::system::Create::createBomb(id, pos);
 					ctrl[id].rightT = false;
 				}
