@@ -60,6 +60,31 @@ namespace ecs::system {
 		return id;
 	}
 
+	entity::Id Create::createAi(std::string const &mesh, std::string const &texture, irr::core::vector2df const &pos)
+	{
+		auto &game = indie::Game::get();
+		auto	id = entity::Manager::get().newEntity();
+		irr::u32 i;
+
+		component::Manager<component::Being>::get().addComponentForEntity(id);
+		ecs::component::Constructors::Being(id, mesh, texture, pos);
+
+		auto selector = ecs::system::Create::createCollision();
+		irr::scene::ISceneNodeAnimator *anim = game.getSmgr()->createCollisionResponseAnimator(selector,
+													component::Manager<component::Being>::get()[id]._node,
+													(component::Manager<component::Being>::get()[id]._node->getBoundingBox().MaxEdge
+													- component::Manager<component::Being>::get()[id]._node->getBoundingBox().MinEdge),
+													irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
+		component::Manager<component::Being>::get()[id]._node->addAnimator(anim);
+		selector->drop();
+		anim->drop();
+
+		component::Manager<component::Stat>::get().addComponentForEntity(id);
+		component::Manager<component::Ai>::get().addComponentForEntity(id);
+
+		return id;
+	}
+
 	entity::Id Create::createPlayer(std::string const &mesh, std::string const &texture, irr::core::vector2df const &pos)
 	{
 		auto &game = indie::Game::get();
