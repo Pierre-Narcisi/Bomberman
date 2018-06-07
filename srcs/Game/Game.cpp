@@ -22,18 +22,24 @@ namespace indie {
 	Game::Game()
 	{
 		try {
-			_settings = json::Parser::fromFile(".settings");
+			_settings = json::Parser::fromFile(".settings.json")["settings"];
+			if (_settings["display"]["width"].isNumber() == false
+			|| _settings["display"]["height"].isNumber() == false) {
+				_settings["display"]["width"] = 1920;
+				_settings["display"]["height"] = 1080;
+			}
+			_settings["gameName"].isString();
 		} catch (json::Parser::ParserException &e) {
-			/* set default settings */
+			setDefaultSettings();
 		}
-		/* change width and height by the settings-width and settings-height */
-		_device = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1920, 1080), 16,
-					false, false, false, &_event);
-
+		_device = irr::createDevice(irr::video::EDT_OPENGL,
+			irr::core::dimension2d<irr::u32>(_settings["display"]["width"].to<int>(), _settings["display"]["height"].to<int>()),
+			16, false, false, false, &_event);
 		if (_device == nullptr)
 			throw GameException{"Error when create device"};
-		/* change name by the settings-gameName */
-		_device->setWindowCaption(L"Bomberman");
+		irr::core::stringw gameName = L"";
+		gameName += _settings["gameName"].to<std::string>().c_str();
+		_device->setWindowCaption(gameName.c_str());
 		_driver = _device->getVideoDriver();
 		_smgr = _device->getSceneManager();
 		_guienv = _device->getGUIEnvironment();
@@ -93,7 +99,7 @@ namespace indie {
 		}
 	}
 
-	void Game::drawAll()
+	void Game::drawAll() const
 	{
 		ecs::entity::Filter<ecs::component::Image> fl;
 		ecs::entity::Filter<ecs::component::HoverImage> fl2;
@@ -115,6 +121,36 @@ namespace indie {
 					irr::video::SColor(255, 255, 255, 255), true);
 			}
 		}
+	}
+
+	void Game::setDefaultSettings()
+	{
+		_settings = json::makeObject {
+			{"gameName", "VoodooBomber"},
+			{"display", json::makeObject {
+				{"width", 1920},
+				{"height", 1080},
+				{"fps-max", 60}
+			}},
+			{"Input", json::makeObject {
+				{"player1", json::makeObject {
+					{"up", "Z"},
+					{"down", "S"},
+					{"right", "D"},
+					{"left", "Q"},
+					{"fire", "SPACE"},
+					{"event", "E"}
+				}},
+				{"player2", json::makeObject {
+					{"up", "UP"},
+					{"down", "DOWN"},
+					{"right", "RIGHT"},
+					{"left", "LEFT"},
+					{"fire", "M"},
+					{"event", "L"}
+				}}
+			}}
+		};
 	}
 
 }

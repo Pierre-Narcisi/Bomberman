@@ -49,7 +49,8 @@ namespace indie {
 	protected:
 		/* init the window */
 		Game();
-		void drawAll();
+		void drawAll() const;
+		void setDefaultSettings();
 
 	public:
 		struct GameException : public std::exception {

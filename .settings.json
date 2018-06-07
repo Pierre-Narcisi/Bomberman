@@ -1,0 +1,27 @@
+{
+	"settings": {
+		"gameName": "VoodooBomber",
+		"display": {
+			"width": 1920,
+			"height": 1080
+		},
+		"inputs": {
+			"player1": {
+				"up": "Z",
+				"down": "S",
+				"right": "D",
+				"left": "Q",
+				"fire": "SPACE",
+				"event": "E"
+			},
+			"player2": {
+				"up": "UP",
+				"down": "DOWN",
+				"right": "RIGHT",
+				"left": "LEFT",
+				"fire": "M",
+				"event": "L"
+			}
+		}
+	}
+}
