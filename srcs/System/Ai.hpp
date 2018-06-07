@@ -13,6 +13,8 @@
 #include "ECS/Entity/Entity.hpp"
 #include "System/Event.hpp"
 #include "Component/Basics.hpp"
+#include "Component/Graphicals.hpp"
+#include "Component/Ai.hpp"
 #include "System/Being.hpp"
 
 namespace ecs::system {

@@ -6,14 +6,13 @@
 */
 
 #include "Ai.hpp"
-#include "Component/Graphicals.hpp"
 
 namespace ecs::system {
 
 	void Ai::deplacement(int dir, int y, int x)
 	{
 		auto &game = indie::Game::get();
-		entity::Filter<component::Being, Ai> player;
+		entity::Filter<component::Being, component::Ai> player;
 
 		auto &being = component::Manager<component::Being>::get();
 		auto &camera = component::Manager<component::Camera>::get();
