@@ -20,7 +20,9 @@ namespace ecs::system {
 		using map_t = std::vector<std::vector<int>>;
 	public:
 		static void updateAll(); // create map // boucle sur tout les ai
-		static void update(entity::Id ai, map_t const &map); // chercher le chemin // poser
+		static void update(entity::Id ai); // chercher le chemin // poser
+		static void line(map_t &map, int y, int x);
+		static void zone(map_t &map);
 	};
 
 }

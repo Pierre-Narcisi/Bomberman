@@ -10,14 +10,45 @@
 
 namespace ecs::system {
 
-	void Ai::update(entity::Id ai, map_t const &map)
+	void Ai::line(map_t &map, int y, int x)
 	{
+		for (int i = 0; map[y - i][x] != 1 && map[y - i][x] != 2; i++) {
+			map[y - i][x] = 4;
+		}
+		for (int i = 0; map[y + i][x] != 1 && map[y + i][x] != 2; i++) {
+			map[y + i][x] = 4;
+		}
+		for (int i = 0; map[y][x - i] != 1 && map[y][x - i] != 2; i++) {
+			map[y][x - i] = 4;
+		}
+		for (int i = 0; map[y][x + i] != 1 && map[y][x + i] != 2; i++) {
+			map[y][x + i] = 4;
+		}
+	}
+
+	void Ai::zone(map_t &map)
+	{
+		for (int i = 0; i < map.size(); i++) {
+			for (int j = 0; j < map[i].size(); j++) {
+				if (map[i][j] == 3)
+					line(map, i, j);
+			}
+		}
+	}
+
+	void Ai::update(entity::Id ai)
+	{
+		entity::Filter<component::Map> mapList;
+		for (auto &id : mapList.list) {
+			auto map = component::Manager<component::Map>::get()[id].map;
+		}
 
 	}
 
 	void Ai::updateAll()
 	{
-		entity::Filter<component::Type> fl;
+		entity::Filter<component::Type, component::Mesh> fl;
+		entity::Filter<component::UnanimatedObject> listWall;
 		entity::Filter<component::UnanimatedObject, component::Deletable> list;
 		entity::Filter<component::Map> mapList;
 		auto &wall = component::Manager<component::UnanimatedObject>::get();
@@ -26,19 +57,24 @@ namespace ecs::system {
 		auto &type = component::Manager<component::Type>::get();
 
 
-		for (auto &id : mapList.list) {
-			auto &map = component::Manager<component::Map>::get()[id].map;
+		for (auto &idmap : mapList.list) {
+			auto &map = component::Manager<component::Map>::get()[idmap].map;
 			for (int i = 0; i < map.size(); i++) {
 				for (int j = 0; j < map[i].size(); j++) {
 					map[i][j] = 0;		
 				}	
 			}
 			for (auto &id : fl.list) {
-				if (type[id].t == component::Type::Enum::Bomb) {
+				if (mesh.hasComponent(id) == true) {
 					auto pos = mesh[id].mesh->getPosition();
-					map[pos.Z / 100][pos.X / 100] = 3;
-				} else if (type[id].t == component::Type::Enum::Wall) {
-					auto pos = wall[id]._node->getPosition();
+					if (type.hasComponent(id) == true && type[id].t == component::Type::Enum::Bomb)
+						map[pos.Z / 100][pos.X / 100] = 3;
+				}
+			}
+			for (auto &id : listWall.list) {
+				auto pos = wall[id]._node->getPosition();
+	
+				if (type.hasComponent(id) == true && type[id].t == component::Type::Enum::Wall) {
 					map[pos.Z / 100][pos.X / 100] = 1;
 				}
 			}
