@@ -116,11 +116,11 @@ namespace indie {
 	{
 		for (int i = 0; i < _xmap + 2; i++) {
 			ecs::system::Create::createWall(irr::core::vector2df(0, i * 100));
-			ecs::system::Create::createWall(irr::core::vector2df((_xmap + 1) * 100, i * 100));
+			ecs::system::Create::createWall(irr::core::vector2df((_ymap + 1) * 100, i * 100));
 		}
 		for (int i = 0; i < _ymap + 2; i++) {
 			ecs::system::Create::createWall(irr::core::vector2df(i * 100, 0));
-			ecs::system::Create::createWall(irr::core::vector2df(i * 100, (_ymap + 1) * 100));
+			ecs::system::Create::createWall(irr::core::vector2df(i * 100, (_xmap + 1) * 100));
 		}
 	}
 
