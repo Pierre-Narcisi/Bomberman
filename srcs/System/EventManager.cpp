@@ -22,6 +22,10 @@ namespace ecs::system {
 						cpn.second.state = event.KeyInput.PressedDown;
 				}
 			}
+
+			if (event.KeyInput.Key == irr::EKEY_CODE::KEY_KEY_L)
+				indie::Game::get().getDevice()->closeDevice();
+
 			ecs::system::Update::Deplacement();
 		} else if (event.EventType == irr::EET_JOYSTICK_INPUT_EVENT) {
 			entity::Filter<component::Controller360> fl;

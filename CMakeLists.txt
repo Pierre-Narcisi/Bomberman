@@ -55,6 +55,7 @@ add_executable(bomberman
         srcs/System/Collider.cpp
         srcs/System/Collider.hpp
         srcs/System/Explode.hpp
+				srcs/System/Graphical.hpp
         srcs/System/Update.hpp
         srcs/System/UpdateDeplacement.cpp
         srcs/Main.cpp)

@@ -21,13 +21,15 @@
 
 namespace ecs::system {
 
-	static entity::Id createBackground(std::string const &image, component::Rect const &rect)
+	static entity::Id createBackground(std::string const &image, component::Rect const &rect,
+		component::Color const &color)
 	{
 		auto &game = indie::Game::get();
 		auto id = entity::Manager::get().newEntity();
 
 		irr::video::ITexture *texture = game.getDriver()->getTexture(image.c_str());
 		component::Manager<component::Image>::get().addComponentForEntity(id, texture, rect);
+		component::Manager<component::Color>::get().addComponentForEntity(id, color);
 		return id;
 	}
 

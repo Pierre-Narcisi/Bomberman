@@ -9,6 +9,7 @@
 #include "EventReceiver.hpp"
 #include "Settings/Inputs.hpp"
 #include "System/CreateButton.hpp"
+#include "System/Collider.hpp"
 
 #include "Game/Game.hpp"
 
@@ -23,7 +24,7 @@ namespace indie {
 			auto &mouse = ecs::component::Manager<ecs::component::Mouse>::get()[Game::get().getMouse()];
 			switch(event.MouseInput.Event) {
 				case irr::EMIE_LMOUSE_LEFT_UP:
-					/* collide MousePos with buttons */
+					ecs::system::Collider::click();
 					break;
 				case irr::EMIE_MOUSE_MOVED:
 					mouse.position.X = event.MouseInput.X;
