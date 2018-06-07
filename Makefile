@@ -123,60 +123,6 @@ bomberman/fast:
 	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/build
 .PHONY : bomberman/fast
 
-libs/Json/srcs/Entity/Entity.o: libs/Json/srcs/Entity/Entity.cpp.o
-
-.PHONY : libs/Json/srcs/Entity/Entity.o
-
-# target to build an object file
-libs/Json/srcs/Entity/Entity.cpp.o:
-	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/libs/Json/srcs/Entity/Entity.cpp.o
-.PHONY : libs/Json/srcs/Entity/Entity.cpp.o
-
-libs/Json/srcs/Entity/Entity.i: libs/Json/srcs/Entity/Entity.cpp.i
-
-.PHONY : libs/Json/srcs/Entity/Entity.i
-
-# target to preprocess a source file
-libs/Json/srcs/Entity/Entity.cpp.i:
-	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/libs/Json/srcs/Entity/Entity.cpp.i
-.PHONY : libs/Json/srcs/Entity/Entity.cpp.i
-
-libs/Json/srcs/Entity/Entity.s: libs/Json/srcs/Entity/Entity.cpp.s
-
-.PHONY : libs/Json/srcs/Entity/Entity.s
-
-# target to generate assembly for a file
-libs/Json/srcs/Entity/Entity.cpp.s:
-	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/libs/Json/srcs/Entity/Entity.cpp.s
-.PHONY : libs/Json/srcs/Entity/Entity.cpp.s
-
-libs/Json/srcs/Parser/Parser.o: libs/Json/srcs/Parser/Parser.cpp.o
-
-.PHONY : libs/Json/srcs/Parser/Parser.o
-
-# target to build an object file
-libs/Json/srcs/Parser/Parser.cpp.o:
-	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/libs/Json/srcs/Parser/Parser.cpp.o
-.PHONY : libs/Json/srcs/Parser/Parser.cpp.o
-
-libs/Json/srcs/Parser/Parser.i: libs/Json/srcs/Parser/Parser.cpp.i
-
-.PHONY : libs/Json/srcs/Parser/Parser.i
-
-# target to preprocess a source file
-libs/Json/srcs/Parser/Parser.cpp.i:
-	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/libs/Json/srcs/Parser/Parser.cpp.i
-.PHONY : libs/Json/srcs/Parser/Parser.cpp.i
-
-libs/Json/srcs/Parser/Parser.s: libs/Json/srcs/Parser/Parser.cpp.s
-
-.PHONY : libs/Json/srcs/Parser/Parser.s
-
-# target to generate assembly for a file
-libs/Json/srcs/Parser/Parser.cpp.s:
-	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/libs/Json/srcs/Parser/Parser.cpp.s
-.PHONY : libs/Json/srcs/Parser/Parser.cpp.s
-
 srcs/ECS/Entity/Entity.o: srcs/ECS/Entity/Entity.cpp.o
 
 .PHONY : srcs/ECS/Entity/Entity.o
@@ -366,6 +312,33 @@ srcs/Settings/Settings.cpp.s:
 	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/Settings/Settings.cpp.s
 .PHONY : srcs/Settings/Settings.cpp.s
 
+srcs/System/Ai.o: srcs/System/Ai.cpp.o
+
+.PHONY : srcs/System/Ai.o
+
+# target to build an object file
+srcs/System/Ai.cpp.o:
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/Ai.cpp.o
+.PHONY : srcs/System/Ai.cpp.o
+
+srcs/System/Ai.i: srcs/System/Ai.cpp.i
+
+.PHONY : srcs/System/Ai.i
+
+# target to preprocess a source file
+srcs/System/Ai.cpp.i:
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/Ai.cpp.i
+.PHONY : srcs/System/Ai.cpp.i
+
+srcs/System/Ai.s: srcs/System/Ai.cpp.s
+
+.PHONY : srcs/System/Ai.s
+
+# target to generate assembly for a file
+srcs/System/Ai.cpp.s:
+	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/Ai.cpp.s
+.PHONY : srcs/System/Ai.cpp.s
+
 srcs/System/Being.o: srcs/System/Being.cpp.o
 
 .PHONY : srcs/System/Being.o
@@ -510,12 +483,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... bomberman"
 	@echo "... edit_cache"
-	@echo "... libs/Json/srcs/Entity/Entity.o"
-	@echo "... libs/Json/srcs/Entity/Entity.i"
-	@echo "... libs/Json/srcs/Entity/Entity.s"
-	@echo "... libs/Json/srcs/Parser/Parser.o"
-	@echo "... libs/Json/srcs/Parser/Parser.i"
-	@echo "... libs/Json/srcs/Parser/Parser.s"
 	@echo "... srcs/ECS/Entity/Entity.o"
 	@echo "... srcs/ECS/Entity/Entity.i"
 	@echo "... srcs/ECS/Entity/Entity.s"
@@ -537,6 +504,9 @@ help:
 	@echo "... srcs/Settings/Settings.o"
 	@echo "... srcs/Settings/Settings.i"
 	@echo "... srcs/Settings/Settings.s"
+	@echo "... srcs/System/Ai.o"
+	@echo "... srcs/System/Ai.i"
+	@echo "... srcs/System/Ai.s"
 	@echo "... srcs/System/Being.o"
 	@echo "... srcs/System/Being.i"
 	@echo "... srcs/System/Being.s"

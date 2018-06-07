@@ -17,7 +17,7 @@
 int main() {
 	indie::Game &game = indie::Game::get();
 
-	indie::mapGen(10, 10);
+	indie::mapGen(20, 20);
 	irr::core::array<irr::SJoystickInfo> joystickInfo;
 	game.getDevice()->activateJoysticks(joystickInfo);
 	ecs::system::Create::createPlayer("./assets/sydney.md2", "./assets/sydney.bmp", irr::core::vector2df(100,100));

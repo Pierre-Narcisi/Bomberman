@@ -8,6 +8,7 @@
 #pragma once
 
 #include <Constructors/Destructors.hpp>
+#include <Component/Stat.hpp>
 #include "Game/Game.hpp"
 #include "ECS/Entity/Entity.hpp"
 #include "ECS/Entity/Filter.hpp"
@@ -35,6 +36,7 @@ namespace ecs::system {
 			auto &being = component::Manager<component::UnanimatedObject>::get();
 			auto &bomb = component::Manager<component::Mesh>::get();
 			auto &dlt = component::Manager<component::Deletable>::get();
+			auto &attribute = component::Manager<component::Attributes>::get();
 
 			auto &particleSystemManager = component::Manager<component::ParticleSystem>::get();
 
@@ -42,7 +44,8 @@ namespace ecs::system {
 
 			for (auto &id : fl.list) {
 				if (typeManager[id].t == component::Type::Enum::Bomb
-				    && (long double) time(NULL) >= attributesManager[id].since) {
+				    && ((long double) time(NULL) >= attributesManager[id].since || attributesManager[id].explode == true)) {
+					std::cout << id << "      " << attributesManager[id].explode << std::endl;
 					auto pos = positionManager[id];
 					game.getSmgr()->addToDeletionQueue(bomb[id].mesh);
 					for (auto &ID : walls.list) {
@@ -60,8 +63,8 @@ namespace ecs::system {
 							}
 						}
 					}
-
-					Create::createExplosion(pos, 5);
+					component::Manager<component::Stat>::get()[attribute[id].player].bombMax += 1;
+					Create::createExplosion(id, pos);
 					component::Manager<component::Deletable>::get()[id].del = true;
 				}
 			}

@@ -18,6 +18,9 @@
 #include "System/Collider.hpp"
 #include "System/Destroyer.hpp"
 
+#include "Component/Map.hpp"
+#include "System/Ai.hpp"
+
 namespace indie {
 
 	Game::Game()
@@ -35,10 +38,9 @@ namespace indie {
 		}
 		_device = irr::createDevice(irr::video::EDT_OPENGL,
 			irr::core::dimension2d<irr::u32>(_settings["display"]["width"].to<int>(), _settings["display"]["height"].to<int>()),
-			16, true, false, false, &_event);
+			16, false, false, false, &_event);
 		if (_device == nullptr)
 			throw GameException{"Error when create device"};
-		// _device->setResizable(true);
 		irr::core::stringw gameName = L"";
 		gameName += _settings["gameName"].to<std::string>().c_str();
 		_device->setWindowCaption(gameName.c_str());
@@ -90,6 +92,13 @@ namespace indie {
 			ecs::system::Blur::update();
 
 			/* Set the game loop here */
+
+			ecs::entity::Filter<ecs::component::Map> fl;
+			//for (auto id : fl.list) {
+
+
+			//}
+
 			ecs::system::Explode::update();
 			ecs::system::Update::Bomb();
 			ecs::system::Destroyer::update();

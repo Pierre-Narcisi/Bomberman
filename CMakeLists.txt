@@ -12,10 +12,6 @@ include_directories(libs/Json/tests/Parser/srcs/Parser)
 include_directories(srcs)
 
 add_executable(bomberman
-        libs/Json/srcs/Entity/Entity.cpp
-        libs/Json/srcs/Entity/Entity.hpp
-        libs/Json/srcs/Parser/Parser.cpp
-        libs/Json/srcs/Parser/Parser.hpp
         srcs/Component/AttributeBomb.hpp
         srcs/Component/Basics.hpp
         srcs/Component/Being.hpp
@@ -24,6 +20,7 @@ add_executable(bomberman
         srcs/Component/Controller360.hpp
         srcs/Component/Graphicals.hpp
         srcs/Component/Keyboard.hpp
+        srcs/Component/Stat.hpp
         srcs/Component/UnanimatedObject.hpp
         srcs/ECS/Component/Component.hpp
         srcs/ECS/Component/Component.tpp
@@ -47,6 +44,8 @@ add_executable(bomberman
         srcs/Settings/Settings.hpp
         srcs/System/Being.cpp
         srcs/System/Being.hpp
+        srcs/System/Ai.cpp
+        srcs/System/Ai.hpp
         srcs/System/Create.cpp
         srcs/System/Create.hpp
         srcs/System/Destroyer.hpp
@@ -61,4 +60,5 @@ add_executable(bomberman
         srcs/Main.cpp)
 
 target_link_libraries(bomberman /usr/lib/x86_64-linux-gnu/libIrrlicht.so)
-target_link_libraries(bomberman ${CMAKE_SOURCE_DIR}/libs/Json/libJson.so)
+target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/Json/libJson.so)
+target_link_libraries(bomberman /usr/lib/x86_64-linux-gnu/libpthread.so)
