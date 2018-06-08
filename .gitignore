@@ -10,7 +10,6 @@
 cmake*
 CMakeCache.txt
 CMakeFiles
-*.so
 *.a
 
 ## binaries :
