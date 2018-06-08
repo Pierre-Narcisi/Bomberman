@@ -51,7 +51,6 @@ namespace ecs::system {
 			auto &game = indie::Game::get();
 
 			for (auto &e: fl.list) {
-				std::cout << "delete img" << std::endl;
 				component::Image &img = imgManager[e];
 				game.getDriver()->removeTexture(img.image);
 				delManager[e].del = true;
@@ -65,7 +64,6 @@ namespace ecs::system {
 			auto &game = indie::Game::get();
 
 			for (auto &e: fl.list) {
-				std::cout << "delete img" << std::endl;
 				component::Image &img = imgManager[e];
 				game.getDriver()->removeTexture(img.image);
 				delManager[e].del = true;
