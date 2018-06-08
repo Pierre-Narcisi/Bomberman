@@ -62,7 +62,7 @@ namespace ecs::system {
 					rot = 0;
 			}
 
-			being[id]._node->setRotation(irr::core::vector3df(0, rot, 0));
+			being[id]._node->setRotation(irr::core::vector3df(0, rot - 180, 0));
 
 			// Set Speed
 
@@ -128,7 +128,7 @@ namespace ecs::system {
 			else
 				being[id]._rotation = rot;
 
-			being[id]._node->setRotation(irr::core::vector3df(0, rot, 0));
+			being[id]._node->setRotation(irr::core::vector3df(0, rot - 180, 0));
 
 			// Set Speed
 			if ((control[id].buttons >> 1 & 1))

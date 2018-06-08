@@ -94,26 +94,67 @@ namespace indie {
 			ecs::system::Blur::update();
 
 			/* camera loop */
-			
+
 			ecs::entity::Filter<ecs::component::Camera> fl;
 			auto &cam = ecs::component::Manager<ecs::component::Camera>::get();
+
+			if (fl.list.size() == 1) {
+				auto it = fl.list.begin();
+
+				_smgr->setActiveCamera(cam[*it]._camera);
+				_driver->setViewPort(irr::core::rect<irr::s32>(0,0,Res.Width,Res.Height));
+				_smgr->drawAll();
+			}
 
 			if (fl.list.size() == 2) {
 				auto it = fl.list.begin();
 
 				_smgr->setActiveCamera(cam[*it]._camera);
-				//Set viewpoint to the first quarter (left top)
-				_driver->setViewPort(irr::core::rect<irr::s32>(0,0,Res.Width/2,Res.Height/2));
-				//Draw scene
+				_driver->setViewPort(irr::core::rect<irr::s32>(0,Res.Height/4,Res.Width/2,Res.Height/2 + Res.Height/4));
 				_smgr->drawAll();
-				//Activate camera2
 				it++;
 				_smgr->setActiveCamera(cam[*it]._camera);
-				//Set viewpoint to the second quarter (right top)
-				_driver->setViewPort(irr::core::rect<irr::s32>(Res.Width/2,0,Res.Width,Res.Height/2));
-				//Draw scene
+				_driver->setViewPort(irr::core::rect<irr::s32>(Res.Width/2,Res.Height/4,Res.Width,Res.Height/2 + Res.Height/4));
 				_smgr->drawAll();
 			}
+
+			if (fl.list.size() == 3) {
+				auto it = fl.list.begin();
+
+				_smgr->setActiveCamera(cam[*it]._camera);
+				_driver->setViewPort(irr::core::rect<irr::s32>(0,0,Res.Width/2,Res.Height/2));
+				_smgr->drawAll();
+				it++;
+				_smgr->setActiveCamera(cam[*it]._camera);
+				_driver->setViewPort(irr::core::rect<irr::s32>(Res.Width/2,0,Res.Width,Res.Height/2));
+				_smgr->drawAll();
+				it++;
+				_smgr->setActiveCamera(cam[*it]._camera);
+				_driver->setViewPort(irr::core::rect<irr::s32>(Res.Width/4,Res.Height/2,Res.Width/2 + Res.Width/4,Res.Height));
+				_smgr->drawAll();
+			}
+
+			if (fl.list.size() == 4) {
+				auto it = fl.list.begin();
+
+				_smgr->setActiveCamera(cam[*it]._camera);
+				_driver->setViewPort(irr::core::rect<irr::s32>(0,0,Res.Width/2,Res.Height/2));
+				_smgr->drawAll();
+				it++;
+				_smgr->setActiveCamera(cam[*it]._camera);
+				_driver->setViewPort(irr::core::rect<irr::s32>(Res.Width/2,0,Res.Width,Res.Height/2));
+				_smgr->drawAll();
+				it++;
+				_smgr->setActiveCamera(cam[*it]._camera);
+				_driver->setViewPort(irr::core::rect<irr::s32>(0,Res.Height/2,Res.Width/2,Res.Height));
+				_smgr->drawAll();
+				it++;
+				_smgr->setActiveCamera(cam[*it]._camera);
+				_driver->setViewPort(irr::core::rect<irr::s32>(Res.Width/2,Res.Height/2,Res.Width,Res.Height));
+				_smgr->drawAll();
+			}
+
+
 			/* Set the game loop here */
 
 			ecs::system::Explode::update();

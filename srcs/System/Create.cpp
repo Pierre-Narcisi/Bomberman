@@ -30,7 +30,7 @@ namespace ecs::system {
 		for (auto id : fl.list) {
 			sel1 = game.getSmgr()->createTriangleSelectorFromBoundingBox(map[id]._node);
 			worldSel->addTriangleSelector(sel1);
-			// worldSel->removeTriangleSelector(sel1);
+			//worldSel->removeTriangleSelector(sel1);
 		}
 		return (worldSel);
 	}
@@ -98,17 +98,22 @@ namespace ecs::system {
 			if (strcmp(joystickInfo[i].Name.c_str(), "Microsoft X-Box 360 pad") == 0)
 				_controller = true;
 
-		// component::Manager<component::Being>::get().addComponentForEntity(id, mesh, texture, pos);
-		// component::Manager<component::Stat>::get().addComponentForEntity();
 		component::Manager<component::Being>::get().addComponentForEntity(id);
 		ecs::component::Constructors::Being(id, mesh, texture, pos);
 
 		auto selector = ecs::system::Create::createCollision();
+		auto max = component::Manager<component::Being>::get()[id]._node->getBoundingBox().MaxEdge;
+		auto min = component::Manager<component::Being>::get()[id]._node->getBoundingBox().MinEdge;
+		max.Z *= 15;
+		max.X *= 15;
+		max.Y *= 15;
+		min.Z *= 15;
+		min.X *= 15;
+		min.Y *= 15;
 		irr::scene::ISceneNodeAnimator *anim = game.getSmgr()->createCollisionResponseAnimator(selector,
-													component::Manager<component::Being>::get()[id]._node,
-													(component::Manager<component::Being>::get()[id]._node->getBoundingBox().MaxEdge
-													- component::Manager<component::Being>::get()[id]._node->getBoundingBox().MinEdge),
-													irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
+												       component::Manager<component::Being>::get()[id]._node,
+												       (max - min),
+												       irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
 		component::Manager<component::Being>::get()[id]._node->addAnimator(anim);
 		selector->drop();
 		anim->drop();

@@ -84,8 +84,10 @@ namespace ecs::system {
 		static void LoadGame()
 		{
 			indie::mapGen(10, 10);
-			ecs::system::Create::createPlayer("./assets/sydney.md2", "./assets/sydney.bmp", irr::core::vector2df(100,100));
-			ecs::system::Create::createPlayer("./assets/sydney.md2", "./assets/sydney.bmp", irr::core::vector2df(900,100));
+			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo1.png", irr::core::vector2df(100,100));
+			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo2.png", irr::core::vector2df(900,100));
+			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo3.png", irr::core::vector2df(100,900));
+			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo4.png", irr::core::vector2df(1000,1000));
 		};
 	};
 }
