@@ -10,6 +10,7 @@ include_directories(libs/Json/srcs/Parser)
 include_directories(libs/Json/tests/Parser/srcs/Entity)
 include_directories(libs/Json/tests/Parser/srcs/Parser)
 include_directories(srcs)
+include_directories(irrKlang)
 
 add_executable(bomberman
         srcs/Component/AttributeBomb.hpp
@@ -62,3 +63,4 @@ add_executable(bomberman
 target_link_libraries(bomberman /usr/lib/x86_64-linux-gnu/libIrrlicht.so)
 target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/Json/libJson.so)
 target_link_libraries(bomberman /usr/lib/x86_64-linux-gnu/libpthread.so)
+target_link_libraries(bomberman /home/axel/Epitech/Client/irrKlang/bin/linux-gcc-64/libIrrKlang.so)

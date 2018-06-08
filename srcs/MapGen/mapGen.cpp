@@ -11,6 +11,9 @@
 #include "System/Create.hpp"
 #include "mapGen.hpp"
 
+#include <stdlib.h>
+#include <time.h>
+
 namespace indie {
 
 	void mapGen::create_spawn()
@@ -31,13 +34,14 @@ namespace indie {
 
 	void	mapGen::make_unperfect()
 	{
-		std::uniform_int_distribution<int> distribution(0, 100);
-		std::random_device rd;
-		std::mt19937 engine(rd());
+		// std::uniform_int_distribution<int> distribution(0, 100);
+		// std::random_device rd;
+		// std::mt19937 engine(rd());
 
 		for (std::size_t i = 0; i < _2Dmap.size(); ++i) {
 			for (std::size_t j = 0; j < _2Dmap[i].size(); ++j) {
-				if (_2Dmap[i][j] == 1 && distribution(engine) < 60)
+				// if (_2Dmap[i][j] == 1 && distribution(engine) < 60)
+				if (_2Dmap[i][j] == 1 && rand() % 100 < 60)
 					_2Dmap[i][j] = 2;
 			}
 		}
@@ -80,12 +84,13 @@ namespace indie {
 
 	void	mapGen::choose_pos()
 	{
-		std::uniform_int_distribution<int> distribution(0, 3);
-		std::random_device rd;
-		std::mt19937 engine(rd());
+		// std::uniform_int_distribution<int> distribution(0, 3);
+		// std::random_device rd;
+		// std::mt19937 engine(rd());
 
 		do {
-			int dir = distribution(engine);
+			// int dir = distribution(engine);
+			int dir = rand() % 4;
 
 			if (dir == 0 && _xgen + 2 < _xmap && _2Dmap[_ygen][_xgen + 2] == 1)
 				_xgen += 2;
@@ -130,6 +135,7 @@ namespace indie {
 	gen{std::make_pair(_xgen, _ygen)},
 	_2Dmap(y + 2, std::vector<int>(x + 2, 1))
 	{
+		srand(time(NULL));
 		generate2D();
 		make_unperfect();
 		create_spawn();

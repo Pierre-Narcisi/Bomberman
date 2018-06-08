@@ -30,6 +30,7 @@ namespace ecs::system {
 		irr::video::ITexture *texture = game.getDriver()->getTexture(image.c_str());
 		component::Manager<component::Image>::get().addComponentForEntity(id, texture, rect);
 		component::Manager<component::Color>::get().addComponentForEntity(id, color);
+		component::Manager<component::Deletable>::get().addComponentForEntity(id);
 		return id;
 	}
 
@@ -43,6 +44,7 @@ namespace ecs::system {
 		irr::video::ITexture *texture = game.getDriver()->getTexture(image.c_str());
 		component::Manager<component::Button>::get().addComponentForEntity(id, type);
 		component::Manager<component::Image>::get().addComponentForEntity(id, texture, rect);
+		component::Manager<component::Deletable>::get().addComponentForEntity(id);
 		if (hover != "") {
 			irr::video::ITexture *hoverTexture = game.getDriver()->getTexture(hover.c_str());
 			component::Manager<component::HoverImage>::get().addComponentForEntity(id, hoverTexture, rect);

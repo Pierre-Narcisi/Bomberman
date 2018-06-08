@@ -14,6 +14,7 @@
 #include "Component/Keyboard.hpp"
 #include "Component/Controller360.hpp"
 #include "Component/Camera.hpp"
+#include "System/Graphical.hpp"
 
 #include "System/Create.hpp"
 
@@ -47,6 +48,23 @@ namespace ecs::system {
 					ecs::system::Create::createBomb(id, pos);
 					ctrl[id].rightT = false;
 				}
+			}
+		}
+	};
+
+	class HandleMenu {
+	public:
+		static void update()
+		{
+			static bool _switch = false;
+
+			_switch = !_switch;
+			if (_switch == true) {
+				ecs::system::Scene::loadMenuInGame();
+				/* create menu */
+			} else {
+				ecs::system::Scene::unloadMenuInGame();
+				/* delete menu */
 			}
 		}
 	};

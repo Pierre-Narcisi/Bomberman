@@ -10,6 +10,7 @@
 #include <irrlicht/irrlicht.h>
 
 #include "Game/Game.hpp"
+#include "Component/Basics.hpp"
 
 namespace ecs::component {
 
@@ -61,7 +62,6 @@ namespace ecs::component {
 		Rect			rect;
 		Position		pos{};
 		bool			draw{true};
-		bool			del{};
 	};
 
 	struct HoverImage {

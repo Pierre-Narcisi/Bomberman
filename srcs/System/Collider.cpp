@@ -46,10 +46,11 @@ namespace ecs::system {
 		entity::Filter<component::Button, component::Image> fl;
 		auto &buttonManager = component::Manager<component::Button>::get();
 		auto &imgManager = component::Manager<component::Image>::get();
+		auto &delManager = component::Manager<component::Deletable>::get();
 
 		for (auto &e : fl.list) {
 			auto &img = imgManager[e];
-			if (img.draw == false) {
+			if (img.draw == false && delManager[e].del == false) {
 				if (buttonManager[e].type == ecs::component::Button::Type::Quit) {
 					indie::Game::get().getDevice()->closeDevice();
 				} else if (buttonManager[e].type == ecs::component::Button::Type::Play) {
@@ -57,7 +58,7 @@ namespace ecs::system {
 					ecs::system::Scene::loadSceneTwo();
 				} else if (buttonManager[e].type == ecs::component::Button::Type::Solo) {
 					ecs::system::Deletable::all();
-					ecs::system::Scene::LoadGame();
+					ecs::system::Scene::loadGame();
 				}
 			}
 		}

@@ -7,6 +7,7 @@
 
 #include "System/Explode.hpp"
 #include "System/Event.hpp"
+#include "System/Graphical.hpp"
 
 namespace ecs::system {
 
@@ -23,8 +24,9 @@ namespace ecs::system {
 				}
 			}
 
-			if (event.KeyInput.Key == irr::EKEY_CODE::KEY_KEY_L)
-				indie::Game::get().getDevice()->closeDevice();
+			if (event.KeyInput.Key == irr::EKEY_CODE::KEY_ESCAPE
+			&& event.KeyInput.PressedDown == false)
+				ecs::system::HandleMenu::update();
 
 			ecs::system::Update::Deplacement();
 		} else if (event.EventType == irr::EET_JOYSTICK_INPUT_EVENT) {

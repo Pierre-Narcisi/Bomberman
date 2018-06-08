@@ -10,17 +10,27 @@
 #include "System/Create.hpp"
 #include "System/CreateButton.hpp"
 #include "System/Graphical.hpp"
+#include "../irrKlang/include/ik_ISound.h"
+#include "../irrKlang/include/ik_ISound.h"
+#include "../irrKlang/include/ik_EStreamModes.h"
+#include "../irrKlang/include/irrKlang.h"
 
 int main()
 {
-	indie::Game &game = indie::Game::get();
+	irrklang::ISound *introMusic;
+	irrklang::ISoundEngine *engine;
 
+	indie::Game &game = indie::Game::get();
 	irr::core::array<irr::SJoystickInfo> joystickInfo;
 	game.getDevice()->activateJoysticks(joystickInfo);
 
-	ecs::system::createBackground("./assets/buttons/maxresdefault.jpg", ecs::component::Rect{0, 0, 1920, 1080}, ecs::component::Color{255, 255, 255, 255});
-	ecs::system::createBackground("./assets/buttons/flou.jpg", ecs::component::Rect{0, 0, 1920, 1080}, ecs::component::Color{0, 255, 255, 255});
-	ecs::system::createBackground("./assets/buttons/title.png", ecs::component::Rect{0, 0, 1920, 1080}, ecs::component::Color{255, 255, 255, 255});
+	engine = irrklang::createIrrKlangDevice();
+	introMusic = engine->play2D("./assets/Varien-Lilith.wav", true,
+		false, false, irrklang::ESM_AUTO_DETECT, true);
+
+	introMusic->setVolume(static_cast<irr::f32>(1));
+
+	ecs::system::Scene::loadBackground();
 	ecs::system::Scene::loadSceneOne();
 	game.gameLoop();
 }

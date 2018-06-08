@@ -21,6 +21,9 @@
 #include "Component/Map.hpp"
 #include "System/Ai.hpp"
 
+#include <chrono>
+#include <thread>
+
 namespace indie {
 
 	Game::Game()
@@ -38,7 +41,7 @@ namespace indie {
 		}
 		_device = irr::createDevice(irr::video::EDT_OPENGL,
 			irr::core::dimension2d<irr::u32>(_settings["display"]["width"].to<int>(), _settings["display"]["height"].to<int>()),
-			16, true, false, false, &_event);
+			16, false, false, false, &_event);
 		if (_device == nullptr)
 			throw GameException{"Error when create device"};
 		irr::core::stringw gameName = L"";
@@ -49,6 +52,14 @@ namespace indie {
 		_guienv = _device->getGUIEnvironment();
 		_mouse = ecs::entity::Manager::get().newEntity();
 		ecs::component::Manager<ecs::component::Mouse>::get().addComponentForEntity(_mouse);
+
+		irr::video::ITexture* images = _driver->getTexture("./assets/splash.jpg");
+		_driver->beginScene(true, true, irr::video::SColor(255,100,101,140));
+		_driver->draw2DImage(images, irr::core::position2d<irr::s32>(0, 0),
+				irr::core::rect<irr::s32>(0, 0, 1920, 1080), 0,
+				irr::video::SColor(255, 255, 255, 255), true);
+		_driver->endScene();
+		std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 	}
 
 	Game &Game::get()
@@ -101,7 +112,6 @@ namespace indie {
 
 			ecs::system::Explode::update();
 			ecs::system::Update::Bomb();
-			ecs::system::Destroyer::update();
 			ecs::system::Collider::update();
 			ecs::system::Ai::updateAll();
 			ecs::system::Ai::update(10);
@@ -110,6 +120,7 @@ namespace indie {
 				update bombes
 				update deletable
 			*/
+			ecs::system::Destroyer::update();
 			drawAll();
 			_driver->endScene();
 		}
@@ -121,6 +132,7 @@ namespace indie {
 		ecs::entity::Filter<ecs::component::HoverImage> fl2;
 		auto &imgManager = ecs::component::Manager<ecs::component::Image>::get();
 		auto &colorManager = ecs::component::Manager<ecs::component::Color>::get();
+		auto &delManager = ecs::component::Manager<ecs::component::Deletable>::get();
 		auto &hoverImgManager = ecs::component::Manager<ecs::component::HoverImage>::get();
 
 		_smgr->drawAll();
@@ -128,7 +140,7 @@ namespace indie {
 		for (auto e : fl.list) {
 			auto const &img = imgManager[e];
 			ecs::component::Color color{255, 255, 255, 255};
-			if (img.del == true) {
+			if (delManager[e].del == true) {
 					_driver->removeTexture(img.image);
 					continue;
 			}
