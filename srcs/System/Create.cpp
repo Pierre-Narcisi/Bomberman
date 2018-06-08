@@ -5,6 +5,7 @@
 ** Created by seb,
 */
 
+#include <Constructors/Destructors.hpp>
 #include "ECS/Entity/Entity.hpp"
 #include "Game/Game.hpp"
 
@@ -151,16 +152,6 @@ namespace ecs::system {
 	entity::Id Create::createBomb(entity::Id ID, irr::core::vector2di pos)
 	{
 		auto &game = indie::Game::get();
-
-		// component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::Bomb);
-		// component::Manager<component::Position>::get().addComponentForEntity(id, pos.X, pos.Y);
-		// component::Manager<component::Attributes>::get().addComponentForEntity(id, (long double) time(NULL) + 2, range, component::Attributes::Enum::Default);
-		// component::Manager<component::Mesh>::get().addComponentForEntity(id, game.getSmgr()->addAnimatedMeshSceneNode(game.getSmgr()->getMesh("../../assets/bomb.obj")));
-		// component::Manager<component::Mesh>::get()[id].mesh->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-		// component::Manager<component::Mesh>::get()[id].mesh->setPosition({static_cast<float>(pos.X), 0, static_cast<float>(pos.Y)});
-		// component::Manager<component::Mesh>::get()[id].mesh->setScale({25, 25, 25});
-		// component::Manager<component::Deletable>::get().addComponentForEntity(id);
-		// return id;
 		entity::Filter<component::Type, component::Mesh> fl;
 		auto &mesh = component::Manager<component::Mesh>::get();
 		auto &type = component::Manager<component::Type>::get();
@@ -222,6 +213,18 @@ namespace ecs::system {
 		int rangeUp = 0;
 		int rangeDown = 0;
 
+
+		entity::Filter<component::UnanimatedObject, component::Deletable> walls;
+		auto &wall = component::Manager<component::UnanimatedObject>::get();
+
+		for (auto &Id: walls.list) {
+			if (wall[Id]._node->getPosition().X/100 == pos.x && wall[Id]._node->getPosition().Z/100 == pos.y)
+				component::Destructors::UnanimatedObject(Id);
+		}
+
+
+
+
 		entity::Filter<component::Map> fl;
 		for (auto &entit : fl.list) {
 			auto &map = component::Manager<component::Map>::get()[entit].map;
@@ -239,6 +242,10 @@ namespace ecs::system {
 				} else if (map[pos.y][pos.x - (rangeLeft + 1)] == 2) {
 					rangeLeft++;
 					map[pos.y][pos.x - (rangeLeft + 1)] = 0;
+					for (auto &Id: walls.list) {
+						if (wall[Id]._node->getPosition().X/100 == pos.x - (rangeLeft) && wall[Id]._node->getPosition().Z/100 == pos.y)
+							component::Destructors::UnanimatedObject(Id);
+					}
 					break;
 				} else if (map[pos.y][pos.x - (rangeLeft + 1)] == 3) {
 					entity::Filter<component::Position, component::Type>	poty;
@@ -248,12 +255,17 @@ namespace ecs::system {
 					}
 				}
 			}
+
 			for (rangeRight = 0; rangeRight < component::Manager<component::Attributes>::get()[ID].range; ++rangeRight) {
 				if (map[pos.y][pos.x + (rangeRight + 1)] == 1) {
 					break;
 				} else if (map[pos.y][pos.x + (rangeRight + 1)] == 2) {
 					rangeRight++;
 					map[pos.y][pos.x + (rangeRight + 1)] = 0;
+					for (auto &Id: walls.list) {
+						if (wall[Id]._node->getPosition().X/100 == pos.x + (rangeRight) && wall[Id]._node->getPosition().Z/100 == pos.y)
+							component::Destructors::UnanimatedObject(Id);
+					}
 					break;
 				} else if (map[pos.y][pos.x + (rangeRight + 1)] == 3) {
 					entity::Filter<component::Position, component::Type>	poty;
@@ -263,12 +275,17 @@ namespace ecs::system {
 					}
 				}
 			}
+
 			for (rangeUp = 0; rangeUp < component::Manager<component::Attributes>::get()[ID].range; ++rangeUp) {
 				if (map[pos.y + (rangeUp + 1)][pos.x] == 1) {
 					break;
 				} else if (map[pos.y + (rangeUp + 1)][pos.x] == 2) {
 					rangeUp++;
 					map[pos.y + (rangeUp + 1)][pos.x] = 0;
+					for (auto &Id: walls.list) {
+						if (wall[Id]._node->getPosition().X/100 == pos.x && wall[Id]._node->getPosition().Z/100 == pos.y + (rangeUp))
+							component::Destructors::UnanimatedObject(Id);
+					}
 					break;
 				} else if (map[pos.y + (rangeUp + 1)][pos.x] == 3) {
 					entity::Filter<component::Position, component::Type>	poty;
@@ -278,12 +295,17 @@ namespace ecs::system {
 					}
 				}
 			}
+
 			for (rangeDown = 0; rangeDown < component::Manager<component::Attributes>::get()[ID].range; ++rangeDown) {
 				if (map[pos.y - (rangeDown + 1)][pos.x] == 1) {
 					break;
 				} else if (map[pos.y - (rangeDown + 1)][pos.x] == 2) {
 					rangeDown++;
 					map[pos.y - (rangeDown + 1)][pos.x] = 0;
+					for (auto &Id: walls.list) {
+						if (wall[Id]._node->getPosition().X/100 == pos.x && wall[Id]._node->getPosition().Z/100 == pos.y - (rangeDown))
+							component::Destructors::UnanimatedObject(Id);
+					}
 					break;
 				} else if (map[pos.y - (rangeDown + 1)][pos.x] == 3) {
 					entity::Filter<component::Position, component::Type>	poty;
@@ -306,9 +328,16 @@ namespace ecs::system {
 				std::cout << std::endl;
 			}*/
 			std::cout << std::endl;
-
-
 		}
+
+
+		//TODO kill player if in range
+
+
+
+		//TODO end todo
+
+
 
 		pos.x = pos.x * 100;
 		pos.y = pos.y * 100;

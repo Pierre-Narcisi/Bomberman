@@ -28,7 +28,6 @@ namespace ecs::system {
 			auto &game = indie::Game::get();
 			entity::Filter<component::Type, component::Attributes, component::Position, component::Mesh> fl;
 			entity::Filter<component::Type, component::Position, component::Attributes, component::Deletable, component::ParticleSystem> exp;
-			entity::Filter<component::UnanimatedObject, component::Deletable> walls;
 
 			auto &typeManager = component::Manager<component::Type>::get();
 			auto &attributesManager = component::Manager<component::Attributes>::get();
@@ -48,21 +47,7 @@ namespace ecs::system {
 					std::cout << id << "      " << attributesManager[id].explode << std::endl;
 					auto pos = positionManager[id];
 					game.getSmgr()->addToDeletionQueue(bomb[id].mesh);
-					for (auto &ID : walls.list) {
-						if (being[ID]._node->getPosition().X == pos.x) {
-							if (being[ID]._node->getPosition().Z > (pos.y - dist) &&
-							    being[ID]._node->getPosition().Z < (pos.y + dist)) {
-								ecs::component::Destructors::UnanimatedObject(ID);
-								dlt[ID].del = true;
-							}
-						} else if (being[ID]._node->getPosition().Z == pos.y) {
-							if (being[ID]._node->getPosition().X > (pos.x - dist) &&
-							    being[ID]._node->getPosition().X < (pos.x + dist)) {
-								ecs::component::Destructors::UnanimatedObject(ID);
-								dlt[ID].del = true;
-							}
-						}
-					}
+
 					component::Manager<component::Stat>::get()[attribute[id].player].bombMax += 1;
 					Create::createExplosion(id, pos);
 					component::Manager<component::Deletable>::get()[id].del = true;
