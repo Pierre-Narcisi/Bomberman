@@ -32,8 +32,8 @@ namespace indie {
 			_settings = json::Parser::fromFile(".settings.json")["settings"];
 			if (_settings["display"]["width"].isNumber() == false
 			|| _settings["display"]["height"].isNumber() == false) {
-				_settings["display"]["width"] = 1920;
-				_settings["display"]["height"] = 1080;
+				_settings["display"]["width"] = 1000;
+				_settings["display"]["height"] = 1000;
 			}
 			_settings["gameName"].isString();
 		} catch (json::Parser::ParserException &e) {
@@ -41,7 +41,7 @@ namespace indie {
 		}
 		_device = irr::createDevice(irr::video::EDT_OPENGL,
 		irr::core::dimension2d<irr::u32>(_settings["display"]["width"].to<int>(), _settings["display"]["height"].to<int>()),
-		16, true, false, false, &_event);
+			16, true, false, false, &_event);
 		if (_device == nullptr)
 			throw GameException{"Error when create device"};
 		irr::core::stringw gameName = L"";
