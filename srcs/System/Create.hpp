@@ -30,6 +30,7 @@ namespace ecs::system {
 		static entity::Id	createBomb(entity::Id id, irr::core::vector2di pos);
 		static void		createExplosion(entity::Id id, component::Position pos);
 		static entity::Id	createMap(std::vector<std::vector<int>>);
+		static entity::Id	createBonus(component::Position pos);
 		static entity::Id	createAi(std::string const &mesh, std::string const &texture, irr::core::vector2df const &pos);
 	};
 

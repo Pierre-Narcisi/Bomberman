@@ -15,14 +15,17 @@ namespace ecs::component {
 			Monster,
 			Wall,
 			Bomb,
-			Explosion
+			Explosion,
+			BonusSpeed,
+			BonusBomb,
+			BonusRange
 		};
 		Enum t;
 	};
 
 	struct Position {
 		int x{};
-		int y{};	
+		int y{};
 	};
 
 	struct Speed {

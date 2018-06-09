@@ -434,4 +434,28 @@ namespace ecs::system {
 		return id;
 	}
 
+	entity::Id Create::createBonus(component::Position pos) {
+
+		auto id = entity::Manager::get().newEntity();
+
+		component::Manager<component::Position>::get().addComponentForEntity(id, pos);
+		component::Manager<component::UnanimatedObject>::get().addComponentForEntity(id);
+
+		srand (time(NULL));
+		int ran = rand() % 3;
+		if (ran == 0) {
+			component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::BonusBomb);
+			component::Constructors::Bonus(id, "./assets/BombBonus.png", {(float)pos.x, (float)pos.y});
+		} else if (ran == 1) {
+			component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::BonusRange);
+			component::Constructors::Bonus(id, "./assets/RangeBonus.png", {(float)pos.x, (float)pos.y});
+		} else {
+			component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::BonusSpeed);
+			component::Constructors::Bonus(id, "./assets/SpeedBonus.png", {(float)pos.x, (float)pos.y});
+		}
+		component::Manager<component::Position>::get().addComponentForEntity(id, pos);
+
+		return id;
+	}
+
 }
