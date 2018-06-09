@@ -97,7 +97,7 @@ namespace indie {
 	void Game::gameLoop()
 	{
 		while(_device->run() == true) {
-			_driver->beginScene(true, true, irr::video::SColor(255,100,101,140));
+			_driver->beginScene(true, true, irr::video::SColor(255,0,0,0));
 
 			/* menu loop */
 			ecs::system::Blur::update();
