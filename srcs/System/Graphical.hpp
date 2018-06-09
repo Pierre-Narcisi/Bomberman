@@ -85,6 +85,7 @@ namespace ecs::system {
 		{
 			indie::mapGen(10, 10);
 			ecs::system::Create::createPlayer("./assets/sydney.md2", "./assets/sydney.bmp", irr::core::vector2df(100,100));
+			ecs::system::Create::createAi("./assets/sydney.md2", "./assets/sydney.bmp", irr::core::vector2df(100,100));	
 		};
 	};
 }

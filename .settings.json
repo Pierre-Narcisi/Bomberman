@@ -2,8 +2,8 @@
 	"settings": {
 		"gameName": "VoodooBomber",
 		"display": {
-			"width": 1920,
-			"height": 1080
+			"width": 1000,
+			"height": 1000
 		},
 		"inputs": {
 			"player1": {
