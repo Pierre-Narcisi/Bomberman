@@ -11,7 +11,7 @@
 				"down": "S",
 				"right": "D",
 				"left": "Q",
-				"fire": "SPACE",
+				"attack": "SPACE",
 				"event": "E"
 			},
 			"player2": {
@@ -19,7 +19,7 @@
 				"down": "DOWN",
 				"right": "RIGHT",
 				"left": "LEFT",
-				"fire": "M",
+				"attack": "M",
 				"event": "L"
 			}
 		}

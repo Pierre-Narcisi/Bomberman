@@ -14,8 +14,6 @@
 #include "Component/Basics.hpp"
 #include "Component/UnanimatedObject.hpp"
 #include "Component/Being.hpp"
-#include "Component/Controller360.hpp"
-#include "Component/Keyboard.hpp"
 #include "Component/Camera.hpp"
 #include "Component/Ai.hpp"
 

@@ -94,6 +94,12 @@ namespace json
 	}
 
 	template <>
+	unsigned int	Entity::to<unsigned int>() const
+	{
+		return (unsigned int)(_data->toNumber());
+	}
+
+	template <>
 	std::string	Entity::to<std::string>() const
 	{
 		return _data->toString();

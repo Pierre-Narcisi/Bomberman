@@ -40,8 +40,8 @@ namespace indie {
 			setDefaultSettings();
 		}
 		_device = irr::createDevice(irr::video::EDT_OPENGL,
-			irr::core::dimension2d<irr::u32>(_settings["display"]["width"].to<int>(), _settings["display"]["height"].to<int>()),
-			16, false, false, false, &_event);
+		irr::core::dimension2d<irr::u32>(_settings["display"]["width"].to<int>(), _settings["display"]["height"].to<int>()),
+		16, true, false, false, &_event);
 		if (_device == nullptr)
 			throw GameException{"Error when create device"};
 		irr::core::stringw gameName = L"";
@@ -69,7 +69,7 @@ namespace indie {
 		return game;
 	}
 
-	json::Entity const &Game::getSettings() const
+	json::Entity &Game::getSettings()
 	{
 		return _settings;
 	}
@@ -97,18 +97,76 @@ namespace indie {
 	void Game::gameLoop()
 	{
 		while(_device->run() == true) {
-			_driver->beginScene(true, true, irr::video::SColor(255,0,0,0));
+			auto Res = _driver->getScreenSize();
+			_driver->setViewPort(irr::core::rect<irr::s32>(0,0,Res.Width,Res.Height));
+			_driver->beginScene(true, true, irr::video::SColor(255,100,101,140));
 
 			/* menu loop */
 			ecs::system::Blur::update();
 
+			/* camera loop */
+
+			ecs::entity::Filter<ecs::component::Camera> fl;
+			auto &cam = ecs::component::Manager<ecs::component::Camera>::get();
+
+			if (fl.list.size() == 1) {
+				auto it = fl.list.begin();
+
+				_smgr->setActiveCamera(cam[*it]._camera);
+				_driver->setViewPort(irr::core::rect<irr::s32>(0,0,Res.Width,Res.Height));
+				_smgr->drawAll();
+			}
+
+			if (fl.list.size() == 2) {
+				auto it = fl.list.begin();
+
+				_smgr->setActiveCamera(cam[*it]._camera);
+				_driver->setViewPort(irr::core::rect<irr::s32>(0,Res.Height/4,Res.Width/2,Res.Height/2 + Res.Height/4));
+				_smgr->drawAll();
+				it++;
+				_smgr->setActiveCamera(cam[*it]._camera);
+				_driver->setViewPort(irr::core::rect<irr::s32>(Res.Width/2,Res.Height/4,Res.Width,Res.Height/2 + Res.Height/4));
+				_smgr->drawAll();
+			}
+
+			if (fl.list.size() == 3) {
+				auto it = fl.list.begin();
+
+				_smgr->setActiveCamera(cam[*it]._camera);
+				_driver->setViewPort(irr::core::rect<irr::s32>(0,0,Res.Width/2,Res.Height/2));
+				_smgr->drawAll();
+				it++;
+				_smgr->setActiveCamera(cam[*it]._camera);
+				_driver->setViewPort(irr::core::rect<irr::s32>(Res.Width/2,0,Res.Width,Res.Height/2));
+				_smgr->drawAll();
+				it++;
+				_smgr->setActiveCamera(cam[*it]._camera);
+				_driver->setViewPort(irr::core::rect<irr::s32>(Res.Width/4,Res.Height/2,Res.Width/2 + Res.Width/4,Res.Height));
+				_smgr->drawAll();
+			}
+
+			if (fl.list.size() == 4) {
+				auto it = fl.list.begin();
+
+				_smgr->setActiveCamera(cam[*it]._camera);
+				_driver->setViewPort(irr::core::rect<irr::s32>(0,0,Res.Width/2,Res.Height/2));
+				_smgr->drawAll();
+				it++;
+				_smgr->setActiveCamera(cam[*it]._camera);
+				_driver->setViewPort(irr::core::rect<irr::s32>(Res.Width/2,0,Res.Width,Res.Height/2));
+				_smgr->drawAll();
+				it++;
+				_smgr->setActiveCamera(cam[*it]._camera);
+				_driver->setViewPort(irr::core::rect<irr::s32>(0,Res.Height/2,Res.Width/2,Res.Height));
+				_smgr->drawAll();
+				it++;
+				_smgr->setActiveCamera(cam[*it]._camera);
+				_driver->setViewPort(irr::core::rect<irr::s32>(Res.Width/2,Res.Height/2,Res.Width,Res.Height));
+				_smgr->drawAll();
+			}
+
+
 			/* Set the game loop here */
-
-			ecs::entity::Filter<ecs::component::Map> fl;
-			//for (auto id : fl.list) {
-
-
-			//}
 
 			ecs::system::Explode::update();
 			ecs::system::Update::Bomb();

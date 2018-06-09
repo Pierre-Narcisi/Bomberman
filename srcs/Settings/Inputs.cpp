@@ -6,29 +6,62 @@
 */
 
 #include <algorithm>
+#include "ECS/Entity/Filter.hpp"
+#include "System/Update.hpp"
 
 #include "Inputs.hpp"
 
 namespace ecs::system {
 
-	void Inputs::handle(component::Input &input, irr::SEvent const &event)
+	void Inputs::handle(irr::SEvent const &event)
 	{
-		if (event.EventType == irr::EET_KEY_INPUT_EVENT
-		&& input.mode == component::Input::Mode::Keybord) {
-			for (auto &cpn : input.actions) {
-				if (cpn.key == event.KeyInput.Key)
-					cpn.state = event.KeyInput.PressedDown;
+		entity::Filter<component::Input> fl;
+		auto &input = component::Manager<component::Input>::get();
+
+		if (event.EventType == irr::EET_KEY_INPUT_EVENT && event.KeyInput.Key == irr::EKEY_CODE::KEY_ESCAPE)
+			indie::Game::get().getDevice()->closeDevice();
+
+		for (auto &id : fl.list) {
+
+			if (event.EventType == irr::EET_KEY_INPUT_EVENT
+			&& input[id].mode == component::Input::Mode::Keybord) {
+				if (input[id].up.key == event.KeyInput.Key)
+					input[id].up.state = event.KeyInput.PressedDown;
+				if (input[id].down.key == event.KeyInput.Key)
+					input[id].down.state = event.KeyInput.PressedDown;
+				if (input[id].left.key == event.KeyInput.Key)
+					input[id].left.state = event.KeyInput.PressedDown;
+				if (input[id].right.key == event.KeyInput.Key)
+					input[id].right.state = event.KeyInput.PressedDown;
+				if (input[id].attack.key == event.KeyInput.Key)
+					input[id].attack.state = event.KeyInput.PressedDown;
+				if (input[id].crouch.key == event.KeyInput.Key)
+					input[id].crouch.state = event.KeyInput.PressedDown;
+				if (input[id].sprint.key == event.KeyInput.Key)
+					input[id].sprint.state = event.KeyInput.PressedDown;
+			} else if (event.EventType == irr::EET_JOYSTICK_INPUT_EVENT
+			&& input[id].mode == component::Input::Mode::Controller
+			&& input[id].controllerId == event.JoystickEvent.Joystick) {
+				const irr::f32 DEAD_ZONE = 0.2f;
+				irr::f32 rotHorizontal =
+					event.JoystickEvent.Axis[irr::SEvent::SJoystickEvent::AXIS_X] / 32767.f;
+				if(fabs(rotHorizontal) < DEAD_ZONE)
+					rotHorizontal = 0.f;
+				irr::f32 rotVertical =
+					event.JoystickEvent.Axis[irr::SEvent::SJoystickEvent::AXIS_Y] / -32767.f;
+				if(fabs(rotVertical) < DEAD_ZONE)
+					rotVertical = 0.f;
+
+				input[id].crouch.state = (event.JoystickEvent.ButtonStates >> 1 & 1);
+				input[id].sprint.state = (event.JoystickEvent.ButtonStates >> 9 & 1);
+				input[id].up.state = (rotVertical >= 0.2f);
+				input[id].down.state = (rotVertical <= -0.2f);
+				input[id].right.state = (rotHorizontal >= 0.2f);
+				input[id].left.state = (rotHorizontal <= -0.2f);
+				input[id].attack.state = (event.JoystickEvent.Axis[irr::SEvent::SJoystickEvent::AXIS_V] == 32767);
 			}
-		} else if (event.EventType == irr::EET_JOYSTICK_INPUT_EVENT
-		&& input.mode == component::Input::Mode::Controler
-		&& input.controllerId == event.JoystickEvent.Joystick) {
-			std::for_each(input.actions.begin(), input.actions.end(), [&event](auto &a) {
-				if (a.type == component::Input::Action::Type::Crouch)
-					a.state = (event.JoystickEvent.ButtonStates >> 1 & 1);
-				else if (a.type != component::Input::Action::Type::Sprint)
-					a.state = (event.JoystickEvent.ButtonStates >> 9 & 1);
-			});
 		}
+		ecs::system::Update::Deplacement();
 	}
 
 	// void Inputs::handle(component::MenuInput &input, irr::SEvent const &event)

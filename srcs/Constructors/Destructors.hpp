@@ -7,8 +7,8 @@
 
 #pragma once
 
-#include <ECS/Component/Component.hpp>
-#include <Component/UnanimatedObject.hpp>
+#include "ECS/Component/Component.hpp"
+#include "Component/UnanimatedObject.hpp"
 #include "Game/Game.hpp"
 #include "ECS/Entity/Entity.hpp"
 
