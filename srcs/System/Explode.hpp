@@ -7,8 +7,8 @@
 
 #pragma once
 
-#include <Constructors/Destructors.hpp>
-#include <Component/Stat.hpp>
+#include "Constructors/Destructors.hpp"
+#include "Component/Stat.hpp"
 #include "Game/Game.hpp"
 #include "ECS/Entity/Entity.hpp"
 #include "ECS/Entity/Filter.hpp"

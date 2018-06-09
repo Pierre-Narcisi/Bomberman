@@ -5,7 +5,7 @@
 ** Created by seb,
 */
 
-#include <Settings/Inputs.hpp>
+#include "Settings/Inputs.hpp"
 #include "Game/Game.hpp"
 
 #include "System/Update.hpp"

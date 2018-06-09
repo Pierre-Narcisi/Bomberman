@@ -7,10 +7,8 @@
 
 #pragma once
 
-#include <Component/Camera.hpp>
-#include <Component/Controller360.hpp>
-#include <Component/Keyboard.hpp>
-#include <Component/UnanimatedObject.hpp>
+#include "Component/Camera.hpp"
+#include "Component/UnanimatedObject.hpp"
 #include "Component/Being.hpp"
 #include "ECS/Component/Component.hpp"
 
@@ -61,21 +59,6 @@ namespace ecs::component {
 				ctrl[ID].mode = ecs::component::Input::Mode::Controller;
 				ctrl[ID].controllerId = joy;
 			}
-		};
-
-		static void Keyboard(entity::Id id, irr::EKEY_CODE up, irr::EKEY_CODE left, irr::EKEY_CODE down, irr::EKEY_CODE right, irr::EKEY_CODE attack, irr::EKEY_CODE crouch, irr::EKEY_CODE sprint)
-		{
-			auto &key = component::Manager<component::Keyboard>::get();
-
-			key[id].actions = std::unordered_map<std::string, ecs::component::Keyboard::Action> {
-				{"up", {up, false} },
-				{"left", {left, false} },
-				{"down", {down, false} },
-				{"right", {right, false} },
-				{"attack", {attack, false} },
-				{"crouch", {crouch, false} },
-				{"sprint", {sprint, false} }
-			};
 		};
 
 		static void UnanimatedObject(entity::Id id, std::string const &texture, irr::core::vector2df const &pos)

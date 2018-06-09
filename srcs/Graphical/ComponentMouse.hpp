@@ -8,8 +8,8 @@
 #pragma once
 
 #include <irrlicht/irrlicht.h>
-#include <ECS/Entity/Entity.hpp>
-#include <ECS/Component/Component.hpp>
+#include "ECS/Entity/Entity.hpp"
+#include "ECS/Component/Component.hpp"
 #include "ComponentBeing.hpp"
 
 namespace ecs::component {

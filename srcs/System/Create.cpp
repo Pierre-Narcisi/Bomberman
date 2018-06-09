@@ -5,8 +5,8 @@
 ** Created by seb,
 */
 
-#include <Constructors/Destructors.hpp>
-#include <Settings/Inputs.hpp>
+#include "Constructors/Destructors.hpp"
+#include "Settings/Inputs.hpp"
 #include "ECS/Entity/Entity.hpp"
 #include "Game/Game.hpp"
 

@@ -17,9 +17,7 @@ add_executable(bomberman
         srcs/Component/Being.hpp
         srcs/Component/BoxCollider.hpp
         srcs/Component/Camera.hpp
-        srcs/Component/Controller360.hpp
         srcs/Component/Graphicals.hpp
-        srcs/Component/Keyboard.hpp
         srcs/Component/Stat.hpp
         srcs/Component/UnanimatedObject.hpp
         srcs/ECS/Component/Component.hpp

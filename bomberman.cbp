@@ -97,13 +97,7 @@
 		<Unit filename="/home/seb/Client/srcs/Component/Camera.hpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Component/Controller360.hpp">
-			<Option target="bomberman"/>
-		</Unit>
 		<Unit filename="/home/seb/Client/srcs/Component/Graphicals.hpp">
-			<Option target="bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Component/Keyboard.hpp">
 			<Option target="bomberman"/>
 		</Unit>
 		<Unit filename="/home/seb/Client/srcs/Component/Stat.hpp">
