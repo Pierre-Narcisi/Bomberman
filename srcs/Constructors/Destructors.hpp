@@ -21,7 +21,6 @@ namespace ecs::component {
 			//auto &game = indie::Game::get();
 			auto &obj = component::Manager<component::UnanimatedObject>::get();
 
-			srand (time(NULL));
 			int ran = rand() % 101;
 			if (ran >= 80)
 				ecs::system::Create::createBonus({obj[id]._node->getPosition().X, obj[id]._node->getPosition().Z});
