@@ -18,6 +18,9 @@ namespace ecs::system {
 		entity::Filter<component::Input> fl;
 		auto &input = component::Manager<component::Input>::get();
 
+		if (event.EventType == irr::EET_KEY_INPUT_EVENT && event.KeyInput.Key == irr::EKEY_CODE::KEY_ESCAPE)
+			indie::Game::get().getDevice()->closeDevice();
+
 		for (auto &id : fl.list) {
 
 			if (event.EventType == irr::EET_KEY_INPUT_EVENT

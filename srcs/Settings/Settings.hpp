@@ -22,31 +22,6 @@ json::Entity saveSettings();
 
 namespace ecs {
 
-	namespace component {
-
-		struct Input {
-			struct Action {
-				irr::EKEY_CODE	key;
-				bool		state;
-			};
-			struct JoyStick {
-				short vertical;
-				short horizonal;
-			};
-			enum class Mode { None, Keybord, Controler };
-
-			Mode keybord{Mode::None};
-			std::unordered_map<std::string, Action> actions;
-			JoyStick	left{0, 0};
-			JoyStick	right{0, 0};
-			irr::u32	buttons{};
-			irr::s16	leftT{-32767};
-			irr::s16	rightT{-32767};
-			irr::u8		id{};
-		};
-
-	}
-
 	namespace system {
 
 		class InitInputs {

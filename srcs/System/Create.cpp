@@ -96,9 +96,20 @@ namespace ecs::system {
 		game.getDevice()->activateJoysticks(joystickInfo);
 		irr::u32 i;
 
-		for (i = 0; i < joystickInfo.size(); i++)
-			if (strcmp(joystickInfo[i].Name.c_str(), "Microsoft X-Box 360 pad") == 0)
-				_controller = true;
+		for (i = 0; i < joystickInfo.size(); i++) {
+			if (strcmp(joystickInfo[i].Name.c_str(), "Microsoft X-Box 360 pad") == 0) {
+				entity::Filter<component::Input> list;
+				auto &in = component::Manager<component::Input>::get();
+				bool used = false;
+				for (auto &ID : list.list) {
+					if (in[ID].mode == ecs::component::Input::Mode::Controller && in[ID].controllerId == joystickInfo[i].Joystick)
+						used = true;
+				}
+				if (used == false)
+					_controller = true;
+			}
+
+		}
 
 		component::Manager<component::Being>::get().addComponentForEntity(id);
 		ecs::component::Constructors::Being(id, mesh, texture, pos);
@@ -139,10 +150,10 @@ namespace ecs::system {
 
 		if (_controller) {
 			component::Manager<component::Input>::get().addComponentForEntity(id);
-			component::Constructors::Input(id, true, joystickInfo[i].Joystick);
+			component::Constructors::Input(id, joystickInfo[i].Joystick);
 		} else {
 			component::Manager<component::Input>::get().addComponentForEntity(id);
-			component::Constructors::Input(id,false, 0);
+			component::Constructors::Input(id);
 		}
 
 		component::Manager<component::Stat>::get().addComponentForEntity(id);

@@ -48,8 +48,6 @@
 					<Add directory="/home/seb/Client/libs/Json/includes"/>
 					<Add directory="/home/seb/Client/libs/Json/srcs/Entity"/>
 					<Add directory="/home/seb/Client/libs/Json/srcs/Parser"/>
-					<Add directory="/home/seb/Client/libs/Json/tests/Parser/srcs/Entity"/>
-					<Add directory="/home/seb/Client/libs/Json/tests/Parser/srcs/Parser"/>
 					<Add directory="/home/seb/Client/srcs"/>
 				</Compiler>
 				<MakeCommands>
@@ -70,8 +68,6 @@
 					<Add directory="/home/seb/Client/libs/Json/includes"/>
 					<Add directory="/home/seb/Client/libs/Json/srcs/Entity"/>
 					<Add directory="/home/seb/Client/libs/Json/srcs/Parser"/>
-					<Add directory="/home/seb/Client/libs/Json/tests/Parser/srcs/Entity"/>
-					<Add directory="/home/seb/Client/libs/Json/tests/Parser/srcs/Parser"/>
 					<Add directory="/home/seb/Client/srcs"/>
 				</Compiler>
 				<MakeCommands>
@@ -82,31 +78,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/seb/Client/srcs/Component/AttributeBomb.hpp">
-			<Option target="bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Component/Basics.hpp">
-			<Option target="bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Component/Being.hpp">
-			<Option target="bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Component/BoxCollider.hpp">
-			<Option target="bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Component/Camera.hpp">
-			<Option target="bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Component/Graphicals.hpp">
-			<Option target="bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Component/Stat.hpp">
-			<Option target="bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Component/UnanimatedObject.hpp">
-			<Option target="bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/Client/srcs/ECS/Component/Component.hpp">
+		<Unit filename="/home/seb/Client/srcs/Constructors/BeingConsruct.hpp">
 			<Option target="bomberman"/>
 		</Unit>
 		<Unit filename="/home/seb/Client/srcs/ECS/Component/Component.tpp">
@@ -121,12 +93,6 @@
 		<Unit filename="/home/seb/Client/srcs/ECS/Entity/Entity.tpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/ECS/Entity/EntityErrors.hpp">
-			<Option target="bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/Client/srcs/ECS/Entity/Filter.hpp">
-			<Option target="bomberman"/>
-		</Unit>
 		<Unit filename="/home/seb/Client/srcs/ECS/Entity/Filter.tpp">
 			<Option target="bomberman"/>
 		</Unit>
@@ -134,12 +100,6 @@
 			<Option target="bomberman"/>
 		</Unit>
 		<Unit filename="/home/seb/Client/srcs/Game/Game.hpp">
-			<Option target="bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Game/Score.hpp">
-			<Option target="bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Game/Settings.hpp">
 			<Option target="bomberman"/>
 		</Unit>
 		<Unit filename="/home/seb/Client/srcs/Graphical/EventReceiver.cpp">
@@ -191,21 +151,6 @@
 			<Option target="bomberman"/>
 		</Unit>
 		<Unit filename="/home/seb/Client/srcs/System/Create.hpp">
-			<Option target="bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/Client/srcs/System/Destroyer.hpp">
-			<Option target="bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/Client/srcs/System/Event.hpp">
-			<Option target="bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/Client/srcs/System/Explode.hpp">
-			<Option target="bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/Client/srcs/System/Graphical.hpp">
-			<Option target="bomberman"/>
-		</Unit>
-		<Unit filename="/home/seb/Client/srcs/System/Update.hpp">
 			<Option target="bomberman"/>
 		</Unit>
 		<Unit filename="/home/seb/Client/srcs/System/UpdateDeplacement.cpp">

@@ -7,10 +7,14 @@
 
 #pragma once
 
+#include <ECS/Entity/Filter.hpp>
+#include <Settings/Settings.hpp>
 #include "Component/Camera.hpp"
 #include "Component/UnanimatedObject.hpp"
 #include "Component/Being.hpp"
+#include "Settings/Inputs.hpp"
 #include "ECS/Component/Component.hpp"
+
 
 namespace ecs::component {
 	class Constructors {
@@ -51,14 +55,48 @@ namespace ecs::component {
 			cam[id]._camera->setTarget(pos);
 		};
 
-		static void Input(entity::Id ID, bool controll, irr::u8 joy)
+		static void Input(entity::Id ID, irr::u8 joy)
 		{
 			auto &ctrl = component::Manager<component::Input>::get();
 
-			if (controll) {
-				ctrl[ID].mode = ecs::component::Input::Mode::Controller;
-				ctrl[ID].controllerId = joy;
+			ctrl[ID].mode = ecs::component::Input::Mode::Controller;
+			ctrl[ID].controllerId = joy;
+		};
+
+		static void Input(entity::Id ID)
+		{
+			entity::Filter<component::Input> fl;
+			auto &ctrl = component::Manager<component::Input>::get();
+			int conf = 1;
+			std::string player("player");
+
+			for (auto &id : fl.list) {
+				if (ctrl[id].mode == ecs::component::Input::Mode::Keybord)
+					conf++;
 			}
+			ctrl[ID].mode = ecs::component::Input::Mode::Keybord;
+			player += std::to_string(conf);
+			auto it = std::find_if( ecs::keyRef_g.begin(), ecs::keyRef_g.end(),
+						[player](const std::pair<std::string, int>& element){ return element.first == indie::Game::get().getSettings()["inputs"][player]["up"].to<std::string>();} );
+			ctrl[ID].up.key = (*it).second;
+			it = std::find_if( ecs::keyRef_g.begin(), ecs::keyRef_g.end(),
+						[player](const std::pair<std::string, int>& element){ return element.first == indie::Game::get().getSettings()["inputs"][player]["down"].to<std::string>();} );
+			ctrl[ID].down.key = (*it).second;
+			it = std::find_if( ecs::keyRef_g.begin(), ecs::keyRef_g.end(),
+					   [player](const std::pair<std::string, int>& element){ return element.first == indie::Game::get().getSettings()["inputs"][player]["left"].to<std::string>();} );
+			ctrl[ID].left.key = (*it).second;
+			it = std::find_if( ecs::keyRef_g.begin(), ecs::keyRef_g.end(),
+					   [player](const std::pair<std::string, int>& element){ return element.first == indie::Game::get().getSettings()["inputs"][player]["right"].to<std::string>();} );
+			ctrl[ID].right.key = (*it).second;
+			it = std::find_if( ecs::keyRef_g.begin(), ecs::keyRef_g.end(),
+					   [player](const std::pair<std::string, int>& element){ return element.first == indie::Game::get().getSettings()["inputs"][player]["attack"].to<std::string>();} );
+			ctrl[ID].attack.key = (*it).second;
+			it = std::find_if( ecs::keyRef_g.begin(), ecs::keyRef_g.end(),
+					   [player](const std::pair<std::string, int>& element){ return element.first == indie::Game::get().getSettings()["inputs"][player]["crouch"].to<std::string>();} );
+			ctrl[ID].crouch.key = (*it).second;
+			it = std::find_if( ecs::keyRef_g.begin(), ecs::keyRef_g.end(),
+					   [player](const std::pair<std::string, int>& element){ return element.first == indie::Game::get().getSettings()["inputs"][player]["sprint"].to<std::string>();} );
+			ctrl[ID].sprint.key = (*it).second;
 		};
 
 		static void UnanimatedObject(entity::Id id, std::string const &texture, irr::core::vector2df const &pos)
