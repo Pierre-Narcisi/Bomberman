@@ -63,4 +63,4 @@ add_executable(bomberman
 target_link_libraries(bomberman /usr/lib/x86_64-linux-gnu/libIrrlicht.so)
 target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/Json/libJson.so)
 target_link_libraries(bomberman /usr/lib/x86_64-linux-gnu/libpthread.so)
-target_link_libraries(bomberman /home/axel/Epitech/Client/irrKlang/bin/linux-gcc-64/libIrrKlang.so)
+target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/irrKlang/bin/linux-gcc-64/libIrrKlang.so)
