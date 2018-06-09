@@ -208,6 +208,11 @@ namespace ecs::system {
 		auto &POS = component::Manager<component::Position>::get();
 		auto &TYPE = component::Manager<component::Type>::get();
 
+
+
+
+		//Getting Bomb range
+
 		int rangeLeft = 0;
 		int rangeRight = 0;
 		int rangeUp = 0;
@@ -216,15 +221,6 @@ namespace ecs::system {
 
 		entity::Filter<component::UnanimatedObject, component::Deletable> walls;
 		auto &wall = component::Manager<component::UnanimatedObject>::get();
-
-		for (auto &Id: walls.list) {
-			if (wall[Id]._node->getPosition().X/100 == pos.x && wall[Id]._node->getPosition().Z/100 == pos.y)
-				component::Destructors::UnanimatedObject(Id);
-		}
-
-
-
-
 		entity::Filter<component::Map> fl;
 		for (auto &entit : fl.list) {
 			auto &map = component::Manager<component::Map>::get()[entit].map;
@@ -315,32 +311,26 @@ namespace ecs::system {
 					}
 				}
 			}
-
-			std::cout << "rangeLeft:\t" << rangeLeft << std::endl;
-			std::cout << "rangeRight:\t" << rangeRight << std::endl;
-			std::cout << "rangeUp:\t" << rangeUp << std::endl;
-			std::cout << "rangeDown:\t" << rangeDown << std::endl;
-			std::cout << std::endl;
-
-			/*for (auto line : map) {
-				for (auto a : line)
-					std::cout << a;
-				std::cout << std::endl;
-			}*/
-			std::cout << std::endl;
+			pos.x = pos.x * 100;
+			pos.y = pos.y * 100;
 		}
 
 
-		//TODO kill player if in range
+		// Killing Beings in range
 
+		entity::Filter<component::Being> beings;
+		auto &being = component::Manager<component::Being>::get();
 
-
-		//TODO end todo
-
-
-
-		pos.x = pos.x * 100;
-		pos.y = pos.y * 100;
+		for (auto &me : beings.list) {
+			if (being[me]._node->getPosition().X > pos.x - rangeLeft * 100 - 50 && being[me]._node->getPosition().X < pos.x + rangeRight * 100 + 50) {
+				if (being[me]._node->getPosition().Z > pos.y - 50 && being[me]._node->getPosition().Z < pos.y + 50)
+					being[me]._node->setPosition(irr::core::vector3df(0,1000,0));
+			}
+			if (being[me]._node->getPosition().Z > pos.y - rangeUp * 100 - 50 && being[me]._node->getPosition().Z < pos.y + rangeDown * 100 + 50) {
+				if (being[me]._node->getPosition().X > pos.x - 50 && being[me]._node->getPosition().X < pos.x + 50)
+					being[me]._node->setPosition(irr::core::vector3df(0,1000,0));
+			}
+		}
 
 
 		ParticleEmitterManager[id].PEUp = ParticleSystemManager[id].PSUp->createBoxEmitter(
