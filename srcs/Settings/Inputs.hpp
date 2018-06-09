@@ -15,11 +15,9 @@
 namespace ecs::component {
 
 	struct Input {
-		enum class Mode { None = 0, Keybord, Controler };
+		enum class Mode { None = 0, Keybord, Controller };
 
 		struct Action {
-			enum class Type { Up, Down, Left, Right, Attack, Crouch, Sprint };
-			Type		type;
 			irr::EKEY_CODE	key;
 			bool		state;
 		};
@@ -29,12 +27,13 @@ namespace ecs::component {
 		};
 
 		Mode 			mode{};
-		std::vector<Action>	actions;
-		JoyStick		left{0, 0};
-		JoyStick		right{0, 0};
-		irr::u32		buttons{};
-		irr::s16		leftT{-32767};
-		irr::s16		rightT{-32767};
+		Action			up;
+		Action			down;
+		Action			left;
+		Action			right;
+		Action			attack;
+		Action			crouch;
+		Action			sprint;
 		irr::u8			controllerId{};
 	};
 
@@ -55,7 +54,7 @@ namespace ecs::system {
 
 	class Inputs {
 	public:
-		static void handle(component::Input &, irr::SEvent const &);
+		static void handle(irr::SEvent const &);
 		// static void handle(component::MenuInput &, irr::SEvent const &);
 	};
 

@@ -205,9 +205,6 @@
 		<Unit filename="/home/seb/Client/srcs/System/Event.hpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/System/EventManager.cpp">
-			<Option target="bomberman"/>
-		</Unit>
 		<Unit filename="/home/seb/Client/srcs/System/Explode.hpp">
 			<Option target="bomberman"/>
 		</Unit>

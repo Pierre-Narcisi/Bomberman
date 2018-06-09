@@ -6,6 +6,7 @@
 */
 
 #include <Constructors/Destructors.hpp>
+#include <Settings/Inputs.hpp>
 #include "ECS/Entity/Entity.hpp"
 #include "Game/Game.hpp"
 
@@ -121,24 +122,27 @@ namespace ecs::system {
 
 		for (i = 0; i < joystickInfo.size(); i++) {
 			if (strcmp(joystickInfo[i].Name.c_str(), "Microsoft X-Box 360 pad") == 0) {
-				_controller = true;
-				break;
+				entity::Filter<component::Input> list;
+				auto &in = component::Manager<component::Input>::get();
+				bool used = false;
+				for (auto &ID : list.list) {
+					if (in[ID].mode == ecs::component::Input::Mode::Controller && in[ID].controllerId == joystickInfo[i].Joystick)
+						used = true;
+				}
+				if (used == false) {
+					_controller = true;
+					break;
+				}
 			}
 		}
 
+
 		if (_controller) {
-			component::Manager<component::Controller360>::get().addComponentForEntity(id);
-			component::Constructors::Controller360(id, joystickInfo[i].Joystick);
+			component::Manager<component::Input>::get().addComponentForEntity(id);
+			component::Constructors::Input(id, true, joystickInfo[i].Joystick);
 		} else {
-			component::Manager<component::Keyboard>::get().addComponentForEntity(id);
-			component::Constructors::Keyboard(id,
-							  irr::EKEY_CODE::KEY_KEY_Z,
-							  irr::EKEY_CODE::KEY_KEY_Q,
-							  irr::EKEY_CODE::KEY_KEY_S,
-							  irr::EKEY_CODE::KEY_KEY_D,
-							  irr::EKEY_CODE::KEY_SPACE,
-							  irr::EKEY_CODE::KEY_LCONTROL,
-							  irr::EKEY_CODE::KEY_LSHIFT);
+			component::Manager<component::Input>::get().addComponentForEntity(id);
+			component::Constructors::Input(id,false, 0);
 		}
 
 		component::Manager<component::Stat>::get().addComponentForEntity(id);

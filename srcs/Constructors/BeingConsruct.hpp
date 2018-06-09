@@ -53,11 +53,14 @@ namespace ecs::component {
 			cam[id]._camera->setTarget(pos);
 		};
 
-		static void Controller360(entity::Id ID, irr::u8 id)
+		static void Input(entity::Id ID, bool controll, irr::u8 joy)
 		{
-			auto &ctrl = component::Manager<component::Controller360>::get();
+			auto &ctrl = component::Manager<component::Input>::get();
 
-			ctrl[ID].id = id;
+			if (controll) {
+				ctrl[ID].mode = ecs::component::Input::Mode::Controller;
+				ctrl[ID].controllerId = joy;
+			}
 		};
 
 		static void Keyboard(entity::Id id, irr::EKEY_CODE up, irr::EKEY_CODE left, irr::EKEY_CODE down, irr::EKEY_CODE right, irr::EKEY_CODE attack, irr::EKEY_CODE crouch, irr::EKEY_CODE sprint)

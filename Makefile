@@ -420,33 +420,6 @@ srcs/System/Create.cpp.s:
 	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/Create.cpp.s
 .PHONY : srcs/System/Create.cpp.s
 
-srcs/System/EventManager.o: srcs/System/EventManager.cpp.o
-
-.PHONY : srcs/System/EventManager.o
-
-# target to build an object file
-srcs/System/EventManager.cpp.o:
-	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/EventManager.cpp.o
-.PHONY : srcs/System/EventManager.cpp.o
-
-srcs/System/EventManager.i: srcs/System/EventManager.cpp.i
-
-.PHONY : srcs/System/EventManager.i
-
-# target to preprocess a source file
-srcs/System/EventManager.cpp.i:
-	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/EventManager.cpp.i
-.PHONY : srcs/System/EventManager.cpp.i
-
-srcs/System/EventManager.s: srcs/System/EventManager.cpp.s
-
-.PHONY : srcs/System/EventManager.s
-
-# target to generate assembly for a file
-srcs/System/EventManager.cpp.s:
-	$(MAKE) -f CMakeFiles/bomberman.dir/build.make CMakeFiles/bomberman.dir/srcs/System/EventManager.cpp.s
-.PHONY : srcs/System/EventManager.cpp.s
-
 srcs/System/UpdateDeplacement.o: srcs/System/UpdateDeplacement.cpp.o
 
 .PHONY : srcs/System/UpdateDeplacement.o
@@ -516,9 +489,6 @@ help:
 	@echo "... srcs/System/Create.o"
 	@echo "... srcs/System/Create.i"
 	@echo "... srcs/System/Create.s"
-	@echo "... srcs/System/EventManager.o"
-	@echo "... srcs/System/EventManager.i"
-	@echo "... srcs/System/EventManager.s"
 	@echo "... srcs/System/UpdateDeplacement.o"
 	@echo "... srcs/System/UpdateDeplacement.i"
 	@echo "... srcs/System/UpdateDeplacement.s"

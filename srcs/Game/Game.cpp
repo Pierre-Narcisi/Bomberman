@@ -36,9 +36,11 @@ namespace indie {
 		} catch (json::Parser::ParserException &e) {
 			setDefaultSettings();
 		}
+		std::cout << "JE BUG" << std::endl;
 		_device = irr::createDevice(irr::video::EDT_OPENGL,
-			irr::core::dimension2d<irr::u32>(_settings["display"]["width"].to<int>(), _settings["display"]["height"].to<int>()),
-			16, true, false, false, &_event);
+					    irr::core::dimension2d<irr::u32>(_settings["display"]["width"].to<int>(), _settings["display"]["height"].to<int>()),
+					    16, false, false, false, &_event);
+		std::cout << "PAS TANT QUE CA" << std::endl;
 		if (_device == nullptr)
 			throw GameException{"Error when create device"};
 		irr::core::stringw gameName = L"";
