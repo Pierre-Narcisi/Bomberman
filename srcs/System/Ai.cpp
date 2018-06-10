@@ -140,7 +140,6 @@ namespace ecs { namespace system {
 			x--;
 			y--;
 		}
-		std::cout << "chibre" << std::endl;
 		return tmp;
 	}
 
@@ -178,8 +177,6 @@ namespace ecs { namespace system {
 			x--;
 			y--;
 		}
-		std::cout << "couille" << std::endl;
-		std::cout << "x = " << tmp.X << "y = " << tmp.Z << std::endl;
 		return tmp;
 	}
 
@@ -201,9 +198,6 @@ namespace ecs { namespace system {
 		to.X = to.X * 100;
 		int moving = 0;
 		auto &ai = component::Manager<component::Ai>::get();
-
-		std::cout << "x = " << to.X << "y = " << to.Z << std::endl;
-
 
 		if (to.Z - pos.Z < 0 && abs(to.Z - pos.Z) > 5) {
 			y = 1;
@@ -227,7 +221,6 @@ namespace ecs { namespace system {
 				bomb(id, pos);
 			} else if (time(NULL) >= ai[id].since) {
 				free = 0;
-				std::cout << ai[id].since << std::endl;
 			}
 		}
 	}
@@ -246,7 +239,7 @@ namespace ecs { namespace system {
 			goal.X = newpos.X;
 			goal.Z = newpos.Z;
 			free = 2;
-			ai[id].since = time(NULL) + 5;
+			ai[id].since = time(NULL) + 3;
 		} else if (free == 0) {
 			auto newpos = findSpot(map, pos);
 			goal.X = newpos.X;
