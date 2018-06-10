@@ -10,7 +10,6 @@
 cmake*
 CMakeCache.txt
 CMakeFiles
-*.a
 
 ## binaries :
 a.out
