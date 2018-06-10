@@ -27,9 +27,10 @@ namespace ecs { namespace system {
 		static irr::core::vector3df findSafe(map_t map, irr::core::vector3df pos);
 		static irr::core::vector3df findSpot(map_t map, irr::core::vector3df pos);
 		static int isViable(map_t map, int y, int x, int size);
-		static void moveTo(irr::core::vector3df to, irr::core::vector3df pos, bool &free);
-		static void setGoal(irr::core::vector3df &goal, bool &free, map_t map, irr::core::vector3df pos);
-		static void deplacement(int y, int x, int moving);
+		static void moveTo(irr::core::vector3df to, irr::core::vector3df pos, int &free, entity::Id id);
+		static void setGoal(irr::core::vector3df &goal, int &free, map_t map, irr::core::vector3df pos);
+		static void bomb(int id, irr::core::vector3df pos);
+		static void deplacement(int y, int x, int moving, entity::Id id);
 		static int getPos(float pos);
 		static void line(map_t &map, int y, int x);
 		static void zone(map_t &map);

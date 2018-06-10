@@ -105,7 +105,7 @@ namespace indie {
 			ecs::system::Blur::update();
 
 			/* camera loop */
-
+			ecs::entity::Filter<ecs::component::Being, ecs::component::Ai> ai;
 			ecs::entity::Filter<ecs::component::Camera> fl;
 			auto &cam = ecs::component::Manager<ecs::component::Camera>::get();
 
@@ -172,7 +172,9 @@ namespace indie {
 			ecs::system::Update::Bomb();
 			ecs::system::Collider::update();
 			ecs::system::Ai::updateAll();
-			ecs::system::Ai::update(10);
+			for (auto &id : ai.list) {
+				ecs::system::Ai::update(id);
+			}
 			/*
 				update background
 				update bombes

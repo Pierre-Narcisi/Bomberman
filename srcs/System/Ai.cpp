@@ -9,11 +9,9 @@
 
 namespace ecs { namespace system {
 
-	void Ai::deplacement(int y, int x, int moving)
+	void Ai::deplacement(int y, int x, int moving, entity::Id id)
 	{
 		auto &game = indie::Game::get();
-		entity::Filter<component::Being, component::Ai> player;
-
 		auto &being = component::Manager<component::Being>::get();
 		auto &camera = component::Manager<component::Camera>::get();
 		irr::f32 deltatime;
@@ -21,53 +19,47 @@ namespace ecs { namespace system {
 		irr::f32 speed = 300.f;
 		float rot;
 
-		for (auto id : player.list) {
-			speed = speed * component::Manager<component::Stat>::get()[id].speed;
-			rot = being[id]._rotation;
-			deltatime = static_cast<irr::f32>((game.getDevice()->getTimer()->getTime() - being[id]._then) / 1000.f);
-			being[id]._then = game.getDevice()->getTimer()->getTime();
+		speed = speed * component::Manager<component::Stat>::get()[id].speed;
+		rot = being[id]._rotation;
+		deltatime = static_cast<irr::f32>((game.getDevice()->getTimer()->getTime() - being[id]._then) / 1000.f);
+		being[id]._then = game.getDevice()->getTimer()->getTime();
 
-			// Set Rotation
-			if (y == 0)
-				rot = 270;
-			else if (y == 1)
-				rot = 90;
-			if (x == 0) {
-				if (rot == 270)
-					rot = 225;
-				else if (rot == 90)
-					rot = 135;
-				else
-					rot = 180;
-			} else if (x == 1) {
-				if (rot == 270)
-					rot = 315;
-				else if (rot == 90)
-					rot = 45;
-				else
-					rot = 0;
-			}
-
-			being[id]._node->setRotation(irr::core::vector3df(0, rot, 0));
-
-
-
-			// Set Animation
-			if (moving == 0) {
-				if (being[id]._lastMov != irr::scene::EMAT_STAND)
-					Being::updateState(being[id], irr::scene::EMAT_STAND);
-			} else {
-				if (being[id]._lastMov != irr::scene::EMAT_RUN)
-					Being::updateState(being[id], irr::scene::EMAT_RUN);
-
-				being[id]._rotation = rot;
-				pos = being[id]._node->getPosition();
-				pos.X = pos.X + static_cast<float>(cos(rot * M_PI / 180)) * speed * deltatime;
-				pos.Z = pos.Z - static_cast<float>(sin(rot * M_PI / 180)) * speed * deltatime;
-				being[id]._node->setPosition(pos);
-			}
+		// Set Rotation
+		if (y == 0)
+			rot = 270;
+		else if (y == 1)
+			rot = 90;
+		if (x == 0) {
+			if (rot == 270)
+				rot = 225;
+			else if (rot == 90)
+				rot = 135;
+			else
+				rot = 180;
+		} else if (x == 1) {
+			if (rot == 270)
+				rot = 315;
+			else if (rot == 90)
+				rot = 45;
+			else
+				rot = 0;
 		}
 
+		being[id]._node->setRotation(irr::core::vector3df(0, rot, 0));
+
+		// Set Animation
+		if (moving == 0) {
+			if (being[id]._lastMov != irr::scene::EMAT_STAND)
+				Being::updateState(being[id], irr::scene::EMAT_STAND);
+		} else {
+			if (being[id]._lastMov != irr::scene::EMAT_RUN)
+				Being::updateState(being[id], irr::scene::EMAT_RUN);
+				being[id]._rotation = rot;
+			pos = being[id]._node->getPosition();
+			pos.X = pos.X + static_cast<float>(cos(rot * M_PI / 180)) * speed * deltatime;
+			pos.Z = pos.Z - static_cast<float>(sin(rot * M_PI / 180)) * speed * deltatime;
+			being[id]._node->setPosition(pos);
+		}
 	}
 
 	void Ai::line(map_t &map, int y, int x)
@@ -145,7 +137,6 @@ namespace ecs { namespace system {
 		}
 		pos.Z = y + incr / 2 - 1;
 		pos.X = x + incr / 2 - 1;
-		std::cout << "le sang de tes mort" << std::endl;
 		return pos;
 	}
 
@@ -185,7 +176,16 @@ namespace ecs { namespace system {
 		return pos;
 	}
 
-	void Ai::moveTo(irr::core::vector3df to, irr::core::vector3df pos, bool &free)
+	void Ai::bomb(int id, irr::core::vector3df pos)
+	{
+		irr::core::vector2di newpos;
+
+		newpos.X = pos.X;
+		newpos.Y = pos.Z;
+		Create::createBomb(id, newpos);
+	}
+
+	void Ai::moveTo(irr::core::vector3df to, irr::core::vector3df pos, int &free, entity::Id id)
 	{
 		int x = 2;
 		int y = 2;
@@ -193,8 +193,9 @@ namespace ecs { namespace system {
 		to.Z = to.Z * 100;
 		to.X = to.X * 100;
 		int moving = 0;
-		std::cout << "y=" << to.Z << "  x=" << to.X << std::endl;
-		std::cout << "yy=" << pos.Z << "  xx=" << pos.X << std::endl;
+		// std::cout << "y=" << to.Z << "  x=" << to.X << std::endl;
+		// std::cout << "yy=" << pos.Z << "  xx=" << pos.X << std::endl;
+
 
 		if (to.Z - pos.Z < 0 && abs(to.Z - pos.Z) > 5) {
 			y = 1;
@@ -210,9 +211,14 @@ namespace ecs { namespace system {
 			x = 1;
 			moving = 1;
 		}
-		deplacement(y, x, moving);
-		if (abs(to.X - pos.X) < 5 &&abs(to.Y - pos.Y) < 5)
+		deplacement(y, x, moving, id);
+
+		std::cout << "x = " << abs(to.X - pos.X) << "y = " << abs(to.Z - pos.Z) << std::endl;
+		if (abs(to.X - pos.X) <= 5 &&abs(to.Z - pos.Z) <= 5) {
+			if (free == 1)
+				bomb(id, pos);
 			free = 0;
+		}
 	}
 
 	int Ai::getPos(float pos)
@@ -220,13 +226,13 @@ namespace ecs { namespace system {
 		return static_cast<int>(pos + 50) / 100;
 	}
 
-	void Ai::setGoal(irr::core::vector3df &goal, bool &free, map_t map, irr::core::vector3df pos)
+	void Ai::setGoal(irr::core::vector3df &goal, int &free, map_t map, irr::core::vector3df pos)
 	{
 		if (map[getPos(pos.Z)][getPos(pos.X)] == 5) {
 			auto newpos = findSafe(map, pos);
 			goal.X = newpos.X;
 			goal.Z = newpos.Z;
-			free = 1;
+			free = 2;
 		} else if (free == 0) {
 			auto newpos = findSpot(map, pos);
 			goal.X = newpos.X;
@@ -237,28 +243,18 @@ namespace ecs { namespace system {
 
 	void Ai::update(entity::Id ai)
 	{
-		entity::Filter<component::Being, component::Ai> player;
 		entity::Filter<component::Map> mapList;
 		int moving = 0;
 		auto &being = component::Manager<component::Being>::get();
 		static irr::core::vector3df goal;
-		static bool free = 0;
+		static int free = 0;
 
 		for (auto &idmap : mapList.list) {
 			auto map = component::Manager<component::Map>::get()[idmap].map;
-			for (auto id : player.list) {
-				auto pos = being[id]._node->getPosition();
-				zone(map);
-				setGoal(goal, free, map, pos);
-				moveTo(goal, pos, free);				
-				// for (auto line : map) {
-				// 	for (auto nb : line) {
-				// 		std::cout << nb;
-				// 	}
-				// 	std::cout << std::endl;
-				// }
-				// std::cout << std::endl;
-			}
+			auto pos = being[ai]._node->getPosition();
+			zone(map);
+			setGoal(goal, free, map, pos);
+			moveTo(goal, pos, free, ai);
 		}
 	}
 
