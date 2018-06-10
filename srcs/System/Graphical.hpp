@@ -144,6 +144,8 @@ namespace ecs { namespace system {
 		};
 		static void loadGame2()
 		{
+			indie::mapGen(10, 10);
+
 			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo1.png", irr::core::vector2df(100,100));
 			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo2.png", irr::core::vector2df(900,100));
 			ecs::system::Create::createAi("./assets/voodoo.ms3d", "./assets/voodoo3.png", irr::core::vector2df(100,900));
@@ -151,6 +153,8 @@ namespace ecs { namespace system {
 		}
 		static void loadGame3()
 		{
+			indie::mapGen(10, 10);
+
 			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo1.png", irr::core::vector2df(100,100));
 			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo2.png", irr::core::vector2df(900,100));
 			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo3.png", irr::core::vector2df(100,900));
@@ -158,6 +162,8 @@ namespace ecs { namespace system {
 		}
 		static void loadGame4()
 		{
+			indie::mapGen(10, 10);
+
 			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo1.png", irr::core::vector2df(100,100));
 			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo2.png", irr::core::vector2df(900,100));
 			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo3.png", irr::core::vector2df(100,900));
