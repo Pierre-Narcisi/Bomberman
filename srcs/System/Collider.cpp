@@ -62,7 +62,7 @@ namespace ecs { namespace system {
 					ecs::system::Scene::loadSceneThree();
 				}	else if (buttonManager[e].type == ecs::component::Button::Type::Start) {
  					ecs::system::Deletable::all();
- 					ecs::system::Scene::loadGame(color);
+ 					ecs::system::Scene::loadGame1(color);
 				} else if (buttonManager[e].type == ecs::component::Button::Type::MusicDown) {
 					ecs::system::Scene::sound(-1);
 				} else if (buttonManager[e].type == ecs::component::Button::Type::MusicUp) {
@@ -75,6 +75,15 @@ namespace ecs { namespace system {
 					color = "./assets/voodoo1.png";
 				} else if (buttonManager[e].type == ecs::component::Button::Type::Blue) {
 					color = "./assets/voodoo2.png";
+				} else if (buttonManager[e].type == ecs::component::Button::Type::Two) {
+					ecs::system::Deletable::all();
+					ecs::system::Scene::loadGame2();
+				} else if (buttonManager[e].type == ecs::component::Button::Type::Three) {
+					ecs::system::Deletable::all();
+					ecs::system::Scene::loadGame3();
+				} else if (buttonManager[e].type == ecs::component::Button::Type::Four) {
+					ecs::system::Deletable::all();
+					ecs::system::Scene::loadGame4();
 				}
 			}
 		}
