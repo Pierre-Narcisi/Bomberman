@@ -84,21 +84,21 @@ namespace ecs::system {
 			ecs::system::createBackground("./assets/buttons/maxresdefault.jpg", ecs::component::Rect{0, 0, 1920, 1080}, ecs::component::Color{255, 255, 255, 255});
 			ecs::system::createBackground("./assets/buttons/flou.jpg", ecs::component::Rect{0, 0, 1920, 1080}, ecs::component::Color{0, 255, 255, 255});
 			ecs::system::createBackground("./assets/buttons/title.png", ecs::component::Rect{0, 0, 1920, 1080}, ecs::component::Color{255, 255, 255, 255});
-		};
+		}
 		static void loadSceneOne()
 		{
 			ecs::system::createButton(ecs::component::Button::Type::Play, "./assets/buttons/playWhite1.png",
 			ecs::component::Rect{700, 500, 418, 150}, "./assets/buttons/playBlack1.png");
 			ecs::system::createButton(ecs::component::Button::Type::Quit, "./assets/buttons/exitWhite1.png",
 			ecs::component::Rect{700, 750, 390, 140}, "./assets/buttons/exitBlack1.png");
-		};
+		}
 		static void loadSceneTwo()
 		{
 			ecs::system::createButton(ecs::component::Button::Type::Solo, "./assets/buttons/soloWhite1.png",
 			ecs::component::Rect{700, 500, 420, 140}, "./assets/buttons/soloBlack1.png");
 			ecs::system::createButton(ecs::component::Button::Type::Start, "./assets/buttons/multiWhite1.png",
 			ecs::component::Rect{640, 750, 515, 150}, "./assets/buttons/multiBlack1.png");
-		};
+		}
 		static void loadSceneThree()
 		{
 			ecs::system::createButton(ecs::component::Button::Type::Yellow, "./assets/voodooYellow.png",
@@ -111,12 +111,32 @@ namespace ecs::system {
 			ecs::component::Rect{1400, 350, 288, 467}, "./assets/voodooGreen.png");
 			ecs::system::createButton(ecs::component::Button::Type::Start, "./assets/buttons/startGameWhite1.png",
 			ecs::component::Rect{470, 900, 920, 126}, "./assets/buttons/startGameBlack1.png");
-		};
+		}
+		static void loadSceneMulti()
+		{
+			ecs::system::createButton(ecs::component::Button::Type::Two, "./assets/buttons/number2White1.png",
+			ecs::component::Rect{470, 900, 920, 126}, "./assets/buttons/number2Black1.png");
+		}
 		static void loadGame(std::string &color)
 		{
 			indie::mapGen(10, 10);
 			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", color, irr::core::vector2df(100,100));
-		};
+		}
+		static void loadGame2(std::string &color)
+		{
+			indie::mapGen(10, 10);
+			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", color, irr::core::vector2df(100,100));
+		}
+		static void loadGame3(std::string &color)
+		{
+			indie::mapGen(10, 10);
+			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", color, irr::core::vector2df(100,100));
+		}
+		static void loadGame4(std::string &color)
+		{
+			indie::mapGen(10, 10);
+			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", color, irr::core::vector2df(100,100));
+		}
 		static void loadMenuInGame()
 		{
 			ecs::system::Scene::loadOpt();
