@@ -49,6 +49,7 @@
 					<Add directory="/home/seb/Client/libs/Json/srcs/Entity"/>
 					<Add directory="/home/seb/Client/libs/Json/srcs/Parser"/>
 					<Add directory="/home/seb/Client/srcs"/>
+					<Add directory="/home/seb/Client/irrKlang"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 bomberman"/>
@@ -69,6 +70,7 @@
 					<Add directory="/home/seb/Client/libs/Json/srcs/Entity"/>
 					<Add directory="/home/seb/Client/libs/Json/srcs/Parser"/>
 					<Add directory="/home/seb/Client/srcs"/>
+					<Add directory="/home/seb/Client/irrKlang"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 bomberman/fast"/>
