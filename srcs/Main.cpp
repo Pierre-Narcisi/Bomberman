@@ -17,6 +17,7 @@
 
 int main()
 {
+	srand (time(NULL));
 	indie::Game &game = indie::Game::get();
 	irr::core::array<irr::SJoystickInfo> joystickInfo;
 	game.getDevice()->activateJoysticks(joystickInfo);

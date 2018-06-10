@@ -5,6 +5,7 @@
 ** Created by seb,
 */
 
+#include <random>
 #include "Constructors/Destructors.hpp"
 #include "Settings/Inputs.hpp"
 #include "ECS/Entity/Entity.hpp"
@@ -471,14 +472,40 @@ namespace ecs { namespace system {
 		return id;
 	}
 
-		entity::Id Create::createGround(irr::core::vector2df pos)
-		{
-			auto	id = entity::Manager::get().newEntity();
+	entity::Id Create::createGround(irr::core::vector2df pos)
+	{
+		auto	id = entity::Manager::get().newEntity();
 
-			component::Manager<component::MeshStatic>::get().addComponentForEntity(id);
-			component::Constructors::MeshStatic(id, "./assets/bloodground.png", pos);
+		component::Manager<component::MeshStatic>::get().addComponentForEntity(id);
+		component::Constructors::MeshStatic(id, "./assets/bloodground.png", pos);
 
-			return id;
+		return id;
+	}
+
+	entity::Id Create::createBonus(component::Position pos) {
+
+		auto id = entity::Manager::get().newEntity();
+
+		component::Manager<component::Position>::get().addComponentForEntity(id, pos);
+		component::Manager<component::UnanimatedObject>::get().addComponentForEntity(id);
+		std::uniform_int_distribution<int> distribution(0, 3);
+		std::random_device rd;
+		std::mt19937 engine(rd());
+
+		int ran = distribution(engine);
+		if (ran == 0) {
+			component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::BonusBomb);
+			component::Constructors::Bonus(id, "./assets/BombBonus.png", {static_cast<float>(pos.x), static_cast<float>(pos.y)});
+		} else if (ran == 1) {
+			component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::BonusRange);
+			component::Constructors::Bonus(id, "./assets/RangeBonus.png", {static_cast<float>(pos.x), static_cast<float>(pos.y)});
+		} else {
+			component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::BonusSpeed);
+			component::Constructors::Bonus(id, "./assets/SpeedBonus.png", {static_cast<float>(pos.x), static_cast<float>(pos.y)});
 		}
+		component::Manager<component::Position>::get().addComponentForEntity(id, pos);
+
+		return id;
+	}
 
 }}

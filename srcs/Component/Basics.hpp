@@ -15,7 +15,10 @@ namespace ecs { namespace component {
 			Monster,
 			Wall,
 			Bomb,
-			Explosion
+			Explosion,
+			BonusSpeed,
+			BonusBomb,
+			BonusRange
 		};
 		Enum t;
 	};
