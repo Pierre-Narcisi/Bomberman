@@ -9,6 +9,7 @@
 
 #include <ECS/Entity/Filter.hpp>
 #include <Settings/Settings.hpp>
+#include <Component/Graphicals.hpp>
 #include "Component/Camera.hpp"
 #include "Component/UnanimatedObject.hpp"
 #include "Component/Being.hpp"
@@ -114,6 +115,18 @@ namespace ecs { namespace component {
 			auto &obj = component::Manager<component::Type>::get();
 
 			obj[id].t = type;
+		};
+
+		static void MeshStatic(entity::Id id, std::string const &texture, irr::core::vector2df const &pos)
+		{
+			auto &game = indie::Game::get();
+			auto &obj = component::Manager<component::MeshStatic>::get();
+
+			obj[id].mesh = game.getSmgr()->addCubeSceneNode(100);
+			obj[id].mesh->setScale(irr::core::vector3df(1,0.001,1));
+			obj[id].mesh->setMaterialTexture(0, game.getDriver()->getTexture(texture.c_str()));
+			obj[id].mesh->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+			obj[id].mesh->setPosition(irr::core::vector3df(pos.X, -50, pos.Y));
 		};
 	};
 }}

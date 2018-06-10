@@ -467,4 +467,14 @@ namespace ecs { namespace system {
 		return id;
 	}
 
+		entity::Id Create::createGround(irr::core::vector2df pos)
+		{
+			auto	id = entity::Manager::get().newEntity();
+
+			component::Manager<component::MeshStatic>::get().addComponentForEntity(id);
+			component::Constructors::MeshStatic(id, "./assets/bloodground.png", pos);
+
+			return id;
+		}
+
 }}

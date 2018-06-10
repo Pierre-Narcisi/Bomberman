@@ -99,7 +99,7 @@ namespace indie {
 		while(_device->run() == true) {
 			auto Res = _driver->getScreenSize();
 			_driver->setViewPort(irr::core::rect<irr::s32>(0,0,Res.Width,Res.Height));
-			_driver->beginScene(true, true, irr::video::SColor(255,100,101,140));
+			_driver->beginScene(true, true, irr::video::SColor(255,30,0,0));
 
 			/* menu loop */
 			ecs::system::Blur::update();

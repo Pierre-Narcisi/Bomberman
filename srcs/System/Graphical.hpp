@@ -115,12 +115,25 @@ namespace ecs { namespace system {
 		static void loadGame(std::string &color)
 		{
 			indie::mapGen(10, 10);
-			// ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo1.png", irr::core::vector2df(100,100));
-			// ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo2.png", irr::core::vector2df(900,100));
-			// // ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo3.png", irr::core::vector2df(100,900));
-			// //ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo4.png", irr::core::vector2df(1000,1000));
-			// ecs::system::Create::createAi("./assets/voodoo.ms3d", "./assets/voodoo4.png", irr::core::vector2df(100,900));	
-			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", color, irr::core::vector2df(100,100));
+
+			if (color.compare("./assets/voodoo1.png") == 0)
+				ecs::system::Create::createPlayer("./assets/voodoo.ms3d", color, irr::core::vector2df(100,100));
+			else
+				ecs::system::Create::createAi("./assets/voodoo.ms3d", "./assets/voodoo1.png", irr::core::vector2df(100,100));
+			if (color.compare("./assets/voodoo2.png") == 0)
+				ecs::system::Create::createPlayer("./assets/voodoo.ms3d", color, irr::core::vector2df(900,100));
+			else
+				ecs::system::Create::createAi("./assets/voodoo.ms3d", "./assets/voodoo2.png", irr::core::vector2df(900,100));
+			if (color.compare("./assets/voodoo3.png") == 0)
+				ecs::system::Create::createPlayer("./assets/voodoo.ms3d", color, irr::core::vector2df(100,900));
+			else
+				ecs::system::Create::createAi("./assets/voodoo.ms3d", "./assets/voodoo3.png", irr::core::vector2df(100,900));
+			if (color.compare("./assets/voodoo4.png") == 0)
+				ecs::system::Create::createPlayer("./assets/voodoo.ms3d", color, irr::core::vector2df(1000,1000));
+			else
+				ecs::system::Create::createAi("./assets/voodoo.ms3d", "./assets/voodoo4.png", irr::core::vector2df(1000,1000));
+			// ecs::system::Create::createAi("./assets/voodoo.ms3d", "./assets/voodoo4.png", irr::core::vector2df(100,900));
+			//ecs::system::Create::createPlayer("./assets/voodoo.ms3d", color, irr::core::vector2df(100,100));
 		};
 		static void loadMenuInGame()
 		{
