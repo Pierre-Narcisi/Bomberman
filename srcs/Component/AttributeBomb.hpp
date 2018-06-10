@@ -9,8 +9,8 @@
 
 #include <irrlicht/irrlicht.h>
 
-namespace ecs::component
-{
+namespace ecs { namespace component {
+
 	struct Attributes {
 		enum class Enum {
 			Default
@@ -22,4 +22,4 @@ namespace ecs::component
 		entity::Id 	player;
 		bool 		explode = false;
 	};
-}
+}}

@@ -41,7 +41,7 @@ namespace indie {
 		}
 		_device = irr::createDevice(irr::video::EDT_OPENGL,
 		irr::core::dimension2d<irr::u32>(_settings["display"]["width"].to<int>(), _settings["display"]["height"].to<int>()),
-			16, true, false, false, &_event);
+			16, false, false, false, &_event);
 		if (_device == nullptr)
 			throw GameException{"Error when create device"};
 		irr::core::stringw gameName = L"";

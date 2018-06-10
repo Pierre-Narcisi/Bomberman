@@ -8,7 +8,7 @@
 #include <exception>
 #include <string>
 
-namespace ecs::entity {
+namespace ecs { namespace entity {
 
 	class EntityError : public std::exception {
 	};
@@ -28,4 +28,4 @@ namespace ecs::entity {
 		std::string _msg;
 	};
 
-}
+}}

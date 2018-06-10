@@ -17,7 +17,7 @@
 #include "Component/Camera.hpp"
 #include "Component/Ai.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	class Create {
 	public:
@@ -31,4 +31,4 @@ namespace ecs::system {
 		static entity::Id	createAi(std::string const &mesh, std::string const &texture, irr::core::vector2df const &pos);
 	};
 
-}
+}}

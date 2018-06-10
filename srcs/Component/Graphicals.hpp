@@ -12,7 +12,7 @@
 #include "Game/Game.hpp"
 #include "Component/Basics.hpp"
 
-namespace ecs::component {
+namespace ecs { namespace component {
 
 	struct Mesh {
 		irr::scene::IAnimatedMeshSceneNode	*mesh;
@@ -69,4 +69,4 @@ namespace ecs::component {
 		Rect rect;
 		Position pos{};
 	};
-}
+}}

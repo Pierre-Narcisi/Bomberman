@@ -12,9 +12,7 @@
 #include "Component.hpp"
 #include "../Entity/Entity.hpp"
 
-struct bla {};
-
-namespace ecs::component {
+namespace ecs { namespace component {
 
 	template<class T>
 	Manager<T> &Manager<T>::get()
@@ -69,4 +67,4 @@ namespace ecs::component {
 			_components.erase(entity);
 	}
 
-}
+}}

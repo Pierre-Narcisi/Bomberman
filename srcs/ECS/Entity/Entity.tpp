@@ -9,7 +9,7 @@
 
 #include "Entity.hpp"
 
-namespace ecs::entity {
+namespace ecs { namespace entity {
 
 	template<class T>
 	void Manager::setComponent(Id entity, std::function<void()> deleteFunc)
@@ -26,4 +26,4 @@ namespace ecs::entity {
 		_components.at(entity).erase(typeid(T).name());
 	}
 
-}
+}}

@@ -7,7 +7,7 @@
 
 #pragma once
 
-namespace ecs::component {
+namespace ecs { namespace component {
 
 	struct Type {
 		enum class Enum {
@@ -55,4 +55,4 @@ namespace ecs::component {
 		bool del = false;
 	};
 
-}
+}}

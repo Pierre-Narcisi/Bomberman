@@ -12,10 +12,10 @@
 #include "ECS/Entity/Filter.hpp"
 #include "System/Update.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	class Events {
 	public:
 		static void Manager(irr::SEvent const &event);
 	};
-}
+}}

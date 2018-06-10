@@ -7,7 +7,7 @@
 
 #include "Ai.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	void Ai::deplacement(int y, int x, int moving)
 	{
@@ -310,4 +310,4 @@ namespace ecs::system {
 			}
 		}
 	}
-}
+}}

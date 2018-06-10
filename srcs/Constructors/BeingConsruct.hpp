@@ -16,7 +16,7 @@
 #include "ECS/Component/Component.hpp"
 
 
-namespace ecs::component {
+namespace ecs { namespace component {
 	class Constructors {
 	public:
 		static void Being(entity::Id id, std::string const &mesh, std::string const &texture, irr::core::vector2df const &pos)
@@ -116,5 +116,4 @@ namespace ecs::component {
 			obj[id].t = type;
 		};
 	};
-}
-
+}}

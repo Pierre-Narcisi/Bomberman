@@ -17,7 +17,7 @@
 
 #include <iostream>
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	void Collider::update()
 	{
@@ -57,8 +57,15 @@ namespace ecs::system {
 					ecs::system::Deletable::button();
 					ecs::system::Scene::loadSceneTwo();
 				} else if (buttonManager[e].type == ecs::component::Button::Type::Solo) {
-					ecs::system::Deletable::all();
-					ecs::system::Scene::loadGame();
+					ecs::system::Deletable::button();
+					ecs::system::Scene::loadSceneThree();
+				}	else if (buttonManager[e].type == ecs::component::Button::Type::Start) {
+ 					ecs::system::Deletable::all();
+ 					ecs::system::Scene::loadGame();
+				} else if (buttonManager[e].type == ecs::component::Button::Type::MusicDown) {
+					ecs::system::Scene::sound(-1);
+				} else if (buttonManager[e].type == ecs::component::Button::Type::MusicUp) {
+					ecs::system::Scene::sound(1);
 				}
 			}
 		}
@@ -72,4 +79,4 @@ namespace ecs::system {
 			mouse.position.Y <= rect.ys + rect.yi;
 	}
 
-}
+}}

@@ -9,9 +9,9 @@
 
 #include <vector>
 
-namespace ecs::component {
+namespace ecs { namespace component {
 
 	struct Map {
 		std::vector<std::vector<int>> map;
 	};
-}
+}}

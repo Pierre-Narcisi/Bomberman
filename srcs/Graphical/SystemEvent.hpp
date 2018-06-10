@@ -14,9 +14,9 @@
 #include "ComponentMouse.hpp"
 #include "SystemUpdate.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 	class Events {
 	public:
 		static void Manager(irr::SEvent event);
 	};
-}
+}}

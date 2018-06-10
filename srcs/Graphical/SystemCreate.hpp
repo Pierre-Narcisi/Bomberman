@@ -16,7 +16,7 @@
 #include "ComponentKeyboard.hpp"
 #include "ComponentCamera.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 	class Create {
 	public:
 		static irr::scene::IMetaTriangleSelector* createMap(irr::scene::ISceneManager *smgr);
@@ -24,4 +24,4 @@ namespace ecs::system {
 		static entity::Id createDeletableWall(irr::video::IVideoDriver *driver, irr::scene::ISceneManager *smgr, irr::core::vector2df pos);
 		static entity::Id createPlayer(irr::IrrlichtDevice *device, irr::video::IVideoDriver *driver, irr::scene::ISceneManager *smgr, std::string const &mesh, std::string const &texture, irr::core::vector2df const &pos);
 	};
-}
+}}
