@@ -43,7 +43,7 @@ namespace ecs { namespace component {
 	};
 
 	struct Button {
-		enum class Type { None = 0, Quit, Play, Solo, Start, MusicUp, MusicDown, Red, Green, Blue, Yellow, Two, Three, Four};
+		enum class Type { None = 0, Quit, Play, Solo, Multi, Start, MusicUp, MusicDown, Red, Green, Blue, Yellow, Two, Three, Four};
 		Type		type;
 		/* normalState // hoverState */
 	};

@@ -96,7 +96,7 @@ namespace ecs { namespace system {
 		{
 			ecs::system::createButton(ecs::component::Button::Type::Solo, "./assets/buttons/soloWhite1.png",
 			ecs::component::Rect{700, 500, 420, 140}, "./assets/buttons/soloBlack1.png");
-			ecs::system::createButton(ecs::component::Button::Type::Start, "./assets/buttons/multiWhite1.png",
+			ecs::system::createButton(ecs::component::Button::Type::Multi, "./assets/buttons/multiWhite1.png",
 			ecs::component::Rect{640, 750, 515, 150}, "./assets/buttons/multiBlack1.png");
 		}
 		static void loadSceneThree()
