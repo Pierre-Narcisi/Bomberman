@@ -43,7 +43,7 @@ namespace ecs::component {
 	};
 
 	struct Button {
-		enum class Type { None = 0, Quit, Play, Solo};
+		enum class Type { None = 0, Quit, Play, Solo, Start, MusicUp, MusicDown};
 		Type		type;
 		/* normalState // hoverState */
 	};
