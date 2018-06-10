@@ -8,155 +8,155 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/seb/Client"/>
+				<Option working_dir="/home/seb/tmp/ClientLoick"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -f &quot;/home/seb/tmp/ClientLoick/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/seb/tmp/ClientLoick/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/seb/tmp/ClientLoick/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/seb/tmp/ClientLoick/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/seb/Client"/>
+				<Option working_dir="/home/seb/tmp/ClientLoick"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -f &quot;/home/seb/tmp/ClientLoick/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/seb/tmp/ClientLoick/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/seb/tmp/ClientLoick/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/seb/tmp/ClientLoick/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/seb/Client"/>
+				<Option working_dir="/home/seb/tmp/ClientLoick"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -f &quot;/home/seb/tmp/ClientLoick/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/seb/tmp/ClientLoick/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/seb/tmp/ClientLoick/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/seb/tmp/ClientLoick/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="bomberman">
-				<Option output="/home/seb/Client/bomberman" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/seb/Client"/>
+				<Option output="/home/seb/tmp/ClientLoick/bomberman" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/seb/tmp/ClientLoick"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/seb/Client/libs"/>
-					<Add directory="/home/seb/Client/libs/Json/includes"/>
-					<Add directory="/home/seb/Client/srcs"/>
-					<Add directory="/home/seb/Client/libs/irrKlang/includes"/>
-					<Add directory="/home/seb/Client/libs/irrlicht/includes"/>
+					<Add directory="/home/seb/tmp/ClientLoick/libs"/>
+					<Add directory="/home/seb/tmp/ClientLoick/libs/Json/includes"/>
+					<Add directory="/home/seb/tmp/ClientLoick/srcs"/>
+					<Add directory="/home/seb/tmp/ClientLoick/libs/irrKlang/includes"/>
+					<Add directory="/home/seb/tmp/ClientLoick/libs/irrlicht/includes"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 bomberman"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -f &quot;/home/seb/tmp/ClientLoick/Makefile&quot;  VERBOSE=1 bomberman"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/seb/tmp/ClientLoick/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/seb/tmp/ClientLoick/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/seb/tmp/ClientLoick/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="bomberman/fast">
-				<Option output="/home/seb/Client/bomberman" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/seb/Client"/>
+				<Option output="/home/seb/tmp/ClientLoick/bomberman" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/seb/tmp/ClientLoick"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/seb/Client/libs"/>
-					<Add directory="/home/seb/Client/libs/Json/includes"/>
-					<Add directory="/home/seb/Client/srcs"/>
-					<Add directory="/home/seb/Client/libs/irrKlang/includes"/>
-					<Add directory="/home/seb/Client/libs/irrlicht/includes"/>
+					<Add directory="/home/seb/tmp/ClientLoick/libs"/>
+					<Add directory="/home/seb/tmp/ClientLoick/libs/Json/includes"/>
+					<Add directory="/home/seb/tmp/ClientLoick/srcs"/>
+					<Add directory="/home/seb/tmp/ClientLoick/libs/irrKlang/includes"/>
+					<Add directory="/home/seb/tmp/ClientLoick/libs/irrlicht/includes"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 bomberman/fast"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/seb/Client/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -f &quot;/home/seb/tmp/ClientLoick/Makefile&quot;  VERBOSE=1 bomberman/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/seb/tmp/ClientLoick/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/seb/tmp/ClientLoick/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/seb/tmp/ClientLoick/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/seb/Client/srcs/Constructors/BeingConsruct.hpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/Constructors/BeingConsruct.hpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/ECS/Component/Component.tpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/ECS/Component/Component.tpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/ECS/Entity/Entity.cpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/ECS/Entity/Entity.cpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/ECS/Entity/Entity.hpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/ECS/Entity/Entity.hpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/ECS/Entity/Entity.tpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/ECS/Entity/Entity.tpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/ECS/Entity/Filter.tpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/ECS/Entity/Filter.tpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Game/Game.cpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/Game/Game.cpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Game/Game.hpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/Game/Game.hpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Graphical/EventReceiver.cpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/Graphical/EventReceiver.cpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Graphical/EventReceiver.hpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/Graphical/EventReceiver.hpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Main.cpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/Main.cpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/MapGen/mapGen.cpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/MapGen/mapGen.cpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/MapGen/mapGen.hpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/MapGen/mapGen.hpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Settings/Inputs.cpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/Settings/Inputs.cpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Settings/Inputs.hpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/Settings/Inputs.hpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Settings/Settings.cpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/Settings/Settings.cpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/Settings/Settings.hpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/Settings/Settings.hpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/System/Ai.cpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/System/Ai.cpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/System/Ai.hpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/System/Ai.hpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/System/Being.cpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/System/Being.cpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/System/Being.hpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/System/Being.hpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/System/Collider.cpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/System/Collider.cpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/System/Collider.hpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/System/Collider.hpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/System/Create.cpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/System/Create.cpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/System/Create.hpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/System/Create.hpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/srcs/System/UpdateDeplacement.cpp">
+		<Unit filename="/home/seb/tmp/ClientLoick/srcs/System/UpdateDeplacement.cpp">
 			<Option target="bomberman"/>
 		</Unit>
-		<Unit filename="/home/seb/Client/CMakeLists.txt">
+		<Unit filename="/home/seb/tmp/ClientLoick/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

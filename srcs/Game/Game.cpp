@@ -169,6 +169,36 @@ namespace indie {
 			if (fl.list.size() != 0 && in.list.size() == 0)
 				_device->closeDevice();
 
+			ecs::entity::Filter<ecs::component::Position, ecs::component::UnanimatedObject, ecs::component::Type> bonus;
+			ecs::entity::Filter<ecs::component::Being, ecs::component::Stat> taker;
+			auto &bpos = ecs::component::Manager<ecs::component::Position>::get();
+			auto &btype = ecs::component::Manager<ecs::component::Type>::get();
+			auto &boite = ecs::component::Manager<ecs::component::UnanimatedObject>::get();
+			auto &ptake = ecs::component::Manager<ecs::component::Being>::get();
+			auto &pstat = ecs::component::Manager<ecs::component::Stat>::get();
+			for (auto &id : bonus.list) {
+				if (btype[id].t == ecs::component::Type::Enum::BonusBomb ||
+					btype[id].t == ecs::component::Type::Enum::BonusRange ||
+					btype[id].t == ecs::component::Type::Enum::BonusSpeed) {
+					std::cout << std::endl << "pos x:" << bpos[id].x << " pos y:" << bpos[id].y << std::endl;
+					for (auto &ID : taker.list) {
+						if (ptake[ID]._node->getPosition().X > bpos[id].x - 50 && ptake[ID]._node->getPosition().X > bpos[id].x + 50) {
+							if (ptake[ID]._node->getPosition().Z > bpos[id].y - 50 && ptake[ID]._node->getPosition().Z > bpos[id].y + 50) {
+								std::cout << "pos x:" << ptake[ID]._node->getPosition().X << " pos y:" << ptake[ID]._node->getPosition().Z << std::endl;
+								if (btype[id].t == ecs::component::Type::Enum::BonusBomb)
+									pstat[ID].bombMax += 1;
+								else if (btype[id].t == ecs::component::Type::Enum::BonusRange)
+									pstat[ID].range += 1;
+								else if (btype[id].t == ecs::component::Type::Enum::BonusSpeed)
+									pstat[ID].speed += 0.001;
+								boite[id]._node->setPosition(irr::core::vector3df(10000,10000,10000));
+							}
+						}
+					}
+				}
+			}
+
+
 			/* Set the game loop here */
 
 			ecs::system::Explode::update();

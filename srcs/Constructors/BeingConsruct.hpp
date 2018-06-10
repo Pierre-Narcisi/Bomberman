@@ -113,6 +113,17 @@ namespace ecs { namespace component {
 			obj[id]._node->setPosition(irr::core::vector3df(pos.X, 0, pos.Y));
 		};
 
+		static void Bonus(entity::Id id, std::string const &texture, irr::core::vector2df const &pos)
+		{
+			auto &game = indie::Game::get();
+			auto &obj = component::Manager<component::UnanimatedObject>::get();
+
+			obj[id]._node = game.getSmgr()->addCubeSceneNode(50);
+			obj[id]._node->setMaterialTexture(0, game.getDriver()->getTexture(texture.c_str()));
+			obj[id]._node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+			obj[id]._node->setPosition(irr::core::vector3df(pos.X, 0, pos.Y));
+		};
+
 		static void Type(entity::Id id, ecs::component::Type::Enum type) {
 			auto &obj = component::Manager<component::Type>::get();
 
