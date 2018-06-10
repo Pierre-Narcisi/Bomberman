@@ -24,6 +24,11 @@
 
 #include "Game/Game.hpp"
 
+#include "../irrKlang/include/ik_ISound.h"
+#include "../irrKlang/include/ik_ISound.h"
+#include "../irrKlang/include/ik_EStreamModes.h"
+#include "../irrKlang/include/irrKlang.h"
+
 namespace ecs::system {
 
 	class Blur {
@@ -94,6 +99,11 @@ namespace ecs::system {
 			ecs::system::createButton(ecs::component::Button::Type::None, "./assets/buttons/multiWhite1.png",
 			ecs::component::Rect{640, 750, 515, 150}, "./assets/buttons/multiBlack1.png");
 		};
+		static void loadSceneThree()
+		{
+			ecs::system::createButton(ecs::component::Button::Type::Start, "./assets/buttons/startGameWhite1.png",
+			ecs::component::Rect{470, 900, 920, 126}, "./assets/buttons/startGameBlack1.png");
+		};
 		static void loadGame()
 		{
 			indie::mapGen(10, 10);
@@ -102,7 +112,6 @@ namespace ecs::system {
 		static void loadMenuInGame()
 		{
 			ecs::system::Scene::loadOpt();
-			// ecs::system::Scene::loadSceneOne();
 		}
 		static void unloadMenuInGame()
 		{
@@ -146,10 +155,38 @@ namespace ecs::system {
 		}
 		static void loadOpt()
 		{
+			ecs::system::createButton(ecs::component::Button::Type::MusicUp, "./assets/buttons/add.png",
+			ecs::component::Rect{600, 370, 64, 64}, "./assets/buttons/add.png");
+			ecs::system::createButton(ecs::component::Button::Type::MusicDown, "./assets/buttons/down.png",
+			ecs::component::Rect{1180, 370, 64, 64}, "./assets/buttons/down.png");
+			ecs::system::createButton(ecs::component::Button::Type::None, "./assets/buttons/sound.png",
+			ecs::component::Rect{730, 350, 382, 102}, "");
 			ecs::system::createButton(ecs::component::Button::Type::Quit, "./assets/buttons/restartWhite1.png",
 			ecs::component::Rect{660, 500, 515, 110}, "./assets/buttons/restartBlack1.png");
 			ecs::system::createButton(ecs::component::Button::Type::Quit, "./assets/buttons/mainMenuWhite1.png",
 		 	ecs::component::Rect{580, 650, 660, 110}, "./assets/buttons/mainMenuBlack1.png");
+		}
+		static void sound(int action)
+		{
+			static int pass = 0;
+			static irrklang::ISound *introMusic;
+
+			if (pass == 0) {
+				irrklang::ISoundEngine *engine;
+				engine = irrklang::createIrrKlangDevice();
+				introMusic = engine->play2D("./assets/Varien-Lilith.wav", true,
+				false, false, irrklang::ESM_AUTO_DETECT, true);
+
+				introMusic->setVolume(static_cast<irr::f32>(1));
+				pass++;
+				return;
+			}
+
+			if (action == -1 && introMusic->getVolume() > 0) {
+				introMusic->setVolume(introMusic->getVolume() - 0.1);
+			} else if (action == 1 && introMusic->getVolume() < 1) {
+				introMusic->setVolume(introMusic->getVolume() + 0.1);
+			}
 		}
 	};
 }

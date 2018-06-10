@@ -17,19 +17,11 @@
 
 int main()
 {
-	irrklang::ISound *introMusic;
-	irrklang::ISoundEngine *engine;
-
 	indie::Game &game = indie::Game::get();
 	irr::core::array<irr::SJoystickInfo> joystickInfo;
 	game.getDevice()->activateJoysticks(joystickInfo);
 
-	engine = irrklang::createIrrKlangDevice();
-	introMusic = engine->play2D("./assets/Varien-Lilith.wav", true,
-		false, false, irrklang::ESM_AUTO_DETECT, true);
-
-	introMusic->setVolume(static_cast<irr::f32>(1));
-
+	ecs::system::Scene::sound(0);
 	ecs::system::Scene::loadBackground();
 	ecs::system::Scene::loadSceneOne();
 	game.gameLoop();
