@@ -8,6 +8,7 @@
 #include "Constructors/Destructors.hpp"
 #include "Settings/Inputs.hpp"
 #include "ECS/Entity/Entity.hpp"
+#include "ECS/Component/Component.hpp"
 #include "Game/Game.hpp"
 
 #include "Component/Basics.hpp"
@@ -333,17 +334,40 @@ namespace ecs { namespace system {
 
 		// Killing Beings in range
 
-		entity::Filter<component::Being> beings;
+		entity::Filter<component::Being, component::Input> beings;
 		auto &being = component::Manager<component::Being>::get();
 
 		for (auto &me : beings.list) {
 			if (being[me]._node->getPosition().X > pos.x - rangeLeft * 100 - 50 && being[me]._node->getPosition().X < pos.x + rangeRight * 100 + 50) {
-				if (being[me]._node->getPosition().Z > pos.y - 50 && being[me]._node->getPosition().Z < pos.y + 50)
-					being[me]._node->setPosition(irr::core::vector3df(0,1000,0));
+				if (being[me]._node->getPosition().Z > pos.y - 50 && being[me]._node->getPosition().Z < pos.y + 50) {
+					being[me]._node->setVisible(0);
+					ecs::component::Manager<component::Input>::get().removeComponentForEntity(me);
+				}
 			}
 			if (being[me]._node->getPosition().Z > pos.y - rangeUp * 100 - 50 && being[me]._node->getPosition().Z < pos.y + rangeDown * 100 + 50) {
-				if (being[me]._node->getPosition().X > pos.x - 50 && being[me]._node->getPosition().X < pos.x + 50)
-					being[me]._node->setPosition(irr::core::vector3df(0,1000,0));
+				if (being[me]._node->getPosition().X > pos.x - 50 && being[me]._node->getPosition().X < pos.x + 50) {
+					being[me]._node->setVisible(0);
+					ecs::component::Manager<component::Input>::get().removeComponentForEntity(me);
+				}
+			}
+		}
+
+
+		entity::Filter<component::Being, component::Ai> ais;
+		auto &ai = component::Manager<component::Being>::get();
+
+		for (auto &me : ais.list) {
+			if (ai[me]._node->getPosition().X > pos.x - rangeLeft * 100 - 50 && ai[me]._node->getPosition().X < pos.x + rangeRight * 100 + 50) {
+				if (ai[me]._node->getPosition().Z > pos.y - 50 && ai[me]._node->getPosition().Z < pos.y + 50) {
+					ai[me]._node->setVisible(0);
+					ecs::component::Manager<component::Ai>::get().removeComponentForEntity(me);
+				}
+			}
+			if (ai[me]._node->getPosition().Z > pos.y - rangeUp * 100 - 50 && ai[me]._node->getPosition().Z < pos.y + rangeDown * 100 + 50) {
+				if (ai[me]._node->getPosition().X > pos.x - 50 && ai[me]._node->getPosition().X < pos.x + 50) {
+					ai[me]._node->setVisible(0);
+					ecs::component::Manager<component::Ai>::get().removeComponentForEntity(me);
+				}
 			}
 		}
 
