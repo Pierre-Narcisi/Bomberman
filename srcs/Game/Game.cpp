@@ -165,6 +165,9 @@ namespace indie {
 				_smgr->drawAll();
 			}
 
+			ecs::entity::Filter<ecs::component::Input> in;
+			if (fl.list.size() != 0 && in.list.size() == 0)
+				_device->closeDevice();
 
 			/* Set the game loop here */
 
