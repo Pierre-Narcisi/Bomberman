@@ -3,6 +3,7 @@
 *#
 *~
 /Makefile
+/*.dll
 
 ## object :
 *.o
