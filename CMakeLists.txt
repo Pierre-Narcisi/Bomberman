@@ -27,6 +27,12 @@ add_executable(bomberman
         srcs/System/UpdateDeplacement.cpp
         srcs/Main.cpp)
 
-target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/irrlicht/libIrrlicht.so)
-target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/Json/libJson.so)
-target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/irrKlang/libIrrKlang.so)
+if (WIN32)
+        target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/irrlicht/Irrlicht.dll)
+        target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/Json/Json.dll)
+        target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/irrKlang/IrrKlang.dll)
+else()
+        target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/irrlicht/libIrrlicht.so)
+        target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/Json/libJson.so)
+        target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/irrKlang/libIrrKlang.so)
+endif()
