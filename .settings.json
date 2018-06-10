@@ -21,6 +21,22 @@
 				"left": "LEFT",
 				"attack": "M",
 				"event": "L"
+			},
+			"player3": {
+				"up": "T",
+				"down": "G",
+				"right": "H",
+				"left": "F",
+				"attack": "V",
+				"event": "L"
+			},
+			"player4": {
+				"up": "I",
+				"down": "K",
+				"right": "L",
+				"left": "J",
+				"attack": "N",
+				"event": "L"
 			}
 		}
 	}
