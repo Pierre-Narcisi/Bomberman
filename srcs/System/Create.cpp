@@ -341,12 +341,14 @@ namespace ecs { namespace system {
 			if (being[me]._node->getPosition().X > pos.x - rangeLeft * 100 - 50 && being[me]._node->getPosition().X < pos.x + rangeRight * 100 + 50) {
 				if (being[me]._node->getPosition().Z > pos.y - 50 && being[me]._node->getPosition().Z < pos.y + 50) {
 					being[me]._node->setVisible(0);
+					being[me]._node->setPosition(irr::core::vector3df(0, 500, 500));
 					ecs::component::Manager<component::Input>::get().removeComponentForEntity(me);
 				}
 			}
 			if (being[me]._node->getPosition().Z > pos.y - rangeUp * 100 - 50 && being[me]._node->getPosition().Z < pos.y + rangeDown * 100 + 50) {
 				if (being[me]._node->getPosition().X > pos.x - 50 && being[me]._node->getPosition().X < pos.x + 50) {
 					being[me]._node->setVisible(0);
+					being[me]._node->setPosition(irr::core::vector3df(0, 500, 500));
 					ecs::component::Manager<component::Input>::get().removeComponentForEntity(me);
 				}
 			}
@@ -360,12 +362,14 @@ namespace ecs { namespace system {
 			if (ai[me]._node->getPosition().X > pos.x - rangeLeft * 100 - 50 && ai[me]._node->getPosition().X < pos.x + rangeRight * 100 + 50) {
 				if (ai[me]._node->getPosition().Z > pos.y - 50 && ai[me]._node->getPosition().Z < pos.y + 50) {
 					ai[me]._node->setVisible(0);
+					ai[me]._node->setPosition(irr::core::vector3df(0, 500, 500));
 					ecs::component::Manager<component::Ai>::get().removeComponentForEntity(me);
 				}
 			}
 			if (ai[me]._node->getPosition().Z > pos.y - rangeUp * 100 - 50 && ai[me]._node->getPosition().Z < pos.y + rangeDown * 100 + 50) {
 				if (ai[me]._node->getPosition().X > pos.x - 50 && ai[me]._node->getPosition().X < pos.x + 50) {
 					ai[me]._node->setVisible(0);
+					ai[me]._node->setPosition(irr::core::vector3df(0, 500, 500));
 					ecs::component::Manager<component::Ai>::get().removeComponentForEntity(me);
 				}
 			}
