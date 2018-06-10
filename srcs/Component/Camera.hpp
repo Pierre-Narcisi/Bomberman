@@ -9,7 +9,7 @@
 
 #include <irrlicht/irrlicht.h>
 
-#include "Entity.hpp"
+#include "Json/Entity.hpp"
 #include "Game/Game.hpp"
 #include "ECS/Component/Component.hpp"
 #include "ECS/Entity/Entity.hpp"

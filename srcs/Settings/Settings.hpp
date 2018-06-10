@@ -14,7 +14,7 @@
 #include <array>
 
 #include "ECS/Entity/Entity.hpp"
-#include "Json/srcs/Entity/Entity.hpp"
+#include "Json/Entity.hpp"
 
 /* implemented by benjamin */
 json::Entity getSettings();

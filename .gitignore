@@ -15,4 +15,5 @@ CMakeFiles
 ## binaries :
 a.out
 /bomberman
+/bomberman.exe
 tests/graphicalTest/bomberman

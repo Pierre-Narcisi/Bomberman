@@ -7,7 +7,6 @@
 
 #include <irrlicht/irrlicht.h>
 
-#include "Parser.hpp"
 #include "Game.hpp"
 #include "ECS/Entity/Filter.hpp"
 
@@ -20,6 +19,7 @@
 
 #include "Component/Map.hpp"
 #include "System/Ai.hpp"
+#include "Json/Parser.hpp"
 
 #include <chrono>
 #include <thread>

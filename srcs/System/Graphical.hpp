@@ -24,10 +24,10 @@
 
 #include "Game/Game.hpp"
 
-#include "../irrKlang/include/ik_ISound.h"
-#include "../irrKlang/include/ik_ISound.h"
-#include "../irrKlang/include/ik_EStreamModes.h"
-#include "../irrKlang/include/irrKlang.h"
+#include "irrKlang/ik_ISound.h"
+#include "irrKlang/ik_ISound.h"
+#include "irrKlang/ik_EStreamModes.h"
+#include "irrKlang/irrKlang.h"
 
 namespace ecs { namespace system {
 

@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <algorithm>
+
 #include <ECS/Entity/Filter.hpp>
 #include <Settings/Settings.hpp>
 #include "Component/Camera.hpp"
