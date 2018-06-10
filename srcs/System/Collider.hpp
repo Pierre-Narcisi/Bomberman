@@ -10,7 +10,7 @@
 #include "Component/Graphicals.hpp"
 #include "Settings/Inputs.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	class Collider {
 	public:
@@ -19,4 +19,4 @@ namespace ecs::system {
 		static bool rectCollide(component::Mouse const &, component::Rect const &);
 	};
 
-}
+}}

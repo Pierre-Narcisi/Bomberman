@@ -9,7 +9,7 @@
 
 #include "Entity.hpp"
 
-namespace ecs::entity {
+namespace ecs { namespace entity {
 
 		Manager &Manager::get()
 		{
@@ -57,7 +57,7 @@ namespace ecs::entity {
 			return idCounter++;
 		}
 
-}
+}}
 
 /*
 {

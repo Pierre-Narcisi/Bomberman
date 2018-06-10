@@ -24,12 +24,12 @@
 
 #include "Game/Game.hpp"
 
-#include "../irrKlang/include/ik_ISound.h"
-#include "../irrKlang/include/ik_ISound.h"
-#include "../irrKlang/include/ik_EStreamModes.h"
-#include "../irrKlang/include/irrKlang.h"
+#include "irrKlang/ik_ISound.h"
+#include "irrKlang/ik_ISound.h"
+#include "irrKlang/ik_EStreamModes.h"
+#include "irrKlang/irrKlang.h"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	class Blur {
 	public:
@@ -115,27 +115,53 @@ namespace ecs::system {
 		static void loadSceneMulti()
 		{
 			ecs::system::createButton(ecs::component::Button::Type::Two, "./assets/buttons/number2White1.png",
-			ecs::component::Rect{470, 900, 920, 126}, "./assets/buttons/number2Black1.png");
+			ecs::component::Rect{300, 500, 96, 125}, "./assets/buttons/number2Black1.png");
+			ecs::system::createButton(ecs::component::Button::Type::Three, "./assets/buttons/number3White1.png",
+			ecs::component::Rect{700, 500, 101, 137}, "./assets/buttons/number3Black1.png");
+			ecs::system::createButton(ecs::component::Button::Type::Four, "./assets/buttons/number4White1.png",
+			ecs::component::Rect{1100, 500, 111, 150}, "./assets/buttons/number4Black1.png");
 		}
-		static void loadGame(std::string &color)
+		static void loadGame1(std::string &color)
 		{
 			indie::mapGen(10, 10);
-			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", color, irr::core::vector2df(100,100));
-		}
-		static void loadGame2(std::string &color)
+
+			if (color.compare("./assets/voodoo1.png") == 0)
+				ecs::system::Create::createPlayer("./assets/voodoo.ms3d", color, irr::core::vector2df(100,100));
+			else
+				ecs::system::Create::createAi("./assets/voodoo.ms3d", "./assets/voodoo1.png", irr::core::vector2df(100,100));
+			if (color.compare("./assets/voodoo2.png") == 0)
+				ecs::system::Create::createPlayer("./assets/voodoo.ms3d", color, irr::core::vector2df(900,100));
+			else
+				ecs::system::Create::createAi("./assets/voodoo.ms3d", "./assets/voodoo2.png", irr::core::vector2df(900,100));
+			if (color.compare("./assets/voodoo3.png") == 0)
+				ecs::system::Create::createPlayer("./assets/voodoo.ms3d", color, irr::core::vector2df(100,900));
+			else
+				ecs::system::Create::createAi("./assets/voodoo.ms3d", "./assets/voodoo3.png", irr::core::vector2df(100,900));
+			if (color.compare("./assets/voodoo4.png") == 0)
+				ecs::system::Create::createPlayer("./assets/voodoo.ms3d", color, irr::core::vector2df(1000,1000));
+			else
+				ecs::system::Create::createAi("./assets/voodoo.ms3d", "./assets/voodoo4.png", irr::core::vector2df(1000,1000));
+		};
+		static void loadGame2()
 		{
-			indie::mapGen(10, 10);
-			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", color, irr::core::vector2df(100,100));
+			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo1.png", irr::core::vector2df(100,100));
+			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo2.png", irr::core::vector2df(900,100));
+			ecs::system::Create::createAi("./assets/voodoo.ms3d", "./assets/voodoo3.png", irr::core::vector2df(100,900));
+			ecs::system::Create::createAi("./assets/voodoo.ms3d", "./assets/voodoo4.png", irr::core::vector2df(1000,1000));
 		}
-		static void loadGame3(std::string &color)
+		static void loadGame3()
 		{
-			indie::mapGen(10, 10);
-			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", color, irr::core::vector2df(100,100));
+			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo1.png", irr::core::vector2df(100,100));
+			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo2.png", irr::core::vector2df(900,100));
+			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo3.png", irr::core::vector2df(100,900));
+			ecs::system::Create::createAi("./assets/voodoo.ms3d", "./assets/voodoo4.png", irr::core::vector2df(1000,1000));
 		}
-		static void loadGame4(std::string &color)
+		static void loadGame4()
 		{
-			indie::mapGen(10, 10);
-			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", color, irr::core::vector2df(100,100));
+			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo1.png", irr::core::vector2df(100,100));
+			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo2.png", irr::core::vector2df(900,100));
+			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo3.png", irr::core::vector2df(100,900));
+			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo4.png", irr::core::vector2df(1000,1000));
 		}
 		static void loadMenuInGame()
 		{
@@ -217,4 +243,4 @@ namespace ecs::system {
 			}
 		}
 	};
-}
+}}

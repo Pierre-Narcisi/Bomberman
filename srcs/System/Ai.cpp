@@ -6,14 +6,13 @@
 */
 
 #include "Ai.hpp"
-#include "Component/Graphicals.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
-	void Ai::deplacement(int dir, int y, int x)
+	void Ai::deplacement(int y, int x, int moving)
 	{
 		auto &game = indie::Game::get();
-		entity::Filter<component::Being, Ai> player;
+		entity::Filter<component::Being, component::Ai> player;
 
 		auto &being = component::Manager<component::Being>::get();
 		auto &camera = component::Manager<component::Camera>::get();
@@ -21,33 +20,26 @@ namespace ecs::system {
 		irr::core::vector3df pos;
 		irr::f32 speed = 300.f;
 		float rot;
-		bool moving;
 
 		for (auto id : player.list) {
-			auto pos = being[id]._node->getPosition();
 			speed = speed * component::Manager<component::Stat>::get()[id].speed;
 			rot = being[id]._rotation;
 			deltatime = static_cast<irr::f32>((game.getDevice()->getTimer()->getTime() - being[id]._then) / 1000.f);
 			being[id]._then = game.getDevice()->getTimer()->getTime();
 
-			if (static_cast<int>(pos.X) != x || static_cast<int>(pos.Z) != y)
-				moving = 1;
-			else
-				moving = 0;
-
 			// Set Rotation
-			if (dir == 0)
+			if (y == 0)
 				rot = 270;
-			else if (dir == 1)
+			else if (y == 1)
 				rot = 90;
-			if (dir == 2) {
+			if (x == 0) {
 				if (rot == 270)
 					rot = 225;
 				else if (rot == 90)
 					rot = 135;
 				else
 					rot = 180;
-			} else if (dir == 3) {
+			} else if (x == 1) {
 				if (rot == 270)
 					rot = 315;
 				else if (rot == 90)
@@ -103,24 +95,106 @@ namespace ecs::system {
 			}
 		}
 	}
+	
+	irr::core::vector3df Ai::findSafe(map_t map, irr::core::vector3df pos)
+	{
+		int incr = 2;
+		int size = map.size();
+		int x = getPos(pos.X) - 1;
+		int y = getPos(pos.Z) - 1;
+
+		while (incr < size) {
+			for (int i = 0; i < incr; i++) {
+				if (y + i >= 0 && x >= 0 && y + i < size && x < size && map[y + i][x] == 0) {
+					pos.Z = y + i;
+					pos.X = x;
+					return pos;
+				} if (y + i >= 0 && x + incr >= 0 && y + i < size && x + incr < size && map[y + i][x + incr] == 0) {
+					pos.Z = y + i;
+					pos.X = x + incr;
+					return pos;
+				} if (y >= 0 && x + i >= 0 && y < size && x + i < size && map[y][x + i] == 0) {
+					pos.Z = y;
+					pos.X = x + i;
+					return pos;
+				} if (y + incr >= 0 && x + i >= 0 && y + incr < size && x + i < size && map[y + incr][x + i] == 0) {
+					pos.Z = y + incr;
+					pos.X = x + i;
+					return pos;
+				}
+			}
+			incr = incr + 2;
+			x--;
+			y--;
+		}
+		pos.Z = y + incr / 2 - 1;
+		pos.X = x + incr / 2 - 1;
+		return pos;
+	}
+
+	void Ai::moveTo(irr::core::vector3df to, irr::core::vector3df pos, int moving)
+	{
+		int x = 2;
+		int y = 2;
+		irr::core::vector3df tmp;
+		to.Z = to.Z * 100 + 50;
+		to.X = to.X * 100 + 50;
+		moving = 0;
+		std::cout << "y=" << to.Z << "  x=" << to.X << std::endl;
+		std::cout << "yy=" << pos.Z << "  xx=" << pos.X << std::endl;
+
+		if (to.Z - pos.Z < 0 && abs(to.Z - pos.Z) > 5) {
+			y = 1;
+			moving = 1;
+		} else if (to.Z - pos.Z > 0 && abs(to.Z - pos.Z) > 5) {
+			y = 0;
+			moving = 1;
+		}
+		if (to.X - pos.X < 0 && abs(to.X - pos.X) > 5) {
+			x = 0;
+			moving = 1;
+		} else if (to.X - pos.X > 0 && abs(to.X - pos.X) > 5) {
+			x = 1;
+			moving = 1;
+		}
+		deplacement(y, x, moving);
+	}
+
+	int Ai::getPos(float pos)
+	{
+		return static_cast<int>(pos + 50) / 100;
+	}
+
 
 	void Ai::update(entity::Id ai)
 	{
+		entity::Filter<component::Being, component::Ai> player;
 		entity::Filter<component::Map> mapList;
-		for (auto &id : mapList.list) {
-			auto map = component::Manager<component::Map>::get()[id].map;
-			zone(map);
-			deplacement(0, 200, 100);
-			// for (auto line : map) {
-			// 	for (auto nb : line) {
-			// 		std::cout << nb;
-			// 	}
-			// 	std::cout << std::endl;
-			// }
-			//std::cout << std::endl;
-		}
+		int moving = 0;
+		auto &being = component::Manager<component::Being>::get();
 
+		for (auto &idmap : mapList.list) {
+			auto map = component::Manager<component::Map>::get()[idmap].map;
+			for (auto id : player.list) {
+				auto pos = being[id]._node->getPosition();
+				zone(map);
+				if (map[getPos(pos.Z)][getPos(pos.X)] == 5) {
+					auto newpos = findSafe(map, pos);
+					moveTo(newpos, pos, 1);
+				}
+				else deplacement(2, 2, 0);
+				
+				// for (auto line : map) {
+				// 	for (auto nb : line) {
+				// 		std::cout << nb;
+				// 	}
+				// 	std::cout << std::endl;
+				// }
+				// std::cout << std::endl;
+			}
+		}
 	}
+
 
 	void Ai::updateAll()
 	{
@@ -169,4 +243,4 @@ namespace ecs::system {
 			}
 		}
 	}
-}
+}}

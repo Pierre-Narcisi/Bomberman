@@ -17,7 +17,7 @@
 
 #include <iostream>
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	void Collider::update()
 	{
@@ -47,7 +47,7 @@ namespace ecs::system {
 		auto &buttonManager = component::Manager<component::Button>::get();
 		auto &imgManager = component::Manager<component::Image>::get();
 		auto &delManager = component::Manager<component::Deletable>::get();
-		static std::string color = "./assets/greenVoodoo.png";
+		static std::string color = "./assets/voodoo4.png";
 
 		for (auto &e : fl.list) {
 			auto &img = imgManager[e];
@@ -62,19 +62,28 @@ namespace ecs::system {
 					ecs::system::Scene::loadSceneThree();
 				}	else if (buttonManager[e].type == ecs::component::Button::Type::Start) {
  					ecs::system::Deletable::all();
- 					ecs::system::Scene::loadGame(color);
+ 					ecs::system::Scene::loadGame1(color);
 				} else if (buttonManager[e].type == ecs::component::Button::Type::MusicDown) {
 					ecs::system::Scene::sound(-1);
 				} else if (buttonManager[e].type == ecs::component::Button::Type::MusicUp) {
 					ecs::system::Scene::sound(1);
 				} else if (buttonManager[e].type == ecs::component::Button::Type::Green) {
-					color = "./assets/greenVoodoo.png";
+					color = "./assets/voodo4.png";
 				} else if (buttonManager[e].type == ecs::component::Button::Type::Yellow) {
-					color = "./assets/yellowVoodoo.png";
+					color = "./assets/voodoo3.png";
 				} else if (buttonManager[e].type == ecs::component::Button::Type::Red) {
-					color = "./assets/redVoodoo.png";
+					color = "./assets/voodoo1.png";
 				} else if (buttonManager[e].type == ecs::component::Button::Type::Blue) {
-					color = "./assets/blueVoodoo.png";
+					color = "./assets/voodoo2.png";
+				} else if (buttonManager[e].type == ecs::component::Button::Type::Two) {
+					ecs::system::Deletable::all();
+					ecs::system::Scene::loadGame2();
+				} else if (buttonManager[e].type == ecs::component::Button::Type::Three) {
+					ecs::system::Deletable::all();
+					ecs::system::Scene::loadGame3();
+				} else if (buttonManager[e].type == ecs::component::Button::Type::Four) {
+					ecs::system::Deletable::all();
+					ecs::system::Scene::loadGame4();
 				}
 			}
 		}
@@ -88,4 +97,4 @@ namespace ecs::system {
 			mouse.position.Y <= rect.ys + rect.yi;
 	}
 
-}
+}}

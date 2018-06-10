@@ -15,7 +15,7 @@
 #include "Score.hpp"
 
 #include "ECS/Entity/Entity.hpp"
-#include "Json/srcs/Entity/Entity.hpp"
+#include "Json/Entity.hpp"
 
 namespace indie {
 
@@ -29,7 +29,7 @@ namespace indie {
 
 	public:
 		static Game			&get();
-		json::Entity const		&getSettings() const;
+		json::Entity		&getSettings();
 		irr::IrrlichtDevice		*getDevice() const;
 		irr::video::IVideoDriver	*getDriver() const;
 		irr::scene::ISceneManager	*getSmgr() const;

@@ -19,7 +19,7 @@
 
 #include "Game/Game.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	static entity::Id createBackground(std::string const &image, component::Rect const &rect,
 		component::Color const &color)
@@ -52,4 +52,4 @@ namespace ecs::system {
 		return id;
 	}
 
-}
+}}

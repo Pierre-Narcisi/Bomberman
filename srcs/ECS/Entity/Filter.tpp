@@ -11,7 +11,7 @@
 
 #include "Filter.hpp"
 
-namespace ecs::entity {
+namespace ecs { namespace entity {
 
 	template<class T>
 	struct Filter<T> {
@@ -56,4 +56,4 @@ namespace ecs::entity {
 		std::list<Id> list;
 	};
 
-}
+}}

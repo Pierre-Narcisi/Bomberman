@@ -12,7 +12,7 @@
 
 #include "ECS/Entity/Entity.hpp"
 
-namespace ecs::component {
+namespace ecs { namespace component {
 
 	template<class T>
 	class Manager {
@@ -35,6 +35,6 @@ namespace ecs::component {
 		std::unordered_map<entity::Id, T> _components;
 	};
 
-}
+}}
 
 #include "Component.tpp"

@@ -7,8 +7,8 @@
 
 #pragma once
 
-#include <Constructors/Destructors.hpp>
-#include <Component/Stat.hpp>
+#include "Constructors/Destructors.hpp"
+#include "Component/Stat.hpp"
 #include "Game/Game.hpp"
 #include "ECS/Entity/Entity.hpp"
 #include "ECS/Entity/Filter.hpp"
@@ -19,7 +19,7 @@
 
 #include "System/Create.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	class Explode {
 	public:
@@ -28,7 +28,6 @@ namespace ecs::system {
 			auto &game = indie::Game::get();
 			entity::Filter<component::Type, component::Attributes, component::Position, component::Mesh> fl;
 			entity::Filter<component::Type, component::Position, component::Attributes, component::Deletable, component::ParticleSystem> exp;
-			entity::Filter<component::UnanimatedObject, component::Deletable> walls;
 
 			auto &typeManager = component::Manager<component::Type>::get();
 			auto &attributesManager = component::Manager<component::Attributes>::get();
@@ -48,21 +47,7 @@ namespace ecs::system {
 					std::cout << id << "      " << attributesManager[id].explode << std::endl;
 					auto pos = positionManager[id];
 					game.getSmgr()->addToDeletionQueue(bomb[id].mesh);
-					for (auto &ID : walls.list) {
-						if (being[ID]._node->getPosition().X == pos.x) {
-							if (being[ID]._node->getPosition().Z > (pos.y - dist) &&
-							    being[ID]._node->getPosition().Z < (pos.y + dist)) {
-								ecs::component::Destructors::UnanimatedObject(ID);
-								dlt[ID].del = true;
-							}
-						} else if (being[ID]._node->getPosition().Z == pos.y) {
-							if (being[ID]._node->getPosition().X > (pos.x - dist) &&
-							    being[ID]._node->getPosition().X < (pos.x + dist)) {
-								ecs::component::Destructors::UnanimatedObject(ID);
-								dlt[ID].del = true;
-							}
-						}
-					}
+
 					component::Manager<component::Stat>::get()[attribute[id].player].bombMax += 1;
 					Create::createExplosion(id, pos);
 					component::Manager<component::Deletable>::get()[id].del = true;
@@ -86,4 +71,4 @@ namespace ecs::system {
 			}
 		}
 	};
-}
+}}

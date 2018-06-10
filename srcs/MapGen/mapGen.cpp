@@ -104,10 +104,14 @@ namespace indie {
 	{
 		for (int i = 0; i < _ymap; i++) {
 			for (int j = 0; j < _xmap; j++) {
-				if (_2Dmap[i][j] == 2)
+				if (_2Dmap[i][j] == 2) {
 					ecs::system::Create::createDeletableWall(irr::core::vector2df((i  + 1) * 100, (j + 1) * 100));
+					ecs::system::Create::createGround(irr::core::vector2df((i  + 1) * 100, (j + 1) * 100));
+				}
 				else if (_2Dmap[i][j] == 1)
 					ecs::system::Create::createWall(irr::core::vector2df((i  + 1) * 100, (j + 1) * 100));
+				else if (_2Dmap[i][j] == 0)
+					ecs::system::Create::createGround(irr::core::vector2df((i  + 1) * 100, (j + 1) * 100));
 			}
 		}
 	}

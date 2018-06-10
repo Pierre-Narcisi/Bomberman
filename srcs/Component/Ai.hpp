@@ -7,8 +7,8 @@
 
 #pragma once
 
-namespace ecs::component {
+namespace ecs { namespace component {
 
 	struct Ai {
 	};
-}
+}}

@@ -12,10 +12,10 @@
 
 #include "Game/Game.hpp"
 
-namespace ecs::component {
+namespace ecs { namespace component {
 
 	struct UnanimatedObject {
 		irr::scene::ISceneNode	*_node;
 	};
 
-}
+}}

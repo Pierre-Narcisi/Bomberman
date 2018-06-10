@@ -7,7 +7,7 @@
 
 #include "System/Being.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	void Being::updateState(component::Being &being, irr::scene::EMD2_ANIMATION_TYPE state)
 	{
@@ -15,4 +15,4 @@ namespace ecs::system {
 		being._lastMov = state;
 	}
 
-}
+}}

@@ -10,14 +10,12 @@
 #include <irrlicht/irrlicht.h>
 
 #include "ECS/Entity/Filter.hpp"
-#include "Component/Keyboard.hpp"
-#include "Component/Controller360.hpp"
 #include "System/Update.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	class Events {
 	public:
 		static void Manager(irr::SEvent const &event);
 	};
-}
+}}

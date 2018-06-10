@@ -15,7 +15,7 @@
 
 #include "EntityErrors.hpp"
 
-namespace ecs::entity {
+namespace ecs { namespace entity {
 
 	using Id = std::size_t;
 
@@ -54,6 +54,6 @@ namespace ecs::entity {
 		std::list<Id> _entities;
 	};
 
-}
+}}
 
 #include "Entity.tpp"

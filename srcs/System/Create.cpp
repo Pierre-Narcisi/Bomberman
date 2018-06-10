@@ -5,7 +5,10 @@
 ** Created by seb,
 */
 
+#include "Constructors/Destructors.hpp"
+#include "Settings/Inputs.hpp"
 #include "ECS/Entity/Entity.hpp"
+#include "ECS/Component/Component.hpp"
 #include "Game/Game.hpp"
 
 #include "Component/Basics.hpp"
@@ -17,7 +20,7 @@
 
 #include "System/Create.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	irr::scene::IMetaTriangleSelector *Create::createCollision()
 	{
@@ -30,7 +33,7 @@ namespace ecs::system {
 		for (auto id : fl.list) {
 			sel1 = game.getSmgr()->createTriangleSelectorFromBoundingBox(map[id]._node);
 			worldSel->addTriangleSelector(sel1);
-			// worldSel->removeTriangleSelector(sel1);
+			//worldSel->removeTriangleSelector(sel1);
 		}
 		return (worldSel);
 	}
@@ -94,45 +97,64 @@ namespace ecs::system {
 		game.getDevice()->activateJoysticks(joystickInfo);
 		irr::u32 i;
 
-		for (i = 0; i < joystickInfo.size(); i++)
-			if (strcmp(joystickInfo[i].Name.c_str(), "Microsoft X-Box 360 pad") == 0)
-				_controller = true;
+		for (i = 0; i < joystickInfo.size(); i++) {
+			if (strcmp(joystickInfo[i].Name.c_str(), "Microsoft X-Box 360 pad") == 0) {
+				entity::Filter<component::Input> list;
+				auto &in = component::Manager<component::Input>::get();
+				bool used = false;
+				for (auto &ID : list.list) {
+					if (in[ID].mode == ecs::component::Input::Mode::Controller && in[ID].controllerId == joystickInfo[i].Joystick)
+						used = true;
+				}
+				if (used == false)
+					_controller = true;
+			}
 
-		// component::Manager<component::Being>::get().addComponentForEntity(id, mesh, texture, pos);
-		// component::Manager<component::Stat>::get().addComponentForEntity();
+		}
+
 		component::Manager<component::Being>::get().addComponentForEntity(id);
 		ecs::component::Constructors::Being(id, mesh, texture, pos);
 
 		auto selector = ecs::system::Create::createCollision();
+		auto max = component::Manager<component::Being>::get()[id]._node->getBoundingBox().MaxEdge;
+		auto min = component::Manager<component::Being>::get()[id]._node->getBoundingBox().MinEdge;
+		max.Z *= 15;
+		max.X *= 15;
+		max.Y *= 15;
+		min.Z *= 15;
+		min.X *= 15;
+		min.Y *= 15;
 		irr::scene::ISceneNodeAnimator *anim = game.getSmgr()->createCollisionResponseAnimator(selector,
-													component::Manager<component::Being>::get()[id]._node,
-													(component::Manager<component::Being>::get()[id]._node->getBoundingBox().MaxEdge
-													- component::Manager<component::Being>::get()[id]._node->getBoundingBox().MinEdge),
-													irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
+												       component::Manager<component::Being>::get()[id]._node,
+												       (max - min),
+												       irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
 		component::Manager<component::Being>::get()[id]._node->addAnimator(anim);
 		selector->drop();
 		anim->drop();
 
 		for (i = 0; i < joystickInfo.size(); i++) {
 			if (strcmp(joystickInfo[i].Name.c_str(), "Microsoft X-Box 360 pad") == 0) {
-				_controller = true;
-				break;
+				entity::Filter<component::Input> list;
+				auto &in = component::Manager<component::Input>::get();
+				bool used = false;
+				for (auto &ID : list.list) {
+					if (in[ID].mode == ecs::component::Input::Mode::Controller && in[ID].controllerId == joystickInfo[i].Joystick)
+						used = true;
+				}
+				if (used == false) {
+					_controller = true;
+					break;
+				}
 			}
 		}
 
+
 		if (_controller) {
-			component::Manager<component::Controller360>::get().addComponentForEntity(id);
-			component::Constructors::Controller360(id, joystickInfo[i].Joystick);
+			component::Manager<component::Input>::get().addComponentForEntity(id);
+			component::Constructors::Input(id, joystickInfo[i].Joystick);
 		} else {
-			component::Manager<component::Keyboard>::get().addComponentForEntity(id);
-			component::Constructors::Keyboard(id,
-							  irr::EKEY_CODE::KEY_KEY_Z,
-							  irr::EKEY_CODE::KEY_KEY_Q,
-							  irr::EKEY_CODE::KEY_KEY_S,
-							  irr::EKEY_CODE::KEY_KEY_D,
-							  irr::EKEY_CODE::KEY_SPACE,
-							  irr::EKEY_CODE::KEY_LCONTROL,
-							  irr::EKEY_CODE::KEY_LSHIFT);
+			component::Manager<component::Input>::get().addComponentForEntity(id);
+			component::Constructors::Input(id);
 		}
 
 		component::Manager<component::Stat>::get().addComponentForEntity(id);
@@ -146,16 +168,6 @@ namespace ecs::system {
 	entity::Id Create::createBomb(entity::Id ID, irr::core::vector2di pos)
 	{
 		auto &game = indie::Game::get();
-
-		// component::Manager<component::Type>::get().addComponentForEntity(id, component::Type::Enum::Bomb);
-		// component::Manager<component::Position>::get().addComponentForEntity(id, pos.X, pos.Y);
-		// component::Manager<component::Attributes>::get().addComponentForEntity(id, (long double) time(NULL) + 2, range, component::Attributes::Enum::Default);
-		// component::Manager<component::Mesh>::get().addComponentForEntity(id, game.getSmgr()->addAnimatedMeshSceneNode(game.getSmgr()->getMesh("../../assets/bomb.obj")));
-		// component::Manager<component::Mesh>::get()[id].mesh->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-		// component::Manager<component::Mesh>::get()[id].mesh->setPosition({static_cast<float>(pos.X), 0, static_cast<float>(pos.Y)});
-		// component::Manager<component::Mesh>::get()[id].mesh->setScale({25, 25, 25});
-		// component::Manager<component::Deletable>::get().addComponentForEntity(id);
-		// return id;
 		entity::Filter<component::Type, component::Mesh> fl;
 		auto &mesh = component::Manager<component::Mesh>::get();
 		auto &type = component::Manager<component::Type>::get();
@@ -212,11 +224,19 @@ namespace ecs::system {
 		auto &POS = component::Manager<component::Position>::get();
 		auto &TYPE = component::Manager<component::Type>::get();
 
+
+
+
+		//Getting Bomb range
+
 		int rangeLeft = 0;
 		int rangeRight = 0;
 		int rangeUp = 0;
 		int rangeDown = 0;
 
+
+		entity::Filter<component::UnanimatedObject, component::Deletable> walls;
+		auto &wall = component::Manager<component::UnanimatedObject>::get();
 		entity::Filter<component::Map> fl;
 		for (auto &entit : fl.list) {
 			auto &map = component::Manager<component::Map>::get()[entit].map;
@@ -234,6 +254,10 @@ namespace ecs::system {
 				} else if (map[pos.y][pos.x - (rangeLeft + 1)] == 2) {
 					rangeLeft++;
 					map[pos.y][pos.x - (rangeLeft + 1)] = 0;
+					for (auto &Id: walls.list) {
+						if (wall[Id]._node->getPosition().X/100 == pos.x - (rangeLeft) && wall[Id]._node->getPosition().Z/100 == pos.y)
+							component::Destructors::UnanimatedObject(Id);
+					}
 					break;
 				} else if (map[pos.y][pos.x - (rangeLeft + 1)] == 3) {
 					entity::Filter<component::Position, component::Type>	poty;
@@ -243,12 +267,17 @@ namespace ecs::system {
 					}
 				}
 			}
+
 			for (rangeRight = 0; rangeRight < component::Manager<component::Attributes>::get()[ID].range; ++rangeRight) {
 				if (map[pos.y][pos.x + (rangeRight + 1)] == 1) {
 					break;
 				} else if (map[pos.y][pos.x + (rangeRight + 1)] == 2) {
 					rangeRight++;
 					map[pos.y][pos.x + (rangeRight + 1)] = 0;
+					for (auto &Id: walls.list) {
+						if (wall[Id]._node->getPosition().X/100 == pos.x + (rangeRight) && wall[Id]._node->getPosition().Z/100 == pos.y)
+							component::Destructors::UnanimatedObject(Id);
+					}
 					break;
 				} else if (map[pos.y][pos.x + (rangeRight + 1)] == 3) {
 					entity::Filter<component::Position, component::Type>	poty;
@@ -258,12 +287,17 @@ namespace ecs::system {
 					}
 				}
 			}
+
 			for (rangeUp = 0; rangeUp < component::Manager<component::Attributes>::get()[ID].range; ++rangeUp) {
 				if (map[pos.y + (rangeUp + 1)][pos.x] == 1) {
 					break;
 				} else if (map[pos.y + (rangeUp + 1)][pos.x] == 2) {
 					rangeUp++;
 					map[pos.y + (rangeUp + 1)][pos.x] = 0;
+					for (auto &Id: walls.list) {
+						if (wall[Id]._node->getPosition().X/100 == pos.x && wall[Id]._node->getPosition().Z/100 == pos.y + (rangeUp))
+							component::Destructors::UnanimatedObject(Id);
+					}
 					break;
 				} else if (map[pos.y + (rangeUp + 1)][pos.x] == 3) {
 					entity::Filter<component::Position, component::Type>	poty;
@@ -273,12 +307,17 @@ namespace ecs::system {
 					}
 				}
 			}
+
 			for (rangeDown = 0; rangeDown < component::Manager<component::Attributes>::get()[ID].range; ++rangeDown) {
 				if (map[pos.y - (rangeDown + 1)][pos.x] == 1) {
 					break;
 				} else if (map[pos.y - (rangeDown + 1)][pos.x] == 2) {
 					rangeDown++;
 					map[pos.y - (rangeDown + 1)][pos.x] = 0;
+					for (auto &Id: walls.list) {
+						if (wall[Id]._node->getPosition().X/100 == pos.x && wall[Id]._node->getPosition().Z/100 == pos.y - (rangeDown))
+							component::Destructors::UnanimatedObject(Id);
+					}
 					break;
 				} else if (map[pos.y - (rangeDown + 1)][pos.x] == 3) {
 					entity::Filter<component::Position, component::Type>	poty;
@@ -288,25 +327,53 @@ namespace ecs::system {
 					}
 				}
 			}
-
-			std::cout << "rangeLeft:\t" << rangeLeft << std::endl;
-			std::cout << "rangeRight:\t" << rangeRight << std::endl;
-			std::cout << "rangeUp:\t" << rangeUp << std::endl;
-			std::cout << "rangeDown:\t" << rangeDown << std::endl;
-			std::cout << std::endl;
-
-			/*for (auto line : map) {
-				for (auto a : line)
-					std::cout << a;
-				std::cout << std::endl;
-			}*/
-			std::cout << std::endl;
-
-
+			pos.x = pos.x * 100;
+			pos.y = pos.y * 100;
 		}
 
-		pos.x = pos.x * 100;
-		pos.y = pos.y * 100;
+
+		// Killing Beings in range
+
+		entity::Filter<component::Being, component::Input> beings;
+		auto &being = component::Manager<component::Being>::get();
+
+		for (auto &me : beings.list) {
+			if (being[me]._node->getPosition().X > pos.x - rangeLeft * 100 - 50 && being[me]._node->getPosition().X < pos.x + rangeRight * 100 + 50) {
+				if (being[me]._node->getPosition().Z > pos.y - 50 && being[me]._node->getPosition().Z < pos.y + 50) {
+					being[me]._node->setVisible(0);
+					being[me]._node->setPosition(irr::core::vector3df(0, 500, 500));
+					ecs::component::Manager<component::Input>::get().removeComponentForEntity(me);
+				}
+			}
+			if (being[me]._node->getPosition().Z > pos.y - rangeUp * 100 - 50 && being[me]._node->getPosition().Z < pos.y + rangeDown * 100 + 50) {
+				if (being[me]._node->getPosition().X > pos.x - 50 && being[me]._node->getPosition().X < pos.x + 50) {
+					being[me]._node->setVisible(0);
+					being[me]._node->setPosition(irr::core::vector3df(0, 500, 500));
+					ecs::component::Manager<component::Input>::get().removeComponentForEntity(me);
+				}
+			}
+		}
+
+
+		entity::Filter<component::Being, component::Ai> ais;
+		auto &ai = component::Manager<component::Being>::get();
+
+		for (auto &me : ais.list) {
+			if (ai[me]._node->getPosition().X > pos.x - rangeLeft * 100 - 50 && ai[me]._node->getPosition().X < pos.x + rangeRight * 100 + 50) {
+				if (ai[me]._node->getPosition().Z > pos.y - 50 && ai[me]._node->getPosition().Z < pos.y + 50) {
+					ai[me]._node->setVisible(0);
+					ai[me]._node->setPosition(irr::core::vector3df(0, 500, 500));
+					ecs::component::Manager<component::Ai>::get().removeComponentForEntity(me);
+				}
+			}
+			if (ai[me]._node->getPosition().Z > pos.y - rangeUp * 100 - 50 && ai[me]._node->getPosition().Z < pos.y + rangeDown * 100 + 50) {
+				if (ai[me]._node->getPosition().X > pos.x - 50 && ai[me]._node->getPosition().X < pos.x + 50) {
+					ai[me]._node->setVisible(0);
+					ai[me]._node->setPosition(irr::core::vector3df(0, 500, 500));
+					ecs::component::Manager<component::Ai>::get().removeComponentForEntity(me);
+				}
+			}
+		}
 
 
 		ParticleEmitterManager[id].PEUp = ParticleSystemManager[id].PSUp->createBoxEmitter(
@@ -400,4 +467,14 @@ namespace ecs::system {
 		return id;
 	}
 
-}
+		entity::Id Create::createGround(irr::core::vector2df pos)
+		{
+			auto	id = entity::Manager::get().newEntity();
+
+			component::Manager<component::MeshStatic>::get().addComponentForEntity(id);
+			component::Constructors::MeshStatic(id, "./assets/bloodground.png", pos);
+
+			return id;
+		}
+
+}}

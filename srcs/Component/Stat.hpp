@@ -10,10 +10,10 @@
 #include <irrlicht/irrlicht.h>
 #include <string>
 
-namespace ecs::component {
+namespace ecs { namespace component {
 	struct Stat {
 		int	range = 1;
 		float	speed = 1;
-		int	bombMax = 100;
+		int	bombMax = 1;
 	};
-}
+}}

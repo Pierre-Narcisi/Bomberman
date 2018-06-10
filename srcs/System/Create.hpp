@@ -14,12 +14,10 @@
 #include "Component/Basics.hpp"
 #include "Component/UnanimatedObject.hpp"
 #include "Component/Being.hpp"
-#include "Component/Controller360.hpp"
-#include "Component/Keyboard.hpp"
 #include "Component/Camera.hpp"
 #include "Component/Ai.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	class Create {
 	public:
@@ -31,6 +29,7 @@ namespace ecs::system {
 		static void		createExplosion(entity::Id id, component::Position pos);
 		static entity::Id	createMap(std::vector<std::vector<int>>);
 		static entity::Id	createAi(std::string const &mesh, std::string const &texture, irr::core::vector2df const &pos);
+		static entity::Id	createGround(irr::core::vector2df pos);
 	};
 
-}
+}}

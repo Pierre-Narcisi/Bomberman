@@ -9,16 +9,16 @@
 
 #include <irrlicht/irrlicht.h>
 
-#include "Entity.hpp"
+#include "Json/Entity.hpp"
 #include "Game/Game.hpp"
 #include "ECS/Component/Component.hpp"
 #include "ECS/Entity/Entity.hpp"
 #include "Component/Being.hpp"
 
-namespace ecs::component {
+namespace ecs { namespace component {
 
 	struct Camera {
 		irr::scene::ICameraSceneNode	*_camera;
 	};
 
-}
+}}
