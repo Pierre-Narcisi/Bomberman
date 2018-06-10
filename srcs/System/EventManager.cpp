@@ -9,7 +9,7 @@
 #include "System/Event.hpp"
 #include "System/Graphical.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	void Events::Manager(irr::SEvent const &event)
 	{
@@ -56,4 +56,4 @@ namespace ecs::system {
 		}
 	}
 
-}
+}}

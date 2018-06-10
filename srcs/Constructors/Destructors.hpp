@@ -12,7 +12,7 @@
 #include "Game/Game.hpp"
 #include "ECS/Entity/Entity.hpp"
 
-namespace ecs::component {
+namespace ecs { namespace component {
 	class Destructors {
 	public:
 		static void UnanimatedObject(entity::Id id)
@@ -25,4 +25,4 @@ namespace ecs::component {
 			//game.getSmgr()->addToDeletionQueue(obj[id]._node);
 		}
 	};
-}
+}}

@@ -12,7 +12,7 @@
 
 #include "Game/Game.hpp"
 
-namespace ecs::component {
+namespace ecs { namespace component {
 
 	struct Explosion {
 		const std::vector<std::string> particle = {
@@ -152,4 +152,4 @@ namespace ecs::component {
 		irr::scene::IParticleSystemSceneNode	*fire_top;
 	};
 
-}
+}}

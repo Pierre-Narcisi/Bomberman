@@ -17,7 +17,7 @@
 #include "Component/Ai.hpp"
 #include "System/Being.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	class Ai {
 		using map_t = std::vector<std::vector<int>>;
@@ -32,5 +32,4 @@ namespace ecs::system {
 		static void zone(map_t &map);
 	};
 
-}
-
+}}

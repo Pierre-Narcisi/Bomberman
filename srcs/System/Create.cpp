@@ -19,7 +19,7 @@
 
 #include "System/Create.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	irr::scene::IMetaTriangleSelector *Create::createCollision()
 	{
@@ -439,4 +439,4 @@ namespace ecs::system {
 		return id;
 	}
 
-}
+}}

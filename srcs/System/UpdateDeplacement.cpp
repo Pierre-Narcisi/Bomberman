@@ -11,7 +11,7 @@
 #include "System/Update.hpp"
 #include "System/Being.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	void Update::Deplacement() {
 		entity::Filter<component::Camera, component::Being> player;
@@ -224,4 +224,4 @@ namespace ecs::system {
 		}*/
 	}
 
-}
+}}

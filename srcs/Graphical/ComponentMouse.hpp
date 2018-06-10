@@ -12,10 +12,10 @@
 #include "ECS/Component/Component.hpp"
 #include "ComponentBeing.hpp"
 
-namespace ecs::component {
+namespace ecs { namespace component {
 	struct Mouse {
 		irr::core::position2di	position{0, 0};
 		bool 			leftClick = false;
 		bool 			rightClick = false;
 	};
-}
+}}

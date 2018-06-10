@@ -17,7 +17,7 @@
 #include "Component.hpp"
 #include "ComponentMenu.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	class Create {
 	public:
@@ -220,4 +220,4 @@ namespace ecs::system {
 		}
 	};
 
-}
+}}

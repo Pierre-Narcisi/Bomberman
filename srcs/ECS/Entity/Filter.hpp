@@ -10,13 +10,13 @@
 #include "Entity.hpp"
 #include "../Component/Component.hpp"
 
-namespace ecs::entity {
+namespace ecs { namespace entity {
 
 	template<class ...Ts>
 	struct Filter {
 		std::list<Id> list;
 	};
 
-}
+}}
 
 #include "Filter.tpp"

@@ -11,11 +11,11 @@
 
 #include "Component/Being.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	class Being {
 	public:
 		static void updateState(component::Being &, irr::scene::EMD2_ANIMATION_TYPE);
 	};
 
-}
+}}

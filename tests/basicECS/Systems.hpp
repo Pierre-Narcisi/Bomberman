@@ -12,7 +12,7 @@
 #include "Component.hpp"
 #include "Components.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	class Kill {
 	public:
@@ -138,4 +138,4 @@ namespace ecs::system {
 		}
 	};
 
-}
+}}

@@ -19,7 +19,7 @@
 
 #include "System/Create.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	class Explode {
 	public:
@@ -71,4 +71,4 @@ namespace ecs::system {
 			}
 		}
 	};
-}
+}}

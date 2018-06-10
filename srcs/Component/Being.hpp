@@ -14,7 +14,7 @@
 #include "Game/Game.hpp"
 
 
-namespace ecs::component {
+namespace ecs { namespace component {
 
 	struct Being {
 		enum class State {
@@ -32,4 +32,4 @@ namespace ecs::component {
 		irr::u32				_then;
 	};
 
-}
+}}

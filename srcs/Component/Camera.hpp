@@ -15,10 +15,10 @@
 #include "ECS/Entity/Entity.hpp"
 #include "Component/Being.hpp"
 
-namespace ecs::component {
+namespace ecs { namespace component {
 
 	struct Camera {
 		irr::scene::ICameraSceneNode	*_camera;
 	};
 
-}
+}}

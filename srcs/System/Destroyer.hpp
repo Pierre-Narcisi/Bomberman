@@ -13,7 +13,7 @@
 
 #include "Component/Basics.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	class Destroyer {
 	public:
@@ -30,4 +30,4 @@ namespace ecs::system {
 		}
 	};
 
-}
+}}

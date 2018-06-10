@@ -17,7 +17,7 @@
 
 #include "System/Create.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	class Update {
 	public:
@@ -56,4 +56,4 @@ namespace ecs::system {
 		}
 	};
 
-}
+}}

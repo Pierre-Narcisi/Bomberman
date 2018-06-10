@@ -12,7 +12,7 @@
 
 #include "ECS/Entity/Entity.hpp"
 
-namespace ecs::component {
+namespace ecs { namespace component {
 
 	struct Input {
 		enum class Mode { None = 0, Keybord, Controller };
@@ -48,9 +48,9 @@ namespace ecs::component {
 		/* normalState // hoverState */
 	};
 
-}
+}}
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	class Inputs {
 	public:
@@ -58,4 +58,4 @@ namespace ecs::system {
 		// static void handle(component::MenuInput &, irr::SEvent const &);
 	};
 
-}
+}}

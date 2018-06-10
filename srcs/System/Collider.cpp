@@ -17,7 +17,7 @@
 
 #include <iostream>
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	void Collider::update()
 	{
@@ -79,4 +79,4 @@ namespace ecs::system {
 			mouse.position.Y <= rect.ys + rect.yi;
 	}
 
-}
+}}

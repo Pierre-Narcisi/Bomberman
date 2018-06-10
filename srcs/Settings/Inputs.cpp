@@ -11,15 +11,19 @@
 
 #include "Inputs.hpp"
 
-namespace ecs::system {
+namespace ecs { namespace system {
 
 	void Inputs::handle(irr::SEvent const &event)
 	{
 		entity::Filter<component::Input> fl;
 		auto &input = component::Manager<component::Input>::get();
 
-		if (event.EventType == irr::EET_KEY_INPUT_EVENT && event.KeyInput.Key == irr::EKEY_CODE::KEY_ESCAPE)
-			indie::Game::get().getDevice()->closeDevice();
+		if (event.KeyInput.Key == irr::EKEY_CODE::KEY_ESCAPE
+		&& event.KeyInput.PressedDown == false)
+			ecs::system::HandleMenu::update();
+
+		// if (event.EventType == irr::EET_KEY_INPUT_EVENT && event.KeyInput.Key == irr::EKEY_CODE::KEY_ESCAPE)
+		// 	indie::Game::get().getDevice()->closeDevice();
 
 		for (auto &id : fl.list) {
 
@@ -84,4 +88,4 @@ namespace ecs::system {
 		// }
 	// }
 
-}
+}}
