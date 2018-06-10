@@ -45,7 +45,7 @@ namespace ecs { namespace system {
 				rot = 0;
 		}
 
-		being[id]._node->setRotation(irr::core::vector3df(0, rot, 0));
+		being[id]._node->setRotation(irr::core::vector3df(0, rot - 180, 0));
 
 		// Set Animation
 		if (moving == 0) {
@@ -108,9 +108,14 @@ namespace ecs { namespace system {
 	{
 		int incr = 2;
 		int size = map.size();
+		irr::core::vector3df tmp;
+		tmp.X = getPos(pos.X);
+		tmp.Z = getPos(pos.Z);
 		int x = getPos(pos.X) - 1;
 		int y = getPos(pos.Z) - 1;
 
+		tmp.X = x;
+		tmp.Z = y;
 		while (incr < size) {
 			for (int i = 0; i < incr; i++) {
 				if (y + i >= 0 && x >= 0 && y + i < size && x < size && isViable(map, y + i, x, size) != 0) {
@@ -135,15 +140,17 @@ namespace ecs { namespace system {
 			x--;
 			y--;
 		}
-		pos.Z = y + incr / 2 - 1;
-		pos.X = x + incr / 2 - 1;
-		return pos;
+		std::cout << "chibre" << std::endl;
+		return tmp;
 	}
 
 	irr::core::vector3df Ai::findSafe(map_t map, irr::core::vector3df pos)
 	{
 		int incr = 2;
 		int size = map.size();
+		irr::core::vector3df tmp;
+		tmp.X = getPos(pos.X);
+		tmp.Z = getPos(pos.Z);
 		int x = getPos(pos.X) - 1;
 		int y = getPos(pos.Z) - 1;
 
@@ -171,17 +178,17 @@ namespace ecs { namespace system {
 			x--;
 			y--;
 		}
-		pos.Z = y + incr / 2 - 1;
-		pos.X = x + incr / 2 - 1;
-		return pos;
+		std::cout << "couille" << std::endl;
+		std::cout << "x = " << tmp.X << "y = " << tmp.Z << std::endl;
+		return tmp;
 	}
 
 	void Ai::bomb(int id, irr::core::vector3df pos)
 	{
 		irr::core::vector2di newpos;
 
-		newpos.X = pos.X;
-		newpos.Y = pos.Z;
+		newpos.Y = pos.Z + 50 - std::fmod(static_cast<double>(pos.Z + 50) , 100.0);
+		newpos.X = pos.X + 50 - std::fmod(static_cast<double>(pos.X + 50) , 100.0);
 		Create::createBomb(id, newpos);
 	}
 
@@ -193,8 +200,9 @@ namespace ecs { namespace system {
 		to.Z = to.Z * 100;
 		to.X = to.X * 100;
 		int moving = 0;
-		// std::cout << "y=" << to.Z << "  x=" << to.X << std::endl;
-		// std::cout << "yy=" << pos.Z << "  xx=" << pos.X << std::endl;
+		auto &ai = component::Manager<component::Ai>::get();
+
+		std::cout << "x = " << to.X << "y = " << to.Z << std::endl;
 
 
 		if (to.Z - pos.Z < 0 && abs(to.Z - pos.Z) > 5) {
@@ -213,11 +221,14 @@ namespace ecs { namespace system {
 		}
 		deplacement(y, x, moving, id);
 
-		std::cout << "x = " << abs(to.X - pos.X) << "y = " << abs(to.Z - pos.Z) << std::endl;
 		if (abs(to.X - pos.X) <= 5 &&abs(to.Z - pos.Z) <= 5) {
-			if (free == 1)
+			if (free == 1) {
+				free = 0;
 				bomb(id, pos);
-			free = 0;
+			} else if (time(NULL) >= ai[id].since) {
+				free = 0;
+				std::cout << ai[id].since << std::endl;
+			}
 		}
 	}
 
@@ -226,13 +237,16 @@ namespace ecs { namespace system {
 		return static_cast<int>(pos + 50) / 100;
 	}
 
-	void Ai::setGoal(irr::core::vector3df &goal, int &free, map_t map, irr::core::vector3df pos)
+	void Ai::setGoal(irr::core::vector3df &goal, int &free, map_t map, irr::core::vector3df pos, entity::Id id)
 	{
+		auto &ai = component::Manager<component::Ai>::get();
+	
 		if (map[getPos(pos.Z)][getPos(pos.X)] == 5) {
 			auto newpos = findSafe(map, pos);
 			goal.X = newpos.X;
 			goal.Z = newpos.Z;
 			free = 2;
+			ai[id].since = time(NULL) + 5;
 		} else if (free == 0) {
 			auto newpos = findSpot(map, pos);
 			goal.X = newpos.X;
@@ -241,20 +255,24 @@ namespace ecs { namespace system {
 		}
 	}
 
-	void Ai::update(entity::Id ai)
+	void Ai::update(entity::Id id)
 	{
 		entity::Filter<component::Map> mapList;
 		int moving = 0;
 		auto &being = component::Manager<component::Being>::get();
-		static irr::core::vector3df goal;
-		static int free = 0;
+		auto &ai = component::Manager<component::Ai>::get();
+
+		if (!ai.hasComponent(id))
+			return;
+		auto &goal = ai[id].goal;
+		auto &free = ai[id].free;
 
 		for (auto &idmap : mapList.list) {
 			auto map = component::Manager<component::Map>::get()[idmap].map;
-			auto pos = being[ai]._node->getPosition();
+			auto pos = being[id]._node->getPosition();
 			zone(map);
-			setGoal(goal, free, map, pos);
-			moveTo(goal, pos, free, ai);
+			setGoal(goal, free, map, pos, id);
+			moveTo(goal, pos, free, id);
 		}
 	}
 
@@ -272,8 +290,6 @@ namespace ecs { namespace system {
 		auto &delWall = component::Manager<component::Deletable>::get();
 		auto &type = component::Manager<component::Type>::get();
 		auto &being = component::Manager<component::Being>::get();
-
-
 
 		for (auto &idmap : mapList.list) {
 			auto &map = component::Manager<component::Map>::get()[idmap].map;

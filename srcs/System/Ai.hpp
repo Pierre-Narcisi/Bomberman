@@ -28,7 +28,7 @@ namespace ecs { namespace system {
 		static irr::core::vector3df findSpot(map_t map, irr::core::vector3df pos);
 		static int isViable(map_t map, int y, int x, int size);
 		static void moveTo(irr::core::vector3df to, irr::core::vector3df pos, int &free, entity::Id id);
-		static void setGoal(irr::core::vector3df &goal, int &free, map_t map, irr::core::vector3df pos);
+		static void setGoal(irr::core::vector3df &goal, int &free, map_t map, irr::core::vector3df pos, entity::Id id);
 		static void bomb(int id, irr::core::vector3df pos);
 		static void deplacement(int y, int x, int moving, entity::Id id);
 		static int getPos(float pos);
