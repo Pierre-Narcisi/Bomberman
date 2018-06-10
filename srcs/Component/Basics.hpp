@@ -22,7 +22,7 @@ namespace ecs::component {
 
 	struct Position {
 		int x{};
-		int y{};	
+		int y{};
 	};
 
 	struct Speed {
