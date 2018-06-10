@@ -29,4 +29,4 @@ add_executable(bomberman
 
 target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/irrlicht/libIrrlicht.so)
 target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/Json/libJson.so)
-target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/libIrrKlang.so)
+target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/irrKlang/libIrrKlang.so)
