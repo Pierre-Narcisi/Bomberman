@@ -43,7 +43,7 @@ namespace ecs { namespace system {
 		auto	id = entity::Manager::get().newEntity();
 
 		component::Manager<component::UnanimatedObject>::get().addComponentForEntity(id);
-		component::Constructors::UnanimatedObject(id, "./assets/cobblestone.jpg", pos);
+		component::Constructors::UnanimatedObject(id, "./assets/wall.jpg", pos);
 		component::Manager<component::Type>::get().addComponentForEntity(id);
 		component::Constructors::Type(id, component::Type::Enum::Wall);
 
@@ -55,7 +55,7 @@ namespace ecs { namespace system {
 		auto	id = entity::Manager::get().newEntity();
 
 		component::Manager<component::UnanimatedObject>::get().addComponentForEntity(id);
-		component::Constructors::UnanimatedObject(id, "./assets/wooddencreate.png", pos);
+		component::Constructors::UnanimatedObject(id, "./assets/crate.jpg", pos);
 		component::Manager<component::Deletable>::get().addComponentForEntity(id);
 		component::Manager<component::Type>::get().addComponentForEntity(id);
 		component::Constructors::Type(id, component::Type::Enum::Wall);
