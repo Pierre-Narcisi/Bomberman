@@ -115,11 +115,13 @@ namespace ecs { namespace system {
 		static void loadSceneMulti()
 		{
 			ecs::system::createButton(ecs::component::Button::Type::Two, "./assets/buttons/number2White1.png",
-			ecs::component::Rect{300, 500, 96, 125}, "./assets/buttons/number2Black1.png");
+			ecs::component::Rect{500, 500, 96, 125}, "./assets/buttons/number2Black1.png");
 			ecs::system::createButton(ecs::component::Button::Type::Three, "./assets/buttons/number3White1.png",
-			ecs::component::Rect{700, 500, 101, 137}, "./assets/buttons/number3Black1.png");
+			ecs::component::Rect{900, 500, 101, 137}, "./assets/buttons/number3Black1.png");
 			ecs::system::createButton(ecs::component::Button::Type::Four, "./assets/buttons/number4White1.png",
-			ecs::component::Rect{1100, 500, 111, 150}, "./assets/buttons/number4Black1.png");
+			ecs::component::Rect{1300, 500, 111, 150}, "./assets/buttons/number4Black1.png");
+			ecs::system::createButton(ecs::component::Button::Type::None, "./assets/buttons/playerNumberWhite1.png",
+			ecs::component::Rect{470, 900, 1224, 103}, "");
 		}
 		static void loadGame1(std::string &color)
 		{
@@ -144,6 +146,7 @@ namespace ecs { namespace system {
 		};
 		static void loadGame2()
 		{
+			indie::mapGen(10, 10);
 			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo1.png", irr::core::vector2df(100,100));
 			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo2.png", irr::core::vector2df(900,100));
 			ecs::system::Create::createAi("./assets/voodoo.ms3d", "./assets/voodoo3.png", irr::core::vector2df(100,900));
@@ -151,6 +154,7 @@ namespace ecs { namespace system {
 		}
 		static void loadGame3()
 		{
+			indie::mapGen(10, 10);
 			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo1.png", irr::core::vector2df(100,100));
 			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo2.png", irr::core::vector2df(900,100));
 			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo3.png", irr::core::vector2df(100,900));
@@ -158,6 +162,7 @@ namespace ecs { namespace system {
 		}
 		static void loadGame4()
 		{
+			indie::mapGen(10, 10);
 			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo1.png", irr::core::vector2df(100,100));
 			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo2.png", irr::core::vector2df(900,100));
 			ecs::system::Create::createPlayer("./assets/voodoo.ms3d", "./assets/voodoo3.png", irr::core::vector2df(100,900));
