@@ -60,7 +60,10 @@ namespace ecs { namespace system {
 				} else if (buttonManager[e].type == ecs::component::Button::Type::Solo) {
 					ecs::system::Deletable::button();
 					ecs::system::Scene::loadSceneThree();
-				}	else if (buttonManager[e].type == ecs::component::Button::Type::Start) {
+				}	else if (buttonManager[e].type == ecs::component::Button::Type::Multi) {
+					ecs::system::Deletable::button();
+					ecs::system::Scene::loadSceneMulti();
+				} else if (buttonManager[e].type == ecs::component::Button::Type::Start) {
  					ecs::system::Deletable::all();
  					ecs::system::Scene::loadGame1(color);
 				} else if (buttonManager[e].type == ecs::component::Button::Type::MusicDown) {
