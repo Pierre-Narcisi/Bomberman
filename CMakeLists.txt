@@ -5,10 +5,9 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories(libs)
 include_directories(libs/Json/includes)
-include_directories(libs/Json/srcs/Entity)
-include_directories(libs/Json/srcs/Parser)
 include_directories(srcs)
-include_directories(irrKlang)
+include_directories(libs/irrKlang/includes)
+include_directories(libs/irrlicht/includes)
 
 add_executable(bomberman
         srcs/Constructors/BeingConsruct.hpp
@@ -28,7 +27,12 @@ add_executable(bomberman
         srcs/System/UpdateDeplacement.cpp
         srcs/Main.cpp)
 
-target_link_libraries(bomberman /usr/lib/x86_64-linux-gnu/libIrrlicht.so)
-target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/Json/libJson.so)
-target_link_libraries(bomberman /usr/lib/x86_64-linux-gnu/libpthread.so)
-target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/irrKlang/bin/linux-gcc-64/libIrrKlang.so)
+if (WIN32)
+        target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/irrlicht/Irrlicht.dll)
+        target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/Json/Json.dll)
+        target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/irrKlang/IrrKlang.dll)
+else()
+        target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/irrlicht/libIrrlicht.so)
+        target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/Json/libJson.so)
+        target_link_libraries(bomberman ${CMAKE_CURRENT_LIST_DIR}/libs/irrKlang/libIrrKlang.so)
+endif()
