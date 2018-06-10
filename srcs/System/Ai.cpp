@@ -95,7 +95,60 @@ namespace ecs::system {
 			}
 		}
 	}
+
+	int Ai::isViable(map_t map, int y, int x, int size)
+	{
+		int viable = 0;
+		if (x + 1 < size && map[y][x + 1] == 2)
+			viable++;
+		if (y + 1 < size && map[y + 1][x] == 2)
+			viable++;
+		if (x - 1 >= 0 && map[y][x - 1] == 2)
+			viable++;
+		if (y - 1 >= 0 && map[y - 1][x] == 2)
+			viable++;
+		if (map[y][x] != 0)
+			return 0;
+		return viable;
+	}
 	
+	irr::core::vector3df Ai::findSpot(map_t map, irr::core::vector3df pos)
+	{
+		int incr = 2;
+		int size = map.size();
+		int x = getPos(pos.X) - 1;
+		int y = getPos(pos.Z) - 1;
+
+		while (incr < size) {
+			for (int i = 0; i < incr; i++) {
+				if (y + i >= 0 && x >= 0 && y + i < size && x < size && isViable(map, y + i, x, size) != 0) {
+					pos.Z = y + i;
+					pos.X = x;
+					return pos;
+				} if (y + i >= 0 && x + incr >= 0 && y + i < size && x + incr < size && isViable(map, y + i, x + incr, size) != 0) {
+					pos.Z = y + i;
+					pos.X = x + incr;
+					return pos;
+				} if (y >= 0 && x + i >= 0 && y < size && x + i < size && isViable(map, y, x + i, size) != 0) {
+					pos.Z = y;
+					pos.X = x + i;
+					return pos;
+				} if (y + incr >= 0 && x + i >= 0 && y + incr < size && x + i < size && isViable(map, y + incr, x + i, size) != 0) {
+					pos.Z = y + incr;
+					pos.X = x + i;
+					return pos;
+				}
+			}
+			incr = incr + 2;
+			x--;
+			y--;
+		}
+		pos.Z = y + incr / 2 - 1;
+		pos.X = x + incr / 2 - 1;
+		std::cout << "le sang de tes mort" << std::endl;
+		return pos;
+	}
+
 	irr::core::vector3df Ai::findSafe(map_t map, irr::core::vector3df pos)
 	{
 		int incr = 2;
@@ -132,14 +185,14 @@ namespace ecs::system {
 		return pos;
 	}
 
-	void Ai::moveTo(irr::core::vector3df to, irr::core::vector3df pos, int moving)
+	void Ai::moveTo(irr::core::vector3df to, irr::core::vector3df pos, bool &free)
 	{
 		int x = 2;
 		int y = 2;
 		irr::core::vector3df tmp;
-		to.Z = to.Z * 100 + 50;
-		to.X = to.X * 100 + 50;
-		moving = 0;
+		to.Z = to.Z * 100;
+		to.X = to.X * 100;
+		int moving = 0;
 		std::cout << "y=" << to.Z << "  x=" << to.X << std::endl;
 		std::cout << "yy=" << pos.Z << "  xx=" << pos.X << std::endl;
 
@@ -158,6 +211,8 @@ namespace ecs::system {
 			moving = 1;
 		}
 		deplacement(y, x, moving);
+		if (abs(to.X - pos.X) < 5 &&abs(to.Y - pos.Y) < 5)
+			free = 0;
 	}
 
 	int Ai::getPos(float pos)
@@ -165,6 +220,20 @@ namespace ecs::system {
 		return static_cast<int>(pos + 50) / 100;
 	}
 
+	void Ai::setGoal(irr::core::vector3df &goal, bool &free, map_t map, irr::core::vector3df pos)
+	{
+		if (map[getPos(pos.Z)][getPos(pos.X)] == 5) {
+			auto newpos = findSafe(map, pos);
+			goal.X = newpos.X;
+			goal.Z = newpos.Z;
+			free = 1;
+		} else if (free == 0) {
+			auto newpos = findSpot(map, pos);
+			goal.X = newpos.X;
+			goal.Z = newpos.Z;
+			free = 1;
+		}
+	}
 
 	void Ai::update(entity::Id ai)
 	{
@@ -172,18 +241,16 @@ namespace ecs::system {
 		entity::Filter<component::Map> mapList;
 		int moving = 0;
 		auto &being = component::Manager<component::Being>::get();
+		static irr::core::vector3df goal;
+		static bool free = 0;
 
 		for (auto &idmap : mapList.list) {
 			auto map = component::Manager<component::Map>::get()[idmap].map;
 			for (auto id : player.list) {
 				auto pos = being[id]._node->getPosition();
 				zone(map);
-				if (map[getPos(pos.Z)][getPos(pos.X)] == 5) {
-					auto newpos = findSafe(map, pos);
-					moveTo(newpos, pos, 1);
-				}
-				else deplacement(2, 2, 0);
-				
+				setGoal(goal, free, map, pos);
+				moveTo(goal, pos, free);				
 				// for (auto line : map) {
 				// 	for (auto nb : line) {
 				// 		std::cout << nb;
