@@ -182,8 +182,8 @@ namespace indie {
 					btype[id].t == ecs::component::Type::Enum::BonusSpeed) {
 					std::cout << std::endl << "pos x:" << bpos[id].x << " pos y:" << bpos[id].y << std::endl;
 					for (auto &ID : taker.list) {
-						if (ptake[ID]._node->getPosition().X > bpos[id].x - 50 && ptake[ID]._node->getPosition().X > bpos[id].x + 50) {
-							if (ptake[ID]._node->getPosition().Z > bpos[id].y - 50 && ptake[ID]._node->getPosition().Z > bpos[id].y + 50) {
+						if (ptake[ID]._node->getPosition().X > bpos[id].x - 50 && ptake[ID]._node->getPosition().X < bpos[id].x + 50) {
+							if (ptake[ID]._node->getPosition().Z > bpos[id].y - 50 && ptake[ID]._node->getPosition().Z < bpos[id].y + 50) {
 								std::cout << "pos x:" << ptake[ID]._node->getPosition().X << " pos y:" << ptake[ID]._node->getPosition().Z << std::endl;
 								if (btype[id].t == ecs::component::Type::Enum::BonusBomb)
 									pstat[ID].bombMax += 1;
