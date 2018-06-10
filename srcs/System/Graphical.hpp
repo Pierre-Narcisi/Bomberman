@@ -132,8 +132,6 @@ namespace ecs { namespace system {
 				ecs::system::Create::createPlayer("./assets/voodoo.ms3d", color, irr::core::vector2df(1000,1000));
 			else
 				ecs::system::Create::createAi("./assets/voodoo.ms3d", "./assets/voodoo4.png", irr::core::vector2df(1000,1000));
-			// ecs::system::Create::createAi("./assets/voodoo.ms3d", "./assets/voodoo4.png", irr::core::vector2df(100,900));
-			//ecs::system::Create::createPlayer("./assets/voodoo.ms3d", color, irr::core::vector2df(100,100));
 		};
 		static void loadMenuInGame()
 		{

@@ -84,7 +84,11 @@ namespace ecs { namespace system {
 
 		component::Manager<component::Stat>::get().addComponentForEntity(id);
 		component::Manager<component::Ai>::get().addComponentForEntity(id);
-
+		auto Ai = component::Manager<component::Ai>::get()[id];
+		Ai.goal.Z = 100;
+		Ai.goal.X = 100;
+		Ai.free = 0;
+		Ai.since = 0;
 		return id;
 	}
 
